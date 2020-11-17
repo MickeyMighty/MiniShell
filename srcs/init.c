@@ -6,11 +6,11 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 18:42:01 by loamar            #+#    #+#             */
-/*   Updated: 2020/11/05 18:58:52 by loamar           ###   ########.fr       */
+/*   Updated: 2020/11/07 11:29:45 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/libshell.h"
+#include "../includes/libshell.h"
 
 void 	init_shell(void)
 {
@@ -24,9 +24,14 @@ void 	init_shell(void)
    	ft_putstr("   |+------------+|\n");
    	ft_putstr("   +-..--------..-+\n");
    	ft_putstr("   .--------------.\n");
-  	ft_putstr("  / /============\ \ \n");
-	ft_putstr(" / /==============\ \ \n");
-	ft_putstr("/____________________\ \n");
-	ft_putstr("\____________________/ \n");
+  	ft_putstr("  | .============. | \n");
+	ft_putstr(" | .==============. | \n");
+	ft_putstr("| ___________________| \n");
+	ft_putstr("|____________________| \n");
 	ft_putstr("*+*                *+* \n\n");
 }
+
+// t_data		*init_data_struct(t_data *data)
+// {
+// 	data->count_data = 0;
+// }

@@ -1,35 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libshell.h                                         :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/01 13:35:59 by loamar            #+#    #+#             */
-/*   Updated: 2020/11/13 15:40:32 by loamar           ###   ########.fr       */
+/*   Created: 2020/11/05 23:13:42 by loamar            #+#    #+#             */
+/*   Updated: 2020/11/05 23:14:07 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBSHELL_H
-# define LIBSHELL_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <errno.h>
+int		ft_strcmp(char *s1, char *s2)
+{
+	int i;
 
-# include "../lib/libft/libft.h"
-# include "../lib/get_next_line/get_next_line.h"
-# include "./includes/tree_struct.h"
-# include "./includes/data_struct.h"
-
-// init
-
-void 	init_shell(void);
-
-// DATA
-
-int 	sort_data(char *buf);
-int 	check_data_separator(t_data *data)
-
-# endif
+	i = 0;
+	while (s1[i] == s2[i] && s1[i] != '\0' && s2[i] != '\0')
+		i++;
+	return (s1[i] - s2[i]);
+}

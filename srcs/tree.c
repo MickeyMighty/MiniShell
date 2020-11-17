@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 16:05:49 by loamar            #+#    #+#             */
-/*   Updated: 2020/11/05 18:17:07 by loamar           ###   ########.fr       */
+/*   Updated: 2020/11/07 11:00:13 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 t_trees		*new_tree(int x)
 {
-	t_trees 	*tree = malloc(sizeof(*tree));
+	t_trees 	*tree;
 
+	tree = malloc(sizeof(*tree));
 	if (tree == NULL)
 		exit(EXIT_FAILURE);
 

@@ -6,7 +6,7 @@
 #    By: loamar <loamar@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/30 19:29:10 by loamar            #+#    #+#              #
-#    Updated: 2020/03/03 18:40:47 by loamar           ###   ########.fr        #
+#    Updated: 2020/11/05 23:13:04 by lorenzoam        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,7 +68,8 @@ SRC=ft_putnbr.c \
 	ft_newstr.c \
 	ft_min.c \
 	ft_max.c \
-	ft_memdel.c
+	ft_memdel.c \
+	ft_strcmp.c
 
 
 OBJ= $(SRC:.c=.o)

@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 11:26:49 by loamar            #+#    #+#             */
-/*   Updated: 2020/11/05 18:58:51 by loamar           ###   ########.fr       */
+/*   Updated: 2020/11/17 11:16:04 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,37 +40,49 @@
    */
 
 
-#include "../lib/libshell.h"
+#include "../includes/libshell.h"
 
-int make_tree()
-{
-	t_trees		*bigtree;
-
-	bigtree = join_tree(join_tree(new_tree(8), new_tree(3), 2), new_tree(4), 6);
-	print_tree_prefix(bigtree);
-	printf("Nombre de noeuds : %d\n", count_tree_nodes(bigtree));
-	clean_tree(bigtree);
-	return (1);
-}
-
-int     shell_loop()
+static int     shell_prompt()
 {
 	int 	loop;
+	int 	ret;
 	char	*buf;
 	char	*user;
 
 	loop = 1;
-	signal(SIGINT, signal_handler);
+	ret = 0;
+	signal(SIGINT, SIG_IGN);
+	// signal(SIGINT, signal_handler);
     while (loop)
     {
-		write(1, "\n>", 2);
-		read(0, buf, 1);
+		write(1, "minishell$ ", 11);
+		ret = get_next_line(0, &buf);
+		printf("=====TEST=======\n");
+		printf("buf -> %s\n", buf);
+		printf("ret -> %d\n", ret);
+		printf("================\n\n");
+		if (ret == -1)
+			return (0);
+
+		sort_data(buf);
+		free(buf);
+		// if (ft_strncmp("exit", buf, 4) == 0)
+		// 	return (1);
+		// printf("fail\n");
+		// loop = 0;
+
     }
+	return (0);
 }
 
 int     main(int argc, char **argv)
 {
+	int 	end;
+
+	end = 0;
 	init_shell();
-    shell_loop();
+    end = shell_prompt();
+	if (end == 1)
+		exit(EXIT_SUCCESS);
     return (0);
 }

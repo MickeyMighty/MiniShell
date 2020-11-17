@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tree.h                                             :+:      :+:    :+:   */
+/*   tree_struct.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 13:51:31 by loamar            #+#    #+#             */
-/*   Updated: 2020/11/03 11:57:05 by loamar           ###   ########.fr       */
+/*   Updated: 2020/11/06 20:52:00 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TREE_H
-# define TREE_H
+#ifndef TREE_STRUCT_H
+# define TREE_STRUCT_H
 
 typedef struct s_trees
 {
     int         value;
+	char 		*cmd;
+	char 		*option;
     struct s_trees *tleft;
     struct s_trees *tright;
     struct s_trees *parent;

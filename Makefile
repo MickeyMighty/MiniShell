@@ -9,7 +9,11 @@ CFLAGS	=	-I.
 LIBFT	=	./lib/libft/libft.a
 
 SRCS	=	./srcs/minishell.c \
-			./srcs/tree.c
+			./srcs/tree.c \
+			./srcs/init.c \
+			./srcs/data/sort_data.c \
+			./lib/get_next_line/get_next_line.c \
+			./lib/get_next_line/get_next_line_utils.c
 
 OBJS	=	$(SRCS:.c=.o)
 
