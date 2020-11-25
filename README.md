@@ -15,7 +15,9 @@
 | `Wait4` | <sys/types.h> <sys/time.h> <sys/resource.h> <sys/wait.h> | pid_t wait4(pid_t pid, int *wstatus, int options, struct rusage *rusage); | [check the [man](https://man7.org/linux/man-pages/man2/wait4.2.html)]|
 
 
-
+| Questions we can ask ourselves for this project | Link |
+| --- | --- |
+| **What is the difference between a built-in function and a user defined function?** | [click on me](https://www.quora.com/What-is-the-difference-between-a-built-in-function-and-a-user-defined-function) |
 
 
 sources:
