@@ -8,7 +8,7 @@
 | `Open` | <sys/types.h> <sys/stat.h> <fcntl.h> | int open(const char *pathname, int flags); | Opens the file specified by **pathname**. [check the [man](https://man7.org/linux/man-pages/man2/open.2.html) and check about the [flags](https://stackoverflow.com/questions/53807679/whats-the-connection-between-flags-and-mode-in-open-file-function-in-c)] |
 | `Read` | <unistd.h> | ssize_t read(int fd, void *buf, size_t count); | Read up to count bytes from file descriptor [fd](https://en.wikipedia.org/wiki/File_descriptor) into the buffer starting at **buf**. [check the [man](https://man7.org/linux/man-pages/man2/read.2.html)] |
 | `Close` | <unistd.h> |  int close(int fd); | Closes a [file descriptor](https://en.wikipedia.org/wiki/File_descriptor), so that it no longer refers to any file and may be reused. [check the [man](https://man7.org/linux/man-pages/man2/close.2.html)] |
-| `Fork` | <sys/types.h> <unistd.h> | pid_t fork(void); | [check the [man](https://www.man7.org/linux/man-pages/man2/fork.2.html) and check more [details](https://www.geeksforgeeks.org/fork-system-call/)]
+| `Fork` | <sys/types.h> <unistd.h> | pid_t fork(void); | ![diagram](https://www.google.com/url?sa=i&url=https%3A%2F%2Flinuxhint.com%2Ffork_linux_system_call_c%2F&psig=AOvVaw06dmi7PvGNiDie2dZ-uBCy&ust=1606431161474000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCJiGrsjknu0CFQAAAAAdAAAAABAO)[check the [man](https://www.man7.org/linux/man-pages/man2/fork.2.html) and check more [details](https://www.geeksforgeeks.org/fork-system-call/)]
 
 
 
