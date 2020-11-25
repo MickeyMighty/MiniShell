@@ -30,6 +30,7 @@
 | Questions we can ask ourselves for this project | Link |
 | --- | --- |
 | *What is the difference between a built-in function and a user defined function?* | [click on me](https://www.quora.com/What-is-the-difference-between-a-built-in-function-and-a-user-defined-function) |
+| *What is the Shell syntax ? | [click on me](https://pubs.opengroup.org/onlinepubs/009695399/utilities/xcu_chap02.html)
 
 
 
