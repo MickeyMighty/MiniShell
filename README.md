@@ -1,6 +1,6 @@
-# MiniShell
+###### MiniShell
 
-#1-Functions authorized
+# 1-Functions authorized
 
 | Functions | Lib | Prototype (linux) | Description |
 | --- | --- | -------- | ---|
@@ -16,7 +16,7 @@
 | `Wait3` | <sys/types.h> <sys/time.h> <sys/resource.h> <sys/wait.h> | pid_t wait3(int *wstatus, int options, struct rusage *rusage); | [check the [man](https://man7.org/linux/man-pages/man2/wait4.2.html)]|
 | `Wait4` | <sys/types.h> <sys/time.h> <sys/resource.h> <sys/wait.h> | pid_t wait4(pid_t pid, int *wstatus, int options, struct rusage *rusage); | [check the [man](https://man7.org/linux/man-pages/man2/wait4.2.html)]|
 
-#2-Questions and sources
+# 2-Questions and sources
 
 | Questions we can ask ourselves for this project | Link |
 | --- | --- |
