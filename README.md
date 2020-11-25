@@ -17,7 +17,7 @@
 
 | Questions we can ask ourselves for this project | Link |
 | --- | --- |
-| **What is the difference between a built-in function and a user defined function?** | [click on me](https://www.quora.com/What-is-the-difference-between-a-built-in-function-and-a-user-defined-function) |
+| *What is the difference between a built-in function and a user defined function?* | [click on me](https://www.quora.com/What-is-the-difference-between-a-built-in-function-and-a-user-defined-function) |
 
 
 sources:
