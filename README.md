@@ -8,7 +8,7 @@
 | `Open` | <sys/types.h> <sys/stat.h> <fcntl.h> | int open(const char *pathname, int flags); | Opens the file specified by **pathname**. [check the [man](https://man7.org/linux/man-pages/man2/open.2.html)] |
 | `Read` | <unistd.h> | ssize_t read(int fd, void *buf, size_t count); | Read up to count bytes from file descriptor [fd](https://en.wikipedia.org/wiki/File_descriptor) into the buffer starting at **buf**. [check the [man](https://man7.org/linux/man-pages/man2/read.2.html)] |
 | `Close` | <unistd.h> |  int close(int fd); | Closes a [file descriptor](https://en.wikipedia.org/wiki/File_descriptor), so that it no longer refers to any file and may be reused. [check the [man](https://man7.org/linux/man-pages/man2/close.2.html)] |
-| `Fork` | <sys/types.h> <unistd.h> | pid_t fork(void); | [check the [man](https://www.man7.org/linux/man-pages/man2/fork.2.html)] and [check more [details](https://www.geeksforgeeks.org/fork-system-call/)]
+| `Fork` | <sys/types.h> <unistd.h> | pid_t fork(void); | [check the [man](https://www.man7.org/linux/man-pages/man2/fork.2.html) and check more [details](https://www.geeksforgeeks.org/fork-system-call/)]
 
 
 
