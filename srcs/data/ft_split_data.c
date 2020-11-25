@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 13:14:20 by loamar            #+#    #+#             */
-/*   Updated: 2020/11/17 13:14:31 by loamar           ###   ########.fr       */
+/*   Updated: 2020/11/24 22:35:46 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@
 static int		ft_count_separator(char const *s, int pos)
 {
 	if ((s[pos] == '|' && s[pos + 1] == '|')
-	|| (s[pos] == '<' ||s[pos] == '>')
-		return (1);
-	if (s[pos] == ';' || s[pos] == '|' ||s[pos] == '<' ||s[pos] == '>')
+	|| (s[pos] == '>' ||s[pos] == '>') || (s[pos] == '&' ||s[pos] == '&')
+		return (2);
+	if (s[pos] == ';' || s[pos] == '|' || s[pos] == '<' || s[pos] == '>'
+	|| s[pos] == '&')
 		return (1);
 }
 
@@ -26,7 +27,9 @@ static int		ft_count_word(char const *s, char c)
 {
 	int	nb;
 	int	i;
+	int check;
 
+	check = 0;
 	i = 0;
 	nb = 0;
 	if (!s)
@@ -34,14 +37,16 @@ static int		ft_count_word(char const *s, char c)
 	while (s[i] != '\0')
 	{
 		while (s[i] == c)
-		{
 			i++;
-		}
 		if (s[i] != '\0' && s[i] != c)
 		{
 			nb++;
 			while (s[i] != '\0' && s[i] != c)
+			{
+				nb += ft_count_separator(s, i);
+				i += ft_count_separator(s, i);
 				i++;
+			}
 		}
 	}
 	return (nb);

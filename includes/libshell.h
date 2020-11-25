@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 13:35:59 by loamar            #+#    #+#             */
-/*   Updated: 2020/11/13 15:40:32 by loamar           ###   ########.fr       */
+/*   Updated: 2020/11/17 15:26:50 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <errno.h>
+# include <sys/types.h>
 
 # include "../lib/libft/libft.h"
 # include "../lib/get_next_line/get_next_line.h"
