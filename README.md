@@ -50,15 +50,4 @@
 | *Where i can start ?* | [click on me](https://www.cs.purdue.edu/homes/grr/SystemsProgrammingBook/Book/Chapter5-WritingYourOwnShell.pdf)|
 | *What is the difference between a built-in function and a user defined function ?* | [click on me](https://www.quora.com/What-is-the-difference-between-a-built-in-function-and-a-user-defined-function) |
 | *What is the difference between wait, waitpid, wait3, wait4 ?* | [click on me](https://www.quora.com/Linux-What-is-the-difference-between-%E2%80%9Cwait%E2%80%9D-%E2%80%9Cwait3%E2%80%9D-and-%E2%80%9Cwait4%E2%80%B3-System-Call) and [click on me](https://programmer.help/blogs/linux-kernel-learning-notes-4-wait-waitpid-wait3-and-wait4.html)|
-| *What are signals?* | [click on me](https://indradhanush.github.io/blog/writing-a-unix-shell-part-3/) and [click on me](https://www.geeksforgeeks.org/signals-c-language/)|
-
-
-
-
-
-
-sources:
-
-Signal :
-
-- https://www.tutorialspoint.com/c_standard_library/c_function_signal.htm
+| *What are signals?* | [click on me](https://indradhanush.github.io/blog/writing-a-unix-shell-part-3/) and [click on me](https://www.geeksforgeeks.org/signals-c-language/) and [click one me](https://www.tutorialspoint.com/c_standard_library/c_function_signal.htm)|
