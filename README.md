@@ -15,6 +15,23 @@
 | `Waitpid` | <sys/types.h> <sys/wait.h> | pid_t waitpid(pid_t pid, int *wstatus, int options); | [check the [man](https://man7.org/linux/man-pages/man2/wait.2.html)]|
 | `Wait3` | <sys/types.h> <sys/time.h> <sys/resource.h> <sys/wait.h> | pid_t wait3(int *wstatus, int options, struct rusage *rusage); | [check the [man](https://man7.org/linux/man-pages/man2/wait4.2.html)]|
 | `Wait4` | <sys/types.h> <sys/time.h> <sys/resource.h> <sys/wait.h> | pid_t wait4(pid_t pid, int *wstatus, int options, struct rusage *rusage); | [check the [man](https://man7.org/linux/man-pages/man2/wait4.2.html)]|
+| `Signal` | <signal.h> |  typedef void (*sighandler_t)(int); sighandler_t signal(int signum, sighandler_t handler); | [check the [man](https://man7.org/linux/man-pages/man2/signal.2.html)]|
+| `Wait4` | <sys/types.h> <sys/time.h> <sys/resource.h> <sys/wait.h> | pid_t wait4(pid_t pid, int *wstatus, int options, struct rusage *rusage); | [check the [man](https://man7.org/linux/man-pages/man2/wait4.2.html)]|
+| `Wait4` | <sys/types.h> <sys/time.h> <sys/resource.h> <sys/wait.h> | pid_t wait4(pid_t pid, int *wstatus, int options, struct rusage *rusage); | [check the [man](https://man7.org/linux/man-pages/man2/wait4.2.html)]|
+| `Wait4` | <sys/types.h> <sys/time.h> <sys/resource.h> <sys/wait.h> | pid_t wait4(pid_t pid, int *wstatus, int options, struct rusage *rusage); | [check the [man](https://man7.org/linux/man-pages/man2/wait4.2.html)]|
+| `Wait4` | <sys/types.h> <sys/time.h> <sys/resource.h> <sys/wait.h> | pid_t wait4(pid_t pid, int *wstatus, int options, struct rusage *rusage); | [check the [man](https://man7.org/linux/man-pages/man2/wait4.2.html)]|
+| `Wait4` | <sys/types.h> <sys/time.h> <sys/resource.h> <sys/wait.h> | pid_t wait4(pid_t pid, int *wstatus, int options, struct rusage *rusage); | [check the [man](https://man7.org/linux/man-pages/man2/wait4.2.html)]|
+| `Wait4` | <sys/types.h> <sys/time.h> <sys/resource.h> <sys/wait.h> | pid_t wait4(pid_t pid, int *wstatus, int options, struct rusage *rusage); | [check the [man](https://man7.org/linux/man-pages/man2/wait4.2.html)]|
+| `Wait4` | <sys/types.h> <sys/time.h> <sys/resource.h> <sys/wait.h> | pid_t wait4(pid_t pid, int *wstatus, int options, struct rusage *rusage); | [check the [man](https://man7.org/linux/man-pages/man2/wait4.2.html)]|
+| `Wait4` | <sys/types.h> <sys/time.h> <sys/resource.h> <sys/wait.h> | pid_t wait4(pid_t pid, int *wstatus, int options, struct rusage *rusage); | [check the [man](https://man7.org/linux/man-pages/man2/wait4.2.html)]|
+| `Wait4` | <sys/types.h> <sys/time.h> <sys/resource.h> <sys/wait.h> | pid_t wait4(pid_t pid, int *wstatus, int options, struct rusage *rusage); | [check the [man](https://man7.org/linux/man-pages/man2/wait4.2.html)]|
+| `Wait4` | <sys/types.h> <sys/time.h> <sys/resource.h> <sys/wait.h> | pid_t wait4(pid_t pid, int *wstatus, int options, struct rusage *rusage); | [check the [man](https://man7.org/linux/man-pages/man2/wait4.2.html)]|
+| `Wait4` | <sys/types.h> <sys/time.h> <sys/resource.h> <sys/wait.h> | pid_t wait4(pid_t pid, int *wstatus, int options, struct rusage *rusage); | [check the [man](https://man7.org/linux/man-pages/man2/wait4.2.html)]|
+| `Wait4` | <sys/types.h> <sys/time.h> <sys/resource.h> <sys/wait.h> | pid_t wait4(pid_t pid, int *wstatus, int options, struct rusage *rusage); | [check the [man](https://man7.org/linux/man-pages/man2/wait4.2.html)]|
+| `Wait4` | <sys/types.h> <sys/time.h> <sys/resource.h> <sys/wait.h> | pid_t wait4(pid_t pid, int *wstatus, int options, struct rusage *rusage); | [check the [man](https://man7.org/linux/man-pages/man2/wait4.2.html)]|
+| `Wait4` | <sys/types.h> <sys/time.h> <sys/resource.h> <sys/wait.h> | pid_t wait4(pid_t pid, int *wstatus, int options, struct rusage *rusage); | [check the [man](https://man7.org/linux/man-pages/man2/wait4.2.html)]|
+| `Wait4` | <sys/types.h> <sys/time.h> <sys/resource.h> <sys/wait.h> | pid_t wait4(pid_t pid, int *wstatus, int options, struct rusage *rusage); | [check the [man](https://man7.org/linux/man-pages/man2/wait4.2.html)]|
+| `Wait4` | <sys/types.h> <sys/time.h> <sys/resource.h> <sys/wait.h> | pid_t wait4(pid_t pid, int *wstatus, int options, struct rusage *rusage); | [check the [man](https://man7.org/linux/man-pages/man2/wait4.2.html)]|
 
 
 ## 2-Definition
