@@ -40,7 +40,7 @@
 | *Process* | A process is a program in execution. Process is not as same as program code but a lot more than it. A process is an 'active' entity as opposed to program which is considered to be a 'passive' entity. Attributes held by process include hardware state, memory, CPU etc. Basically a program in execution. [Check the [first source](https://www.quora.com/What-is-the-difference-between-a-built-in-function-and-a-user-defined-function) and the [second source](https://en.wikipedia.org/wiki/Process_(computing)) and the [third source](https://www.tutorialspoint.com/operating_system/os_processes.htm) or the [fourth source](https://www.studytonight.com/operating-system/operating-system-processes)]|
 | *Child Process* | A child process is a process created by a parent process in operating system using a fork() system call. A child process may also be called a subprocess or a subtask. A child process is created as its parent process's copy and inherits most of its attributes. [Check the [source](https://www.quora.com/What-is-the-difference-between-a-built-in-function-and-a-user-defined-function)] |
 | *Parent Process* | All the processes in operating system are created when a process executes the fork() system call except the startup process. Parent process is one that creates a child process. A parent process may have multiple child processes but a child process only one parent process. ![diagram1](https://www.tutorialspoint.com/assets/questions/media/12675/Parent%20and%20Child%20Process.PNG) [Check the [source](https://www.quora.com/What-is-the-difference-between-a-built-in-function-and-a-user-defined-function)] |
-| *i.e.* | Is the abbreviation for the Latin phrase id est, meaning “that is.” This abbreviation is used when you want to specify something mentioned previously; it can be used interchangeably with “specifically” or “namely.”[Check the [source](https://www.aje.com/arc/editing-tip-using-eg-and-ie/#:~:text=i.e.%20is%20the%20abbreviation%20for,the%20Summer%20Olympics%20three%20times.%E2%80%9D)]
+| *i.e.* | Is the abbreviation for the Latin phrase id est, meaning “that is.” This abbreviation is used when you want to specify something mentioned previously; it can be used interchangeably with “specifically” or “namely”. [Check the [source](https://www.aje.com/arc/editing-tip-using-eg-and-ie/#:~:text=i.e.%20is%20the%20abbreviation%20for,the%20Summer%20Olympics%20three%20times.%E2%80%9D)]
 
 ## 3-Questions and sources
 
@@ -50,6 +50,7 @@
 | *Where i can start ?* | [click on me](https://www.cs.purdue.edu/homes/grr/SystemsProgrammingBook/Book/Chapter5-WritingYourOwnShell.pdf)|
 | *What is the difference between a built-in function and a user defined function ?* | [click on me](https://www.quora.com/What-is-the-difference-between-a-built-in-function-and-a-user-defined-function) |
 | *What is the difference between wait, waitpid, wait3, wait4 ?* | [click on me](https://www.quora.com/Linux-What-is-the-difference-between-%E2%80%9Cwait%E2%80%9D-%E2%80%9Cwait3%E2%80%9D-and-%E2%80%9Cwait4%E2%80%B3-System-Call) and [click on me](https://programmer.help/blogs/linux-kernel-learning-notes-4-wait-waitpid-wait3-and-wait4.html)|
+| *What are signals?* | [click on me](https://indradhanush.github.io/blog/writing-a-unix-shell-part-3/) and [click on me](https://www.geeksforgeeks.org/signals-c-language/)|
 
 
 
