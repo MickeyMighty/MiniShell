@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 14:43:48 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/03 16:32:44 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/03 17:09:14 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,12 @@ static size_t	ft_get_len_word(const char *s, int index, char c, int check)
 	len_word = 0;
 	if (check == 1)
 	{
-		if (ft_count_seprator(s, i) != 0)
-			len_word = ft_count_seprator(s, i);
+		if (ft_count_separator(s, index) != 0)
+			len_word = ft_count_separator(s, index);
 		else
 		{
 			while (s[index] != '\0' && s[index] == c
-			&& (ft_count_seprator(s, i) == 0))
+			&& (ft_count_separator(s, index) == 0))
 			{
 				len_word++;
 				index++;
@@ -74,14 +74,14 @@ static char		**free_tab(char **tab, int j)
 	return (NULL);
 }
 
-static int 		ft_put_pos(char *s, int check, int pos)
+static int 		ft_put_pos(char *s, int check, int pos, char c)
 {
 	if (check == 1)
 	{
-		if (ft_count_seprator(s, pos) != 0)
-			pos = ft_count_seprator(s, pos);
+		if (ft_count_separator(s, pos) != 0)
+			pos = ft_count_separator(s, pos);
 		else
-			while (s[i] != '\0' && s[i] != c && (ft_count_seprator(s, pos) == 0))
+			while (s[pos] != '\0' && s[pos] != c && (ft_count_separator(s, pos) == 0))
 				pos++;
 	}
 	else
@@ -90,7 +90,7 @@ static int 		ft_put_pos(char *s, int check, int pos)
 	return (pos);
 }
 
-char			**ft_split(char *s, char c)
+char			**ft_split_data(char *s, char c)
 {
 	char	**res;
 	int		nb_word;
@@ -115,7 +115,7 @@ char			**ft_split(char *s, char c)
 			if (!(res[j] = ft_substr(s, i, ft_get_len_word(s, i, c, check))))
 				return (free_tab(res, j));
 			j++;
-			i = ft_put_pos(s, check, i);
+			i = ft_put_pos(s, check, i, c);
 		}
 	}
 	res[j] = 0;

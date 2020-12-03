@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 20:48:58 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/03 16:59:48 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/03 17:02:49 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@
 static int 	split_data(t_data *data, char *buf)
 {
 
-	data->prompt_data = ft_split(buf, ' ');
+	data->prompt_data = ft_split_data(buf, ' ');
 	data->count_data = 0;
 	ft_memset(buf, 0, ft_strlen(buf));
 	free(buf);

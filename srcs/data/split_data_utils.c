@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 15:00:26 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/03 16:14:21 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/03 17:10:19 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int		ft_count_separator(char const *s, int pos)
 {
 	if ((s[pos] == '|' && s[pos + 1] == '|')
-	|| (s[pos] == '>' ||s[pos] == '>') || (s[pos] == '&' ||s[pos] == '&')
+	|| (s[pos] == '>' ||s[pos] == '>') || (s[pos] == '&' || s[pos] == '&'))
 		return (2);
 	else if (s[pos] == ';' || s[pos] == '|' || s[pos] == '<' || s[pos] == '>'
 	|| s[pos] == '&')
