@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 14:43:48 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/03 17:09:14 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/03 17:24:47 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ char			**ft_split_data(char *s, char c)
 	int 	check;
 
 	nb_word = ft_count_word(s, c);
+	printf("nombre de mots -> %d\n", nb_word);
 	if (!s || !(res = (char **)malloc((nb_word + 1) * sizeof(char *))))
 		return (NULL);
 	i = 0;
