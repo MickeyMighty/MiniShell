@@ -1,1 +1,11 @@
-- 'echo' et "echo" marche aussi comme echo 
+A FAIRE
+
+- gerer la liste chainé une fois le parsing fait
+- gerer les buitlins (handler) -> echo -> fait echo etc
+- 
+
+
+
+
+
+- 'echo' et "echo" marche aussi comme echo
