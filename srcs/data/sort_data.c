@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 20:48:58 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/03 17:22:55 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/03 17:23:32 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static int 	split_data(t_data *data, char *buf)
 	// 	return (0);
 	while (data->prompt_data[data->count_data] != NULL)
 	{
-		printf("=====%d=======\n", test);
+		printf("===== %d =======\n", test);
 		printf("-> %s\n", data->prompt_data[data->count_data]);
 		printf("================\n\n");
 		data->count_data++;
