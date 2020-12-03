@@ -1,0 +1,1 @@
+- 'echo' et "echo" marche aussi comme echo 

@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 15:13:10 by loamar            #+#    #+#             */
-/*   Updated: 2020/11/17 12:13:06 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/03 16:33:54 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int 	check_data_separator(t_data *data)
 
 
 
-static int 		check_separator_data(char)
+//static int 		check_separator_data(char)
 
 static int 		check_echo_data(char str)
 {
