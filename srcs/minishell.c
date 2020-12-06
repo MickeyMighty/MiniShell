@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 11:26:49 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/06 05:34:22 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/06 05:43:21 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,7 @@ static int     shell_prompt(t_data *data)
 		if (ret == -1)
 			return (0);
 		sort_data(data, buf);
-		handler_data(data)
-		// if (ft_strncmp("exit", buf, 4) == 0)
-		// 	return (1);
-		// printf("fail\n");
-		// loop = 0;
+		handler_data(data);
     }
 	return (0);
 }

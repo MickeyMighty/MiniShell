@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 20:48:58 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/06 05:35:34 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/06 05:47:40 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,5 @@ int 	sort_data(t_data *data, char *buf)
 		return (0);
 	data->prompt_data = ft_split_data(buf, ' ');
 	count_data(data, buf);
-	return (0);
-	//tree_for_data(data);
+	return (1);
 }
