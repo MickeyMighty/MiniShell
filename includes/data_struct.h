@@ -6,23 +6,25 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 19:16:18 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/06 07:25:00 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/06 09:31:06 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DATA_STRUCT_H
 # define DATA_STRUCT_H
 
-# define PIPE 2
-# define SEMICOLON 3
-# define CHEVRONL 4
-# define CHEVRONR 5
-# define CHEVROND 6
-# define AND 7
-# define OR 8
-# define CMD 9
-# define VARIABLE 10
-# define OPTION 11
+# define PIPE 0
+# define SEMICOLON 1
+# define CHEVRONL 2
+# define CHEVRONR 3
+# define CHEVROND 4
+# define AND 5
+# define OR 6
+# define VARIABLE 7
+# define SQ 8
+# define DQ 9
+# define CMD 10
+# define OPTION 12
 # define SQUOTE 39
 # define DQUOTE 34
 // data -> commands table
@@ -30,28 +32,32 @@
 typedef struct		s_data
 {
 	char	**prompt_data;
+	char 	**lair_tab;
 	int 	*value_data;
-	int 	count_data;
+	int 	size_data;
+	int 	check;
 }					t_data;
 
-typedef struct		s_list
+typedef struct		s_prompt_list
 {
 	char			*content;
 	int 			value;
-	struct s_list	*next;
-	struct s_list	*previous;
-}					t_list;
+	struct s_prompt_list	*next;
+	struct s_prompt_list	*previous;
+}					t_prompt_list;
 
 typedef struct 		s_lair_list
 {
-	struct s_list	*start;
-	struct s_list	*end;
+	struct s_lair_list	*start;
+	struct s_lair_list	*end;
   	int size;
-}					t_lair_liste;
+}					t_lair_list;
 
 int 	sort_data(t_data *data, char *buf);
-int 	handler_data(t_data *data);
+int 	handler_data(t_data *data, t_prompt_list *prompt_list, t_lair_list *lair_list);
 int 	check_data_separator(t_data *data);
+int 	check_prompt(t_data *data);
+void 	init_data_lair_list(t_lair_list *lair_list);
 
 typedef struct		s_split_data
 {

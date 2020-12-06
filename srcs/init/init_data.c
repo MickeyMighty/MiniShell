@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 07:27:43 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/06 07:31:27 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/06 09:30:52 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void 	init_data_lair_list(t_lair_list *lair_list)
 {
-	lair_liste->start = NULL;
-	lair_liste->end = NULL;
-	lair_liste->size = 0;
+	lair_list->start = NULL;
+	lair_list->end = NULL;
+	lair_list->size = 0;
 }
