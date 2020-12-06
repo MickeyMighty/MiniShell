@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 19:16:18 by loamar            #+#    #+#             */
-/*   Updated: 2020/11/13 15:36:34 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/06 05:22:13 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # define CMD 9
 # define VARIABLE 10
 # define OPTION 11
+# define SQUOTE 39
+# define DQUOTE 34
 // data -> commands table
 
 typedef struct		s_data
@@ -31,5 +33,16 @@ typedef struct		s_data
 	int 	*value_data;
 	int 	count_data;
 }					t_data;
+
+typedef struct		s_split_data
+{
+	int 	nb;
+	int 	index;
+	int 	pos;
+	int 	check;
+	int 	word;
+
+}					t_split_data;
+
 
 # endif
