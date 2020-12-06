@@ -6,11 +6,11 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 14:43:48 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/06 05:27:59 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/06 07:12:21 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/libshell.h"
+#include "../../../includes/libshell.h"
 
 static void		ft_count_word(char *s, char c, t_split_data *data)
 {

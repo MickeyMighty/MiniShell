@@ -2,10 +2,14 @@ A FAIRE
 
 - gerer la liste chainé une fois le parsing fait
 - gerer les buitlins (handler) -> echo -> fait echo etc
-- 
+-
 
 
 
 
 
 - 'echo' et "echo" marche aussi comme echo
+
+
+link pour les list doublement chainee
+- https://www.commentcamarche.net/faq/7636-liste-doublement-chainee#:~:text=Les%20listes%20doublement%20cha%C3%AEn%C3%A9es%20sont,semblables%20aux%20listes%20simplement%20cha%C3%AEn%C3%A9es%20.&text=Le%20pointeur%20precedent%20du%20premier,la%20fin%20de%20la%20liste).

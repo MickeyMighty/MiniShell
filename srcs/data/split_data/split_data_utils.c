@@ -6,11 +6,11 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 15:00:26 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/06 05:26:57 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/06 07:12:12 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/libshell.h"
+#include "../../../includes/libshell.h"
 
 void 	check_quote(char *s, t_split_data *data)
 {

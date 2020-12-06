@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 13:35:59 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/06 05:37:14 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/06 07:08:19 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,5 @@
 
 void 	init_shell(void);
 
-// DATA
-
-int 	sort_data(t_data *data, char *buf);
-int 	handler_data(t_data *data);
-int 	check_data_separator(t_data *data);
-
-char			**ft_split_data(char *s, char c);
-int				ft_count_separator(char *s, int pos);
-void 	ft_count_word_noquote(char *s, char c, t_split_data *data);
-void 	ft_count_word_quote(char *s, char c, t_split_data *data);
-int 	ft_get_len_word_quote(char *s, char c, t_split_data *data, int index);
-void 	check_quote(char *s, t_split_data *data);
 
 # endif

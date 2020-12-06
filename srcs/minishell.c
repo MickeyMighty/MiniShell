@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 11:26:49 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/06 05:43:21 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/06 07:34:28 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@
 
 #include "../includes/libshell.h"
 
-static int     shell_prompt(t_data *data)
+static int     shell_prompt(t_data *data, t_list *prompt_list, t_lair_list *lair_list)
 {
 	int 	loop;
 	int 	ret;
@@ -64,15 +64,17 @@ static int     shell_prompt(t_data *data)
 		if (ret == -1)
 			return (0);
 		sort_data(data, buf);
-		handler_data(data);
+		handler_data(data, prompt_list, lair_list);
     }
 	return (0);
 }
 
 int     main(int argc, char **argv)
 {
-	int 		end;
-	t_data		*data;
+	int 			end;
+	t_data			*data;
+	t_list  		*prompt_list;
+	t_lair_list  	*lair_list;
 
 	end = 0;
 	init_shell();

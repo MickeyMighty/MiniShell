@@ -10,10 +10,12 @@ LIBFT	=	./lib/libft/libft.a
 
 SRCS	=	./srcs/minishell.c \
 			./srcs/tree.c \
-			./srcs/init.c \
+			./srcs/init/init_shell.c \
+			./srcs/init/init_data.c \
 			./srcs/data/sort_data.c \
-			./srcs/data/split_data.c \
-			./srcs/data/split_data_utils.c \
+			./srcs/data/check_data/check_data.c \
+			./srcs/data/split_data/split_data.c \
+			./srcs/data/split_data/split_data_utils.c \
 			./lib/get_next_line/get_next_line.c \
 			./lib/get_next_line/get_next_line_utils.c
 

@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 20:48:58 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/06 05:47:40 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/06 07:32:51 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,6 @@ static int 	count_data(t_data *data, char *buf)
 
 int 	sort_data(t_data *data, char *buf)
 {
-	t_data		*data;
-	int 		size;
-
-	size = 0;
 	data = malloc(sizeof(*data));
 	if (data == NULL)
 		return (0);
