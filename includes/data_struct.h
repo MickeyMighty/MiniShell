@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 19:16:18 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/07 17:18:15 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/07 18:04:28 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ typedef struct 		s_lair_list
 
 int 	sort_data(t_data *data, char *buf);
 int 	handler_data(t_data *data, t_prompt_list *prompt_list, t_lair_list *lair_list);
-int 	ft_fill_empty_list(t_lair_list *lair_list, char *content, t_prompt_list *new_element);
+int 	ft_fill_empty_list(t_lair_list *lair_list, char *content);
 int 	ft_fill_end_list(t_lair_list *lair_list, char *content);
 int 	check_data_separator(t_data *data);
 int 	check_prompt(t_data *data);
