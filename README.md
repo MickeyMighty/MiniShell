@@ -60,6 +60,7 @@
 | *What is difference between file descriptor and fildes ?* | [click on me](https://stackoverflow.com/questions/13614040/what-is-difference-between-file-descriptor-and-fildes)|
 | *What is difference between a relative PATH and a absolute PATH ?* | [click on me](https://stackoverflow.com/questions/3915040/bash-fish-command-to-print-absolute-path-to-a-file#:~:text=A%20relative%20path%20is%20a,interpreted%20starting%20from%20another%20directory.&text=Hence%20an%20absolute%20path%20is,may%20not%20contain%20symbolic%20links.) and [click on me](https://www.geeksforgeeks.org/absolute-relative-pathnames-unix/)|
 | *What is difference between dup and dup2 ?* | [click on me](https://stackoverflow.com/questions/4171126/what-do-the-dup-and-dup2-systems-really-do#:~:text=The%20difference%20between%20dup%20and,it%20if%20it's%20already%20taken.)|
+| *Some bonus source (in french)* | [click on me](http://paysdu42.fr/?page=minishell.c) and [click on me](https://segfault42.github.io/posts/minishell/)|
 
 
 ## 4-Project

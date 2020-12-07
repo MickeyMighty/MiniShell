@@ -18,3 +18,5 @@ link pour les list doublement chainee
 
 pays du 42 doc
 -> http://paysdu42.fr/?page=minishell.c
+
+-> https://segfault42.github.io/posts/minishell/

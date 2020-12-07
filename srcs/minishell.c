@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 11:26:49 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/06 16:28:17 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/07 04:15:44 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,10 @@ static int     shell_prompt(t_data *data, t_prompt_list *prompt_list, t_lair_lis
 		sort_data(data, buf);
 		// check_prompt(data); // mieux de faire un check a la fin plutot que plein de check a chaque fois
 		handler_data(data, prompt_list, lair_list);
+		// if (exec_cmd(data, prompt_list, lair_list) == 0)
+			// return (0);
     }
-	return (0);
+	return (1);
 }
 
 int     main(int argc, char **argv)
@@ -82,5 +84,7 @@ int     main(int argc, char **argv)
     end = shell_prompt(data, prompt_list, lair_list);
 	if (end == 1)
 		exit(EXIT_SUCCESS);
+	if (end == 0)
+		exit(EXIT_FAILURE);
     return (0);
 }
