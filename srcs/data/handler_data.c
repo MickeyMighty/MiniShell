@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 05:35:00 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/08 18:40:11 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/08 18:44:27 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,17 +52,17 @@ static int 	linked_list_data(t_msh *msh)
 		// return (-1);
 	msh->lair_list = init_data_lair_list(msh->lair_list);
 	// printf("msh->data->prompt_data[count] : %s\n", msh->data->prompt_data[0]);
-	msh->lair_list = ft_fill_empty_list(lair_list, data->prompt_data[count]);
+	ft_fill_empty_list(msh->lair_list, msh->data->prompt_data[count]);
 	// printf("ok 2\n");
-	while (count <= data->size_data)
+	while (count <= msh->data->size_data)
 	{
 		count++;
 		// printf("ok 3\n");
-		ft_fill_end_list(lair_list, data->prompt_data[count]);
+		ft_fill_end_list(msh->lair_list, msh->data->prompt_data[count]);
 		// printf("ok 4\n");
 	}
 	printf("ok 5\n");
-	print_list(lair_list);
+	print_list(msh->lair_list);
 	exit(1);
 	return (1);
 }
