@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/07 04:25:27 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/08 18:43:00 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/08 18:48:44 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ int 	ft_fill_empty_list(t_lair_list *lair_list, char *content)
 
 	if (!(new_element = (t_prompt_list *)malloc(sizeof(t_prompt_list))))
 		return (-1);
-	ft_strcpy(new_element->content, content);
-	// new_element->content = content;
+	new_element->content = content;
 	new_element->previous = lair_list->start;
 	new_element->next = lair_list->end;
 	lair_list->end = new_element;
@@ -35,11 +34,11 @@ int 	ft_fill_end_list(t_lair_list *lair_list, char *content)
 	if (!(new_element = (t_prompt_list *)malloc(sizeof(t_prompt_list))))
 		return (-1);
 	new_element->content = content;
-	new_element->previous = lair_list->end;
 	new_element->next = NULL;
+	new_element->previous = lair_list->end;
 
-	// lair_list->end->next = new_element;
-	// lair_list->end = new_element;
+	lair_list->end->next = new_element;
+	lair_list->end = new_element;
 	lair_list->size++;
 	return (0);
 }

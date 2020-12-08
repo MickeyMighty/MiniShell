@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 05:35:00 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/08 18:44:27 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/08 18:49:55 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ static void 	print_list(t_lair_list *lair_list)
 	t_prompt_list *current;
 
 	current = lair_list->start;
-	printf("[ ");
+	printf("[ \n");
 	while (current != NULL)
 	{
-		printf("%s ", current->content);
+		printf("-> %s\n", current->content);
 		current = current->next;
 	}
 	printf("]\n");
@@ -47,21 +47,17 @@ static int 	linked_list_data(t_msh *msh)
 
 	count = 0;
 	msh->list = NULL;
-	// printf("ok 1\n");
 	// if (!(new_element = (t_prompt_list *)malloc(sizeof(t_prompt_list))))
 		// return (-1);
 	msh->lair_list = init_data_lair_list(msh->lair_list);
 	// printf("msh->data->prompt_data[count] : %s\n", msh->data->prompt_data[0]);
 	ft_fill_empty_list(msh->lair_list, msh->data->prompt_data[count]);
-	// printf("ok 2\n");
-	while (count <= msh->data->size_data)
+	while (count < msh->data->size_data)
 	{
 		count++;
-		// printf("ok 3\n");
 		ft_fill_end_list(msh->lair_list, msh->data->prompt_data[count]);
-		// printf("ok 4\n");
 	}
-	printf("ok 5\n");
+	printf("\nLIST CHAINEE\n");
 	print_list(msh->lair_list);
 	exit(1);
 	return (1);
