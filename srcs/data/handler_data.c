@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 05:35:00 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/07 18:05:34 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/08 16:12:06 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,8 @@ static int 	linked_list_data(t_data *data, t_prompt_list *prompt_list, t_lair_li
 	// printf("ok 1\n");
 	// if (!(new_element = (t_prompt_list *)malloc(sizeof(t_prompt_list))))
 		// return (-1);
-	if (!(lair_list = (t_lair_list*)malloc(sizeof(t_lair_list))))
-			return (0);
-	init_data_lair_list(lair_list);
-	ft_fill_empty_list(lair_list, data->prompt_data[count]);
+	lair_list =	init_data_lair_list(lair_list);
+	lair_list = ft_fill_empty_list(lair_list, data->prompt_data[count]);
 	// printf("ok 2\n");
 	// while (count <= data->size_data)
 	// {
