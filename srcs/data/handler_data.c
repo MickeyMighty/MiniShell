@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 05:35:00 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/08 17:07:13 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/08 18:37:29 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,18 @@ static void 	print_inv_list(t_lair_list *lair_list)
 }
 
 
-static int 	linked_list_data(t_data *data, t_prompt_list *prompt_list, t_lair_list *lair_list)
+static int 	linked_list_data(t_msh *msh)
 {
 	int 	count;
-	t_prompt_list *new_element;
 
 	count = 0;
+	msh->list = NULL;
 	// printf("ok 1\n");
-	if (!(new_element = (t_prompt_list *)malloc(sizeof(t_prompt_list))))
-		return (-1);
-	lair_list =	init_data_lair_list(lair_list);
-	new_element = ft_fill_empty_list(lair_list, data->prompt_data[count]);
+	// if (!(new_element = (t_prompt_list *)malloc(sizeof(t_prompt_list))))
+		// return (-1);
+	msh->lair_list = init_data_lair_list(msh->lair_list);
+	// printf("msh->data->prompt_data[count] : %s\n", msh->data->prompt_data[0]);
+	// ft_fill_empty_list(lair_list, data->prompt_data[count]);
 	// printf("ok 2\n");
 	// while (count <= data->size_data)
 	// {
@@ -66,9 +67,9 @@ static int 	linked_list_data(t_data *data, t_prompt_list *prompt_list, t_lair_li
 	return (1);
 }
 
-int 	handler_data(t_data *data, t_prompt_list *prompt_list, t_lair_list *lair_list)
+int 	handler_data(t_msh *msh)
 {
 	// printf("debut de chaine -> %s\n", data->prompt_data[0]);
-	linked_list_data(data, prompt_list, lair_list);
+	linked_list_data(msh);
 	return (1);
 }

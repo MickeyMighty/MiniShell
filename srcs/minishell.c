@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 11:26:49 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/07 18:05:21 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/08 18:11:15 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@
 
 #include "../includes/libshell.h"
 
-static int     shell_prompt(t_data *data, t_prompt_list *prompt_list, t_lair_list *lair_list)
+static int     shell_prompt(t_msh *msh)
 {
 	int 	loop;
 	int 	ret;
@@ -63,9 +63,9 @@ static int     shell_prompt(t_data *data, t_prompt_list *prompt_list, t_lair_lis
 		printf("================\n\n");
 		if (ret == -1)
 			return (0);
-		sort_data(data, buf);
+		sort_data(msh, buf);
 		// check_prompt(data); // mieux de faire un check a la fin plutot que plein de check a chaque fois
-		handler_data(data, prompt_list, lair_list);
+		handler_data(msh);
 		// if (exec_cmd(data, prompt_list, lair_list) == 0)
 			// return (0);
     }
@@ -75,13 +75,11 @@ static int     shell_prompt(t_data *data, t_prompt_list *prompt_list, t_lair_lis
 int     main(int argc, char **argv)
 {
 	int 			end;
-	t_data			*data;
-	t_prompt_list  		*prompt_list;
-	t_lair_list  	*lair_list;
+	t_msh			*msh;
 
 	end = 0;
-	init_shell();
-    end = shell_prompt(data, prompt_list, lair_list);
+	msh = init_shell(msh);
+    end = shell_prompt(msh);
 	if (end == 1)
 		exit(EXIT_SUCCESS);
 	if (end == 0)

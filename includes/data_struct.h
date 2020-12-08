@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 19:16:18 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/08 17:07:48 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/08 18:34:18 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,15 @@
 # define SQUOTE 39
 # define DQUOTE 34
 // data -> commands table
+
+typedef struct 		s_msh
+{
+		struct s_data 	*data;
+		struct s_list 	*list;
+		struct s_lair_list *lair_list;
+}					t_msh;
+
+t_msh 	*init_shell(t_msh *msh);
 
 typedef struct		s_data
 {
@@ -53,9 +62,9 @@ typedef struct 		s_lair_list
   	int size;
 }					t_lair_list;
 
-int 	sort_data(t_data *data, char *buf);
-int 	handler_data(t_data *data, t_prompt_list *prompt_list, t_lair_list *lair_list);
-t_prompt_list 	*ft_fill_empty_list(t_lair_list *lair_list, char *content);
+int 	sort_data(t_msh *msh, char *buf);
+int 	handler_data(t_msh *msh);
+int 	ft_fill_empty_list(t_lair_list *lair_list, char *content);
 int 	ft_fill_end_list(t_lair_list *lair_list, char *content);
 int 	check_data_separator(t_data *data);
 int 	check_prompt(t_data *data);
