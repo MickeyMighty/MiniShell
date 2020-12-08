@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 05:35:00 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/08 18:49:55 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/08 18:50:47 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ static void 	print_list(t_lair_list *lair_list)
 	t_prompt_list *current;
 
 	current = lair_list->start;
-	printf("[ \n");
+	printf("| DEBUT | \n");
 	while (current != NULL)
 	{
 		printf("-> %s\n", current->content);
 		current = current->next;
 	}
-	printf("]\n");
+	printf("| FIN |\n");
 }
 
 static void 	print_inv_list(t_lair_list *lair_list)
