@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 18:07:43 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/09 04:30:34 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/09 04:38:53 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int 	exec_cmd(t_msh *msh)
 		kill(pid, SIGTERM);
 		if (execve(msh->data->prompt_data[0], msh->data->prompt_data, NULL) == -1)
 			perror("shell");
-		printf("-> %s\n", msh->data->prompt_data[0]);
+		// printf("-> %s\n", msh->data->prompt_data[0]);
 		exit(EXIT_FAILURE);
 	}
 	// else
