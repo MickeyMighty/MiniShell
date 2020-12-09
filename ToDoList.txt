@@ -2,7 +2,8 @@ A FAIRE
 
 - gerer la liste chainé une fois le parsing fait
 - gerer les buitlins (handler) -> echo -> fait echo etc
--
+- gerer les cas d erreur
+- faire les tokens
 
 
 

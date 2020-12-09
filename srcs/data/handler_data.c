@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 05:35:00 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/08 18:53:51 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/09 04:20:07 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static void 	print_list(t_lair_list *lair_list)
 {
-	int 	test;
+	int 	test; // pour le printf
 
-	test = 1;
+	test = 1; // pour le printf
 	t_prompt_list *current;
 
 	current = lair_list->start;
@@ -25,7 +25,7 @@ static void 	print_list(t_lair_list *lair_list)
 	{
 		printf("%d-> %s\n", test, current->content);
 		current = current->next;
-		test++;
+		test++; // pour le printf
 	}
 	printf("| FIN |\n");
 	printf("size lair_list -> %d\n", lair_list->size);
@@ -66,7 +66,6 @@ static int 	linked_list_data(t_msh *msh)
 	}
 	printf("\nLIST CHAINEE\n");
 	print_list(msh->lair_list);
-	exit(1);
 	return (1);
 }
 

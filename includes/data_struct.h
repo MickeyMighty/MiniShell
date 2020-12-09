@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 19:16:18 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/08 18:34:18 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/08 19:13:29 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ typedef struct		s_data
 typedef struct		s_prompt_list
 {
 	char			*content;
-	int 			value;
+	int 			token;
 	struct s_prompt_list	*next;
 	struct s_prompt_list	*previous;
 }					t_prompt_list;

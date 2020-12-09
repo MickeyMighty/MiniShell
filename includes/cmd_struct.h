@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 19:13:55 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/06 19:14:12 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/09 04:14:08 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 # define CMD_STRUCT_H
 
 
-int 	exec_cmd(t_data *data, t_prompt_list *prompt_list, t_lair_list *lair_list);
+int 	exec_cmd(t_msh *msh);
 # endif
