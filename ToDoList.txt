@@ -19,6 +19,9 @@ link pour les list doublement chainee
 
 -> http://sdz.tdct.org/sdz/les-listes-doublement-chainees-en-langage-c.html
 
+link fork :
+
+-> https://www.commentcamarche.net/faq/10611-que-fait-un-fork
 
 pays du 42 doc
 -> http://paysdu42.fr/?page=minishell.c

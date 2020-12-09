@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 05:35:00 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/09 04:20:07 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/09 04:35:52 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,26 @@
 
 static void 	print_list(t_lair_list *lair_list)
 {
-	int 	test; // pour le printf
+	//int 	test; // pour le printf
 
-	test = 1; // pour le printf
+	//test = 1; // pour le printf
 	t_prompt_list *current;
 
 	current = lair_list->start;
-	printf("| DEBUT | \n");
+	// printf("| DEBUT | \n");
 	while (current != NULL)
 	{
-		printf("%d-> %s\n", test, current->content);
+		// printf("%d-> %s\n", test, current->content);
 		current = current->next;
-		test++; // pour le printf
+		//test++; // pour le printf
 	}
-	printf("| FIN |\n");
-	printf("size lair_list -> %d\n", lair_list->size);
-	printf("first lair_list -> %s\n", lair_list->start->content);
-	printf("end  lair_list -> %s\n", lair_list->end->content);
+	// printf("| FIN |\n");
+	// printf("size lair_list -> %d\n", lair_list->size);
+	// printf("first lair_list -> %s\n", lair_list->start->content);
+	// printf("end  lair_list -> %s\n", lair_list->end->content);
 }
 
+// fonction pour print a l enver
 static void 	print_inv_list(t_lair_list *lair_list)
 {
 	t_prompt_list *current;
@@ -64,7 +65,7 @@ static int 	linked_list_data(t_msh *msh)
 		count++;
 		ft_fill_end_list(msh->lair_list, msh->data->prompt_data[count]);
 	}
-	printf("\nLIST CHAINEE\n");
+	// printf("\nLIST CHAINEE\n");
 	print_list(msh->lair_list);
 	return (1);
 }

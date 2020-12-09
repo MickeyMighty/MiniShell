@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 11:26:49 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/09 04:22:18 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/09 04:33:50 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,12 @@ static int     shell_prompt(t_msh *msh)
     {
 		write(1, "minishell$ ", 11);
 		ret = get_next_line(0, &buf);
-		printf("=====TEST=======\n");
-		printf("buf -> %s\n", buf);
-		printf("ret -> %d\n", ret);
-		printf("================\n\n");
+		// printf("=====TEST=======\n");
+		// printf("buf -> %s\n", buf);  // A NE PAS SUPPRIMER
+		// printf("ret -> %d\n", ret);
+		// printf("================\n\n");
 		if (ret == -1)
 			return (0);
-		// check_prompt(data); // mieux de faire un check a la fin plutot que plein de check a chaque fois
 		if ((sort_data(msh, buf) == 1)
 		&& (handler_data(msh) == 1) && (exec_cmd(msh) == 1))
 		{
