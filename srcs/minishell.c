@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 11:26:49 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/09 04:33:50 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/09 05:03:20 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,20 @@
 
 #include "../includes/libshell.h"
 
-static int     shell_prompt(t_msh *msh)
+static int		get_path(t_msh *msh)
+{
+	// char	cwd[PATH_MAX + 1];
+	// if (getcwd(cwd, sizeof(cwd) != NULL))
+	// 	printf("Current Working dir : %s\n");
+	// else
+	// {
+	// 	perror("getcwd() error");
+	// 	return (0);
+	// }
+	return (1);
+}
+
+static int     	shell_prompt(t_msh *msh)
 {
 	int 	loop;
 	int 	ret;
@@ -57,14 +70,14 @@ static int     shell_prompt(t_msh *msh)
     {
 		write(1, "minishell$ ", 11);
 		ret = get_next_line(0, &buf);
-		// printf("=====TEST=======\n");
+		// printf("=====READ=======\n");
 		// printf("buf -> %s\n", buf);  // A NE PAS SUPPRIMER
 		// printf("ret -> %d\n", ret);
 		// printf("================\n\n");
 		if (ret == -1)
 			return (0);
-		if ((sort_data(msh, buf) == 1)
-		&& (handler_data(msh) == 1) && (exec_cmd(msh) == 1))
+		if ((sort_data(msh, buf) == 1) && (handler_data(msh) == 1)
+		&& (get_path(msh) == 1)&& (exec_cmd(msh) == 1))
 		{
 			return (1);
 		}
