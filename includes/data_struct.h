@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 19:16:18 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/08 19:13:29 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/10 15:08:48 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ typedef struct		s_data
 {
 	char	**prompt_data;
 	char 	**lair_tab;
-	int 	*value_data;
 	int 	size_data;
 	int 	check;
 }					t_data;
