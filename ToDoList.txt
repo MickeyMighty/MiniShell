@@ -1,5 +1,12 @@
 A FAIRE
 
+-> fonction pour checker la liste chainee
+-> fonction pour prendre le path
+-> fonction pour executer chaque commande de la liste chainee
+-> gerer les arguments de commande
+
+
+
 - gerer la liste chainé une fois le parsing fait
 - gerer les buitlins (handler) -> echo -> fait echo etc
 - gerer les cas d erreur
