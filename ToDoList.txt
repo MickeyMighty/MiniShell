@@ -4,6 +4,7 @@ A FAIRE
 -> fonction pour prendre le path
 -> fonction pour executer chaque commande de la liste chainee
 -> gerer les arguments de commande
+-> mettre un token attribuer pour chaque commande 
 
 
 
