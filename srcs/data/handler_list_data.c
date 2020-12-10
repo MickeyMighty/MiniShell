@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/07 04:25:27 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/08 19:13:01 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/10 15:39:19 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int 	ft_fill_empty_list(t_lair_list *lair_list, char *content)
 	if (!(new_element = (t_prompt_list *)malloc(sizeof(t_prompt_list))))
 		return (-1);
 	new_element->content = content;
+	new_element->token = 0;
 	new_element->previous = lair_list->start;
 	new_element->next = lair_list->end;
 	lair_list->end = new_element;
@@ -34,11 +35,48 @@ int 	ft_fill_end_list(t_lair_list *lair_list, char *content)
 	if (!(new_element = (t_prompt_list *)malloc(sizeof(t_prompt_list))))
 		return (-1);
 	new_element->content = content;
+	new_element->token = 0;
 	new_element->next = NULL;
 	new_element->previous = lair_list->end;
-
 	lair_list->end->next = new_element;
 	lair_list->end = new_element;
 	lair_list->size++;
 	return (0);
 }
+
+// FONCTIONS POUR CHECK CE QU IL Y A DANS LA LISTE CHAINEE
+// static void 	print_list(t_lair_list *lair_list)
+// {
+// 	int 	test; // pour le printf
+//
+// 	test = 1; // pour le printf
+// 	t_prompt_list *current;
+//
+// 	current = lair_list->start;
+// 	printf("| DEBUT | \n");
+// 	while (current != NULL)
+// 	{
+// 		printf("%d-> %s\n", test, current->content);
+// 		current = current->next;
+// 		test++; // pour le printf
+// 	}
+// 	printf("| FIN |\n");
+// 	printf("size lair_list -> %d\n", lair_list->size);
+// 	printf("first lair_list -> %s\n", lair_list->start->content);
+// 	printf("end  lair_list -> %s\n", lair_list->end->content);
+// }
+//
+// // fonction pour print a l enver
+// static void 	print_inv_list(t_lair_list *lair_list)
+// {
+// 	t_prompt_list *current;
+//
+// 	current = lair_list->end;
+// 	printf("[ ");
+// 	while(current != NULL)
+// 	{
+// 		printf("%s : ", current->content);
+// 		current = current->previous;
+// 	}
+// 	printf("]\n");
+// }
