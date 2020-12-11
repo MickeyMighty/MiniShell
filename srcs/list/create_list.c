@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/07 04:25:27 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/11 02:39:02 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/11 02:46:35 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,26 @@
 
 static int 	get_token(char *content)
 {
-	if (content[0] == ';')
-		return (SEMICOLON);
-	if (content[1])
+	if (content)
 	{
-		if (content[0] == '|' && content[1] == '|')
-			return (OR);
-		if (content[0] == '&' && content[1] == '&')
-			return (AND);
-		if (content[0] == '>' && content[1] == '>')
-			return (CHEVROND);
+		if (content[0] == ';')
+			return (SEMICOLON);
+		if (content[1])
+		{
+			if (content[0] == '|' && content[1] == '|')
+				return (OR);
+			if (content[0] == '&' && content[1] == '&')
+				return (AND);
+			if (content[0] == '>' && content[1] == '>')
+				return (CHEVROND);
+		}
+		if (content[0] == '|')
+			return (PIPE);
+		if (content[0] == '<')
+			return (CHEVRONL);
+		if (content[0] == '>')
+			return (CHEVRONR);
 	}
-	if (content[0] == '|')
-		return (PIPE);
-	if (content[0] == '<')
-		return (CHEVRONL);
-	if (content[0] == '>')
-		return (CHEVRONR);
 	return (0);
 }
 

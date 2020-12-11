@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 20:48:58 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/11 02:01:24 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/11 02:47:16 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int 	handler_data(t_msh *msh, char *buf)
 		return (0);
 	msh->data->prompt_data = ft_split_data(buf, ' ');
 	ft_size_data(msh, buf);
-	if (data_check(msh) == -1)
-		return (-1);
+	// if (data_check(msh) == -1)
+	// 	return (-1);
 	return (1);
 }

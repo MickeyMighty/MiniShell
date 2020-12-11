@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 05:35:00 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/11 02:40:40 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/11 02:46:43 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ static int 	linked_list_data(t_msh *msh)
 		count++;
 		msh->utils->check_opt = 0;
 		msh->utils->check_arg = 0;
-		while (check_if_option(msh, count) == 1)
-		{
-			count++;
-			msh->utils->check_opt = 1;
-		}
+		// while (check_if_option(msh, count) == 1)
+		// {
+		// 	count++;
+		// 	msh->utils->check_opt = 1;
+		// }
 		ft_fill_end_list(msh->lair_list, msh->data->prompt_data[count]);
 	}
 	// printf("\nLIST CHAINEE\n");
