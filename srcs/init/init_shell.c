@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 18:42:01 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/11 02:41:47 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/11 03:39:23 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static t_msh 	*init_msh(t_msh *msh)
 		return (NULL);
 	msh->utils->check_opt = 0;
 	msh->utils->check_arg = 0;
+	msh->utils->error_multi_line = 0;
 	return (msh);
 }
 

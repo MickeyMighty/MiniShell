@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 02:31:14 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/11 02:57:34 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/11 03:39:05 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct		s_utils
 {
 	int 	check_opt;
 	int 	check_arg;
+	int 	error_multi_line;
 }					t_utils;
 
 typedef struct		s_data

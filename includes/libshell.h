@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 13:35:59 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/11 02:34:19 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/11 04:05:09 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 
 t_msh 	*init_shell(t_msh *msh);
 int 	data_check(t_msh *msh);
+int 	free_error(t_msh *msh);
 
 
 # endif
