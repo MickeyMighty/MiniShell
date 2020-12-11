@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/07 04:25:27 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/11 06:34:52 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/11 18:28:57 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,42 @@ int 	ft_fill_end_list(t_lair_list *lair_list, char *content)
 	lair_list->end = new_element;
 	lair_list->size++;
 	return (0);
+}
+
+static	int 	is_empty_list(t_lair_list *lair_list)
+{
+	if (lair_list == NULL)
+		return (1);
+	return (-1);
+}
+
+lair_list		*clear_list(t_lair_list *lair_list)
+{
+	while (!is_empty_list(lair_list))
+		lair_list = pop_back_list(lair_liste);
+	return (new_list());
+}
+
+lair_list 		*pop_back_list(t_lair_list *lair_list)
+{
+	t_list 		*temp;
+
+	if (is_empty_list(lair_list))
+		return (new_list());
+	if (lair_list->start == lair_list->end)
+	{
+		free (lair_list);
+		lair_list = NULL;
+		return (new_list());
+	}
+	temp = lair_list->end;
+	lair_list->end->next = NULL;
+	temp->next = NULL;
+	temp->previous = NULL;
+	free(temp)
+	temp = NULL;
+	lair_list->size--;
+	return (lair_list);
 }
 
 // FONCTIONS POUR CHECK CE QU IL Y A DANS LA LISTE CHAINEE

@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 04:38:25 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/11 15:15:52 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/11 16:39:27 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ static int     	shell_prompt(t_msh *msh)
 	ret = 0;
 	signal(SIGINT, SIG_IGN);
 	// signal(SIGINT, signal_handler);
+	if (get_path(msh) == -1)
+		return (-1);
     while (loop)
     {
 		write(1, "minishell$ ", 11);
@@ -73,8 +75,6 @@ static int     	shell_prompt(t_msh *msh)
 		if (handler_data(msh, buf) == -1)
 			return (-1);
 		if (handler_list(msh) == -1)
-			return (-1);
-		if (get_path(msh) == -1)
 			return (-1);
 		// exec_cmd(msh);
 		// else
