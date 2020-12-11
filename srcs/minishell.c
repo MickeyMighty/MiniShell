@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 04:38:25 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/11 05:56:39 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/11 15:15:52 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,9 @@
 
 static int		get_path(t_msh *msh)
 {
-	// char	cwd[PATH_MAX + 1];
-	// if (getcwd(cwd, sizeof(cwd) != NULL))
-	// 	printf("Current Working dir : %s\n");
-	// else
-	// {
-	// 	perror("getcwd() error");
-	// 	return (0);
-	// }
-	return (1);
+	if (getcwd(msh->utils->cwd, sizeof(msh->utils->cwd)) != NULL)
+		return (1);
+	return (handler_error(msh));
 }
 
 static int     	shell_prompt(t_msh *msh)
@@ -75,11 +69,19 @@ static int     	shell_prompt(t_msh *msh)
 		// printf("ret -> %d\n", ret);
 		// printf("================\n\n");
 		if (ret == -1)
-			return (0);
-		if ((handler_data(msh, buf) == -1) || (handler_list(msh) == -1))
-			return (handler_error(msh)); // error.c ?
-		// if (get_path(msh) == -1) || (exec_cmd(msh) == -1))
-		// 	return (-1);
+			return (-1);
+		if (handler_data(msh, buf) == -1)
+			return (-1);
+		if (handler_list(msh) == -1)
+			return (-1);
+		if (get_path(msh) == -1)
+			return (-1);
+		// exec_cmd(msh);
+		// else
+		// {
+		// 	// free_data(msh);
+		// 	// free_lair_list(msh);
+		// }
     }
 	return (1);
 }

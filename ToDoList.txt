@@ -36,3 +36,7 @@ pays du 42 doc
 -> http://paysdu42.fr/?page=minishell.c
 
 -> https://segfault42.github.io/posts/minishell/
+
+link pour getcwd
+
+-> http://manpages.ubuntu.com/manpages/trusty/fr/man3/getcwd.3.html

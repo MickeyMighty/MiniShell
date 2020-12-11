@@ -14,7 +14,7 @@ SRCS	=	./srcs/minishell.c \
 			./srcs/data/handler_data.c \
 			./srcs/list/create_list.c \
 			./srcs/list/handler_list.c \
-			./srcs/init/init_data.c \
+			./srcs/init/init_struct.c \
 			./srcs/init/init_shell.c \
 			./srcs/error/free_error.c \
 			./srcs/error/handler_error.c \

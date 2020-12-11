@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 11:56:22 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/11 06:09:34 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/11 15:27:11 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static void		free_split(char **str)
 		free(str[index]);
 		index++;
 	}
+	free(str[index]);
 	free(str);
 }
 
@@ -67,40 +68,21 @@ static int		free_list(t_lair_list *lair_list, int pos)
   	return 0;
 }
 
-// static void	free_list(t_msh *msh)
-// {
-// 	t_list *list;
-//
-// 	while (msh->list->next)
-// 	{
-// 		next = msh->list->next;
-// 		if (msh->list)
-// 			free(msh->list);
-// 		msh->list = next;
-// 	}
-// 	free(msh->list);
-// }
-
-void 	free_error(t_msh *msh)
+void 	free_data(t_msh *msh)
 {
-	if (msh)
+	if (msh->data != NULL)
 	{
-		if (msh->utils)
-			free(msh->utils);
-		if (msh->data)
-		{
-			if (msh->data->prompt_data)
-				free_split(msh->data->prompt_data);
-			free(msh->data);
-		}
-		if (msh->lair_list)
-		{
-			while(msh->lair_list->size > 0)
-				free_list(msh->lair_list, 1);
-			free(msh->lair_list);
-		}
-		if (msh->list)
-			free(msh->list);
-		free(msh);
+		if (msh->data->prompt_data)
+			free_split(msh->data->prompt_data);
+		free(msh->data);
+	}
+}
+
+void 	free_lair_list(t_msh *msh)
+{
+	if (msh->lair_list != NULL)
+	{
+		while(msh->lair_list->size > 0)
+			free_list(msh->lair_list, 1);
 	}
 }

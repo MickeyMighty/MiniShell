@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 03:33:33 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/11 06:11:52 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/11 15:29:16 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,18 @@ int 	error_data(t_data *data, int token)
 	ft_putstr(strerror(errno));
 	ft_putstr("\n");
 	return (1);
+}
+
+void 	free_error(t_msh *msh)
+{
+	if (msh)
+	{
+		if (msh->utils)
+			free(msh->utils);
+		free_data(msh);
+		// free_lair_list(msh);
+		free(msh);
+	}
 }
 
 int 	handler_error(t_msh *msh)

@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 04:38:46 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/11 04:40:45 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/11 15:24:52 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,19 @@ typedef struct		s_utils
 	int 	check_opt;
 	int 	check_arg;
 	int 	error_multi_line;
-	char	**separator_tab;
+	char 	cwd[PATH_MAX + 1];
+	char	**sep_tab;
 }					t_utils;
+
+typedef struct		s_split_data
+{
+	int 	nb;
+	int 	index;
+	int 	pos;
+	int 	check;
+	int 	word;
+
+}					t_split_data;
 
 typedef struct		s_data
 {
@@ -54,14 +65,5 @@ typedef struct 		s_lair_list
 
 
 
-typedef struct		s_split_data
-{
-	int 	nb;
-	int 	index;
-	int 	pos;
-	int 	check;
-	int 	word;
-
-}					t_split_data;
 
 # endif

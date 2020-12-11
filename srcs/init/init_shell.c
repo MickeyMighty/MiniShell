@@ -6,44 +6,34 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 18:42:01 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/11 04:42:59 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/11 07:27:40 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libshell.h"
 
-char			**fill_separator_tab(void)
+int 	fill_separator_tab(t_msh *msh)
 {
-	char **tab;
+	int 	pos;
 
-	tab = (char**)malloc(sizeof(char*) * 8);
-	ft_memset(tab, 0, 8);
-	tab[0] = "|";
-	tab[1] = ";";
-	tab[2] = "<";
-	tab[3] = ">";
-	tab[4] = ">>";
-	tab[5] = "&&";
-	tab[6] = "||";
-	tab[7] = 0;
-	return (tab);
-}
-
-static t_msh 	*init_msh(t_msh *msh)
-{
-	if (!(msh = (t_msh*)malloc(sizeof(t_msh))))
-		return (NULL);
-	msh->data = NULL;
-	msh->list = NULL;
-	msh->lair_list = NULL;
-	msh->utils = NULL;
-	if (!(msh->utils = (t_utils*)malloc(sizeof(t_utils))))
-		return (NULL);
-	msh->utils->check_opt = 0;
-	msh->utils->check_arg = 0;
-	msh->utils->error_multi_line = 0;
-	msh->utils->separator_tab = fill_separator_tab();
-	return (msh);
+	pos = 0;
+	if (!(msh->utils->sep_tab = (char**)malloc(sizeof(char*) * 8)))
+		return (-1);
+	while (pos < 8)
+	{
+		if (!(msh->utils->sep_tab[pos] = (char*)malloc(sizeof(char) * 3)))
+			return (-1);
+		pos++;
+	}
+	msh->utils->sep_tab[0] = "|\0\0";
+	msh->utils->sep_tab[1] = ";\0\0";
+	msh->utils->sep_tab[2] = "<\0\0";
+	msh->utils->sep_tab[3] = ">\0\0";
+	msh->utils->sep_tab[4] = ">>\0";
+	msh->utils->sep_tab[5] = "&&\0";
+	msh->utils->sep_tab[6] = "||\0";
+	msh->utils->sep_tab[7] = NULL;
+	return (0);
 }
 
 static void 	aff_welcome(void)

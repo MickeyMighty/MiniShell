@@ -6,36 +6,36 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/07 04:25:27 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/11 03:00:35 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/11 06:34:52 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libshell.h"
 
-static int 	get_token(char *content)
-{
-	if (content)
-	{
-		if (content[0] == ';')
-			return (SEMICOLON);
-		if (content[1])
-		{
-			if (content[0] == '|' && content[1] == '|')
-				return (OR);
-			if (content[0] == '&' && content[1] == '&')
-				return (AND);
-			if (content[0] == '>' && content[1] == '>')
-				return (CHEVROND);
-		}
-		if (content[0] == '|')
-			return (PIPE);
-		if (content[0] == '<')
-			return (CHEVRONL);
-		if (content[0] == '>')
-			return (CHEVRONR);
-	}
-	return (0);
-}
+// static int 	get_token(char *content)
+// {
+// 	if (content)
+// 	{
+// 		if (content[0] == ';')
+// 			return (SEMICOLON);
+// 		if (content[1])
+// 		{
+// 			if (content[0] == '|' && content[1] == '|')
+// 				return (OR);
+// 			if (content[0] == '&' && content[1] == '&')
+// 				return (AND);
+// 			if (content[0] == '>' && content[1] == '>')
+// 				return (CHEVROND);
+// 		}
+// 		if (content[0] == '|')
+// 			return (PIPE);
+// 		if (content[0] == '<')
+// 			return (CHEVRONL);
+// 		if (content[0] == '>')
+// 			return (CHEVRONR);
+// 	}
+// 	return (0);
+// }
 
 int 	ft_fill_empty_list(t_lair_list *lair_list, char *content)
 {
@@ -60,7 +60,7 @@ int 	ft_fill_end_list(t_lair_list *lair_list, char *content)
 	if (!(new_element = (t_list *)malloc(sizeof(t_list))))
 		return (-1);
 	new_element->content = content;
-	new_element->token = get_token(content);
+	new_element->token = 0;
 	new_element->next = NULL;
 	new_element->previous = lair_list->end;
 	lair_list->end->next = new_element;

@@ -6,20 +6,20 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 15:00:26 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/06 07:12:12 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/11 15:23:55 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/libshell.h"
 
-void 	check_quote(char *s, t_split_data *data)
+void 	check_quote(char *s, t_split_data *split_data)
 {
-	if (s[data->pos] == SQUOTE)
-		data->check = 1;
-	else if (s[data->pos] == DQUOTE)
-		data->check = 2;
+	if (s[split_data->pos] == SQUOTE)
+		split_data->check = 1;
+	else if (s[split_data->pos] == DQUOTE)
+		split_data->check = 2;
 	else
-		data->check = 0;
+		split_data->check = 0;
 }
 
 int		ft_count_separator(char *s, int pos)
@@ -34,52 +34,52 @@ int		ft_count_separator(char *s, int pos)
 		return (0);
 }
 
-void 	ft_count_word_quote(char *s, char c, t_split_data *data)
+void 	ft_count_word_quote(char *s, char c, t_split_data *split_data)
 {
-	data->nb++;
-	if (s[data->pos] == SQUOTE)
+	split_data->nb++;
+	if (s[split_data->pos] == SQUOTE)
 	{
-		data->pos++;
-		while (s[data->pos] != '\0' && s[data->pos] != SQUOTE)
-			data->pos++;
-		if (s[data->pos] == SQUOTE)
-			data->pos++;
+		split_data->pos++;
+		while (s[split_data->pos] != '\0' && s[split_data->pos] != SQUOTE)
+			split_data->pos++;
+		if (s[split_data->pos] == SQUOTE)
+			split_data->pos++;
 	}
-	else if (s[data->pos] == DQUOTE)
+	else if (s[split_data->pos] == DQUOTE)
 	{
-		data->pos++;
-		while (s[data->pos] != '\0' && s[data->pos] != DQUOTE)
-			data->pos++;
-		if (s[data->pos] == DQUOTE)
-			data->pos++;
+		split_data->pos++;
+		while (s[split_data->pos] != '\0' && s[split_data->pos] != DQUOTE)
+			split_data->pos++;
+		if (s[split_data->pos] == DQUOTE)
+			split_data->pos++;
 	}
 }
 
-void 	ft_count_word_noquote(char *s, char c, t_split_data *data)
+void 	ft_count_word_noquote(char *s, char c, t_split_data *split_data)
 {
-	if (ft_count_separator(s, data->pos) != 0)
+	if (ft_count_separator(s, split_data->pos) != 0)
 	{
-		data->nb++;
-		if (ft_count_separator(s, data->pos) != 0)
-			data->pos += ft_count_separator(s, data->pos);
+		split_data->nb++;
+		if (ft_count_separator(s, split_data->pos) != 0)
+			split_data->pos += ft_count_separator(s, split_data->pos);
 	}
 	else
 	{
-		data->nb++;
-		while (s[data->pos] != '\0' && s[data->pos] != c
-		&& (ft_count_separator(s, data->pos) == 0))
-			data->pos++;
+		split_data->nb++;
+		while (s[split_data->pos] != '\0' && s[split_data->pos] != c
+		&& (ft_count_separator(s, split_data->pos) == 0))
+			split_data->pos++;
 	}
 }
 
-int 	ft_get_len_word_quote(char *s, char c, t_split_data *data, int index)
+int 	ft_get_len_word_quote(char *s, char c, t_split_data *split_data, int index)
 {
 	int 	len_word;
 
 	len_word = 0;
 	index++;
 	len_word++;
-	if (data->check == 1)
+	if (split_data->check == 1)
 	{
 		while (s[index] != '\0' && (s[index] != SQUOTE))
 		{

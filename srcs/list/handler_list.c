@@ -6,29 +6,11 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 04:42:10 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/11 04:42:14 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/11 07:39:21 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libshell.h"
-
-// static int 	check_if_option(t_msh *msh, int count)
-// {
-// 	// probleme pour echo
-// 	if (msh->data->prompt_data[count][0] == '-'
-// 	|| (((msh->data->prompt_data[count][0] == '\'')
-// 	|| (msh->data->prompt_data[count][0] == '\"'))
-// 	&& msh->data->prompt_data[count][1] == '-'))
-// 		return (1);
-// 	else
-// 		return (0);
-// }
-
-// static int 	check_if_argument(t_msh *msh, int count)
-// {
-// 	if (msh->data->prompt_data[count] ==)
-// 	return (1);
-// }
 
 static int 	linked_list_data(t_msh *msh)
 {
@@ -36,7 +18,7 @@ static int 	linked_list_data(t_msh *msh)
 
 	count = 0;
 	msh->list = NULL;
-	msh->lair_list = init_data_lair_list(msh->lair_list);
+	msh->lair_list = init_lair_list(msh->lair_list);
 	ft_fill_empty_list(msh->lair_list, msh->data->prompt_data[count]);
 	while (count < msh->data->size_data)
 	{
@@ -65,7 +47,7 @@ static int				separator_check(t_msh *msh, char *s)
 	char	**tmp;
 
 	i = 0;
-	tmp = msh->utils->separator_tab;
+	tmp = msh->utils->sep_tab;
 	while (tmp[i])
 	{
 		if (!ft_strncmp(s, tmp[i], ft_strlen(s))
@@ -76,16 +58,13 @@ static int				separator_check(t_msh *msh, char *s)
 	return (0);
 }
 
-// static int				option_check(char *s)
-// {
-// }
-
 /*
 ** token recognition a finir, bon pour cmd separator et args
 ** d'autres tests sont a prevoirs, relancer l'op qd on est sur un sep
 ** implementer/finir option_check(s);
 ** lors des test
 */
+
 static int		token_recognition(t_msh *msh, char *s, int indice)
 {
 	if (indice == 0)
@@ -99,7 +78,7 @@ static int		token_recognition(t_msh *msh, char *s, int indice)
 		msh->utils->check_arg = 1;
 		return (ARGS);
 	}
-
+	return (0);
 }
 
 static int		set_token(t_msh *msh)
@@ -124,6 +103,7 @@ int 	handler_list(t_msh *msh)
 {
 	// printf("debut de chaine -> %s\n", data->prompt_data[0]);
 	linked_list_data(msh);
-	set_token(msh);
+	// set_token(msh);
+	free_data(msh);
 	return (1);
 }
