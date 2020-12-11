@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loamar <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 16:13:14 by loamar            #+#    #+#             */
-/*   Updated: 2019/11/29 16:13:16 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/11 02:59:22 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*d)(void *))
+t_list_libft	*ft_lstmap(t_list_libft *lst, void *(*f)(void *), void (*d)(void *))
 {
-	t_list	*head;
-	t_list	*new;
+	t_list_libft	*head;
+	t_list_libft	*new;
 
 	if (!lst || !f)
 		return (NULL);

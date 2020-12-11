@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 16:24:04 by loamar            #+#    #+#             */
-/*   Updated: 2020/11/05 23:12:45 by lorenzoam        ###   ########.fr       */
+/*   Updated: 2020/12/11 03:01:33 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-typedef struct		s_list
+typedef struct		s_list_libft
 {
 	void			*content;
 	struct s_list	*next;
-}					t_list;
+}					t_list_libft;
 
 typedef struct		s_num
 {
@@ -83,16 +83,16 @@ void				*ft_memmove(void *dst, const void *src, size_t len);
 void				*ft_memset(void *b, int c, size_t len);
 void				*ft_calloc(size_t count, size_t size);
 unsigned long		ft_unsigned(long int n);
-int					ft_lstsize(t_list *lst);
+int					ft_lstsize(t_list_libft *lst);
 int					ft_atoi_base(char *str, char *base);
-void				ft_lstadd_front(t_list **alst, t_list *new);
-void				ft_lstadd_back(t_list **alst, t_list *new);
-void				ft_lstdelone(t_list *lst, void (*del)(void *));
-void				ft_lstclear(t_list **lst, void (*del)(void *));
-void				ft_lstiter(t_list *lst, void (*f)(void *));
-t_list				*ft_lstnew(void *content);
-t_list				*ft_lstlast(t_list *lst);
-t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
+void				ft_lstadd_front(t_list_libft **alst, t_list_libft *new);
+void				ft_lstadd_back(t_list_libft **alst, t_list_libft *new);
+void				ft_lstdelone(t_list_libft *lst, void (*del)(void *));
+void				ft_lstclear(t_list_libft **lst, void (*del)(void *));
+void				ft_lstiter(t_list_libft *lst, void (*f)(void *));
+t_list_libft				*ft_lstnew(void *content);
+t_list_libft				*ft_lstlast(t_list_libft *lst);
+t_list_libft				*ft_lstmap(t_list_libft *lst, void *(*f)(void *),
 					void (*d)(void *));
 char				*ft_ltohex(long num);
 #endif

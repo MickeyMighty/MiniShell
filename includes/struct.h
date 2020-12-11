@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 02:31:14 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/11 02:56:27 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/11 02:57:34 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,14 @@ typedef struct		s_list
 {
 	char			*content;
 	int 			token;
-	struct s_prompt_list	*next;
-	struct s_prompt_list	*previous;
+	struct s_list	*next;
+	struct s_list	*previous;
 }					t_list;
 
 typedef struct 		s_lair_list
 {
-	t_prompt_list	*start;
-	t_prompt_list	*end;
+	t_list	*start;
+	t_list	*end;
   	int size;
 }					t_lair_list;
 

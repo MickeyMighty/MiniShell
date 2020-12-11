@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/07 04:25:27 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/11 02:57:03 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/11 03:00:35 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int 	ft_fill_empty_list(t_lair_list *lair_list, char *content)
 {
 	t_list	*new_element;
 
-	if (!(new_element = (t_list *)malloc(sizeof(t_prompt_list))))
+	if (!(new_element = (t_list *)malloc(sizeof(t_list))))
 		return (-1);
 	new_element->content = content;
 	new_element->token = 0;
@@ -57,7 +57,7 @@ int 	ft_fill_end_list(t_lair_list *lair_list, char *content)
 {
 	t_list	*new_element;
 
-	if (!(new_element = (t_list *)malloc(sizeof(t_prompt_list))))
+	if (!(new_element = (t_list *)malloc(sizeof(t_list))))
 		return (-1);
 	new_element->content = content;
 	new_element->token = get_token(content);
