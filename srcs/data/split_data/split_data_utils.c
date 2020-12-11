@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_data_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tidminta <tidminta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 15:00:26 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/11 15:23:55 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/11 17:16:25 by tidminta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int		ft_count_separator(char *s, int pos)
 
 void 	ft_count_word_quote(char *s, char c, t_split_data *split_data)
 {
+	(void)c;
 	split_data->nb++;
 	if (s[split_data->pos] == SQUOTE)
 	{
@@ -76,6 +77,7 @@ int 	ft_get_len_word_quote(char *s, char c, t_split_data *split_data, int index)
 {
 	int 	len_word;
 
+	(void)c;
 	len_word = 0;
 	index++;
 	len_word++;

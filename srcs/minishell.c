@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tidminta <tidminta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 04:38:25 by loamar            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2020/12/11 16:39:27 by loamar           ###   ########.fr       */
+=======
+/*   Updated: 2020/12/11 17:01:44 by tidminta         ###   ########.fr       */
+>>>>>>> 967ca27fc6c5b040c6e76706eee82819cd2f0aa4
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +58,6 @@ static int     	shell_prompt(t_msh *msh)
 	int 	loop;
 	int 	ret;
 	char	*buf;
-	char	*user;
 
 	loop = 1;
 	ret = 0;
@@ -91,7 +94,10 @@ int     main(int argc, char **argv)
 	int 			end;
 	t_msh			*msh;
 
+	(void)argc;
+	(void)argv;
 	end = 0;
+	msh = NULL;
 	msh = init_shell(msh);
     end = shell_prompt(msh);
 	if (end == 1)

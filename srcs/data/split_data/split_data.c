@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_data.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tidminta <tidminta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 14:43:48 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/11 15:22:40 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/11 17:05:20 by tidminta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,6 @@ static int  	ft_put_word_to_tab(char *s, char c, t_split_data *split_data
 char			**ft_split_data(char *s, char c)
 {
 	char	**res;
-	int		nb_word;
 	t_split_data	*split_data;
 
 	if (!(split_data = (t_split_data*)malloc(sizeof(t_split_data))))

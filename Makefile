@@ -4,7 +4,7 @@ CC		=	gcc
 
 RM		=	rm -f
 
-CFLAGS	=	-I. -fsanitize=address
+CFLAGS	=	-Wall -Werror -Wextra -I. -fsanitize=address
 
 LIBFT	=	./lib/libft/libft.a
 
@@ -41,4 +41,7 @@ fclean:		clean
 
 re:			fclean $(NAME)
 
+f:			re
+			./minishell
+			
 .PHONY:		all clean fclean re f

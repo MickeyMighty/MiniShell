@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handler_list.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tidminta <tidminta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 04:42:10 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/11 07:39:21 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/11 18:01:34 by tidminta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,26 @@ static int				separator_check(t_msh *msh, char *s)
 ** lors des test
 */
 
+static int				option_check(t_msh *msh, char *s)
+{
+	(void)msh;
+	if (!s[0])
+		return (0);
+	if (s[0] == 45)
+		return (OPTION);
+	else if (s[1] && (s[0] == DQUOTE && s[1] == 45))
+		return (OPTION);
+	else if (s[1] && (s[0] == SQUOTE && s[1] == 45))
+		return (OPTION);
+	else return (0);
+}
+
 static int		token_recognition(t_msh *msh, char *s, int indice)
 {
 	if (indice == 0)
 		return (CMD);
-	// else if (indice =! 0 && option_check(s))
-	// 	return (OPTION);
+	else if (indice == 1 && option_check(msh, s))
+		return (OPTION);
 	else if (indice != 0 && separator_check(msh, s))
 		return (SEPARATOR);
 	else
@@ -88,13 +102,15 @@ static int		set_token(t_msh *msh)
 
 	lst = msh->lair_list->start;
 	i = 0;
+	if (!ft_strncmp(lst->content, "exit", 4))
+		exit(EXIT_SUCCESS);
 	while (lst->content)
 	{
-		printf("avant token[%s] = %i\n", lst->content, lst->token);
 		lst->token = token_recognition(msh, lst->content, i);
-		printf("apres token[%s] = %i\n", lst->content, lst->token);
-		lst = lst->next;
+		printf("token[%s] = %i\n", lst->content, lst->token);
 		i++;
+		i = (lst->token == SEPARATOR) ? 0 : i;
+		lst = lst->next;
 	}
 	return (0);
 }
@@ -103,7 +119,7 @@ int 	handler_list(t_msh *msh)
 {
 	// printf("debut de chaine -> %s\n", data->prompt_data[0]);
 	linked_list_data(msh);
-	// set_token(msh);
+	set_token(msh);
 	free_data(msh);
 	return (1);
 }
