@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_liste.c                                     :+:      :+:    :+:   */
+/*   create_list.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/07 04:25:27 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/11 01:56:33 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/11 02:39:02 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libshell.h"
 
-static int 	get_token(t_msh *msh, char *content)
+static int 	get_token(char *content)
 {
-	if (content[0] == ';');
+	if (content[0] == ';')
 		return (SEMICOLON);
 	if (content[1])
 	{
@@ -57,7 +57,7 @@ int 	ft_fill_end_list(t_lair_list *lair_list, char *content)
 	if (!(new_element = (t_prompt_list *)malloc(sizeof(t_prompt_list))))
 		return (-1);
 	new_element->content = content;
-	new_element->token = get_token(msh, content);
+	new_element->token = get_token(content);
 	new_element->next = NULL;
 	new_element->previous = lair_list->end;
 	lair_list->end->next = new_element;

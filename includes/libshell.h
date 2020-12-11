@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 13:35:59 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/10 17:27:34 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/11 02:34:19 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,15 @@
 # include <signal.h>
 # include <sys/types.h>
 
+# include "./includes/struct.h"
 # include "../lib/libft/libft.h"
 # include "../lib/get_next_line/get_next_line.h"
-# include "./includes/tree_struct.h"
-# include "./includes/data_struct.h"
-# include "./includes/cmd_struct.h"
+# include "./includes/list.h"
+# include "./includes/data.h"
+# include "./includes/cmd.h"
 
-// init
-
+t_msh 	*init_shell(t_msh *msh);
+int 	data_check(t_msh *msh);
 
 
 # endif
