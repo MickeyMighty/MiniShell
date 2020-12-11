@@ -6,7 +6,7 @@
 /*   By: tidminta <tidminta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 19:16:18 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/11 03:31:32 by tidminta         ###   ########.fr       */
+/*   Updated: 2020/12/11 16:46:17 by tidminta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@
 # define DQUOTE 34
 # define SEPARATOR 35
 # define ARGS 36
-# define OPTIONS 37
 // data -> commands table
 
 int 	handler_data(t_msh *msh, char *buf);
