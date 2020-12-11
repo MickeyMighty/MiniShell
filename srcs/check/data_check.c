@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 15:13:10 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/11 02:36:35 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/11 02:52:39 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int 	data_check(t_msh *msh)
 	int 	pos;
 
 	count = 0;
-	while (count <= msh->data->size_data)
+	while (count < msh->data->size_data)
 	{
 		pos = 0;
 		if (msh->data->prompt_data[count][pos] == '\'')
