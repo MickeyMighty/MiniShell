@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 02:31:14 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/11 02:35:11 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/11 02:56:27 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 typedef struct 		s_msh
 {
+		struct s_utils *utils;
 		struct s_data 	*data;
 		struct s_list 	*list;
 		struct s_lair_list *lair_list;
-		struct s_utils *utils;
 }					t_msh;
 
 typedef struct		s_utils
@@ -27,13 +27,21 @@ typedef struct		s_utils
 	int 	check_arg;
 }					t_utils;
 
-typedef struct		s_prompt_list
+typedef struct		s_data
+{
+	char	**prompt_data;
+	// char 	lair_tab;
+	int 	size_data;
+	int 	check;
+}					t_data;
+
+typedef struct		s_list
 {
 	char			*content;
 	int 			token;
 	struct s_prompt_list	*next;
 	struct s_prompt_list	*previous;
-}					t_prompt_list;
+}					t_list;
 
 typedef struct 		s_lair_list
 {
@@ -43,13 +51,6 @@ typedef struct 		s_lair_list
 }					t_lair_list;
 
 
-typedef struct		s_data
-{
-	char	**prompt_data;
-	// char 	lair_tab;
-	int 	size_data;
-	int 	check;
-}					t_data;
 
 typedef struct		s_split_data
 {
