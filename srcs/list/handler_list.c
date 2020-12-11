@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handler_list.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tidminta <tidminta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/06 05:35:00 by loamar            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2020/12/11 03:07:09 by loamar           ###   ########.fr       */
-=======
-/*   Updated: 2020/12/11 04:23:42 by tidminta         ###   ########.fr       */
->>>>>>> 1577a933a739790afc0ff6c3cfe0c5abc9e3cbbd
+/*   Created: 2020/12/11 04:42:10 by loamar            #+#    #+#             */
+/*   Updated: 2020/12/11 04:42:14 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +84,7 @@ static int				separator_check(t_msh *msh, char *s)
 ** token recognition a finir, bon pour cmd separator et args
 ** d'autres tests sont a prevoirs, relancer l'op qd on est sur un sep
 ** implementer/finir option_check(s);
-** lors des test 
+** lors des test
 */
 static int		token_recognition(t_msh *msh, char *s, int indice)
 {
@@ -103,14 +99,14 @@ static int		token_recognition(t_msh *msh, char *s, int indice)
 		msh->utils->check_arg = 1;
 		return (ARGS);
 	}
-	
+
 }
 
 static int		set_token(t_msh *msh)
 {
 	t_list	*lst;
 	int		i;
-	
+
 	lst = msh->lair_list->start;
 	i = 0;
 	while (lst->content)

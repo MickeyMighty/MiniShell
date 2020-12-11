@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 03:33:33 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/11 04:03:31 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/11 06:11:52 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,9 @@
 static void 	msg_error(t_msh *msh)
 {
 	if (msh->utils->error_multi_line == 1)
-		ft_putstr_fd("missing quote\n", 2);
+		ft_putstr_fd("minishell: syntax error missing quote.\n", 2);
 	else
 		ft_putstr_fd(strerror(errno), 2);
-}
-
-static void		free_split(char **str)
-{
-	int		index;
-
-	index = 0;
-	while (str[index])
-	{
-		free(str[index]);
-		index++;
-	}
-	free(str);
 }
 
 int 	error_data(t_data *data, int token)
@@ -42,30 +29,9 @@ int 	error_data(t_data *data, int token)
 	return (1);
 }
 
-int 	free_msh(t_msh *msh)
-{
-	if (msh)
-	{
-		if (msh->utils)
-			free(msh->utils)
-		if (msh->data)
-		{
-			if (msh->data->prompt_data)
-				free_split(msh->data->prompt_data);
-			free(msh->data);
-		}
-		if (msh->list)
-		{
-
-		}
-		if (lair_list)
-		{
-
-		}
-	}
-}
-
 int 	handler_error(t_msh *msh)
 {
-	;
+	msg_error(msh);
+	free_error(msh);
+	return (-1);
 }

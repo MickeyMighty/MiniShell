@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_shell.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tidminta <tidminta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 18:42:01 by loamar            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2020/12/11 03:39:23 by loamar           ###   ########.fr       */
-=======
-/*   Updated: 2020/12/11 03:17:54 by tidminta         ###   ########.fr       */
->>>>>>> 1577a933a739790afc0ff6c3cfe0c5abc9e3cbbd
+/*   Updated: 2020/12/11 04:42:59 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +41,8 @@ static t_msh 	*init_msh(t_msh *msh)
 		return (NULL);
 	msh->utils->check_opt = 0;
 	msh->utils->check_arg = 0;
-<<<<<<< HEAD
 	msh->utils->error_multi_line = 0;
-=======
 	msh->utils->separator_tab = fill_separator_tab();
->>>>>>> 1577a933a739790afc0ff6c3cfe0c5abc9e3cbbd
 	return (msh);
 }
 

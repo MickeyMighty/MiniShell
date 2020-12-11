@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tidminta <tidminta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/30 11:26:49 by loamar            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2020/12/11 03:31:40 by loamar           ###   ########.fr       */
-=======
-/*   Updated: 2020/12/11 03:00:02 by tidminta         ###   ########.fr       */
->>>>>>> 1577a933a739790afc0ff6c3cfe0c5abc9e3cbbd
+/*   Created: 2020/12/11 04:38:25 by loamar            #+#    #+#             */
+/*   Updated: 2020/12/11 05:56:39 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +77,9 @@ static int     	shell_prompt(t_msh *msh)
 		if (ret == -1)
 			return (0);
 		if ((handler_data(msh, buf) == -1) || (handler_list(msh) == -1))
-			return (-1); // error.c ?
-		if (get_path(msh) == -1) || (exec_cmd(msh) == -1))
-			return (-1);
+			return (handler_error(msh)); // error.c ?
+		// if (get_path(msh) == -1) || (exec_cmd(msh) == -1))
+		// 	return (-1);
     }
 	return (1);
 }
@@ -98,7 +94,7 @@ int     main(int argc, char **argv)
     end = shell_prompt(msh);
 	if (end == 1)
 		exit(EXIT_SUCCESS);
-	if (end == 0)
+	if (end == -1)
 		exit(EXIT_FAILURE);
     return (0);
 }
