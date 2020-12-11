@@ -12,9 +12,9 @@ SRCS	=	./srcs/minishell.c \
 			./srcs/tree.c \
 			./srcs/init/init_shell.c \
 			./srcs/init/init_data.c \
-			./srcs/data/sort_data.c \
 			./srcs/data/handler_data.c \
-			./srcs/data/handler_list_data.c \
+			./srcs/data/handler_list.c \
+			./srcs/data/create_list.c \
 			./srcs/cmd/exec_cmd.c \
 			./srcs/data/check_data/check_prompt.c \
 			./srcs/data/split_data/split_data.c \

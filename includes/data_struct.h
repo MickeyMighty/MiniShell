@@ -6,25 +6,24 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 19:16:18 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/10 15:08:48 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/11 01:55:54 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DATA_STRUCT_H
 # define DATA_STRUCT_H
 
-# define PIPE 0
-# define SEMICOLON 1
-# define CHEVRONL 2
-# define CHEVRONR 3
-# define CHEVROND 4
-# define AND 5
-# define OR 6
-# define VARIABLE 7
-# define SQ 8
-# define DQ 9
-# define CMD 10
-# define OPTION 12
+# define PIPE 1
+# define SEMICOLON 2
+# define CHEVRONL 3
+# define CHEVRONR 4
+# define CHEVROND 5
+# define AND 6
+# define OR 7
+# define VARIABLE 8
+# define CMD 9
+# define OPTION 10
+# define ARG 11
 # define SQUOTE 39
 # define DQUOTE 34
 // data -> commands table
@@ -34,6 +33,7 @@ typedef struct 		s_msh
 		struct s_data 	*data;
 		struct s_list 	*list;
 		struct s_lair_list *lair_list;
+		struct s_utils *utils;
 }					t_msh;
 
 t_msh 	*init_shell(t_msh *msh);
@@ -41,10 +41,16 @@ t_msh 	*init_shell(t_msh *msh);
 typedef struct		s_data
 {
 	char	**prompt_data;
-	char 	**lair_tab;
+	// char 	lair_tab;
 	int 	size_data;
 	int 	check;
 }					t_data;
+
+typedef struct		s_utils
+{
+	int 	check_opt;
+	int 	check_arg;
+}					t_utils;
 
 typedef struct		s_prompt_list
 {
@@ -61,8 +67,8 @@ typedef struct 		s_lair_list
   	int size;
 }					t_lair_list;
 
-int 	sort_data(t_msh *msh, char *buf);
-int 	handler_data(t_msh *msh);
+int 	handler_data(t_msh *msh, char *buf);
+int 	handler_list(t_msh *msh);
 int 	ft_fill_empty_list(t_lair_list *lair_list, char *content);
 int 	ft_fill_end_list(t_lair_list *lair_list, char *content);
 int 	check_data_separator(t_data *data);

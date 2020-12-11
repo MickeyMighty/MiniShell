@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 18:42:01 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/08 18:34:41 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/11 01:21:46 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,11 @@ static t_msh 	*init_msh(t_msh *msh)
 	msh->data = NULL;
 	msh->list = NULL;
 	msh->lair_list = NULL;
-	// if (!(data = (t_data*)malloc(sizeof(t_data))))
-	// 	return (NULL);
-	// data = NULL;
+	msh->utils = NULL;
+	if (!(utils = (t_utils*)malloc(sizeof(t_utils))))
+		return (NULL);
+	msh->utils->check_opt = 0;
+	msh->utils->check_arg = 0;
 	return (msh);
 }
 
