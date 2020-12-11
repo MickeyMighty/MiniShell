@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tidminta <tidminta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 02:31:14 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/11 02:57:34 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/11 03:56:02 by tidminta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,17 @@
 
 typedef struct 		s_msh
 {
-		struct s_utils *utils;
-		struct s_data 	*data;
-		struct s_list 	*list;
-		struct s_lair_list *lair_list;
+	struct s_utils *utils;
+	struct s_data 	*data;
+	struct s_list 	*list;
+	struct s_lair_list *lair_list;
 }					t_msh;
 
 typedef struct		s_utils
 {
 	int 	check_opt;
 	int 	check_arg;
+	char	**separator_tab;
 }					t_utils;
 
 typedef struct		s_data
