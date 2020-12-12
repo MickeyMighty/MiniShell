@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 13:35:59 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/11 07:27:21 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/12 06:02:13 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@
 # include <signal.h>
 # include <sys/types.h>
 
-#define PATH_MAX 4096
+# define PATH_MAX 4096
+# define SUCCESS 0
+# define ERROR -1
 
 # include "./includes/struct.h"
 # include "../lib/libft/libft.h"
@@ -40,6 +42,13 @@ void 	free_data(t_msh *msh);
 void 	free_lair_list(t_msh *msh);
 t_lair_list 	*init_lair_list(t_lair_list *lair_list);
 int 	fill_separator_tab(t_msh *msh);
+t_lair_list		*clear_list(t_lair_list *lair_list);
+t_lair_list 		*pop_back_list(t_lair_list *lair_list);
+void		set_token_list(t_msh *msh);
+
+int 	handler_cmd(t_msh *msh);
+int 	exec_cmd(t_msh *msh);
+int 	get_absolute_path(t_msh *msh);
 
 
 # endif

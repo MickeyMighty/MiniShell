@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 11:56:22 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/11 17:04:08 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/12 01:23:19 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,6 @@ void 	free_lair_list(t_msh *msh)
 	if (msh->lair_list)
 	{
 		msh->lair_list = clear_list(msh->lair_list);
+		free(msh->lair_list);
 	}
 }

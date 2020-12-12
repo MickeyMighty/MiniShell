@@ -65,3 +65,6 @@
 
 
 ## 4-Project
+
+**Structure**
+```\Minishell - </pid>```

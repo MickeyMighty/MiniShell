@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_cmd.c                                         :+:      :+:    :+:   */
+/*   my_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/06 18:07:43 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/12 05:12:05 by loamar           ###   ########.fr       */
+/*   Created: 2020/12/12 06:06:53 by loamar            #+#    #+#             */
+/*   Updated: 2020/12/12 06:09:19 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libshell.h"
 
-//(void)msh; -> set to mute warning
-// int 	exec_cmd(t_msh *msh)
+// void 	my_echo(char **arg)
 // {
-// 	// if (execve(msh->utils->path, msh->list->tab_arg, NULL) == -1)
-// 	// {
-// 	// 	printf("MAIS WTF\n");
-// 	// 	return (-1);
-// 	// }
-// 	return (1);
+// 	;
 // }

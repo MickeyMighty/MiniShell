@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 18:42:01 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/11 07:27:40 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/12 06:03:25 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ int 	fill_separator_tab(t_msh *msh)
 
 	pos = 0;
 	if (!(msh->utils->sep_tab = (char**)malloc(sizeof(char*) * 8)))
-		return (-1);
+		return (ERROR);
 	while (pos < 8)
 	{
 		if (!(msh->utils->sep_tab[pos] = (char*)malloc(sizeof(char) * 3)))
-			return (-1);
+			return (ERROR);
 		pos++;
 	}
 	msh->utils->sep_tab[0] = "|\0\0";
@@ -33,7 +33,7 @@ int 	fill_separator_tab(t_msh *msh)
 	msh->utils->sep_tab[5] = "&&\0";
 	msh->utils->sep_tab[6] = "||\0";
 	msh->utils->sep_tab[7] = NULL;
-	return (0);
+	return (SUCCESS);
 }
 
 static void 	aff_welcome(void)

@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tidminta <tidminta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/11 04:38:25 by loamar            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2020/12/11 16:39:27 by loamar           ###   ########.fr       */
-=======
-/*   Updated: 2020/12/11 17:01:44 by tidminta         ###   ########.fr       */
->>>>>>> 967ca27fc6c5b040c6e76706eee82819cd2f0aa4
+/*   Created: 2020/12/11 19:54:29 by loamar            #+#    #+#             */
+/*   Updated: 2020/12/12 06:05:57 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +42,11 @@
 
 #include "../includes/libshell.h"
 
-static int		get_path(t_msh *msh)
+// a supprimer
+static int		pwd(t_msh *msh)
 {
-	if (getcwd(msh->utils->cwd, sizeof(msh->utils->cwd)) != NULL)
-		return (1);
+	if (getcwd(msh->utils->path, sizeof(msh->utils->path)) != NULL)
+		return (1); // fonction qui sert pour pwd
 	return (handler_error(msh));
 }
 
@@ -65,28 +62,18 @@ static int     	shell_prompt(t_msh *msh)
 	// signal(SIGINT, signal_handler);
 	if (get_path(msh) == -1)
 		return (-1);
+	printf("path -> [%s]\n", msh->utils->path);
+	exit(0);
     while (loop)
     {
 		write(1, "minishell$ ", 11);
 		ret = get_next_line(0, &buf);
-		// printf("=====READ=======\n");
-		// printf("buf -> %s\n", buf);  // A NE PAS SUPPRIMER
-		// printf("ret -> %d\n", ret);
-		// printf("================\n\n");
 		if (ret == -1)
-			return (-1);
-		if (handler_data(msh, buf) == -1)
-			return (-1);
-		if (handler_list(msh) == -1)
-			return (-1);
-		// exec_cmd(msh);
-		// else
-		// {
-		// 	// free_data(msh);
-		// 	// free_lair_list(msh);
-		// }
+			return (ERROR);
+		if ((handler_data(msh, buf) == -1) || (handler_list(msh) == -1))
+			return (handler_error(msh));
     }
-	return (1);
+	return (SUCCESS);
 }
 
 int     main(int argc, char **argv)
@@ -100,9 +87,9 @@ int     main(int argc, char **argv)
 	msh = NULL;
 	msh = init_shell(msh);
     end = shell_prompt(msh);
-	if (end == 1)
+	if (end == SUCCESS)
 		exit(EXIT_SUCCESS);
-	if (end == -1)
+	if (end == ERROR)
 		exit(EXIT_FAILURE);
     return (0);
 }

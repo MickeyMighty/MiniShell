@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 04:38:46 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/11 15:24:52 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/12 05:08:24 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,13 @@ typedef struct 		s_msh
 
 typedef struct		s_utils
 {
+	pid_t 	pid;
+	pid_t 	wpid;
+	int 	status;
 	int 	check_opt;
 	int 	check_arg;
 	int 	error_multi_line;
-	char 	cwd[PATH_MAX + 1];
+	char 	path[PATH_MAX + 1];
 	char	**sep_tab;
 }					t_utils;
 

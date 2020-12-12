@@ -1,0 +1,8 @@
+ici il faut mettre tout les builtins a faire
+-> my_echo.c
+-> my_cd.c
+-> my_pwd.c (getcwd)
+-> my_export.c
+-> my_unset.c
+-> my_env.c
+-> my_exit.c

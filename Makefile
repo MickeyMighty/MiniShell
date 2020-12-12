@@ -11,9 +11,12 @@ LIBFT	=	./lib/libft/libft.a
 SRCS	=	./srcs/minishell.c \
 			./srcs/check/data_check.c \
 			./srcs/cmd/exec_cmd.c \
+			./srcs/cmd/handler_cmd.c \
+			./srcs/cmd/get_absolute_path.c \
 			./srcs/data/handler_data.c \
 			./srcs/list/create_list.c \
 			./srcs/list/handler_list.c \
+			./srcs/list/set_token_list.c \
 			./srcs/init/init_struct.c \
 			./srcs/init/init_shell.c \
 			./srcs/error/free_error.c \
@@ -43,5 +46,5 @@ re:			fclean $(NAME)
 
 f:			re
 			./minishell
-			
+
 .PHONY:		all clean fclean re f
