@@ -66,7 +66,7 @@
 
 ## 4-Project
 
-**Structure**
+**Structure :**
 ```
 Minishell
 ├── includes
