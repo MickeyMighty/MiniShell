@@ -67,4 +67,8 @@
 ## 4-Project
 
 **Structure**
-```\Minishell - </pid>```
+```\Minishell -
+			   |- \includes -
+			   |			 |- \cmd.h
+			   |- \lib -
+			   |		|- \get_next_line```
