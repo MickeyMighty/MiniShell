@@ -67,8 +67,47 @@
 ## 4-Project
 
 **Structure**
-```\Minishell -
-			   |- \includes -
-			   |			 |- \cmd.h
-			   |- \lib -
-			   |		|- \get_next_line```
+```
+Minishell
+├── includes
+│   ├── cmd.h
+│   ├── data.h
+│   ├── libshell.h
+│   ├── list.h
+│   └── struct.h
+├── lib
+│   ├── get_next_line
+│   │   ├── get_next_line_utils.c
+│   │   ├── get_next_line.c
+│   │   └── get_next_line.h
+│   └── libft
+│       └── ...
+├── srcs
+│   ├── builtins
+│   │   ├── my_echo.c
+│   │   └── my_pwd.c
+│   ├── check
+│   │   └── data_check.c
+│   ├── cmd
+│   │   ├── exec_cmd.c
+│   │   ├── get_absolute_path.c
+│   │   └── handler_cmd.c
+│   ├── data
+│   │   ├── split_data
+│   │   │   ├── split_data_utils.c
+│   │   │   └── split_data.c
+│   │   └── handler_data.c
+│   ├── error
+│   │   ├── free_error.c
+│   │   └── handler_error.c
+│   ├── init
+│   │   ├── init_shell.c
+│   │   └── init_struct.c
+│   └── list
+│       ├── create_list.c
+│       ├── handler_list.c
+│       └── set_token_list.c
+├── subject
+├── Makefile
+└── README.md
+```
