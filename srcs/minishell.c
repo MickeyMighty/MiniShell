@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 19:54:29 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/12 06:05:57 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/13 04:41:33 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,12 @@
 #include "../includes/libshell.h"
 
 // a supprimer
-static int		pwd(t_msh *msh)
-{
-	if (getcwd(msh->utils->path, sizeof(msh->utils->path)) != NULL)
-		return (1); // fonction qui sert pour pwd
-	return (handler_error(msh));
-}
+// static int		pwd(t_msh *msh)
+// {
+// 	if (getcwd(msh->utils->path, sizeof(msh->utils->path)) != NULL)
+// 		return (1); // fonction qui sert pour pwd
+// 	return (handler_error(msh));
+// }
 
 static int     	shell_prompt(t_msh *msh)
 {
@@ -60,10 +60,6 @@ static int     	shell_prompt(t_msh *msh)
 	ret = 0;
 	signal(SIGINT, SIG_IGN);
 	// signal(SIGINT, signal_handler);
-	if (get_path(msh) == -1)
-		return (-1);
-	printf("path -> [%s]\n", msh->utils->path);
-	exit(0);
     while (loop)
     {
 		write(1, "minishell$ ", 11);
@@ -72,6 +68,7 @@ static int     	shell_prompt(t_msh *msh)
 			return (ERROR);
 		if ((handler_data(msh, buf) == -1) || (handler_list(msh) == -1))
 			return (handler_error(msh));
+		handler_cmd(msh);
     }
 	return (SUCCESS);
 }

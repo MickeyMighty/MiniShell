@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 13:35:59 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/12 06:02:13 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/13 04:43:03 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <errno.h>
 # include <signal.h>
 # include <sys/types.h>
+# include <dirent.h>
 
 # define PATH_MAX 4096
 # define SUCCESS 0
@@ -48,7 +49,7 @@ void		set_token_list(t_msh *msh);
 
 int 	handler_cmd(t_msh *msh);
 int 	exec_cmd(t_msh *msh);
-int 	get_absolute_path(t_msh *msh);
+char 	*get_absolute_path(t_msh *msh);
 
 
 # endif
