@@ -40,3 +40,7 @@ pays du 42 doc
 link pour getcwd
 
 -> http://manpages.ubuntu.com/manpages/trusty/fr/man3/getcwd.3.html
+
+link opendir / readdir etc
+-> https://openclassrooms.com/forum/sujet/opendirreaddir-45778
+-> https://openclassrooms.com/forum/sujet/coding-minishell-54695

@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 04:38:46 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/12 09:23:10 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/14 15:58:21 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,11 @@ typedef struct 		s_lair_list
 	t_list	*end;
   	int size;
 }					t_lair_list;
+
+typedef struct 		s_env
+{
+	char	*content;
+}					t_env;
 
 
 

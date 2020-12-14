@@ -6,29 +6,33 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/12 05:19:10 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/13 05:09:10 by loamar           ###   ########.fr       */
+/*   Updated: 2020/12/14 15:50:07 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libshell.h"
 
-char 	*get_absolute_path(t_msh *msh, char *cmd)
+static char 	*get_dir(char *path, char *cmd)
 {
-	DIR 			*folder;
+	DIR 			*dir;
 	struct dirent	*entry;
 
-	folder = opendir(cmd);
-	if (!folder)
-	{
-		printf("error folder\n"); // mauvais chemin
+	dir = opendir(cmd);
+	if (!dir)
 		return (0);
+	while (entry = readdir(dir))
+	{
+		if (!ft_strcmp(dir->d_name, path))
+		{
+			closedir(dir);
+			return (cmd);
+		}
 	}
-
-	printf("folder -> %s\n", );
-	// char 	bin[6];
-	// char 	*tmp;
-	//
-	// bin = "/bin/\0"
-	// msh->utils->path = ft_strdup(ft_strjoin(bin, msh->list->content));
+	closedir(folder);
 	return (NULL);
+}
+
+char 	*get_absolute_path(char *path, char *cmd)
+{
+	;
 }
