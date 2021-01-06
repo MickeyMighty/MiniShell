@@ -6,13 +6,13 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 17:30:11 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/14 17:32:39 by loamar           ###   ########.fr       */
+/*   Updated: 2021/01/06 21:39:44 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libshell.h"
 
-// int 	create_env(t_msh *msh, char *cmd)
-// {
-//
-// }
+int 	create_env(t_msh *msh, char **env)
+{
+
+}

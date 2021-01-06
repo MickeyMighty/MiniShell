@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 07:27:43 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/12 06:03:49 by loamar           ###   ########.fr       */
+/*   Updated: 2021/01/06 21:42:31 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,14 @@ t_lair_list 	*init_lair_list(t_lair_list *lair_list)
 	lair_list->end = NULL;
 	lair_list->size = 0;
 	return (lair_list);
+}
+
+t_env_lair	*init_env_lair(t_env_lair *env_lair)
+{
+	if (!(env_lair = (t_env_lair*)malloc(sizeof(t_env_lair))))
+	return (NULL);
+	env_lair->start = NULL;
+	env_lair->end = NULL;
+	env_lair->size = 0;
+	return (env_lair);
 }

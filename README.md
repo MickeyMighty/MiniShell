@@ -68,6 +68,7 @@
 ## 4-Project
 
 **Structure :**
+-PROJECT NOT FINISH-
 ```
 Minishell
 ├── includes

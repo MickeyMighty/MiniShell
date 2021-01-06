@@ -4,7 +4,7 @@ CC		=	gcc
 
 RM		=	rm -f
 
-CFLAGS	=	-Wall -Werror -Wextra -I. -fsanitize=address
+CFLAGS	=	-I. -fsanitize=address
 
 LIBFT	=	./lib/libft/libft.a
 
@@ -14,7 +14,8 @@ SRCS	=	./srcs/minishell.c \
 			./srcs/cmd/handler_cmd.c \
 			./srcs/cmd/get_absolute_path.c \
 			./srcs/data/handler_data.c \
-			./srcs/list/create_list.c \
+			./srcs/env/create_list_env.c \
+			./srcs/list/create_prompt_list.c \
 			./srcs/list/handler_list.c \
 			./srcs/list/set_token_list.c \
 			./srcs/init/init_struct.c \

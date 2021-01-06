@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/12 04:46:01 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/13 04:38:42 by loamar           ###   ########.fr       */
+/*   Updated: 2021/01/05 11:38:42 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int 	handler_cmd(t_msh *msh)
 {
-	get_absolute_path(msh);
+	(void)msh;
+//	get_absolute_path(msh);
 	printf("ok\n");
 	exit(0);
 	// int 	count;

@@ -1,41 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_list.c                                      :+:      :+:    :+:   */
+/*   create_prompt_list.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/07 04:25:27 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/12 01:21:12 by loamar           ###   ########.fr       */
+/*   Updated: 2021/01/05 12:28:29 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libshell.h"
-
-// static int 	get_token(char *content)
-// {
-// 	if (content)
-// 	{
-// 		if (content[0] == ';')
-// 			return (SEMICOLON);
-// 		if (content[1])
-// 		{
-// 			if (content[0] == '|' && content[1] == '|')
-// 				return (OR);
-// 			if (content[0] == '&' && content[1] == '&')
-// 				return (AND);
-// 			if (content[0] == '>' && content[1] == '>')
-// 				return (CHEVROND);
-// 		}
-// 		if (content[0] == '|')
-// 			return (PIPE);
-// 		if (content[0] == '<')
-// 			return (CHEVRONL);
-// 		if (content[0] == '>')
-// 			return (CHEVRONR);
-// 	}
-// 	return (0);
-// }
 
 int 	ft_fill_empty_list(t_lair_list *lair_list, char *content)
 {
