@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 04:38:46 by loamar            #+#    #+#             */
-/*   Updated: 2021/01/05 12:29:40 by loamar           ###   ########.fr       */
+/*   Updated: 2021/01/06 23:00:41 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct		s_utils
 	int 	check_opt;
 	int 	check_arg;
 	int 	error_multi_line;
+	char 	*path;
 	char	**sep_tab;
 }					t_utils;
 
@@ -70,15 +71,14 @@ typedef struct 		s_lair_list
 typedef struct		s_env_list
 {
 	char			*content;
-	int 			token;
-	struct s_list	*next;
-	struct s_list	*previous;
+	struct s_env_list	*next;
+	struct s_env_list	*previous;
 }					t_env_list;
 
 typedef struct 		s_env_lair
 {
-	t_list	*start;
-	t_list	*end;
+	t_env_list	*start;
+	t_env_list	*end;
   	int size;
 }					t_env_lair;
 

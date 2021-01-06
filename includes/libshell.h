@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 13:35:59 by loamar            #+#    #+#             */
-/*   Updated: 2021/01/05 12:21:28 by loamar           ###   ########.fr       */
+/*   Updated: 2021/01/06 22:38:27 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int 	data_check(t_msh *msh);
 void 	free_error(t_msh *msh);
 int 	handler_error(t_msh *msh);
 t_msh 	*init_msh(t_msh *msh);
-t_msh 	*init_msh(t_msh *msh);
+t_env_lair	*init_env_lair(t_env_lair *env_lair);
 void 	free_data(t_msh *msh);
 void 	free_lair_list(t_msh *msh);
 t_lair_list 	*init_lair_list(t_lair_list *lair_list);
@@ -51,5 +51,11 @@ int 	handler_cmd(t_msh *msh);
 int 	exec_cmd(t_msh *msh);
 char 	*get_absolute_path(t_msh *msh);
 
+
+int 	handler_env(t_msh *msh, char **env);
+int 	ft_fill_empty_env(t_env_lair *env_lair, char *content);
+int 	ft_fill_end_env(t_env_lair *env_lair, char *content);
+t_env_lair		*clear_env(t_env_lair *env_lair);
+t_env_lair 		*pop_back_env(t_env_lair *env_lair);
 
 # endif

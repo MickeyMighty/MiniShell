@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 19:54:29 by loamar            #+#    #+#             */
-/*   Updated: 2021/01/06 21:40:09 by loamar           ###   ########.fr       */
+/*   Updated: 2021/01/06 23:32:27 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int     main(int argc, char **argv, char **env)
 	end = 0;
 	msh = NULL;
 	msh = init_shell(msh);
-	create_env(msh, env);
+	handler_env(msh, env); // cas d'erreur a gerer;
     end = shell_prompt(msh);
 	if (end == SUCCESS)
 		exit(EXIT_SUCCESS);

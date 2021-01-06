@@ -15,7 +15,8 @@ SRCS	=	./srcs/minishell.c \
 			./srcs/cmd/get_absolute_path.c \
 			./srcs/data/handler_data.c \
 			./srcs/env/create_list_env.c \
-			./srcs/list/create_prompt_list.c \
+			./srcs/env/handler_env.c \
+			./srcs/list/create_list.c \
 			./srcs/list/handler_list.c \
 			./srcs/list/set_token_list.c \
 			./srcs/init/init_struct.c \
