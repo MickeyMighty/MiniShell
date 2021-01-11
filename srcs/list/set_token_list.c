@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_token_list.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tidminta <tidminta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/12 04:53:02 by loamar            #+#    #+#             */
-/*   Updated: 2021/01/11 14:55:49 by loamar           ###   ########.fr       */
+/*   Updated: 2021/01/11 18:00:40 by tidminta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void		set_token_list(t_msh *msh)
 
 	lst = msh->lair_list->start;
 	i = 0;
-	while (lst->content)
+	while (lst->content != NULL)
 	{
 		lst->token = token_recognition(msh, lst->content, i);
 		// printf("token[%s] = %i\n", lst->content, lst->token);
