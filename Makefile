@@ -9,6 +9,7 @@ CFLAGS	=	-I. -fsanitize=address
 LIBFT	=	./lib/libft/libft.a
 
 SRCS	=	./srcs/minishell.c \
+			./srcs/builtins/handler_built_ins.c \
 			./srcs/check/data_check.c \
 			./srcs/cmd/exec_cmd.c \
 			./srcs/cmd/handler_cmd.c \
