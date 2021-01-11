@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 18:07:43 by loamar            #+#    #+#             */
-/*   Updated: 2021/01/11 15:23:31 by loamar           ###   ########.fr       */
+/*   Updated: 2021/01/11 15:47:04 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int 	exec_cmd(t_msh *msh, t_list *cmd, char **env)
 	{
 		while (msh->utils->path[++count])
 		{
-			printf("cmd->content = %s\n", cmd->content);
+			// printf("cmd->content = %s\n", cmd->content);
 			exec_path = ft_strjoin(msh->utils->path[count], "/");
 			exec_path = ft_strjoin(exec_path, cmd->content);
 			exec_path = ft_strjoin(exec_path, NULL);
