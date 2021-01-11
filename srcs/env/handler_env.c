@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 17:30:11 by loamar            #+#    #+#             */
-/*   Updated: 2021/01/06 23:21:39 by loamar           ###   ########.fr       */
+/*   Updated: 2021/01/07 16:49:27 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,9 @@ static int 	linked_list_env(t_msh *msh, char **env)
 static int		get_path(t_msh *msh)
 {
 	t_env_list 	*element;
+	char 		*tmp;
 
+	tmp = NULL;
 	element = msh->env_lair->start;
 	while (element != NULL)
 	{
@@ -68,7 +70,9 @@ static int		get_path(t_msh *msh)
 		&& element->content[3] == 'H'
 		&& element->content[4] == '=')
 		{
-			msh->utils->path = ft_strdup(element->content + 5);
+			tmp = ft_substr(element->content, 5,
+			ft_strlen(element->content) - 5);
+			msh->utils->path = ft_split(tmp, ':');
 			return (SUCCESS);
 		}
 		else
@@ -86,6 +90,5 @@ int 	handler_env(t_msh *msh, char **env)
 	if (ret == ERROR)
 		return (ERROR);
 	get_path(msh);
-	// printf("path: \n\n%s\n", msh->utils->path);
 	return (SUCCESS);
 }

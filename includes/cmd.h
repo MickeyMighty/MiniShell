@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 19:13:55 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/11 02:33:52 by loamar           ###   ########.fr       */
+/*   Updated: 2021/01/10 15:53:29 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 # define CMD_H
 
 
-int 	exec_cmd(t_msh *msh);
+int 	exec_cmd(t_msh *msh, t_list *element);
 # endif

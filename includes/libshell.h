@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 13:35:59 by loamar            #+#    #+#             */
-/*   Updated: 2021/01/06 22:38:27 by loamar           ###   ########.fr       */
+/*   Updated: 2021/01/10 15:14:29 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_lair_list 		*pop_back_list(t_lair_list *lair_list);
 void		set_token_list(t_msh *msh);
 
 int 	handler_cmd(t_msh *msh);
-int 	exec_cmd(t_msh *msh);
+int 	exec_cmd(t_msh *msh, t_list *element);
 char 	*get_absolute_path(t_msh *msh);
 
 

@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 04:38:46 by loamar            #+#    #+#             */
-/*   Updated: 2021/01/06 23:00:41 by loamar           ###   ########.fr       */
+/*   Updated: 2021/01/07 16:44:34 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct		s_utils
 	int 	check_opt;
 	int 	check_arg;
 	int 	error_multi_line;
-	char 	*path;
+	char 	**path;
 	char	**sep_tab;
 }					t_utils;
 

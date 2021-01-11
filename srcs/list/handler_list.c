@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 04:42:10 by loamar            #+#    #+#             */
-/*   Updated: 2021/01/06 23:01:06 by loamar           ###   ########.fr       */
+/*   Updated: 2021/01/11 14:46:01 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,6 @@ int 	handler_list(t_msh *msh)
 	if (ret == ERROR)
 		return (ERROR);
 	set_token_list(msh);
-	free_data(msh);
+	// free_data(msh);
 	return (SUCCESS);
 }
