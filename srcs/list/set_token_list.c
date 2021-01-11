@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/12 04:53:02 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/12 06:01:32 by loamar           ###   ########.fr       */
+/*   Updated: 2021/01/11 14:55:49 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void		set_token_list(t_msh *msh)
 	while (lst->content)
 	{
 		lst->token = token_recognition(msh, lst->content, i);
-		printf("token[%s] = %i\n", lst->content, lst->token);
+		// printf("token[%s] = %i\n", lst->content, lst->token);
 		i++;
 		i = (lst->token == SEPARATOR) ? 0 : i;
 		lst = lst->next;

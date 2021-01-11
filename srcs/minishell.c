@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 19:54:29 by loamar            #+#    #+#             */
-/*   Updated: 2021/01/06 23:32:27 by loamar           ###   ########.fr       */
+/*   Updated: 2021/01/11 15:21:15 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@
 // 	return (handler_error(msh));
 // }
 
-static int     	shell_prompt(t_msh *msh)
+static int     	shell_prompt(t_msh *msh, char **env)
 {
 	int 	loop;
 	int 	ret;
@@ -68,7 +68,7 @@ static int     	shell_prompt(t_msh *msh)
 			return (ERROR);
 		if ((handler_data(msh, buf) == -1) || (handler_list(msh) == -1))
 			return (handler_error(msh));
-		handler_cmd(msh);
+		handler_cmd(msh, env);
     }
 	return (SUCCESS);
 }
@@ -84,7 +84,7 @@ int     main(int argc, char **argv, char **env)
 	msh = NULL;
 	msh = init_shell(msh);
 	handler_env(msh, env); // cas d'erreur a gerer;
-    end = shell_prompt(msh);
+    end = shell_prompt(msh, env);
 	if (end == SUCCESS)
 		exit(EXIT_SUCCESS);
 	if (end == ERROR)
