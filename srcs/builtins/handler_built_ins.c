@@ -10,8 +10,12 @@
 /*   Updated: 2021/01/12 17:43:29 by loamar           ###   ########.fr       */
 =======
 /*   Created: 2021/01/11 20:59:38 by tidminta          #+#    #+#             */
+<<<<<<< HEAD
+/*   Updated: 2021/01/12 18:00:10 by tidminta         ###   ########.fr       */
+=======
 /*   Updated: 2021/01/12 17:44:59 by tidminta         ###   ########.fr       */
 >>>>>>> d21b0b4226a8ece337be73f36d9e46a2220bb28e
+>>>>>>> 4c41625e409899813c5a95bebd1e7071009d2b91
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +54,13 @@ static int				ft_exec_built_in(t_msh *msh, t_list *element, char **env)
 	len = ft_strlen(content);
 	i = -1;
 	if ((ft_strncmp(content, "pwd", len) == 0))
-	{
-		ft_putendl_fd(getcwd(NULL, PATH_MAX), 1);
-		return (SUCCESS);
-	}
+		return (ft_my_pwd());
 	else if (ft_strncmp(content, "env", len) == 0)
 		return (ft_my_env(msh->env_lair));
-	else if (ft_strncmp(content, "export", len) == 0)
-		return (ft_my_export(msh->env_lair));
+	else if (ft_strncmp(content, "exit", len) == 0)
+		exit (0);
+	// else if (ft_strncmp(content, "export", len) == 0)
+	// 	return (ft_my_export(msh->env_lair));
 	return (ERROR);
 }
 
