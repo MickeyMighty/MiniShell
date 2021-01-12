@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 22:57:33 by loamar            #+#    #+#             */
-/*   Updated: 2021/01/12 16:04:55 by loamar           ###   ########.fr       */
+/*   Updated: 2021/01/12 16:43:10 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,6 @@ int 	handler_cmd(t_msh *msh, char **env)
 	// 		exec_cmd(msh, element, env);
 	// 	element = element->next;
 	// }
-	exit(0);
+	return (0);
+	// exit(0);
 }
