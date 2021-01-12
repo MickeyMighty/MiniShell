@@ -6,7 +6,11 @@
 /*   By: tidminta <tidminta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 04:38:46 by loamar            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2021/01/12 16:37:33 by tidminta         ###   ########.fr       */
+=======
+/*   Updated: 2021/01/12 15:54:07 by loamar           ###   ########.fr       */
+>>>>>>> c8ec11bffb595572481e83de4a1dea6d2e25fbc5
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +31,14 @@ typedef struct		s_utils
 {
 	pid_t 	pid;
 	pid_t 	wpid;
+	int 	size_opt_arg;
 	int 	status;
 	int 	check_opt;
 	int 	check_arg;
 	int 	error_multi_line;
 	char 	**path;
 	char	**sep_tab;
+	char 	**tab_args;
 }					t_utils;
 
 typedef struct		s_split_data

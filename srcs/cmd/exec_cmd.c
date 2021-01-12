@@ -3,32 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tidminta <tidminta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/06 18:07:43 by loamar            #+#    #+#             */
-/*   Updated: 2021/01/11 19:15:48 by tidminta         ###   ########.fr       */
+/*   Created: 2021/01/11 22:57:42 by loamar            #+#    #+#             */
+/*   Updated: 2021/01/12 16:46:51 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libshell.h"
 
-static char    **ft_exec_args(char *cmd_path, char *arg)
+static char    **ft_exec_args(t_msh *msh, t_list *cmd, char *cmd_path)
 {
-    char **cmd_args;
-    int i;
+	t_list 	*tmp;
+	int 	pos;
 
-    i = 0;
-    if (!(cmd_args = malloc(sizeof(char *) * 3)))
-        return (NULL);
-    while (++i < 3)
-    {
-        cmd_args[0] = cmd_path;
-        cmd_args[1] = arg;
-        if (arg == NULL)
-            break;
-        cmd_args[2] = NULL;
-    }
-    return (cmd_args);
+	pos = 0;
+	tmp = cmd;
+	cmd = cmd->next;
+	msh->utils->size_opt_arg = 0;
+	while (cmd != NULL && (cmd->token == OPTION || cmd->token == ARGS))
+	{
+		cmd = cmd->next;
+		msh->utils->size_opt_arg++;
+	}
+	cmd = tmp;
+	if (!(msh->utils->tab_args = malloc(sizeof(char *) * (msh->utils->size_opt_arg + 2))))
+		return (0);
+	while (++pos <= msh->utils->size_opt_arg)
+	{
+		cmd = cmd->next;
+		msh->utils->tab_args[pos] = cmd->content;
+	}
+	msh->utils->tab_args[0] = cmd_path;
+    msh->utils->tab_args[msh->utils->size_opt_arg + 1] = NULL;
+    return (msh->utils->tab_args);
 }
 
 int 	exec_cmd(t_msh *msh, t_list *cmd, char **env)
@@ -49,7 +57,7 @@ int 	exec_cmd(t_msh *msh, t_list *cmd, char **env)
 			// printf("cmd->content = %s\n", cmd->content);
 			exec_path = ft_strjoin(msh->utils->path[count], "/");
 			exec_path = ft_strjoin(exec_path, cmd->content);
-			exec_args = ft_exec_args(exec_path, NULL);
+			exec_args = ft_exec_args(msh, cmd, exec_path);
 			// printf("exec_path => %s\n", exec_path);
 			execve(exec_path, exec_args, env);
 		}
