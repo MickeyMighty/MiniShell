@@ -6,14 +6,13 @@
 /*   By: tidminta <tidminta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 16:48:48 by tidminta          #+#    #+#             */
-/*   Updated: 2021/01/12 17:38:43 by tidminta         ###   ########.fr       */
+/*   Updated: 2021/01/12 17:44:18 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/libshell.h"
-
-int			ft_my_export(t_env_lair *lst)
-{
-	
-}
-
+// #include "../../includes/libshell.h"
+//
+// int			ft_my_export(t_env_lair *lst)
+// {
+// 	;
+// }
