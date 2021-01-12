@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 04:38:46 by loamar            #+#    #+#             */
-/*   Updated: 2021/01/11 18:42:33 by loamar           ###   ########.fr       */
+/*   Updated: 2021/01/12 15:54:07 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct		s_utils
 {
 	pid_t 	pid;
 	pid_t 	wpid;
-	int 	size_args;
+	int 	size_opt_arg;
 	int 	status;
 	int 	check_opt;
 	int 	check_arg;
