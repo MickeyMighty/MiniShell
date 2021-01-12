@@ -6,7 +6,7 @@
 /*   By: tidminta <tidminta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/12 04:53:02 by loamar            #+#    #+#             */
-/*   Updated: 2021/01/11 18:00:40 by tidminta         ###   ########.fr       */
+/*   Updated: 2021/01/12 16:00:26 by tidminta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ static int		token_recognition(t_msh *msh, char *s, int indice)
 {
 	if (indice == 0)
 		return (CMD);
-	else if (indice == 1 && option_check(msh, s))
+	else if (((indice == 1 && option_check(msh, s)) || (indice > 1 && option_check(msh, s)))
+			&& (msh->utils->check_arg == 0))
 		return (OPTION);
 	else if (indice != 0 && separator_check(msh, s))
 		return (SEPARATOR);
@@ -70,9 +71,11 @@ void		set_token_list(t_msh *msh)
 {
 	t_list	*lst;
 	int		i;
+	int		args;
 
 	lst = msh->lair_list->start;
 	i = 0;
+	args = 0;
 	while (lst->content != NULL)
 	{
 		lst->token = token_recognition(msh, lst->content, i);

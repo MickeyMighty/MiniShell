@@ -6,7 +6,7 @@
 /*   By: tidminta <tidminta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 20:59:38 by tidminta          #+#    #+#             */
-/*   Updated: 2021/01/11 21:04:22 by tidminta         ###   ########.fr       */
+/*   Updated: 2021/01/12 16:43:13 by tidminta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,22 +46,13 @@ static int				ft_exec_built_in(t_msh *msh, t_list *element, char **env)
 	i = -1;
 	if ((ft_strncmp(content, "pwd", len) == 0))
 	{
-		while (env[++i])
-		{
-			if (ft_strncmp(env[i], "PWD=", 4) == 0)
-			{
-				env[i] += 4;
-				ft_putendl_fd(env[i], 1);
-				return (SUCCESS);
-			}
-		}
-	}
-	else if (ft_strncmp(content, "env", len) == 0)
-	{
-		while (env[++i])
-			ft_putendl_fd(env[i], 1);
+		ft_putendl_fd(getcwd(NULL, PATH_MAX), 1);
 		return (SUCCESS);
 	}
+	else if (ft_strncmp(content, "env", len) == 0)
+		return (ft_my_env(msh->env_lair));
+	else if (ft_strncmp(content, "export", len) == 0)
+		return (ft_my_export(msh->env_lair));
 	return (ERROR);
 }
 
@@ -72,6 +63,7 @@ int				ft_handler_built_in(t_msh *msh, t_list *element, char **env)
 	content = element->content;
 	if (ft_built_in_check(content) != SUCCESS)
 		return (ERROR);
+	//builtin executiuon by ptr_func_tab
 	ft_exec_built_in(msh, element, env);
 	return (SUCCESS);
 }

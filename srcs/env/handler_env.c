@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handler_env.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tidminta <tidminta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 17:30:11 by loamar            #+#    #+#             */
-/*   Updated: 2021/01/07 16:49:27 by loamar           ###   ########.fr       */
+/*   Updated: 2021/01/12 16:28:02 by tidminta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ static int		get_path(t_msh *msh)
 		else
 			element = element->next;
 	}
+	free(tmp);
 	return (ERROR);
 }
 
