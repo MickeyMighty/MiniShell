@@ -3,22 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tidminta <tidminta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/12 16:48:48 by tidminta          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2021/01/12 17:44:18 by loamar           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-// #include "../../includes/libshell.h"
-//
-// int			ft_my_export(t_env_lair *lst)
-// {
-// 	;
-// }
-=======
-/*   Updated: 2021/01/12 17:48:52 by tidminta         ###   ########.fr       */
+/*   Created: 2021/01/12 18:00:16 by loamar            #+#    #+#             */
+/*   Updated: 2021/01/12 18:00:21 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +16,5 @@ int			ft_my_export(t_env_lair *lst)
 {
 	if (!lst)
 		return (ERROR);
-	
+
 }
->>>>>>> d21b0b4226a8ece337be73f36d9e46a2220bb28e
