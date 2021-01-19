@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tidminta <tidminta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 19:16:18 by loamar            #+#    #+#             */
-/*   Updated: 2021/01/12 16:19:34 by tidminta         ###   ########.fr       */
+/*   Updated: 2021/01/13 00:17:19 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,10 @@
 # define VARIABLE 8
 # define CMD 9
 # define OPTION 10
-# define ARG 11
+# define ARGS 11
 # define SQUOTE 39
 # define DQUOTE 34
 # define SEPARATOR 35
-# define ARGS 36
 // data -> commands table
 
 int 			handler_data(t_msh *msh, char *buf);

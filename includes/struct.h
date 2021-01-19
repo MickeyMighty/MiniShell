@@ -5,15 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-<<<<<<< HEAD
-/*   Created: 2021/01/12 17:42:49 by loamar            #+#    #+#             */
-/*   Updated: 2021/01/12 17:42:54 by loamar           ###   ########.fr       */
-=======
-/*   Created: 2020/12/11 04:38:46 by loamar            #+#    #+#             */
-/*   Updated: 2021/01/12 17:43:23 by tidminta         ###   ########.fr       */
->>>>>>> d21b0b4226a8ece337be73f36d9e46a2220bb28e
+/*   Created: 2021/01/12 18:09:50 by loamar            #+#    #+#             */
+/*   Updated: 2021/01/13 13:40:35 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef STRUCT_H
 # define STRUCT_H
@@ -36,6 +32,7 @@ typedef struct		s_utils
 	int 	status;
 	int 	check_opt;
 	int 	check_arg;
+	int 	check_sep;
 	int 	error_multi_line;
 	char 	**path;
 	char	**sep_tab;

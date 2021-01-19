@@ -3,17 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   set_token_list.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tidminta <tidminta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-<<<<<<< HEAD
-/*   Created: 2021/01/12 17:44:28 by loamar            #+#    #+#             */
-/*   Updated: 2021/01/12 17:44:31 by loamar           ###   ########.fr       */
-=======
-/*   Created: 2020/12/12 04:53:02 by loamar            #+#    #+#             */
-/*   Updated: 2021/01/12 17:43:56 by tidminta         ###   ########.fr       */
->>>>>>> d21b0b4226a8ece337be73f36d9e46a2220bb28e
+/*   Created: 2021/01/12 18:10:32 by loamar            #+#    #+#             */
+/*   Updated: 2021/01/13 00:18:20 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../../includes/libshell.h"
 

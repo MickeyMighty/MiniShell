@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handler_cmd.c                                      :+:      :+:    :+:   */
+/*   pipe_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/11 22:57:33 by loamar            #+#    #+#             */
-/*   Updated: 2021/01/16 11:08:08 by loamar           ###   ########.fr       */
+/*   Created: 2021/01/16 12:11:26 by loamar            #+#    #+#             */
+/*   Updated: 2021/01/17 17:03:38 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libshell.h"
 
-int 	handler_cmd(t_msh *msh, char **env)
+void 	ft_pipe_cmd(t_msh *msh)
 {
-	int ret;
-	t_list 	*element;
-	t_list 	*tmp;
+	int 	fd[2];
+	int 	pid;
 
-	element = msh->lair_list->start;
-	msh->utils->check_sep = 0;
-	// msh->utils->pid = fork();
-	while (element != NULL)
+	if (pipe(fd) == -1)
+		ft_error(msh);
+	if ((pid = fork()) == 0)
 	{
-		tmp = element;
-		element = handler_token(msh, element);
+		dup2(, 0);
+
 	}
-	return (0);
 }

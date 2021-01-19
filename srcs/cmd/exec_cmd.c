@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tidminta <tidminta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 22:57:42 by loamar            #+#    #+#             */
-/*   Updated: 2021/01/12 17:42:12 by tidminta         ###   ########.fr       */
+/*   Updated: 2021/01/16 10:05:02 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,9 @@ int 	exec_cmd(t_msh *msh, t_list *cmd, char **env)
 	{
 		while (msh->utils->path[++count])
 		{
-			// printf("cmd->content = %s\n", cmd->content);
 			exec_path = ft_strjoin(msh->utils->path[count], "/");
 			exec_path = ft_strjoin(exec_path, cmd->content);
 			exec_args = ft_exec_args(msh, cmd, exec_path);
-			// printf("exec_path => %s\n", exec_path);
 			execve(exec_path, exec_args, env);
 		}
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tidminta <tidminta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 19:54:29 by loamar            #+#    #+#             */
-/*   Updated: 2021/01/12 17:45:28 by tidminta         ###   ########.fr       */
+/*   Updated: 2021/01/15 22:35:11 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static int     	shell_prompt(t_msh *msh, char **env)
 	// signal(SIGINT, signal_handler);
     while (loop)
     {
-		write(1, "minishell$ ", 11);
+		write(2, "minishell$ ", 11);
 		ret = get_next_line(0, &buf);
 		if (ret == -1)
 			return (ERROR);
