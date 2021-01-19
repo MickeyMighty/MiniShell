@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 19:54:29 by loamar            #+#    #+#             */
-/*   Updated: 2021/01/15 22:35:11 by loamar           ###   ########.fr       */
+/*   Updated: 2021/01/19 11:35:19 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static int     	shell_prompt(t_msh *msh, char **env)
 			return (ERROR);
 		if ((handler_data(msh, buf) == -1) || (handler_list(msh) == -1))
 			return (handler_error(msh));
-		handler_cmd(msh, env);
+		// handler_cmd(msh, env);
     }
 	return (SUCCESS);
 }
