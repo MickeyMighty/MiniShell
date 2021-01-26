@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 04:42:10 by loamar            #+#    #+#             */
-/*   Updated: 2021/01/19 17:02:09 by loamar           ###   ########.fr       */
+/*   Updated: 2021/01/26 13:43:17 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static 		int 	pop_list(t_msh *msh, int pos)
 {
 	t_list	*delete_element;
 	t_list	*now_element;
-	int i;
+	int		i;
 
 	i = 1;
   	if(msh->lair_list->size == 0)
@@ -87,19 +87,24 @@ static void    create_tab_args(t_msh *msh)
 		{
 			ft_put_args(msh, cmd);
 			// cmd = ft_put_args(msh, cmd);
+			tmp = cmd;
 			cmd = cmd->next;
 			if (cmd == NULL)
 				break;
 			msh->utils->pos_list++;
 			while (cmd != NULL && (cmd->token == OPTION || cmd->token == ARGS))
 			{
-				tmp = cmd->next;
+
+				// printf("avant pop list\n");
 				// printf("tmp avant pop list -> %s\n", tmp->content);
 				// printf("cmd avant pop list -> %s\n", cmd->content);
 				// printf("size list = %d\n", msh->lair_list->size);
 				pop_list(msh, msh->utils->pos_list);
-				msh->utils->pos_list++;
 				cmd = tmp;
+				cmd = cmd->next;
+				// printf("apres pop list\n");
+				// printf("tmp apres pop list -> %s\n", tmp->content);
+				// printf("cmd apres pop list -> %s\n", cmd->content);
 				// printf("tmp apres pop list -> %s\n", tmp->content);
 				// printf("tmp apres pop list -> %s\n", tmp->previous->content);
 				// printf("cmd apres pop list -> %s\n", cmd->previous->content);
@@ -107,9 +112,15 @@ static void    create_tab_args(t_msh *msh)
 				// printf("tab[1] de cmd -> %s\n", cmd->previous->tab_args[1]);
 				// printf("tab[2] de cmd -> %s\n", cmd->previous->tab_args[2]);
 			}
+			printf("ok8\n");
+			msh->utils->pos_list++;
 			if (cmd->token == SEPARATOR)
+			{
+				msh->utils->pos_list++;
 				cmd = cmd->next;
+			}
 		}
+		printf("ok9\n");
 	}
 }
 
@@ -174,8 +185,9 @@ int 	handler_list(t_msh *msh)
 		return (ERROR);
 	set_token_list(msh);
 	print_list(msh->lair_list);
-	printf("\n\n========= apres create tab args ===============\n\n");
+	printf("\n\n========= avant create tab args ===============\n\n");
 	create_tab_args(msh);
+	printf("\n\n========= apres create tab args ===============\n\n");
 	print_list(msh->lair_list);
 	exit(0);
 	// free_data(msh);
