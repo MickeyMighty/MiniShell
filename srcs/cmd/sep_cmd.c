@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 12:49:23 by loamar            #+#    #+#             */
-/*   Updated: 2021/02/15 13:19:03 by loamar           ###   ########.fr       */
+/*   Updated: 2021/02/15 15:40:16 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ int     ft_redirection(t_msh *msh, t_list *element)
 
 int     ft_semicolon(t_msh *msh, t_list *element)
 {
-    
+
     return (SEMICOLON);
 }
