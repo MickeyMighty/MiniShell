@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 22:57:33 by loamar            #+#    #+#             */
-/*   Updated: 2021/01/30 14:52:08 by loamar           ###   ########.fr       */
+/*   Updated: 2021/02/15 13:13:16 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,20 @@ int 	handler_sep(t_msh *msh, t_list *element)
 	if (element->token == SEPARATOR)
 	{
 		if (element->content == "|")
-			ft_pipe_element(msh, element)
+			return (ft_pipe(msh, element));
 		if else (element->content == "<" || element->content == ">"
 		|| element->content == ">>")
-			ft_redirection(msh, element);
+			return (ft_redirection(msh, element));
 		if else (element->content == ";")
-			ft_semicolon(msh,element);
+			return (ft_semicolon(msh,element));
 	}
+    return (0);
 }
 
 int 	handler_cmd(t_msh *msh, char **env)
 {
 	// int id;
-	int ret;
+	int		ret;
 	t_list 	*element;
 	t_list 	*tmp;
 
@@ -43,8 +44,8 @@ int 	handler_cmd(t_msh *msh, char **env)
 	while (element != NULL)
 	{
 		if (element->next)
-			handler_sep(msh);
-		element = handler_token(msh, element);
+			ret = handler_sep(msh, env);
+		handler_exec_cmd(msh, element);
 	}
 	return (0);
 }

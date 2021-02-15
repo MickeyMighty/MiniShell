@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 19:16:18 by loamar            #+#    #+#             */
-/*   Updated: 2021/01/13 00:17:19 by loamar           ###   ########.fr       */
+/*   Updated: 2021/02/15 13:12:35 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@
 # define CMD 9
 # define OPTION 10
 # define ARGS 11
+# define REDIR 12
 # define SQUOTE 39
 # define DQUOTE 34
+# define SEPARATOR 35
 # define SEPARATOR 35
 // data -> commands table
 

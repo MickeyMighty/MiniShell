@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 22:57:42 by loamar            #+#    #+#             */
-/*   Updated: 2021/01/30 14:35:47 by loamar           ###   ########.fr       */
+/*   Updated: 2021/02/15 13:12:40 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,9 @@ int 	exec_cmd(t_msh *msh, t_list *cmd, char **env)
 	else
 		wait(NULL);
 	return (-1);
+}
+
+int		handler_exec_cmd(t_msh *msh, int (*exec)(t_list))
+{
+	;
 }
