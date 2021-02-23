@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 22:57:33 by loamar            #+#    #+#             */
-/*   Updated: 2021/02/15 15:40:15 by loamar           ###   ########.fr       */
+/*   Updated: 2021/02/22 15:44:54 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int 	handler_cmd(t_msh *msh, char **env)
 	{
 		if (element->next)
 			ret = handler_sep(msh, env);
-		handler_exec_cmd(msh, element);
+		handler_token(msh, element, ret, env);
 	}
 	return (0);
 }

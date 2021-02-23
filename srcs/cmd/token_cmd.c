@@ -6,11 +6,40 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 00:02:42 by loamar            #+#    #+#             */
-/*   Updated: 2021/02/15 12:08:29 by loamar           ###   ########.fr       */
+/*   Updated: 2021/02/22 18:23:31 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "../../includes/libshell.h"
+#include "../../includes/libshell.h"
+
+int 	handler_token(t_msh *msh, t_list *element, int sep, char **env)
+{
+	if (ret == SEMICOLON)
+		exec_cmd(msh, element, env);
+	else if (ret == PIPE)
+		ft_pipe(msh, element);
+	else if (ret == REDIR);
+		ft_reddirection(msh, element);
+	element = element->next;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // static 	int 	sort_cmd(t_msh *msh, int token, t_list *element)
 // static t_list 		*sort_cmd(t_msh *msh, t_list *element)
