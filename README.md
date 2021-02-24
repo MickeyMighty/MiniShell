@@ -53,6 +53,7 @@
 | Questions we can ask ourselves for this project | Link |
 | --- | --- |
 | *What is the Shell syntax ?* | [click on me](https://pubs.opengroup.org/onlinepubs/009695399/utilities/xcu_chap02.html)|
+| *Do you have a link about the structure (redirection, etc ...)?* | [click on me](https://www.tutorialspoint.com/unix/unix-io-redirections.htm)|
 | *Where i can start ?* | [click on me](https://www.cs.purdue.edu/homes/grr/SystemsProgrammingBook/Book/Chapter5-WritingYourOwnShell.pdf) and [click on me](https://indradhanush.github.io/blog/writing-a-unix-shell-part-1/)|
 | *What is the difference between a built-in function and a user defined function ?* | [click on me](https://www.quora.com/What-is-the-difference-between-a-built-in-function-and-a-user-defined-function) |
 | *What is the difference between wait, waitpid, wait3, wait4 ?* | [click on me](https://www.quora.com/Linux-What-is-the-difference-between-%E2%80%9Cwait%E2%80%9D-%E2%80%9Cwait3%E2%80%9D-and-%E2%80%9Cwait4%E2%80%B3-System-Call) and [click on me](https://programmer.help/blogs/linux-kernel-learning-notes-4-wait-waitpid-wait3-and-wait4.html)|

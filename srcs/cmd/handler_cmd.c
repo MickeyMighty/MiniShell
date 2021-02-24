@@ -6,26 +6,38 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 22:57:33 by loamar            #+#    #+#             */
-/*   Updated: 2021/02/22 15:44:54 by loamar           ###   ########.fr       */
+/*   Updated: 2021/02/24 12:36:23 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libshell.h"
 
-int 	handler_sep(t_msh *msh, t_list *element)
+int 	sort_cmd(t_msh *msh, t_list *element, char **env, int ret)
 {
-	element = element->next;
-	if (element->token == SEPARATOR)
+	int 	next_step;
+
+	next_step = 0;
+	if (element->next)
 	{
-		if (element->content == "|")
-			return (ft_pipe(msh, element));
-		if else (element->content == "<" || element->content == ">"
-		|| element->content == ">>")
-			return (ft_redirection(msh, element));
-		if else (element->content == ";")
-			return (ft_semicolon(msh,element));
+		if (element->token == CMD && element->next->token == SEMICOLON)
+		{
+			exec_cmd(msh, element, env);
+			next_step = 2;
+		}
+		else if (ret == PIPE)
+		{
+			while (element->token == PIPE) // a finir
+			ft_pipe(msh, element);
+			next_step = 2;
+		}
+		else if (ret == REDIR)
+		{
+			ft_reddirection(msh, element);
+			next_step = 2;
+		}
 	}
-    return (0);
+	return (next_step);
+
 }
 
 int 	handler_cmd(t_msh *msh, char **env)
@@ -43,9 +55,9 @@ int 	handler_cmd(t_msh *msh, char **env)
 	// msh->utils->pid = fork();
 	while (element != NULL)
 	{
-		if (element->next)
-			ret = handler_sep(msh, env);
-		handler_token(msh, element, ret, env);
+		ret = sort_cmd(msh, element, env, ret);
+		while (ret != 0)
+			element = element->next;
 	}
 	return (0);
 }

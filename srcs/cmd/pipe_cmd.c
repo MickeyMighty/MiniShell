@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/16 12:11:26 by loamar            #+#    #+#             */
-/*   Updated: 2021/01/29 12:21:48 by loamar           ###   ########.fr       */
+/*   Created: 2021/02/24 07:42:36 by loamar            #+#    #+#             */
+/*   Updated: 2021/02/24 12:32:27 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void 	ft_pipe_cmd(t_msh *msh, t_list *element)
 		ft_error(msh);
 	if ((pid = fork()) == 0)
 	{
-		dup2(, 0);
+		dup2(0, 0);
 
 	}
 }

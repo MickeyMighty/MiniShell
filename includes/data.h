@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 19:16:18 by loamar            #+#    #+#             */
-/*   Updated: 2021/02/15 13:12:35 by loamar           ###   ########.fr       */
+/*   Updated: 2021/02/24 11:22:13 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@
 # define REDIR 12
 # define SQUOTE 39
 # define DQUOTE 34
-# define SEPARATOR 35
 # define SEPARATOR 35
 // data -> commands table
 
