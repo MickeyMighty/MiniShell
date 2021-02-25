@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 22:57:33 by loamar            #+#    #+#             */
-/*   Updated: 2021/02/24 12:36:23 by loamar           ###   ########.fr       */
+/*   Updated: 2021/02/25 13:13:58 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,27 +17,33 @@ int 	sort_cmd(t_msh *msh, t_list *element, char **env, int ret)
 	int 	next_step;
 
 	next_step = 0;
-	if (element->next)
+	if (element->next && element->token == CMD)
 	{
-		if (element->token == CMD && element->next->token == SEMICOLON)
+		element = element->next;
+		if (element->token == PIPE)
 		{
-			exec_cmd(msh, element, env);
-			next_step = 2;
-		}
-		else if (ret == PIPE)
-		{
-			while (element->token == PIPE) // a finir
 			ft_pipe(msh, element);
-			next_step = 2;
+			while (element != NULL
+			&& (element->token == PIPE || element->token == CMD)
+			{
+				element = element->next;
+				next_step++;
+			}
 		}
-		else if (ret == REDIR)
+		else if (element->token == REDIR)
 		{
 			ft_reddirection(msh, element);
 			next_step = 2;
 		}
+		if (element->token == SEMICOLON)
+		{
+			exec_cmd(msh, element->previous, env);
+			next_step = 2;
+		}
 	}
+	else if (!element->next)
+		exec_cmd(msh, element, env);
 	return (next_step);
-
 }
 
 int 	handler_cmd(t_msh *msh, char **env)
