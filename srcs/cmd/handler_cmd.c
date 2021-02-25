@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 22:57:33 by loamar            #+#    #+#             */
-/*   Updated: 2021/02/25 15:51:59 by loamar           ###   ########.fr       */
+/*   Updated: 2021/02/25 15:56:20 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,22 @@
 
 int 	multi_pipe(t_msh *msh, t_list *element, char **env, int next_step)
 {
-	if (element->token == PIPE)
+	while (element && (element->token == PIPE))
 	{
-		while (element && (element->token == PIPE))
-		{
-			ft_pipe(msh, element, env);
-			if (element->next->next
-			&& (element->next->next->token == PIPE))
-				element = element->next->next;
-			else
-				element = element->next;
-		}
-		while (element != NULL
-		&& (element->token == PIPE || element->token == CMD))
-		{
+		ft_pipe(msh, element, env);
+		if (element->next->next
+		&& (element->next->next->token == PIPE))
+			element = element->next->next;
+		else
 			element = element->next;
-			next_step++;
-		}
-		return (next_step);
 	}
-	return (0);
+	while (element != NULL
+	&& (element->token == PIPE || element->token == CMD))
+	{
+		element = element->next;
+		next_step++;
+	}
+	return (next_step);
 }
 
 int 	sort_cmd(t_msh *msh, t_list *element, char **env, int ret)
@@ -57,7 +53,7 @@ int 	sort_cmd(t_msh *msh, t_list *element, char **env, int ret)
 			next_step = 2;
 		}
 	}
-	else if (!element->next)
+	else
 		exec_cmd(msh, element, env);
 	return (next_step);
 }
