@@ -16,6 +16,8 @@ SRCS	=	./srcs/minishell.c \
 			./srcs/check/data_check.c \
 			./srcs/cmd/exec_cmd.c \
 			./srcs/cmd/handler_cmd.c \
+			./srcs/cmd/pipe_cmd.c \
+			./srcs/cmd/redir_cmd.c \
 			./srcs/data/handler_data.c \
 			./srcs/env/create_list_env.c \
 			./srcs/env/handler_env.c \
