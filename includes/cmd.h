@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 19:13:55 by loamar            #+#    #+#             */
-/*   Updated: 2021/02/25 15:50:19 by loamar           ###   ########.fr       */
+/*   Updated: 2021/02/26 11:01:43 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 # define CMD_H
 
 int 	handler_cmd(t_msh *msh, char **env);
-int 	sort_cmd(t_msh *msh, t_list *element, char **env, int ret);
+int 	sort_cmd(t_msh *msh, t_list *element, char **env);
 int 	exec_cmd(t_msh *msh, t_list *element, char **env);
+int 	get_value_sep(char *str);
 
 int 	ft_pipe(t_msh *msh, t_list *element, char **env);
 

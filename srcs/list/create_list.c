@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/07 04:25:27 by loamar            #+#    #+#             */
-/*   Updated: 2021/01/19 11:45:30 by loamar           ###   ########.fr       */
+/*   Updated: 2021/02/26 14:32:25 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ int 	ft_fill_end_list(t_lair_list *lair_list, char *content)
 	new_element->content = content;
 	new_element->token = 0;
 	new_element->tab_args = NULL;
-	new_element->next = NULL;
 	new_element->previous = lair_list->end;
+	new_element->next = NULL;
 	lair_list->end->next = new_element;
 	lair_list->end = new_element;
 	lair_list->size++;
