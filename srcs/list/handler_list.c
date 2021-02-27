@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 04:42:10 by loamar            #+#    #+#             */
-/*   Updated: 2021/02/26 16:28:19 by loamar           ###   ########.fr       */
+/*   Updated: 2021/02/27 08:48:08 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,13 +90,6 @@ static void 	print_list(t_lair_list *lair_list)
 			current = current->next;
 		test++; // pour le printf
 	}
-
-	if (current == NULL)
-		printf("BLOCK NULL 1\n");
-	else
-		printf("test %d-> %s\n", test, current->content);
-
-	printf("nope\n");
 	printf("size lair_list -> %d\n", lair_list->size);
 	printf("first lair_list -> %s\n", lair_list->start->content);
 	printf("end  lair_list -> %s\n", lair_list->end->content);
@@ -140,16 +133,12 @@ static int 	linked_list_data(t_msh *msh)
 	int 	count;
 
 	count = 0;
-	// msh->list = NULL;
 	msh->lair_list = init_lair_list(msh->lair_list);
 	if (msh->lair_list == NULL)
 		return (ERROR);
 	ft_fill_empty_list(msh->lair_list, msh->data->prompt_data[count]);
-	while (count < (msh->data->size_data))
-	{
-		count++;
+	while (++count < msh->data->size_data)
 		ft_fill_end_list(msh->lair_list, msh->data->prompt_data[count]);
-	}
 	return (SUCCESS);
 }
 
@@ -164,10 +153,9 @@ int 	handler_list(t_msh *msh)
 	set_token_list(msh);
 	// print_list(msh->lair_list);
 	// printf("\n\n========= avant create tab args ===============\n\n");
-	// create_tab_args(msh);
+	create_tab_args(msh);
 	// printf("\n\n========= apres create tab args ===============\n\n");
-	print_list(msh->lair_list);
-	exit(0);
+	// print_list(msh->lair_list);
 	// free_data(msh);
 	return (SUCCESS);
 }

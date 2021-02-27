@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 19:54:29 by loamar            #+#    #+#             */
-/*   Updated: 2021/02/26 09:04:02 by loamar           ###   ########.fr       */
+/*   Updated: 2021/02/27 09:20:43 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,11 @@ static int     	shell_prompt(t_msh *msh, char **env)
 	char	*buf;
 
 	loop = 1;
-	ret = 0;
 	signal(SIGINT, SIG_IGN);
 	// signal(SIGINT, signal_handler);
     while (loop)
     {
+		ret = 0;
 		ft_putstr_fd("\e[0;36m", 1);
 		write(2, "minishell$ ", 11);
 		ft_putstr_fd("\e[0;37m", 1);

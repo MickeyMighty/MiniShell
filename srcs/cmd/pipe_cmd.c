@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 07:42:36 by loamar            #+#    #+#             */
-/*   Updated: 2021/02/26 12:07:29 by loamar           ###   ########.fr       */
+/*   Updated: 2021/02/27 11:04:55 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,11 @@ int 	ft_pipe(t_msh *msh, t_list *element, char **env)
 	if (pipe(pipefd) == -1)
 		return (-1);
 	if ((pid = fork()) < 0)
+	{
+		close(pipefd[0]);
+		close(pipefd[1]);
 		return (-1);
+	}
 	if (pid == 0)
 	{
 		close(pipefd[1]);

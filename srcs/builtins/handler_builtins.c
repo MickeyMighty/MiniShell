@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 18:04:49 by loamar            #+#    #+#             */
-/*   Updated: 2021/01/16 10:20:07 by loamar           ###   ########.fr       */
+/*   Updated: 2021/02/27 11:30:35 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static int				ft_exec_built_in(t_msh *msh, t_list *element, char **env)
 	return (ERROR);
 }
 
-int				ft_handler_built_in(t_msh *msh, t_list *element, char **env)
+int				ft_handler_builtins(t_msh *msh, t_list *element, char **env)
 {
 	char *content;
 

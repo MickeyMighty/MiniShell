@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 18:10:32 by loamar            #+#    #+#             */
-/*   Updated: 2021/01/13 00:18:20 by loamar           ###   ########.fr       */
+/*   Updated: 2021/02/27 08:46:39 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void		set_token_list(t_msh *msh)
 	lst = msh->lair_list->start;
 	i = 0;
 	args = 0;
-	while (lst->content != NULL)
+	while (lst != NULL)
 	{
 		lst->token = token_recognition(msh, lst->content, i);
 		// printf("token[%s] = %i\n", lst->content, lst->token);
