@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libshell.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tidminta <tidminta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 13:35:59 by loamar            #+#    #+#             */
-/*   Updated: 2021/01/12 15:48:59 by tidminta         ###   ########.fr       */
+/*   Updated: 2021/02/28 09:50:32 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@
 # define PATH_MAX 4096
 # define SUCCESS 0
 # define ERROR -1
+# define STDIN 0
+# define STDOUT 1
+# define STDERR 2
 
 # include "./includes/struct.h"
 # include "../lib/libft/libft.h"

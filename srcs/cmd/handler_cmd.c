@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 22:57:33 by loamar            #+#    #+#             */
-/*   Updated: 2021/02/27 11:36:56 by loamar           ###   ########.fr       */
+/*   Updated: 2021/02/28 13:43:11 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,22 +61,22 @@ int 	sort_cmd(t_msh *msh, t_list *element, char **env)
 		handler_error(msh);
 	while (element != NULL)
 	{
-		element = handler_builtins(msh, element, env);
+		// element = handler_builtins(msh, element, env);
 		if (element->next != NULL && element->next->token == SEPARATOR)
 		{
 			if (get_value_sep(element->next->content) == PIPE)
 				element = multi_pipe(msh, element, env);
 			// else if (get_value_sep(element->next->content) == REDIR)
 				// element = ft_reddirection(msh, element);
-			// else if (get_value_sep(element->next->content) == SEMICOLON)
-			// 	exec_cmd(msh, element->previous, env);
+			// else if (get_value_sep(element->content) == SEMICOLON)
+			// 	;
 		}
 		else
 			exec_cmd(msh, element, env);
-		printf("element = %s\n", element->content);
 		if (element != NULL)
 			element = element->next;
 	}
+	printf("element = %s\n", element->content);
 	return (1);
 }
 
