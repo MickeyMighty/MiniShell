@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 22:57:33 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/01 14:38:19 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/01 14:58:42 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,28 +32,21 @@ static t_list 	*multi_pipe(t_msh *msh, t_list *element, char **env)
 	msh->utils->multi_pipe = 0;
 	// element = element->next;
 	fd = dup(0);
-	while (element->next && (get_value_sep(element->next->content) == PIPE))
+	while (element
+	&& element->next && (get_value_sep(element->next->content) == PIPE))
 	{
 		if (element->next->next->next
 		&& get_value_sep(element->next->next->next->content) == PIPE)
-		{
 				msh->utils->multi_pipe = 1;
-		}
 		if (element->next->next != NULL)
 			fd = ft_pipe(msh, element, env, fd);
 		else
 			handler_error(msh, "Bad syntaxe with the pipe.\n");
-		if (element->next->next->next
-		&& get_value_sep(element->next->next->next->content) == PIPE)
-		{
-			msh->utils->multi_pipe = 1;
+		if (msh->utils->multi_pipe == 1)
 			element = element->next->next;
-		}
 		else
-		{
-			msh->utils->multi_pipe = 0;
-			element = element->next;
-		}
+			element = element->next->next->next;
+		msh->utils->multi_pipe = 0;
 	}
 	close(fd);
 	return (element);
