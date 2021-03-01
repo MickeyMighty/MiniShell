@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 22:57:33 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/01 14:58:42 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/01 17:24:50 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,28 +27,42 @@ int 	get_value_sep(char *str)
 
 static t_list 	*multi_pipe(t_msh *msh, t_list *element, char **env)
 {
-	int		fd;
+	int		backup_fd;
 
 	msh->utils->multi_pipe = 0;
 	// element = element->next;
-	fd = dup(0);
-	while (element
-	&& element->next && (get_value_sep(element->next->content) == PIPE))
+	backup_fd = 0;
+	// backup_fd = dup2(backup_fd, 0);
+	printf("ok\n");
+	while (element != NULL)
 	{
-		if (element->next->next->next
-		&& get_value_sep(element->next->next->next->content) == PIPE)
-				msh->utils->multi_pipe = 1;
-		if (element->next->next != NULL)
-			fd = ft_pipe(msh, element, env, fd);
+		printf("ok 1\n");
+		printf("element = %s\n", element->content);
+		if ((element->next != NULL
+		|| (get_value_sep(element->next->content) == PIPE))
+		|| (element->previous != NULL
+		&& (get_value_sep(element->next->content) == PIPE)))
+		{
+			printf("ok cardano\n");
+			backup_fd = ft_pipe(msh, element, env, backup_fd);
+		}
+		// if (element->next && (get_value_sep(element->next->content) == PIPE))
 		else
-			handler_error(msh, "Bad syntaxe with the pipe.\n");
-		if (msh->utils->multi_pipe == 1)
-			element = element->next->next;
-		else
-			element = element->next->next->next;
-		msh->utils->multi_pipe = 0;
+		{
+			printf("ok cardapute\n");
+			close(backup_fd);
+			return (element);
+		}
+		printf("ok 2\n");
+		// if (element->next->next == NULL)
+		// 	handler_error(msh, "Bad syntaxe with the pipe.\n");
+		// else
+		element = element->next->next;
+		printf("ok 4\n");
 	}
-	close(fd);
+	printf("ok 5\n");
+	close(backup_fd);
+	printf("ok 6\n");
 	return (element);
 }
 
