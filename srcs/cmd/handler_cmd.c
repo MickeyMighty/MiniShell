@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 22:57:33 by loamar            #+#    #+#             */
-/*   Updated: 2021/02/28 13:43:11 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/01 14:38:19 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,29 +27,35 @@ int 	get_value_sep(char *str)
 
 static t_list 	*multi_pipe(t_msh *msh, t_list *element, char **env)
 {
-	// printf("element->content = %s\n", element->content);
-	element = element->next;
-	while (element && (get_value_sep(element->content) == PIPE))
+	int		fd;
+
+	msh->utils->multi_pipe = 0;
+	// element = element->next;
+	fd = dup(0);
+	while (element->next && (get_value_sep(element->next->content) == PIPE))
 	{
-		if (element->next != NULL)
-			ft_pipe(msh, element, env);
-		else
-			handler_error(msh); // msg ??
-		// printf("element->previous->content = %s\n", element->previous->content);
-		// printf("element->content = %s\n", element->content);
-		// printf("element->next->content = %s\n", element->next->content);
-		if (element->next->next
-		&& get_value_sep(element->next->next->content) == PIPE)
+		if (element->next->next->next
+		&& get_value_sep(element->next->next->next->content) == PIPE)
 		{
-			if (!element->next->next->next
-			|| element->next->next->next->token != CMD)
-				handler_error(msh); // msg ??
-			else
-				element = element->next->next;
+				msh->utils->multi_pipe = 1;
+		}
+		if (element->next->next != NULL)
+			fd = ft_pipe(msh, element, env, fd);
+		else
+			handler_error(msh, "Bad syntaxe with the pipe.\n");
+		if (element->next->next->next
+		&& get_value_sep(element->next->next->next->content) == PIPE)
+		{
+			msh->utils->multi_pipe = 1;
+			element = element->next->next;
 		}
 		else
+		{
+			msh->utils->multi_pipe = 0;
 			element = element->next;
 		}
+	}
+	close(fd);
 	return (element);
 }
 
@@ -58,7 +64,7 @@ int 	sort_cmd(t_msh *msh, t_list *element, char **env)
 	t_list	*tmp;
 
 	if (element->token != CMD)
-		handler_error(msh);
+		handler_error(msh, "WTFFFFF\n");
 	while (element != NULL)
 	{
 		// element = handler_builtins(msh, element, env);
@@ -76,7 +82,7 @@ int 	sort_cmd(t_msh *msh, t_list *element, char **env)
 		if (element != NULL)
 			element = element->next;
 	}
-	printf("element = %s\n", element->content);
+	// printf("element = %s\n", element->content);
 	return (1);
 }
 

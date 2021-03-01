@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 07:27:43 by loamar            #+#    #+#             */
-/*   Updated: 2021/02/26 11:57:46 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/01 13:09:01 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ t_msh 	*init_msh(t_msh *msh)
 	msh->utils->wpid = 0;
 	msh->utils->path = NULL;
 	msh->utils->status = 0;
-	msh->utils->error_multi_line = 0;
 	if (fill_separator_tab(msh) == -1)
 		return (NULL);
 	return (msh);

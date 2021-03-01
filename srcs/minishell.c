@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 19:54:29 by loamar            #+#    #+#             */
-/*   Updated: 2021/02/27 09:20:43 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/01 11:03:26 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,7 @@
 
 #include "../includes/libshell.h"
 
-// a supprimer
-// static int		pwd(t_msh *msh)
-// {
-// 	if (getcwd(msh->utils->path, sizeof(msh->utils->path)) != NULL)
-// 		return (1); // fonction qui sert pour pwd
-// 	return (handler_error(msh));
-// }
-
-static int     	shell_prompt(t_msh *msh, char **env)
+static void     	shell_prompt(t_msh *msh, char **env)
 {
 	int 	loop;
 	int 	ret;
@@ -67,29 +59,26 @@ static int     	shell_prompt(t_msh *msh, char **env)
 		ft_putstr_fd("\e[0;37m", 1);
 		ret = get_next_line(0, &buf);
 		if (ret == -1)
-			return (ERROR);
+			handler_error(msh, "Bad read.\n");
 		if ((handler_data(msh, buf) == -1) || (handler_list(msh) == -1))
-			return (handler_error(msh));
+			handler_error(msh, NULL);
 		handler_cmd(msh, env);
     }
-	return (SUCCESS);
 }
 
 int     main(int argc, char **argv, char **env)
 {
-	int 			end;
 	t_msh			*msh;
 
 	(void)argc;
 	(void)argv;
-	end = 0;
 	msh = NULL;
 	msh = init_shell(msh);
 	handler_env(msh, env); // cas d'erreur a gerer;
-    end = shell_prompt(msh, env);
-	if (end == SUCCESS)
-		exit(EXIT_SUCCESS);
-	if (end == ERROR)
-		exit(EXIT_FAILURE);
+    shell_prompt(msh, env);
+	// if (end == SUCCESS)
+	// 	exit(EXIT_SUCCESS);
+	// if (end == ERROR)
+	// 	exit(EXIT_FAILURE);
     return (0);
 }

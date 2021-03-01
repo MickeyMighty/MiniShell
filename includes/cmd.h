@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 19:13:55 by loamar            #+#    #+#             */
-/*   Updated: 2021/02/26 11:01:43 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/01 10:04:34 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int 	sort_cmd(t_msh *msh, t_list *element, char **env);
 int 	exec_cmd(t_msh *msh, t_list *element, char **env);
 int 	get_value_sep(char *str);
 
-int 	ft_pipe(t_msh *msh, t_list *element, char **env);
+int 	ft_pipe(t_msh *msh, t_list *element, char **env, int fd);
 
 int     redirection_left(t_msh *msh, t_list *element);
 int     redirection_right(t_msh *msh, t_list *element);

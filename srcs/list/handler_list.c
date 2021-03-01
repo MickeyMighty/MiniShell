@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 04:42:10 by loamar            #+#    #+#             */
-/*   Updated: 2021/02/27 08:48:08 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/01 11:05:16 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void 	ft_put_args(t_msh *msh, t_list *cmd)
 	}
 	cmd = tmp;
 	if (!(cmd->tab_args = malloc(sizeof(char *) * (msh->utils->size_opt_arg + 2))))
-		handler_error(msh);
+		handler_error(msh, NULL);
 	while (++pos <= msh->utils->size_opt_arg)
 	{
 		tmp = tmp->next;

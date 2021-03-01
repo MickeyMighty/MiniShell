@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 22:57:42 by loamar            #+#    #+#             */
-/*   Updated: 2021/02/28 13:09:10 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/01 13:37:01 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,13 @@ int 	exec_cmd(t_msh *msh, t_list *cmd, char **env)
 	char 	*exec_path;
 	char	**exec_args;
 
+	if (cmd->token != CMD)
+		handler_error(msh, "Bad cmd.\n"); // a changer
 	count = -1;
 	exec_path = NULL;
 	msh->utils->pid = fork();
 	if (msh->utils->pid < 0)
-		return (handler_error(msh));
+		return (handler_error(msh, NULL));
 	else if (msh->utils->pid == 0)
 	{
 		while (msh->utils->path[++count])

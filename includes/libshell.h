@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 13:35:59 by loamar            #+#    #+#             */
-/*   Updated: 2021/02/28 09:50:32 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/01 10:55:04 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@
 t_msh 			*init_shell(t_msh *msh);
 int 			data_check(t_msh *msh);
 void 			free_error(t_msh *msh);
-int 			handler_error(t_msh *msh);
+int 			handler_error(t_msh *msh, char *msg);
 t_msh 			*init_msh(t_msh *msh);
 t_env_lair		*init_env_lair(t_env_lair *env_lair);
 void 			free_data(t_msh *msh);
