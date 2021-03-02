@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 07:42:36 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/01 17:24:50 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/02 08:08:18 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int 	ft_pipe(t_msh *msh, t_list *element, char **env, int backup_fd)
 	pid = fork();
 	if (pid < 0)
 	{
-		printf("check 1\n");
 		close(pipefd[0]);
 		close(pipefd[1]);
 		close(backup_fd);
@@ -30,28 +29,16 @@ int 	ft_pipe(t_msh *msh, t_list *element, char **env, int backup_fd)
 	}
 	if (pid == 0)
 	{
-		printf("first check\n");
-		// close(pipefd[0]);
-		// close(0);
-		dup2(backup_fd, 0); // ?
-		// close(backup_fd); // ?
-		// if (element->next->next
-		// && get_value_sep(element->next->next->next->content) == PIPE)
-		if (element->next->next != NULL)
+		dup2(backup_fd, 0);
+		if (element->next != NULL && element->next->next != NULL)
 			dup2(pipefd[1], 1);
 		close(pipefd[0]);
 		exec_cmd(msh, element, env);
-			// close(1);
-			// dup(pipefd[1]);
-			// close(pipefd[1]);
-		printf("check 0\n");
 		exit(1);
 	}
 	else
 	{
-		printf("check 2\n");
 		wait(NULL);
-		// close(backup_fd);
 		close(pipefd[1]);
 		backup_fd = pipefd[0];
 	}

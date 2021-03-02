@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 04:42:10 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/01 11:05:16 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/02 14:43:21 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static 		int 	pop_list(t_msh *msh, int pos)
 
 	i = 1;
   	if(msh->lair_list->size == 0)
-    	return -1;
+    	return (-1);
     now_element = msh->lair_list->start;
 	while (i < pos)
 	{
@@ -28,8 +28,12 @@ static 		int 	pop_list(t_msh *msh, int pos)
 		i++;
 	}
     delete_element = now_element;
-    now_element->previous->next = now_element->next;
-	now_element->next->previous = now_element->previous;
+	if (now_element->next != NULL)
+		now_element->next->previous = now_element->previous;
+	else
+		msh->lair_list->end = now_element->previous;
+	if (now_element->previous != NULL)
+		now_element->previous->next = now_element->next;
   	free(delete_element->content);
   	free(delete_element);
   	msh->lair_list->size--;
@@ -76,7 +80,7 @@ static void 	print_list(t_lair_list *lair_list)
 	printf("\n\n| DEBUT | \n");
 	while (current != NULL)
 	{
-		test2 = 0;
+		test2 = 1;
 		printf("%d-> %s\n", test, current->content);
 		if (current->tab_args != NULL)
 		{
@@ -105,7 +109,7 @@ static void    create_tab_args(t_msh *msh)
 	cmd = msh->lair_list->start;
 	if (cmd->token == CMD)
 	{
-		while (cmd != NULL || cmd != NULL)
+		while (cmd != NULL)
 		{
 			ft_put_args(msh, cmd);
 			tmp = cmd;
@@ -119,7 +123,7 @@ static void    create_tab_args(t_msh *msh)
 				cmd = tmp;
 				cmd = cmd->next;
 			}
-			if (cmd->token == SEPARATOR)
+			if (cmd != NULL && cmd->token == SEPARATOR)
 			{
 				msh->utils->pos_list++;
 				cmd = cmd->next;
@@ -128,17 +132,36 @@ static void    create_tab_args(t_msh *msh)
 	}
 }
 
+// quote " flag qte = 2
+// quote ' flag qte = 1
+
+
 static int 	linked_list_data(t_msh *msh)
 {
 	int 	count;
+	int 	pos;
+	int		qte;
+	char 	*tmp;
 
 	count = 0;
 	msh->lair_list = init_lair_list(msh->lair_list);
 	if (msh->lair_list == NULL)
 		return (ERROR);
-	ft_fill_empty_list(msh->lair_list, msh->data->prompt_data[count]);
+	if ((qte = get_quote(msh->data->prompt_data[count])) != 0)
+		ft_fill_empty_list(msh->lair_list,
+		ft_substr(msh->data->prompt_data[count],
+		1, (ft_strlen(msh->data->prompt_data[count]) - 2)), qte);
+	else
+		ft_fill_empty_list(msh->lair_list, msh->data->prompt_data[count], 0);
 	while (++count < msh->data->size_data)
-		ft_fill_end_list(msh->lair_list, msh->data->prompt_data[count]);
+	{
+		if ((qte = get_quote(msh->data->prompt_data[count])) != 0)
+			ft_fill_end_list(msh->lair_list,
+			ft_substr(msh->data->prompt_data[count],
+			1, (ft_strlen(msh->data->prompt_data[count]) - 2)), qte);
+		else
+			ft_fill_end_list(msh->lair_list, msh->data->prompt_data[count], qte);
+	}
 	return (SUCCESS);
 }
 

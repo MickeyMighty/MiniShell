@@ -6,19 +6,21 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 12:26:48 by loamar            #+#    #+#             */
-/*   Updated: 2021/01/12 20:07:11 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/02 17:28:08 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libshell.h"
 
-int 	ft_fill_empty_env(t_env_lair *env_lair, char *content)
+int 	ft_fill_empty_env(t_env_lair *env_lair, char *first_content,
+char *second_content)
 {
 	t_env_list	*new_block;
 
 	if (!(new_block = (t_env_list *)malloc(sizeof(t_env_list))))
 		return (-1);
-	new_block->content = content;
+	new_block->first_content = first_content;
+	new_block->second_content = second_content;
 	new_block->previous = env_lair->start;
 	new_block->next = env_lair->end;
 	env_lair->end = new_block;
@@ -27,13 +29,15 @@ int 	ft_fill_empty_env(t_env_lair *env_lair, char *content)
 	return (0);
 }
 
-int 	ft_fill_end_env(t_env_lair *env_lair, char *content)
+int 	ft_fill_end_env(t_env_lair *env_lair, char *first_content,
+char *second_content)
 {
 	t_env_list	*new_block;
 
 	if (!(new_block = (t_env_list *)malloc(sizeof(t_env_list))))
 		return (-1);
-	new_block->content = content;
+	new_block->first_content = first_content;
+	new_block->second_content = second_content;
 	new_block->next = NULL;
 	new_block->previous = env_lair->end;
 	env_lair->end->next = new_block;

@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 18:09:50 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/01 10:45:15 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/02 16:30:52 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef struct		s_list
 	char			*content;
 	char			**tab_args;
 	int 			token;
+	int 			quote;
 	struct s_list	*next;
 	struct s_list	*previous;
 }					t_list;
@@ -76,7 +77,8 @@ typedef struct 		s_lair_list
 
 typedef struct		s_env_list
 {
-	char			*content;
+	char			*first_content;
+	char			*second_content;
 	struct s_env_list	*next;
 	struct s_env_list	*previous;
 }					t_env_list;

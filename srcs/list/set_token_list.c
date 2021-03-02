@@ -6,12 +6,24 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 18:10:32 by loamar            #+#    #+#             */
-/*   Updated: 2021/02/27 08:46:39 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/02 14:34:54 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "../../includes/libshell.h"
+
+int 					get_quote(char *str)
+{
+	if (!str)
+		return (0);
+	else if (str[0] == '\'')
+		return (1);
+	else if (str[0] == '\"')
+		return (2);
+	else
+		return (0);
+}
 
 static int				separator_check(t_msh *msh, char *s)
 {

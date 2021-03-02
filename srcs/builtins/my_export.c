@@ -6,15 +6,15 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 18:04:14 by loamar            #+#    #+#             */
-/*   Updated: 2021/01/12 18:10:58 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/02 08:51:13 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libshell.h"
 
-int			ft_my_export(t_env_lair *lst)
-{
-	if (!lst)
-		return (ERROR);
-	return (0);
-}
+// int			ft_my_export(t_msh *msh)
+// {
+// 	if (!lst)
+// 		return (ERROR);
+// 	return (0);
+// }

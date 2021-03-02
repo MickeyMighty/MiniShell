@@ -6,64 +6,48 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 18:04:49 by loamar            #+#    #+#             */
-/*   Updated: 2021/02/27 11:30:35 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/02 08:50:39 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "../../includes/libshell.h"
 
-static int		ft_built_in_check(char *s)
-{
-	size_t	i;
-	size_t	len;
-
-	i = -1;
-	len = ft_strlen(s);
-	while (++i < len)
-		s[i] = ft_tolower(s[i]);
-	if ((ft_strncmp(s, "echo", len) == 0)
-	|| (ft_strncmp(s, "cd", len) == 0)
-	|| (ft_strncmp(s, "pwd", len) == 0)
-	|| (ft_strncmp(s, "export", len) == 0)
-	|| (ft_strncmp(s, "unset", len) == 0)
-	|| (ft_strncmp(s, "env", len) == 0)
-	|| (ft_strncmp(s, "exit", len) == 0))
-		return (SUCCESS);
-	else
-		return (ERROR);
-}
-
-// detect args & options
-// exec cmd + args & options
-static int				ft_exec_built_in(t_msh *msh, t_list *element, char **env)
-{
-	char	*content;
-	size_t	len;
-	int		i;
-
-	content = element->content;
-	len = ft_strlen(content);
-	i = -1;
-	if ((ft_strncmp(content, "pwd", len) == 0))
-		return (ft_my_pwd());
-	else if (ft_strncmp(content, "env", len) == 0)
-		return (ft_my_env(msh->env_lair));
-	else if (ft_strncmp(content, "exit", len) == 0)
-		exit (0);
-	// else if (ft_strncmp(content, "export", len) == 0)
-	// 	return (ft_my_export(msh->env_lair));
-	return (ERROR);
-}
-
-int				ft_handler_builtins(t_msh *msh, t_list *element, char **env)
-{
-	char *content;
-
-	content = element->content;
-	if (ft_built_in_check(content) != SUCCESS)
-		return (ERROR);
-	//builtin executiuon by ptr_func_tab
-	ft_exec_built_in(msh, element, env);
-	return (SUCCESS);
-}
+// static int	ft_built_in_check(t_msh *msh, t_list *element, char **env)
+// {
+// 	size_t	i;
+// 	size_t	len;
+//
+// 	i = -1;
+// 	len = ft_strlen(element->content);
+// 	// faire pour les ""
+// 	while (++i < len)
+// 		element->content[i] = ft_tolower(element->content[i]);
+// 	if (ft_strncmp(element->content, "echo", len) == 0)
+// 		return (ft_my_echo(msh, element));
+// 	else if (ft_strncmp(element->content, "cd", len) == 0)
+// 		return (ft_my_cd(msh, element));
+// 	else if (ft_strncmp(element->content, "pwd", len) == 0)
+// 		return (ft_my_pwd(msh, element));
+// 	else if (ft_strncmp(element->content, "export", len) == 0)
+// 		return (ft_my_export(msh, element));
+// 	else if (ft_strncmp(element->content, "unset", len) == 0)
+// 		return (ft_my_unset(msh, element));
+// 	else if (ft_strncmp(element->content, "env", len) == 0)
+// 		return (ft_my_env(msh, element));
+// 	else if (ft_strncmp(element->content, "exit", len) == 0))
+// 		else if (ft_my_exit(msh, element));
+// 	else
+// 		return (ERROR);
+// }
+// // detect args & options
+// // exec cmd + args & options
+//
+// int 		ft_handler_builtins(t_msh *msh, t_list *element, char **env)
+// {
+// 	if (ft_built_in_check(msh, element) == SUCCESS)
+// 		return (SUCCESS);
+// 	else
+// 		return (ERROR);
+// 	//builtin executiuon by ptr_func_tab
+// }

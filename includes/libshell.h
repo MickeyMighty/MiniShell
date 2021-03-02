@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 13:35:59 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/01 10:55:04 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/02 17:10:49 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,10 @@ void			set_token_list(t_msh *msh);
 
 
 int 			handler_env(t_msh *msh, char **env);
-int 			ft_fill_empty_env(t_env_lair *env_lair, char *content);
-int 			ft_fill_end_env(t_env_lair *env_lair, char *content);
+int 			ft_fill_empty_env(t_env_lair *env_lair, char *first_content,
+char *second_content);
+int 			ft_fill_end_env(t_env_lair *env_lair, char *first_content,
+char *second_content);
 t_env_lair		*clear_env(t_env_lair *env_lair);
 t_env_lair 		*pop_back_env(t_env_lair *env_lair);
 

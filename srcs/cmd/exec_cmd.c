@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 22:57:42 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/01 13:37:01 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/02 08:50:51 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,22 +20,26 @@ int 	exec_cmd(t_msh *msh, t_list *cmd, char **env)
 
 	if (cmd->token != CMD)
 		handler_error(msh, "Bad cmd.\n"); // a changer
-	count = -1;
-	exec_path = NULL;
-	msh->utils->pid = fork();
-	if (msh->utils->pid < 0)
-		return (handler_error(msh, NULL));
-	else if (msh->utils->pid == 0)
-	{
-		while (msh->utils->path[++count])
+	// if (ft_handler_builtins(msh, element, env) == ERROR)
+	// {
+		count = -1;
+		exec_path = NULL;
+		msh->utils->pid = fork();
+		if (msh->utils->pid < 0)
+			return (handler_error(msh, NULL));
+		else if (msh->utils->pid == 0)
 		{
-			exec_path = ft_strjoin(msh->utils->path[count], "/");
-			exec_path = ft_strjoin(exec_path, cmd->content);
-			cmd->tab_args[0] = ft_strdup(exec_path);
-			execve(exec_path, cmd->tab_args, env);
+			while (msh->utils->path[++count])
+			{
+				exec_path = ft_strjoin(msh->utils->path[count], "/");
+				exec_path = ft_strjoin(exec_path, cmd->content);
+				cmd->tab_args[0] = ft_strdup(exec_path);
+				execve(exec_path, cmd->tab_args, env);
+			}
 		}
-	}
-	else
-		wait(NULL);
-	return (-1);
+		else
+			wait(NULL);
+		return (1);
+	// }
+	// return (1);
 }
