@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 17:30:11 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/02 17:29:44 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/03 14:35:46 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void 	print_list(t_env_lair *env_lair)
 }
 ////////////////////////////////////////////////////////////////
 
-static char	*sep_env(char *str, int prt)
+char	*sep_env(char *str, int prt)
 {
 	int 	pos;
 
@@ -47,14 +47,16 @@ static char	*sep_env(char *str, int prt)
 		return (NULL);
 	if (prt == 0)
 	{
-		while (str[pos] != '=' || str[pos] != '\0')
+		while (str[pos] != '=' && str[pos] != '\0')
 			pos++;
 		return (ft_substr(str, 0, pos));
 	}
 	else
 	{
-		while (str[pos] != '=' || str[pos] != '\0')
+		while (str[pos] != '=' && str[pos] != '\0')
 			pos++;
+		if (str[pos] == '\0')
+			return (NULL);
 		if (str[pos] == '=')
 			pos++;
 		return (ft_substr(str, pos, (ft_strlen(str) - pos)));
@@ -72,12 +74,12 @@ static int 	linked_list_env(t_msh *msh, char **env)
 	ft_fill_empty_env(msh->env_lair, sep_env(env[count], 0),
 	sep_env(env[count], 1));
 	while (env[count] != NULL)
-	{
+	{h8
 		count++;
 		ft_fill_end_env(msh->env_lair, sep_env(env[count], 0),
 		sep_env(env[count], 1));
 	}
-	print_list(msh->env_lair);
+	// print_list(msh->env_lair);
 	return (SUCCESS);
 }
 
@@ -85,26 +87,22 @@ static int 	linked_list_env(t_msh *msh, char **env)
 static int		get_path(t_msh *msh)
 {
 	t_env_list 	*element;
-	char 		*tmp;
 
-	tmp = NULL;
 	element = msh->env_lair->start;
 	while (element != NULL)
 	{
-		if (element->first_content[0] == 'P'
+		if ((ft_strlen(element->first_content) >= 4)
+		&& element->first_content[0] == 'P'
 		&& element->first_content[1] == 'A'
 		&& element->first_content[2] == 'T'
-		&& element->first_content[3] == 'H'
-		&& element->first_content[4] == '=')
+		&& element->first_content[3] == 'H')
 		{
-			tmp = element->second_content;
-			msh->utils->path = ft_split(tmp, ':');
+			msh->utils->path = ft_split(element->second_content, ':');
 			return (SUCCESS);
 		}
 		else
 			element = element->next;
 	}
-	free(tmp);
 	return (ERROR);
 }
 
