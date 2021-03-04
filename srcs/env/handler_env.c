@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 17:30:11 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/03 14:35:46 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/04 14:08:31 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void 	print_list(t_env_lair *env_lair)
 
 	current = env_lair->start;
 	printf("| DEBUT | \n");
-	while (current != NULL)
+	while (current)
 	{
 		printf("%d-> %s\n", test, current->first_content);
 		printf("%d-> %s\n", test, current->second_content);
@@ -62,6 +62,7 @@ char	*sep_env(char *str, int prt)
 		return (ft_substr(str, pos, (ft_strlen(str) - pos)));
 	}
 }
+
 static int 	linked_list_env(t_msh *msh, char **env)
 {
 	int 	count;
@@ -73,13 +74,15 @@ static int 	linked_list_env(t_msh *msh, char **env)
 		return (ERROR);
 	ft_fill_empty_env(msh->env_lair, sep_env(env[count], 0),
 	sep_env(env[count], 1));
-	while (env[count] != NULL)
-	{h8
-		count++;
+	while (env[++count] != NULL)
+	{
 		ft_fill_end_env(msh->env_lair, sep_env(env[count], 0),
 		sep_env(env[count], 1));
 	}
 	// print_list(msh->env_lair);
+	// printf("========================================================\n");
+	// printf("========================================================\n");
+	// printf("========================================================\n");
 	return (SUCCESS);
 }
 

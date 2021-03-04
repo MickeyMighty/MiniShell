@@ -13,6 +13,7 @@ SRCS	=	./srcs/minishell.c \
 			./srcs/builtins/my_env.c \
 			./srcs/builtins/my_pwd.c \
 			./srcs/builtins/my_export.c \
+			./srcs/builtins/my_exit.c \
 			./srcs/check/data_check.c \
 			./srcs/cmd/exec_cmd.c \
 			./srcs/cmd/handler_cmd.c \
@@ -26,8 +27,8 @@ SRCS	=	./srcs/minishell.c \
 			./srcs/list/set_token_list.c \
 			./srcs/init/init_struct.c \
 			./srcs/init/init_shell.c \
-			./srcs/error/free_error.c \
-			./srcs/error/handler_error.c \
+			./srcs/error_and_free/free_error.c \
+			./srcs/error_and_free/handler_error.c \
 			./srcs/data/split_data/split_data.c \
 			./srcs/data/split_data/split_data_utils.c \
 			./lib/get_next_line/get_next_line.c \

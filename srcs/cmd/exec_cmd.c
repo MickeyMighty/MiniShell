@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 22:57:42 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/02 08:50:51 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/04 10:37:54 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int 	exec_cmd(t_msh *msh, t_list *cmd, char **env)
 
 	if (cmd->token != CMD)
 		handler_error(msh, "Bad cmd.\n"); // a changer
-	// if (ft_handler_builtins(msh, element, env) == ERROR)
-	// {
+	if (ft_handler_builtins(msh, cmd, env) == ERROR)
+	{
 		count = -1;
 		exec_path = NULL;
 		msh->utils->pid = fork();
@@ -39,7 +39,7 @@ int 	exec_cmd(t_msh *msh, t_list *cmd, char **env)
 		}
 		else
 			wait(NULL);
-		return (1);
-	// }
-	// return (1);
+		return (SUCCESS);
+	}
+	return (SUCCESS);
 }

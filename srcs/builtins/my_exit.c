@@ -1,29 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   my_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/29 16:22:28 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/04 10:29:34 by loamar           ###   ########.fr       */
+/*   Created: 2021/03/04 09:12:18 by loamar            #+#    #+#             */
+/*   Updated: 2021/03/04 09:55:46 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../includes/libshell.h"
 
-char	*ft_strrchr(const char *s, int c)
+int     ft_my_exit(t_msh *msh, t_list *element)
 {
-	int	len;
-
-	len = ft_strlen(s);
-	if (s[len] == c)
-		return ((char *)(s + len));
-	while (len > 0)
-	{
-		if (s[len - 1] == c)
-			return ((char *)(s + len - 1));
-		len--;
-	}
-	return (NULL);
+    free_all(msh);
+    exit(EXIT_SUCCESS);
 }

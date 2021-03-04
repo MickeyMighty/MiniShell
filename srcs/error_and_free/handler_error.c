@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 03:33:33 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/01 13:33:30 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/04 09:14:34 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int 	error_data(t_data *data, int token)
 	return (1);
 }
 
-void 	free_error(t_msh *msh)
+void 	free_all(t_msh *msh)
 {
 	if (msh)
 	{
@@ -46,6 +46,6 @@ void 	free_error(t_msh *msh)
 int 	handler_error(t_msh *msh, char *msg)
 {
 	msg_error(msh, msg);
-	free_error(msh);
+	free_all(msh);
 	exit(EXIT_FAILURE);
 }
