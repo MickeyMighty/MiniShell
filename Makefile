@@ -24,6 +24,7 @@ SRCS	=	./srcs/minishell.c \
 			./srcs/env/handler_env.c \
 			./srcs/list/create_list.c \
 			./srcs/list/handler_list.c \
+			./srcs/list/backslash_list.c \
 			./srcs/list/set_token_list.c \
 			./srcs/init/init_struct.c \
 			./srcs/init/init_shell.c \

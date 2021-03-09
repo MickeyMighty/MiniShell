@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 18:04:14 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/04 14:08:41 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/05 08:58:24 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,14 @@
 
 static int  check_first_content(char *content, char *str)
 {
+	int		pos;
+
+	pos = 0;
     if (!content || !str)
         return (ERROR);
-    if (ft_strcmp(content, str) == 0)
+	while (str[pos] != '=' && str[pos] != '\0')
+		pos++;
+    if (str[pos] != '\0' && ft_strncmp(content, str, pos) == 0)
         return (SUCCESS);
     else
         return (ERROR);
@@ -58,12 +63,8 @@ static void push_to_env(t_msh *msh, char *str)
     }
     while (element)
     {
-		// printf("ok\n");
-		// printf("element->first_content = %s\n", element->first_content);
-		// printf("str = %s\n", str);
         if (check_first_content(element->first_content, str) == SUCCESS)
         {
-			// printf("ok 2\n");
             if (element->second_content)
                 free(element->second_content);
             element->second_content = ft_strdup(sep_env(str, 1));
@@ -71,14 +72,12 @@ static void push_to_env(t_msh *msh, char *str)
         }
         else if (!element->next)
         {
-			// printf("ok 3\n");
             ft_fill_end_env(msh->env_lair, sep_env(str, 0),
             sep_env(str, 1));
             return ;
         }
         else if (element->next)
             element = element->next;
-		// printf("ok 4\n");
     }
 }
 

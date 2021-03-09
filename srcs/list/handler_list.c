@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 04:42:10 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/04 11:52:02 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/09 11:43:05 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,38 +67,38 @@ static void 	ft_put_args(t_msh *msh, t_list *cmd)
 	// return (cmd);
 }
 
-// static void 	print_list(t_lair_list *lair_list)
-// {
-// 	int 	test; // pour le printf
-// 	int 	test2; // pour le printf
-//
-// 	test = 1; // pour le printf
-// 	test2 = 0; // pour le printf
-// 	t_list *current;
-//
-// 	current = lair_list->start;
-// 	printf("\n\n| DEBUT | \n");
-// 	while (current != NULL)
-// 	{
-// 		test2 = 1;
-// 		printf("%d-> %s\n", test, current->content);
-// 		if (current->tab_args != NULL)
-// 		{
-// 			while (current->tab_args[test2] != NULL)
-// 			{
-// 				printf("(%d)[%s]\n", test2, current->tab_args[test2]);
-// 				test2++;
-// 			}
-// 		}
-// 		if (current != NULL)
-// 			current = current->next;
-// 		test++; // pour le printf
-// 	}
-// 	printf("size lair_list -> %d\n", lair_list->size);
-// 	printf("first lair_list -> %s\n", lair_list->start->content);
-// 	printf("end  lair_list -> %s\n", lair_list->end->content);
-// 	printf("| FIN |\n\n");
-// }
+static void 	print_list(t_lair_list *lair_list)
+{
+	int 	test; // pour le printf
+	int 	test2; // pour le printf
+
+	test = 1; // pour le printf
+	test2 = 0; // pour le printf
+	t_list *current;
+
+	current = lair_list->start;
+	printf("\n\n| DEBUT | \n");
+	while (current != NULL)
+	{
+		test2 = 1;
+		printf("%d-> %s\n", test, current->content);
+		if (current->tab_args != NULL)
+		{
+			while (current->tab_args[test2] != NULL)
+			{
+				printf("(%d)[%s]\n", test2, current->tab_args[test2]);
+				test2++;
+			}
+		}
+		if (current != NULL)
+			current = current->next;
+		test++; // pour le printf
+	}
+	printf("size lair_list -> %d\n", lair_list->size);
+	printf("first lair_list -> %s\n", lair_list->start->content);
+	printf("end  lair_list -> %s\n", lair_list->end->content);
+	printf("| FIN |\n\n");
+}
 
 static void    create_tab_args(t_msh *msh)
 {
@@ -174,11 +174,10 @@ int 	handler_list(t_msh *msh)
 	if (ret == ERROR)
 		return (ERROR);
 	set_token_list(msh);
-	// print_list(msh->lair_list);
-	// printf("\n\n========= avant create tab args ===============\n\n");
-	create_tab_args(msh);
-	// printf("\n\n========= apres create tab args ===============\n\n");
-	// print_list(msh->lair_list);
+	handler_backslash_list(msh);
+	// create_tab_args(msh);
+	print_list(msh->lair_list);
+	exit(0);
 	// free_data(msh);
 	return (SUCCESS);
 }

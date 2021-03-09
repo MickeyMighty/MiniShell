@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 03:33:33 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/04 09:14:34 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/09 11:31:02 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 static void 	msg_error(t_msh *msh, char *msg)
 {
 	// if (msh->utils->error_multi_line == 1)
-	// ft_putstr_fd("minishell: syntax error missing quote.\n", 2);
+	ft_putstr_fd("minishell: ", 2);
 	if (msg != NULL)
-		ft_putstr_fd(msg, 2);
+		ft_putendl_fd(msg, 2);
 	else
-		ft_putstr_fd(strerror(errno), 2);
+		ft_putendl_fd(strerror(errno), 2);
 }
 
 int 	error_data(t_data *data, int token)

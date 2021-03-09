@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list.h                                             :+:      :+:    :+:   */
+/*   dollar_list.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/11 02:24:43 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/09 11:43:16 by loamar           ###   ########.fr       */
+/*   Created: 2021/03/08 15:38:00 by loamar            #+#    #+#             */
+/*   Updated: 2021/03/09 08:55:04 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIST_H
-# define LIST_H
-
-int 	handler_list(t_msh *msh);
-int 	ft_fill_empty_list(t_lair_list *lair_list, char *content, int qte);
-int 	ft_fill_end_list(t_lair_list *lair_list, char *content, int qte);
-int 					get_quote(char *str);
-
-char	*sep_env(char *str, int prt);
-
-void 			handler_backslash_list(t_msh *msh);
-# endif
+// #include "../../includes/libshell.h"
+//
+// int 	handler_dollar(t_msh *msh, char *content)
+// {
+//
+// }

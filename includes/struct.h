@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 18:09:50 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/02 16:30:52 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/08 15:37:24 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef struct		s_list
 	char			*content;
 	char			**tab_args;
 	int 			token;
+	int 			dollar;
 	int 			quote;
 	struct s_list	*next;
 	struct s_list	*previous;

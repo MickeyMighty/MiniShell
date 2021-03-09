@@ -6,13 +6,15 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 19:16:18 by loamar            #+#    #+#             */
-/*   Updated: 2021/02/26 10:16:10 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/09 23:12:57 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DATA_H
 # define DATA_H
 
+# define NOQTE 0
+# define YESQTE 1
 # define PIPE 1
 # define SEMICOLON 2
 # define CHEVRONL 3
@@ -25,6 +27,7 @@
 # define OPTION 10
 # define ARGS 11
 # define REDIR 12
+# define BACKSLASH 92
 # define SQUOTE 39
 # define DQUOTE 34
 # define SEPARATOR 35
