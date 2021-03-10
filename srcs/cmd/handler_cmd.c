@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 22:57:33 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/10 12:40:19 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/10 23:07:22 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,6 @@ int 	sort_cmd(t_msh *msh, t_list *element, char **env)
 	// 	handler_error(msh, "WTFFFFF\n");
 	while (element != NULL)
 	{
-		if (element->dollar == 1 && element->quote != 1)
-			element->content = handler_dollar_env(msh, element->content);
 		if (element->next != NULL && element->next->token == SEPARATOR)
 		{
 			if (get_value_sep(element->next->content) == PIPE)
