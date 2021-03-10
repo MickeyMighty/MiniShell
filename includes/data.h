@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 19:16:18 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/09 23:12:57 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/10 12:34:41 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # define BACKSLASH 92
 # define SQUOTE 39
 # define DQUOTE 34
+# define DOLLAR 36
 # define SEPARATOR 35
 // data -> commands table
 

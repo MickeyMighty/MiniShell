@@ -22,6 +22,7 @@ SRCS	=	./srcs/minishell.c \
 			./srcs/data/handler_data.c \
 			./srcs/env/create_list_env.c \
 			./srcs/env/handler_env.c \
+			./srcs/env/dollar_env.c \
 			./srcs/list/create_list.c \
 			./srcs/list/handler_list.c \
 			./srcs/list/backslash_list.c \

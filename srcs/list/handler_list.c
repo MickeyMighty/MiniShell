@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 04:42:10 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/09 23:38:52 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/10 12:21:16 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,17 +150,21 @@ static int 	linked_list_data(t_msh *msh)
 	if ((qte = get_quote(msh->data->prompt_data[count])) != 0)
 		ft_fill_empty_list(msh->lair_list,
 		ft_substr(msh->data->prompt_data[count],
-		1, (ft_strlen(msh->data->prompt_data[count]) - 2)), qte);
+		1, (ft_strlen(msh->data->prompt_data[count]) - 2)), qte,
+		count_dollar_env(msh->data->prompt_data[count]));
 	else
-		ft_fill_empty_list(msh->lair_list, msh->data->prompt_data[count], 0);
+		ft_fill_empty_list(msh->lair_list, msh->data->prompt_data[count], qte,
+		count_dollar_env(msh->data->prompt_data[count]));
 	while (++count < msh->data->size_data)
 	{
 		if ((qte = get_quote(msh->data->prompt_data[count])) != 0)
 			ft_fill_end_list(msh->lair_list,
 			ft_substr(msh->data->prompt_data[count],
-			1, (ft_strlen(msh->data->prompt_data[count]) - 2)), qte);
+			1, (ft_strlen(msh->data->prompt_data[count]) - 2)), qte,
+			count_dollar_env(msh->data->prompt_data[count]));
 		else
-			ft_fill_end_list(msh->lair_list, msh->data->prompt_data[count], qte);
+			ft_fill_end_list(msh->lair_list, msh->data->prompt_data[count], qte,
+			count_dollar_env(msh->data->prompt_data[count]));
 	}
 	return (SUCCESS);
 }
@@ -175,6 +179,7 @@ int 	handler_list(t_msh *msh)
 		return (ERROR);
 	set_token_list(msh);
 	handler_backslash_list(msh);
+	// handler_dollar_list(msh);
 	create_tab_args(msh);
 	print_list(msh->lair_list);
 	// exit(0);

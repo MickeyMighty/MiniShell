@@ -6,13 +6,13 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/07 04:25:27 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/08 15:36:45 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/10 09:16:33 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libshell.h"
 
-int 	ft_fill_empty_list(t_lair_list *lair_list, char *content, int qte)
+int 	ft_fill_empty_list(t_lair_list *lair_list, char *content, int qte, int dollar)
 {
 	t_list	*new_element;
 
@@ -20,7 +20,7 @@ int 	ft_fill_empty_list(t_lair_list *lair_list, char *content, int qte)
 		return (-1);
 	new_element->content = content;
 	new_element->token = 0;
-	new_element->dollar = 0;
+	new_element->dollar = dollar;
 	new_element->quote = qte;
 	new_element->tab_args = NULL;
 	new_element->previous = lair_list->start;
@@ -31,7 +31,7 @@ int 	ft_fill_empty_list(t_lair_list *lair_list, char *content, int qte)
 	return (0);
 }
 
-int 	ft_fill_end_list(t_lair_list *lair_list, char *content, int qte)
+int 	ft_fill_end_list(t_lair_list *lair_list, char *content, int qte, int dollar)
 {
 	t_list	*new_element;
 
@@ -40,6 +40,7 @@ int 	ft_fill_end_list(t_lair_list *lair_list, char *content, int qte)
 	new_element->content = content;
 	new_element->token = 0;
 	new_element->quote = qte;
+	new_element->dollar = dollar;
 	new_element->tab_args = NULL;
 	new_element->previous = lair_list->end;
 	new_element->next = NULL;

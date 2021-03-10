@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 09:52:27 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/09 23:44:08 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/10 12:17:38 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static int 	count_backslash(char *str, int qte)
 
 	count = 0;
 	pos = 0;
+	if (!str)
+		return (0);
 	while (str[pos])
 	{
 		if (str[pos] == BACKSLASH && str[pos + 1] == BACKSLASH && qte == YESQTE)
@@ -92,16 +94,6 @@ static char		*create_backslash_quote(t_msh *msh, char *str)
 	return (tmp);
 }
 
-static char		*handler_backslash(t_msh *msh, char *str, int ticket)
-{
-	if (ticket == NOQTE)
-		return (create_backslash(msh, str));
-	else if (ticket == YESQTE)
-		return (create_backslash_quote(msh, str));
-	else
-		return (NULL);
-}
-
 void 			handler_backslash_list(t_msh *msh)
 {
 	t_list *element;
@@ -110,11 +102,11 @@ void 			handler_backslash_list(t_msh *msh)
 	while (element)
 	{
 		if (count_backslash(element->content, NOQTE) != 0 && element->quote != 1
-		&& element->quote != 2)
-			element->content = handler_backslash(msh, element->content, NOQTE);
-		if (count_backslash(element->content, NOQTE) != 0 && element->quote != 1
+		&& element->quote != 2 && count_dollar_env(element->content) == 0)
+			element->content = create_backslash(msh, element->content);
+		else if (count_backslash(element->content, NOQTE) != 0 && element->quote != 1
 		&& element->quote == 2)
-			element->content = handler_backslash(msh, element->content, YESQTE);
+			element->content = create_backslash_quote(msh, element->content);
 		if (element->content == NULL)
 			handler_error(msh, "Error malloc.");
 		element = element->next;

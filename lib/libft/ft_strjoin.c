@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 16:20:33 by loamar            #+#    #+#             */
-/*   Updated: 2020/06/08 14:18:45 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/10 12:22:16 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,7 @@ char			*ft_strjoin(char *s1, char *s2)
 		i++;
 	}
 	dest[i + lens1] = '\0';
+	// free(s1);
+	// free(s2);
 	return (dest);
 }
