@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 16:23:16 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/10 12:18:07 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/11 11:09:34 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,5 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	while (i < len && s[start] != '\0')
 		str[i++] = s[start++];
 	str[i] = '\0';
-	// free(s);
 	return (str);
 }

@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 18:09:50 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/08 15:37:24 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/11 14:46:21 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,16 @@ typedef struct		s_utils
 	pid_t 	wpid; //?
 	int 	size_opt_arg;
 	int 	status;
+	int 	check;
+	int 	pos1;
+	int 	pos2;
+	int 	pos3;
 	int 	check_opt; // ?
 	int 	check_arg; // ?
 	int 	check_sep; // ?
 	int 	pos_list;
 	int 	multi_pipe;
+	char 	*tmp_utils;
 	char 	**path;
 	char	**sep_tab;
 	// char 	**tab_args;
@@ -46,6 +51,7 @@ typedef struct		s_split_data
 	int 	index;
 	int 	pos;
 	int 	check;
+	int 	check2;
 	int 	word;
 
 }					t_split_data;

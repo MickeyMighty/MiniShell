@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 04:42:10 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/10 23:48:43 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/11 11:53:32 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,7 +182,7 @@ int 	handler_list(t_msh *msh)
 	// handler_dollar_list(msh);
 	create_tab_args(msh);
 	print_list(msh->lair_list);
-	// exit(0);
 	// free_data(msh);
+	// exit(0);
 	return (SUCCESS);
 }

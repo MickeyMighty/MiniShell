@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 19:16:18 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/10 12:34:41 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/11 11:52:41 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int 			check_data_separator(t_data *data);
 int 			check_prompt(t_data *data);
 t_lair_list 	*init_data_lair_list(t_lair_list *lair_list);
 
-
+char		**ft_free_tab(char **tab, int j, t_split_data *split_data);
 
 char			**ft_split_data(char *s, char c);
 int				ft_count_separator(char *s, int pos);

@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 13:35:59 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/04 09:14:54 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/11 11:53:01 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # include "./includes/data.h"
 # include "./includes/cmd.h"
 # include "./includes/built.h"
+# include "./includes/error_free.h"
 
 
 t_msh 			*init_shell(t_msh *msh);

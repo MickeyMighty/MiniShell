@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 19:13:55 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/10 12:12:12 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/11 14:10:05 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ int     redirection_double_right(t_msh *msh, t_list *element);
 int     create_file(t_msh *msh, t_list *element);
 void    redirection(t_msh *msh, t_list *element);
 
-char            *handler_dollar_env(t_msh *msh, char *str);
+t_list            *handler_dollar_env(t_msh *msh, t_list *cmd);
 int      count_dollar_env(char *str);
 # endif
