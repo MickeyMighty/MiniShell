@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 22:57:42 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/21 23:57:29 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/22 00:34:49 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static	void 	child_process(t_msh *msh, t_list *cmd, char **env)
 	exit(ret);
 }
 
-static	void 	parent_process(t_msh *msh, t_list *cmd)
+static	void 	parent_process(t_msh *msh, t_list *cmd, int pid)
 {
 	int 	child_status;
 
@@ -76,7 +76,7 @@ int 	exec_cmd(t_msh *msh, t_list *cmd, char **env)
 	else if (pid == 0)
 		child_process(msh, cmd, env);
 	else
-		parent_process(msh, cmd)
+		parent_process(msh, cmd, pid)
 	return (SUCCESS);
 }
 
