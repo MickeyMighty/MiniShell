@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 11:56:22 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/11 11:49:51 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/21 15:26:18 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,12 @@ void 	free_data(t_msh *msh)
 	}
 }
 
-void 	free_lair_list(t_msh *msh)
+void 	free_list(t_msh *msh)
 {
 	if (msh->lair_list)
-	{
 		msh->lair_list = clear_list(msh->lair_list);
-		free(msh->lair_list);
-	}
+	if (msh->env_lair)
+		msh->env_lair = clear_env(msh->env_lair);
 }
 
 char		**ft_free_tab(char **tab, int j, t_split_data *split_data)

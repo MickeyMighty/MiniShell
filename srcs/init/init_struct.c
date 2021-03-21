@@ -6,30 +6,43 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 07:27:43 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/01 13:09:01 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/21 16:15:35 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libshell.h"
 
-t_msh 	*init_msh(t_msh *msh)
+static t_msh	*init_struct(t_msh *msh)
 {
 	if (!(msh = (t_msh*)malloc(sizeof(t_msh))))
+		return (NULL);
+	if (!(msh->utils = (t_utils*)malloc(sizeof(t_utils))))
+		return (NULL);
+	if (!(msh->data = (t_data *)malloc(sizeof(t_data))))
+		return (NULL);
+	if (fill_separator_tab(msh) == -1)
+		return (NULL);
+}
+
+t_msh 	*init_msh(t_msh *msh)
+{
+	msh = init_struct(msh);
+	msh->lair_list = init_lair_list(msh->lair_list);
+	if (msh->lair_list == NULL)
+		return (ERROR);
+	msh->env_lair = init_env_lair(msh->env_lair);
+	if (msh->env_lair == NULL)
+		return (ERROR);
+	if (msh == NULL)
 		return (NULL);
 	msh->data = NULL;
 	msh->list = NULL;
 	msh->lair_list = NULL;
 	msh->utils = NULL;
-	if (!(msh->utils = (t_utils*)malloc(sizeof(t_utils))))
-		return (NULL);
-	msh->utils->check_opt = 0;
-	msh->utils->check_arg = 0;
 	msh->utils->pid = 0;
 	msh->utils->wpid = 0;
 	msh->utils->path = NULL;
 	msh->utils->status = 0;
-	if (fill_separator_tab(msh) == -1)
-		return (NULL);
 	return (msh);
 }
 

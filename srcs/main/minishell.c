@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 19:54:29 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/01 11:03:26 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/21 17:18:33 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,45 +40,72 @@
    */
 
 
-#include "../includes/libshell.h"
+#include "../../includes/libshell.h"
 
-static void     	shell_prompt(t_msh *msh, char **env)
+static void 		end_loop(t_msh *msh, char *buf, int free)
 {
-	int 	loop;
-	int 	ret;
+	// if (buf)
+	// 	free(buf);
+	free_all(msh, FALSE);
+	ft_putstr_fd("\n", 1);
+}
+
+static void 		main_handler(t_msh *msh, char *buf, char **env)
+{
+	global_return = SUCCESS;
+	if (global_return == SUCCESS)
+		handler_env(msh, env); // cas d'erreur a gerer;
+	if (global_return == SUCCESS)
+		handler_data(msh, buf);
+	if (global_return == SUCCESS)
+	{
+		if (handler_list(msh) == ERROR)
+		{
+			global_return = ERROR;
+			return_error(msh, NULL, "Error malloc.");
+		}
+	}
+	if (global_return == SUCCESS)
+		handler_cmd(msh, env);
+}
+
+static void 		prompt(void)
+{
+	ft_putstr_fd("\e[0;36m", 1);
+	write(2, "minishell$ ", 11);
+	ft_putstr_fd("\e[0;37m", 1);
+}
+
+static void     	shell_loop(t_msh *msh, char **env)
+{
 	char	*buf;
 
-	loop = 1;
-	signal(SIGINT, SIG_IGN);
-	// signal(SIGINT, signal_handler);
-    while (loop)
+	// signal(SIGINT, SIG_IGN);
+	signal(SIGQUIT, handler_signal);
+	signal(SIGINT, handler_signal);
+    while (get_next_line(0, &buf) > 0)
     {
-		ret = 0;
-		ft_putstr_fd("\e[0;36m", 1);
-		write(2, "minishell$ ", 11);
-		ft_putstr_fd("\e[0;37m", 1);
-		ret = get_next_line(0, &buf);
-		if (ret == -1)
-			handler_error(msh, "Bad read.\n");
-		if ((handler_data(msh, buf) == -1) || (handler_list(msh) == -1))
-			handler_error(msh, NULL);
-		handler_cmd(msh, env);
+		global_return = SUCCESS;
+		signal(SIGINT, handler_signal);
+		msh = init_msh(msh);
+		prompt();
+		main_handler(msh, buf, env);
+		end_loop(msh, buf, FALSE);
     }
+	if (buf)
+		free(buf);
+	// ft_exit
 }
 
 int     main(int argc, char **argv, char **env)
 {
 	t_msh			*msh;
 
+	aff_welcome();
+	// msh = init_msh(msh);
 	(void)argc;
 	(void)argv;
 	msh = NULL;
-	msh = init_shell(msh);
-	handler_env(msh, env); // cas d'erreur a gerer;
-    shell_prompt(msh, env);
-	// if (end == SUCCESS)
-	// 	exit(EXIT_SUCCESS);
-	// if (end == ERROR)
-	// 	exit(EXIT_FAILURE);
+    shell_loop(msh, env);
     return (0);
 }

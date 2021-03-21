@@ -6,21 +6,11 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 03:33:33 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/09 11:31:02 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/21 15:58:48 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libshell.h"
-
-static void 	msg_error(t_msh *msh, char *msg)
-{
-	// if (msh->utils->error_multi_line == 1)
-	ft_putstr_fd("minishell: ", 2);
-	if (msg != NULL)
-		ft_putendl_fd(msg, 2);
-	else
-		ft_putendl_fd(strerror(errno), 2);
-}
 
 int 	error_data(t_data *data, int token)
 {
@@ -31,21 +21,56 @@ int 	error_data(t_data *data, int token)
 	return (1);
 }
 
-void 	free_all(t_msh *msh)
+void		free_tab_args(t_msh *msh, char **str)
+{
+	int		index;
+	int 	limite;
+
+	limite = msh->utils->size_opt_arg + 1;
+	index = 0;
+	while (index <= limite)
+	{
+		free(str[index]);
+		index++;
+	}
+	free(str[index]);
+	free(str);
+}
+
+void 	free_all(t_msh *msh, int free)
 {
 	if (msh)
 	{
 		if (msh->utils)
+		{
+			if (msh->utils->path)
+				free_split(msh->utils->path);
+			if (msh->utils->sep_tab && free == TRUE)
+				free_split(msh->utils->sep_tab);
+			if (tmp_utils)
+				free(tmp_utils);
 			free(msh->utils);
+		}
 		free_data(msh);
-		// free_lair_list(msh);
-		free(msh);
+		free_list(msh);
+		if (free == 1)
+			free(msh);
 	}
 }
 
-int 	handler_error(t_msh *msh, char *msg)
+int 	return_error(t_msh *msh, char *cmd, char *msg)
 {
-	msg_error(msh, msg);
-	free_all(msh);
-	exit(EXIT_FAILURE);
+	ft_putstr_fd("minishell: ", 2);
+	if (cmd != NULL)
+	{
+		ft_putstr_fd(cmd, 2);
+		ft_putstr_fd(": ", 2);
+	}
+	if (msg != NULL)
+		ft_putendl_fd(msg, 2);
+	else
+		ft_putendl_fd(strerror(errno), 2);
+	msg_error(msh, cmd, msg);
+	// free_all(msh);
+	// exit(EXIT_FAILURE);
 }

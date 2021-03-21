@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 12:26:48 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/03 07:54:43 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/21 15:45:55 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,11 @@ t_env_lair 		*pop_back_env(t_env_lair *env_lair)
 		return (NULL);
 	if (env_lair->start == env_lair->end)
 	{
-		free (env_lair);
+		if (env_lair->start->first_content)
+			free(env_lair->start->first_content);
+		if (env_lair->start->second_content)
+			free(env_lair->start->second_content);
+		free(env_lair);
 		env_lair = NULL;
 		return (NULL);
 	}
@@ -76,6 +80,10 @@ t_env_lair 		*pop_back_env(t_env_lair *env_lair)
 	env_lair->end->next = NULL;
 	temp->next = NULL;
 	temp->previous = NULL;
+	if (temp->first_content)
+		free(tmp->first_content);
+	if (temp->second_content)
+		free(tmp->second_content);
 	free(temp);
 	temp = NULL;
 	env_lair->size--;

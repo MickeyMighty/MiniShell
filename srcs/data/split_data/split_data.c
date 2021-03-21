@@ -5,121 +5,132 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/12/02 14:43:48 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/11 14:49:41 by loamar           ###   ########.fr       */
+/*   Created: 2021/03/11 19:36:18 by loamar            #+#    #+#             */
+/*   Updated: 2021/03/21 11:07:03 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/libshell.h"
 
-static void		ft_count_word(char *s, char c, t_split_data *split_data)
+static int 	ft_size_quote(t_split_data *split_data, char *str, int index)
 {
-	split_data->pos = 0;
-	split_data->nb = 0;
-	while (s[split_data->pos] != '\0')
+	char	quote;
+
+	quote = str[index];
+	index++;
+	while (str[index])
 	{
-		while (s[split_data->pos] == c)
-			split_data->pos++;
-		if (s[split_data->pos] != '\0' && s[split_data->pos] != c)
-		{
-			if (s[split_data->pos] == SQUOTE || s[split_data->pos] == DQUOTE)
-				ft_count_word_quote(s, c, split_data);
-			else
-				ft_count_word_noquote(s, c, split_data);
-		}
+		if (str[index] == quote && quote == SQUOTE)
+			return (index);
+		if (str[index] == quote  && str[index - 1] != '\\' && quote == DQUOTE)
+			return (index);
+		index++;
 	}
+	split_data->error = 1;
+	return (index);
 }
 
-static size_t	ft_get_len_word(char *s, char c, t_split_data *split_data)
+static 		int ft_get_len_word(t_split_data *split_data, char *str)
 {
-	size_t	len_word;
-	int 	index;
+	int		index;
 
 	index = split_data->pos;
-	len_word = 0;
-	if (split_data->check == 0)
+	if (!str[index])
+		return (0);
+	if (ft_count_separator(str, index) != 0)
 	{
-		if (ft_count_separator(s, split_data->pos) != 0)
-			len_word = ft_count_separator(s, index);
-		else
-		{
-			while (s[index] != '\0' && s[index] != c
-			&& (ft_count_separator(s, index) == 0))
-			{
-				len_word++;
-				index++;
-			}
-		}
-		return (len_word);
+		split_data->pos_index = index + ft_count_separator(str, index);
+		index = ft_count_separator(str, index);
+		return (index);
 	}
-	else if (split_data->check == 1 || split_data->check == 2)
-		return (ft_get_len_word_quote(s, c, split_data, index));
-	return (len_word);
+	while (str[index] != '\0' && str[index] != ' '
+	&& ft_count_separator(str, index) == 0)
+	{
+		if (str[index] == '\\' && (index + 1) == ft_strlen(str))
+			split_data->error = 1;
+		if (str[index] == SQUOTE || str[index] == DQUOTE)
+			index = ft_size_quote(split_data, str, index);
+		if (str[index] && str[index] != ' ')
+			index++;
+	}
+	split_data->pos_index = index;
+	return (index - split_data->pos);
 }
 
-static void 		ft_put_pos(char *s, char c, t_split_data *split_data)
+static char		**ft_word_to_tab(t_msh *msh, char *str, t_split_data *split_data,
+char **res)
 {
-	if (split_data->check == 0)
+	split_data->nb = 0;
+	split_data->error = 0;
+	while (str[split_data->pos] && (split_data->nb < split_data->nb_word))
 	{
-		if (ft_count_separator(s, split_data->pos) != 0)
-			split_data->pos += ft_count_separator(s, split_data->pos);
-		else
-			while (s[split_data->pos] != '\0' && s[split_data->pos] != c && (ft_count_separator(s, split_data->pos) == 0))
-				split_data->pos++;
-	}
-	else if (split_data->check == 1)
-	{
-		split_data->pos++;
-		while (s[split_data->pos] != '\0' && s[split_data->pos] != SQUOTE)
+		split_data->pos_index = 0;
+		while (str[split_data->pos] != '\0' && str[split_data->pos] == ' ')
 			split_data->pos++;
-	}
-	else if (split_data->check == 2)
-	{
-		split_data->pos++;
-		while (s[split_data->pos] != '\0' && s[split_data->pos] != DQUOTE)
-			split_data->pos++;
-	}
-	if (s[split_data->pos] == SQUOTE || s[split_data->pos] == DQUOTE)
-		split_data->pos++;
-}
-
-static char  	**ft_put_word_to_tab(char *s, char c, t_split_data *split_data, char **res)
-{
-	while (s[split_data->pos] != '\0' && split_data->word < split_data->nb)
-	{
-		split_data->check = 0;
-		while (s[split_data->pos] == c)
-			split_data->pos++;
-		if (s[split_data->pos] != '\0' && s[split_data->pos] != c)
-		{
-			check_quote(s, split_data);
-			res[split_data->word] = ft_substr(s, split_data->pos,
-			ft_get_len_word(s, c, split_data));
-			if (res[split_data->word] == NULL)
-				return (NULL);
-			split_data->word++;
-			ft_put_pos(s, c, split_data);
-		}
+		res[split_data->nb] = ft_substr(str, split_data->pos,
+		ft_get_len_word(split_data, str));
+		split_data->nb++;
+		split_data->pos = split_data->pos_index;
+		if (res[split_data->nb] == NULL || split_data->error == 1)
+			return (NULL);
 	}
 	return (res);
 }
 
-char			**ft_split_data(char *s, char c)
+void 			ft_count_word(t_msh *msh, char *s, char c,
+t_split_data *split_data)
+{
+	while (s[split_data->pos])
+	{
+		while (s[split_data->pos] == c)
+			split_data->pos++;
+		if (s[split_data->pos] != '\0' && s[split_data->pos] != c
+		&& (ft_count_separator(s, split_data->pos) == 0))
+		{
+			split_data->nb_word++;
+			while (s[split_data->pos] != '\0' && s[split_data->pos] != c
+			&& (ft_count_separator(s, split_data->pos) == 0))
+			{
+				if ((split_data->pos = ft_check_word(msh, split_data, s)) == ERROR)
+					return ;
+				split_data->pos++;
+			}
+		}
+		if (s[split_data->pos] && ft_count_separator(s, split_data->pos) != 0)
+		{
+			split_data->nb_word++;
+			split_data->pos += ft_count_separator(s, split_data->pos);
+		}
+		else if (s[split_data->pos] != '\0')
+			split_data->pos++;
+	}
+}
+
+char			**ft_split_data(t_msh *msh, char *s, char c)
 {
 	char	**res;
 	t_split_data	*split_data;
 
+	if (!s)
+		return (NULL);
 	if (!(split_data = (t_split_data*)malloc(sizeof(t_split_data))))
 		return (NULL);
-	ft_count_word(s, c, split_data);
-	if (!s || !(res = (char **)malloc((split_data->nb + 1) * sizeof(char *))))
+	split_data->error = 0;
+	split_data->nb_word = 0;
+	split_data->pos = 0;
+	ft_count_word(msh ,s, c, split_data);
+	if (split_data->error == 1)
+		return (NULL);
+	if (!(res = (char **)malloc(sizeof(char *) * (split_data->nb_word + 1))))
 		return (NULL);
 	split_data->pos = 0;
-	split_data->word = 0;
-	res = ft_put_word_to_tab(s, c, split_data, res);
+	res = ft_word_to_tab(msh, s, split_data, res);
 	if (res == NULL)
-		return (ft_free_tab(res, split_data->word, split_data));
-	res[split_data->word] = 0;
+	{
+		ft_free_tab(res, split_data->nb_word, split_data);
+		return(NULL);
+	}
+	res[split_data->nb_word] = NULL;
 	free (split_data);
 	return (res);
 }

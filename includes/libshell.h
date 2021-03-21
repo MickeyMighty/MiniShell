@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 13:35:59 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/11 11:53:01 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/21 16:47:34 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # include <sys/types.h>
 # include <dirent.h>
 
+# define TRUE 0
+# define FALSE 1
 # define PATH_MAX 4096
 # define SUCCESS 0
 # define ERROR -1
@@ -29,19 +31,39 @@
 # define STDERR 2
 
 # include "./includes/struct.h"
+# include "./includes/error_free.h"
+# include "./includes/data.h"
+# include "./includes/list.h"
 # include "../lib/libft/libft.h"
 # include "../lib/get_next_line/get_next_line.h"
-# include "./includes/list.h"
-# include "./includes/data.h"
 # include "./includes/cmd.h"
 # include "./includes/built.h"
-# include "./includes/error_free.h"
 
+/*
+** Variable Global
+*/
+
+pid_t					global_pid;
+int						global_error;
+int						global_status;
+int						global_return;
+
+
+/*
+** main/handler_signal.c
+*/
+
+void 			handler_signal(int sign);
+
+/*
+** init/init_shell.c
+*/
 
 t_msh 			*init_shell(t_msh *msh);
+void 			aff_welcome(void);
+
 int 			data_check(t_msh *msh);
-void 			free_all(t_msh *msh);
-int 			handler_error(t_msh *msh, char *msg);
+void 			free_all(t_msh *msh, int free);
 t_msh 			*init_msh(t_msh *msh);
 t_env_lair		*init_env_lair(t_env_lair *env_lair);
 void 			free_data(t_msh *msh);
@@ -53,8 +75,32 @@ t_lair_list 	*pop_back_list(t_lair_list *lair_list);
 void			set_token_list(t_msh *msh);
 
 
+/*
+** data/.c
+*/
 
-int 			handler_env(t_msh *msh, char **env);
+int 			handler_data(t_msh *msh, char *buf);
+int 			check_data_separator(t_data *data);
+int 			check_prompt(t_data *data);
+t_lair_list 	*init_data_lair_list(t_lair_list *lair_list);
+
+char		**ft_free_tab(char **tab, int j, t_split_data *split_data);
+
+char			**ft_split_data(t_msh *msh, char *s, char c);
+int				ft_count_separator(char *s, int pos);
+int 	ft_check_word(t_msh *msh, t_split_data *split_data, char *str);
+void 			ft_count_word(t_msh *msh, char *s, char c, t_split_data *split_data);
+
+
+
+/*
+** /.c
+*/
+
+
+
+
+void 			handler_env(t_msh *msh, char **env);
 int 			ft_fill_empty_env(t_env_lair *env_lair, char *first_content,
 char *second_content);
 int 			ft_fill_end_env(t_env_lair *env_lair, char *first_content,

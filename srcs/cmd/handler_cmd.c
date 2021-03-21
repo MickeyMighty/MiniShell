@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 22:57:33 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/10 23:07:22 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/21 16:16:54 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int 	sort_cmd(t_msh *msh, t_list *element, char **env)
 	// 	handler_error(msh, "WTFFFFF\n");
 	while (element != NULL)
 	{
+		element = check_block_cmd(msh, element);
 		if (element->next != NULL && element->next->token == SEPARATOR)
 		{
 			if (get_value_sep(element->next->content) == PIPE)
@@ -86,12 +87,9 @@ int 	handler_cmd(t_msh *msh, char **env)
 	t_list 	*tmp;
 	t_list 	*element;
 
+	printf("handler cmd check\n");
 	element = msh->lair_list->start;
-	// id = fork();
-	// if (id < 0)
-		// handler_error(msh);
 	msh->utils->check_sep = 0; // supp?
-	// msh->utils->pid = fork();
 	sort_cmd(msh, element, env);
-	return (0);
+	return (SUCCESS);
 }

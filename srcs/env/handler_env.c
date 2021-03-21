@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 17:30:11 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/10 08:09:04 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/21 16:04:35 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,30 +63,6 @@ char	*sep_env(char *str, int prt)
 	}
 }
 
-static int 	linked_list_env(t_msh *msh, char **env)
-{
-	int 	count;
-
-	count = 0;
-	msh->env_list = NULL;
-	msh->env_lair = init_env_lair(msh->env_lair);
-	if (msh->env_lair == NULL)
-		return (ERROR);
-	ft_fill_empty_env(msh->env_lair, sep_env(env[count], 0),
-	sep_env(env[count], 1));
-	while (env[++count] != NULL)
-	{
-		ft_fill_end_env(msh->env_lair, sep_env(env[count], 0),
-		sep_env(env[count], 1));
-	}
-	// print_list(msh->env_lair);
-	// printf("========================================================\n");
-	// printf("========================================================\n");
-	// printf("========================================================\n");
-	return (SUCCESS);
-}
-
- // a changer
 static int		get_path(t_msh *msh)
 {
 	t_env_list 	*element;
@@ -109,14 +85,18 @@ static int		get_path(t_msh *msh)
 	return (ERROR);
 }
 
-int 	handler_env(t_msh *msh, char **env)
+void 	handler_env(t_msh *msh, char **env)
 {
-	int 	ret;
+	int 	count;
 
-	ret = 0;
-	ret = linked_list_env(msh, env);
-	if (ret == ERROR)
-		return (ERROR);
+	count = 0;
+	msh->env_list = NULL;
+	ft_fill_empty_env(msh->env_lair, sep_env(env[count], 0),
+	sep_env(env[count], 1));
+	while (env[++count] != NULL)
+	{
+		ft_fill_end_env(msh->env_lair, sep_env(env[count], 0),
+		sep_env(env[count], 1));
+	}
 	get_path(msh);
-	return (SUCCESS);
 }

@@ -8,7 +8,8 @@ CFLAGS	=	-I. -fsanitize=address
 
 LIBFT	=	./lib/libft/libft.a
 
-SRCS	=	./srcs/minishell.c \
+SRCS	=	./srcs/main/minishell.c \
+			./srcs/main/handler_signal.c \
 			./srcs/builtins/handler_builtins.c \
 			./srcs/builtins/my_env.c \
 			./srcs/builtins/my_pwd.c \
@@ -19,7 +20,7 @@ SRCS	=	./srcs/minishell.c \
 			./srcs/cmd/handler_cmd.c \
 			./srcs/cmd/pipe_cmd.c \
 			./srcs/cmd/redir_cmd.c \
-			./srcs/data/handler_data.c \
+			./srcs/cmd/check_block_cmd.c \
 			./srcs/env/create_list_env.c \
 			./srcs/env/handler_env.c \
 			./srcs/env/handler_dollar_env.c \
@@ -31,6 +32,7 @@ SRCS	=	./srcs/minishell.c \
 			./srcs/init/init_shell.c \
 			./srcs/error_and_free/free_error.c \
 			./srcs/error_and_free/handler_error.c \
+			./srcs/data/handler_data.c \
 			./srcs/data/split_data/split_data.c \
 			./srcs/data/split_data/split_data_utils.c \
 			./lib/get_next_line/get_next_line.c \

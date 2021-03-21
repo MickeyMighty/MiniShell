@@ -6,13 +6,13 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/07 04:25:27 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/10 09:16:33 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/21 15:45:44 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libshell.h"
 
-int 	ft_fill_empty_list(t_lair_list *lair_list, char *content, int qte, int dollar)
+int 	ft_fill_empty_list(t_lair_list *lair_list, char *content)
 {
 	t_list	*new_element;
 
@@ -20,8 +20,6 @@ int 	ft_fill_empty_list(t_lair_list *lair_list, char *content, int qte, int doll
 		return (-1);
 	new_element->content = content;
 	new_element->token = 0;
-	new_element->dollar = dollar;
-	new_element->quote = qte;
 	new_element->tab_args = NULL;
 	new_element->previous = lair_list->start;
 	new_element->next = lair_list->end;
@@ -31,7 +29,7 @@ int 	ft_fill_empty_list(t_lair_list *lair_list, char *content, int qte, int doll
 	return (0);
 }
 
-int 	ft_fill_end_list(t_lair_list *lair_list, char *content, int qte, int dollar)
+int 	ft_fill_end_list(t_lair_list *lair_list, char *content)
 {
 	t_list	*new_element;
 
@@ -39,8 +37,6 @@ int 	ft_fill_end_list(t_lair_list *lair_list, char *content, int qte, int dollar
 		return (-1);
 	new_element->content = content;
 	new_element->token = 0;
-	new_element->quote = qte;
-	new_element->dollar = dollar;
 	new_element->tab_args = NULL;
 	new_element->previous = lair_list->end;
 	new_element->next = NULL;
@@ -72,7 +68,11 @@ t_lair_list 		*pop_back_list(t_lair_list *lair_list)
 		return (NULL);
 	if (lair_list->start == lair_list->end)
 	{
-		free (lair_list);
+		if (lair_list->start->content)
+			free(lair_list->start->content);
+		if (lair_list->start->tab_args)
+			free(msh, lair_list->start->tab_args);
+		free(lair_list);
 		lair_list = NULL;
 		return (NULL);
 	}
@@ -80,6 +80,10 @@ t_lair_list 		*pop_back_list(t_lair_list *lair_list)
 	lair_list->end->next = NULL;
 	temp->next = NULL;
 	temp->previous = NULL;
+	if (temp->content)
+		free(tmp->content);
+	if (lair_list->start->tab_args)
+		free(msh, lair_list->start->tab_args);
 	free(temp);
 	temp = NULL;
 	lair_list->size--;

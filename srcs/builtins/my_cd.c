@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   my_pwd.c                                           :+:      :+:    :+:   */
+/*   my_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tidminta <tidminta@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/12 16:01:14 by tidminta          #+#    #+#             */
-/*   Updated: 2021/03/18 12:53:23 by loamar           ###   ########.fr       */
+/*   Created: 2021/03/18 11:23:10 by loamar            #+#    #+#             */
+/*   Updated: 2021/03/18 12:48:45 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libshell.h"
 
-void			ft_my_pwd(t_msh *msh)
+void 	my_cd(t_msh *msh, t_list *element)
 {
-	char *pwd;
 
-	if (!(pwd = getcwd(NULL, PATH_MAX)))
-		handler_error(msh, NULL);
-	ft_putendl_fd(pwd, 1);
-	free(pwd);
-	pwd = NULL;
 }

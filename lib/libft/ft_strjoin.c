@@ -6,13 +6,24 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 16:20:33 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/11 11:58:41 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/16 23:54:04 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char		*check(char *s1, char *s2)
+static int 		check(char *s1, char *s2)
+{
+	if (!s1 && !s2)
+		return (-1);
+	if (!s1)
+		return (-1);
+	if (!s2)
+		return (-1);
+	return (0);
+}
+
+static char		*return_error(char *s1, char *s2)
 {
 	if (!s1 && !s2)
 		return (ft_strdup("\0"));
@@ -30,8 +41,8 @@ char			*ft_strjoin(char *s1, char *s2)
 	char	*dest;
 	int		i;
 
-	if (check(s1, s2) != NULL)
-		return (check(s1, s2));
+	if (check(s1, s2) == -1)
+		return (return_error(s1, s2));
 	lens1 = ft_strlen(s1);
 	lens2 = ft_strlen(s2);
 	if (!(dest = (char *)malloc(sizeof(char) * (lens1 + lens2 + 1))))
