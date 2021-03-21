@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 22:57:33 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/21 16:16:54 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/22 00:29:34 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,10 @@ int 	sort_cmd(t_msh *msh, t_list *element, char **env)
 			// else if (get_value_sep(element->next->content) == REDIR)
 				// element = ft_reddirection(msh, element);
 			else if (get_value_sep(element->content) == SEMICOLON)
+			{
 				element = element->next;
+				ft_putstr("\n");
+			}
 		}
 		else
 			exec_cmd(msh, element, env);
