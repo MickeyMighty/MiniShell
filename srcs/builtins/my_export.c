@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 18:04:14 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/18 16:56:34 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/22 09:40:25 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static void push_to_env(t_msh *msh, char *str)
     }
 }
 
-int			ft_my_export(t_msh *msh, t_list *element)
+int			my_export(t_msh *msh, t_list *element)
 {
     int     pos;
 
@@ -91,7 +91,7 @@ int			ft_my_export(t_msh *msh, t_list *element)
 
     if (ft_strcmp(element->content, "export") == 0
     && element->tab_args[1] == NULL)
-        ft_my_env(msh, element);
+        my_env(msh, element);
     else if (ft_strcmp(element->content, "export") == 0
     && element->tab_args[1] != NULL)
     {

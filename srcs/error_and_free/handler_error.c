@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 03:33:33 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/21 15:58:48 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/22 11:35:19 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void		free_tab_args(t_msh *msh, char **str)
 	free(str);
 }
 
-void 	free_all(t_msh *msh, int free)
+void 	free_all(t_msh *msh, int free_key)
 {
 	if (msh)
 	{
@@ -45,15 +45,17 @@ void 	free_all(t_msh *msh, int free)
 		{
 			if (msh->utils->path)
 				free_split(msh->utils->path);
-			if (msh->utils->sep_tab && free == TRUE)
+			if (msh->utils->sep_tab)
 				free_split(msh->utils->sep_tab);
-			if (tmp_utils)
-				free(tmp_utils);
+			// if (msh->utils->tmp_utils)
+			// 	free(msh->utils->tmp_utils);
+			// if (msh->utils->lair_export)
+			// 	free(msh->utils->lair_export);
 			free(msh->utils);
 		}
 		free_data(msh);
 		free_list(msh);
-		if (free == 1)
+		if (free_key == 1)
 			free(msh);
 	}
 }
@@ -70,7 +72,7 @@ int 	return_error(t_msh *msh, char *cmd, char *msg)
 		ft_putendl_fd(msg, 2);
 	else
 		ft_putendl_fd(strerror(errno), 2);
-	msg_error(msh, cmd, msg);
 	// free_all(msh);
 	// exit(EXIT_FAILURE);
+	return (ERROR);
 }

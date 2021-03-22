@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 04:42:10 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/21 16:09:19 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/22 17:46:15 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ static int    create_tab_args(t_msh *msh)
 {
 	t_list		*cmd;
 	t_list		*tmp;
-	int 		ret
+	int 		ret;
 
 	msh->utils->pos_list = 1;
 	cmd = msh->lair_list->start;
@@ -113,7 +113,7 @@ static int    create_tab_args(t_msh *msh)
 	{
 		while (cmd != NULL)
 		{
-			ret = t_put_args(msh, cmd);
+			ret = ft_put_args(msh, cmd);
 			if (ret == ERROR)
 				return (ERROR);
 			tmp = cmd;
@@ -148,6 +148,12 @@ int 	handler_list(t_msh *msh)
 	char 	*tmp;
 
 	count = 0;
+	msh->lair_list = init_lair_list(msh->lair_list);
+	if (msh->lair_list == NULL)
+	{
+		global_error = ERROR;
+		return (ERROR);
+	}
 	ft_fill_empty_list(msh->lair_list, msh->data->prompt_data[count]);
 	while (++count < msh->data->size_data)
 		ft_fill_end_list(msh->lair_list, msh->data->prompt_data[count]);

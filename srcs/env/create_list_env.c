@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 12:26:48 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/21 15:45:55 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/22 11:18:49 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,9 @@ t_env_lair 		*pop_back_env(t_env_lair *env_lair)
 	temp->next = NULL;
 	temp->previous = NULL;
 	if (temp->first_content)
-		free(tmp->first_content);
+		free(temp->first_content);
 	if (temp->second_content)
-		free(tmp->second_content);
+		free(temp->second_content);
 	free(temp);
 	temp = NULL;
 	env_lair->size--;

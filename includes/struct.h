@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 18:09:50 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/21 22:41:02 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/22 11:30:18 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,13 @@ typedef struct		s_utils
 	char 	quote;
 	int 	no_space;
 	// int 	check_opt; // ?
-	// int 	check_arg; // ?
+	int 	check_arg; // ?
 	// int 	check_sep; // ?
 	int 	len;
 	int 	pos_list;
 	int 	multi_pipe;
-	char 	*lair_export;
-	char 	*tmp_utils;
+	// char 	*lair_export;
+	// char 	*tmp_utils; // a free ? existe ?
 	char 	**path;
 	char	**sep_tab;
 	// char 	**tab_args;

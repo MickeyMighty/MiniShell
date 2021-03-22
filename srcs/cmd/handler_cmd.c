@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 22:57:33 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/22 00:29:34 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/22 17:52:07 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,9 @@ int 	handler_cmd(t_msh *msh, char **env)
 
 	printf("handler cmd check\n");
 	element = msh->lair_list->start;
-	msh->utils->check_sep = 0; // supp?
-	sort_cmd(msh, element, env);
+	// msh->utils->check_sep = 0; // supp?
+	printf("handler cmd check 1\n");
+	// sort_cmd(msh, element, env);
+	printf("handler cmd check 2\n");
 	return (SUCCESS);
 }

@@ -4,7 +4,7 @@ CC		=	gcc
 
 RM		=	rm -f
 
-CFLAGS	=	-I. -fsanitize=address
+CFLAGS	=	-I.
 
 LIBFT	=	./lib/libft/libft.a
 
@@ -15,18 +15,17 @@ SRCS	=	./srcs/main/minishell.c \
 			./srcs/builtins/my_pwd.c \
 			./srcs/builtins/my_export.c \
 			./srcs/builtins/my_exit.c \
-			./srcs/check/data_check.c \
 			./srcs/cmd/exec_cmd.c \
 			./srcs/cmd/handler_cmd.c \
 			./srcs/cmd/pipe_cmd.c \
 			./srcs/cmd/redir_cmd.c \
-			./srcs/cmd/check_block_cmd.c \
+			./srcs/cmd/check/check_block_cmd.c \
+			./srcs/cmd/check/return_check.c \
 			./srcs/env/create_list_env.c \
 			./srcs/env/handler_env.c \
 			./srcs/env/handler_dollar_env.c \
 			./srcs/list/create_list.c \
 			./srcs/list/handler_list.c \
-			./srcs/list/backslash_list.c \
 			./srcs/list/set_token_list.c \
 			./srcs/init/init_struct.c \
 			./srcs/init/init_shell.c \

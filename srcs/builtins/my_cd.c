@@ -6,13 +6,13 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 11:23:10 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/18 12:48:45 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/22 09:38:26 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libshell.h"
 
-void 	my_cd(t_msh *msh, t_list *element)
-{
-
-}
+// void 	my_cd(t_msh *msh, t_list *element)
+// {
+//
+// }

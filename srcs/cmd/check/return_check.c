@@ -6,13 +6,13 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 15:13:10 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/20 22:54:35 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/22 14:45:09 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/libshell.h"
+#include "../../../includes/libshell.h"
 
-static 	char 	*return_less_qte(t_msh *msh, t_list *element, int key)
+static 	char 	*return_less_qte(t_msh *msh, t_env_list *element, int key)
 {
 	int		pos;
 
@@ -23,24 +23,25 @@ static 	char 	*return_less_qte(t_msh *msh, t_list *element, int key)
 	if (element->second_content[msh->utils->len] == '\0')
 		return (NULL);
 	if (element->second_content[msh->utils->len] == '\"')
-		len--;
-	if (key = NOQUOTE)
+		msh->utils->len--;
+	if (key == NOQTE)
 	{
-		if (msh->utils->no_space = 1 || msh->utils->no_space == 3)
+		if ((msh->utils->no_space == 1) || (msh->utils->no_space == 3))
 		{
-			while(element_second[pos] == ' ')
+			while(element->second_content[pos] == ' ')
 				pos++;
 		}
-		else if (msh->utils->no_space = 2 || msh->utils->no_space == 3)
+		else if ((msh->utils->no_space = 2) || (msh->utils->no_space == 3))
 		{
-			while(element_second[len] == ' ')
-				len--;
+			while(element->second_content[msh->utils->len] == ' ')
+				msh->utils->len--;
 		}
 	}
-	return (check_content(msh, ft_substr(element->second_content, pos, len)));
+	return (check_content(msh, ft_substr(element->second_content, pos,
+	msh->utils->len)));
 }
 
-static char 	*return_element(t_msh *msh, t_list *element, char *tmp, int key)
+char 	*return_element(t_msh *msh, t_env_list *element, char *tmp, int key)
 {
 	int		start;
 
@@ -52,8 +53,9 @@ static char 	*return_element(t_msh *msh, t_list *element, char *tmp, int key)
 		{
 			free(tmp);
 			if (element->second_content[0] == '\"')
-				return (return_content(return_less_qte(msh, element, key)));
-			return (ret_cont(element->second_content));
+				return (check_content(msh,
+				return_less_qte(msh, element, key)));
+			return (check_content(msh, element->second_content));
 		}
 		element = element->next;
 	}
@@ -69,9 +71,9 @@ static char 	*return_dollar(t_msh *msh, char *str, int key)
 	int 		len;
 
 	msh->utils->pos++;
-	if (key == NOQUOTE && msh->utils->no_space == 0
-	&& check_no_space(msh, str) == 1);
-		msh->utils->no_space == 3;
+	if ((key == NOQTE && msh->utils->no_space == 0)
+	&& check_no_space(msh, str) == 1)
+		msh->utils->no_space = 0;
 	while (str[msh->utils->pos] != ' ')
     element = msh->env_lair->start;
 	len = msh->utils->pos;
@@ -79,9 +81,14 @@ static char 	*return_dollar(t_msh *msh, char *str, int key)
 		len++;
 	if (len == msh->utils->pos)
 		return (ft_strdup("\0"));
-	msh->utils += len;
-	if (key == NOQUOTE && check_end(str, msh->utils->pos) == 2)
-		msh->utils->no_space == 0;
+	msh->utils->len = len;
+	if (key == NOQTE && check_end(str, msh->utils->len) == 1)
+	{
+		if (msh->utils->no_space == 1)
+			msh->utils->no_space = 3;
+		else
+			msh->utils->no_space = 2;
+	}
 	tmp = ft_substr(str, msh->utils->pos, len);
 	if ((tmp = return_element(msh, element, tmp, key)) != NULL)
 		return (tmp);
@@ -106,7 +113,7 @@ static char 	*return_quote(t_msh *msh, char *str)
 		else if (str[msh->utils->pos] == '$' && msh->utils->quote == DQUOTE
 		&& (str[msh->utils->pos + 1] != msh->utils->quote
 		|| str[msh->utils->pos + 1] != '\\'))
-			second_step = return_dollar(msh, str, YESQUOTE);
+			second_step = return_dollar(msh, str, YESQTE);
 		else if ((str[msh->utils->pos] != msh->utils->quote)
 		&& str[msh->utils->pos + 1])
 			second_step = ft_substr(str, msh->utils->pos, 1);
@@ -135,7 +142,7 @@ char		*return_all_content(t_msh *msh, char *str)
 			second_step = return_quote(msh, str);
 		}
 		else if (str[msh->utils->pos] == '$')
-			second_step = return_dollar(msh, str, NOQUOTE);
+			second_step = return_dollar(msh, str, NOQTE);
 		else
 			second_step = ft_substr(str, msh->utils->pos, 1);
 		msh->utils->no_space = 1;

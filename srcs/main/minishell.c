@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 19:54:29 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/21 17:18:33 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/22 17:59:41 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,10 @@ static void 		end_loop(t_msh *msh, char *buf, int free)
 {
 	// if (buf)
 	// 	free(buf);
+	printf("end loop\n");
 	free_all(msh, FALSE);
 	ft_putstr_fd("\n", 1);
+	printf("end loop\n");
 }
 
 static void 		main_handler(t_msh *msh, char *buf, char **env)
@@ -67,12 +69,13 @@ static void 		main_handler(t_msh *msh, char *buf, char **env)
 	}
 	if (global_return == SUCCESS)
 		handler_cmd(msh, env);
+	printf("fin handler\n");
 }
 
 static void 		prompt(void)
 {
 	ft_putstr_fd("\e[0;36m", 1);
-	write(2, "minishell$ ", 11);
+	ft_putstr_fd("minishell$ ", 1);
 	ft_putstr_fd("\e[0;37m", 1);
 }
 
@@ -81,20 +84,27 @@ static void     	shell_loop(t_msh *msh, char **env)
 	char	*buf;
 
 	// signal(SIGINT, SIG_IGN);
+	printf("2\n");
 	signal(SIGQUIT, handler_signal);
 	signal(SIGINT, handler_signal);
+	printf("3\n");
+	prompt();
     while (get_next_line(0, &buf) > 0)
     {
+		printf("4\n");
 		global_return = SUCCESS;
-		signal(SIGINT, handler_signal);
 		msh = init_msh(msh);
 		prompt();
+		signal(SIGINT, handler_signal);
 		main_handler(msh, buf, env);
 		end_loop(msh, buf, FALSE);
+		prompt();
+		printf("5\n");
     }
 	if (buf)
 		free(buf);
-	// ft_exit
+	// ft_exit()
+	exit(0);
 }
 
 int     main(int argc, char **argv, char **env)
@@ -102,10 +112,13 @@ int     main(int argc, char **argv, char **env)
 	t_msh			*msh;
 
 	aff_welcome();
-	// msh = init_msh(msh);
+	// if (!(msh = (t_msh*)malloc(sizeof(t_msh))))
+	// 	exit(EXIT_FAILURE);
+	global_pid = 0;
 	(void)argc;
 	(void)argv;
 	msh = NULL;
+	printf("1\n");
     shell_loop(msh, env);
     return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 17:30:11 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/21 16:04:35 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/22 17:45:04 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,21 +67,29 @@ static int		get_path(t_msh *msh)
 {
 	t_env_list 	*element;
 
+	printf("| - ");
 	element = msh->env_lair->start;
+	printf("|| - ");
 	while (element != NULL)
 	{
+		printf("||| - ");
 		if ((ft_strlen(element->first_content) >= 4)
 		&& element->first_content[0] == 'P'
 		&& element->first_content[1] == 'A'
 		&& element->first_content[2] == 'T'
 		&& element->first_content[3] == 'H')
 		{
+			printf("|||| - ");
 			msh->utils->path = ft_split(element->second_content, ':');
 			return (SUCCESS);
 		}
 		else
 			element = element->next;
+		printf("||||| - ");
 	}
+	printf("|||||| - ");
+	msh->utils->path = NULL;
+	printf("||||||| - ");
 	return (ERROR);
 }
 
@@ -90,6 +98,9 @@ void 	handler_env(t_msh *msh, char **env)
 	int 	count;
 
 	count = 0;
+	msh->env_lair = init_env_lair(msh->env_lair);
+	if (global_error == ERROR)
+		return ;
 	msh->env_list = NULL;
 	ft_fill_empty_env(msh->env_lair, sep_env(env[count], 0),
 	sep_env(env[count], 1));

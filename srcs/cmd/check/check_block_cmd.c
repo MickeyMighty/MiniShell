@@ -6,26 +6,39 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 09:50:00 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/20 19:08:22 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/22 14:35:46 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/libshell.h"
+#include "../../../includes/libshell.h"
 
-int 	check_no_space(t_msh *msh, char *str)
+int 	check_end(char *str, int pos)
 {
-	int		index;
-
-	index = msh->utils->pos;
-	while (str[index] != '\0' && ft_isalnum(str[index]) == 1)
-		index++;
-	if (str[index] == '\0')
+	if (str[pos] != '\0' && (ft_isalnum(str[pos]) == 0))
 		return (1);
 	else
 		return (0);
 }
 
-char 	*check_content(char *str)
+int 	check_no_space(t_msh *msh, char *str)
+{
+	int index;
+
+	index = msh->utils->pos;
+	index--;
+	if (index == 0)
+		return (0);
+	if (index > 0)
+	{
+		if (str[index - 1] == ' ')
+			return (1);
+		else if (str[index - 1] != '$' && str[index - 1] != ' ')
+			return (0);
+	}
+	return (0);
+}
+
+char 	*check_content(t_msh *msh, char *str)
 {
 	char 	*first_step;
 	char 	*second_step;

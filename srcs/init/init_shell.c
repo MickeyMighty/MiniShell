@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 18:42:01 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/21 19:13:49 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/22 14:45:40 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void 	aff_welcome(void)
 	ft_putstr(" | .==============. | \n");
 	ft_putstr("| ___________________| \n");
 	ft_putstr("|____________________| \n");
-	ft_putstr("*+*  BY   LOAMAR dss  *+* \n\n");
+	ft_putstr("*+*  BY   LOAMAR   *+* \n\n");
 }
 
 // t_data		*init_data_struct(t_data *data)

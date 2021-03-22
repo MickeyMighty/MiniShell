@@ -6,13 +6,13 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 11:56:22 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/21 15:26:18 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/22 16:45:41 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libshell.h"
 
-static void		free_split(char **str)
+void		free_split(char **str)
 {
 	int		index;
 

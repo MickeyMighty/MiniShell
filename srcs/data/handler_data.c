@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 20:48:58 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/21 11:11:32 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/22 17:38:38 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 
 static void 	ft_size_data(t_msh *msh, char *buf)
 {
+
 	msh->data->size_data = 0;
 	ft_memset(buf, 0, ft_strlen(buf));
 	free(buf);
@@ -38,9 +39,16 @@ static void 	ft_size_data(t_msh *msh, char *buf)
 
 int 	handler_data(t_msh *msh, char *buf) // mettre en void
 {
+	printf("C EST ICI \n");
 	msh->data->prompt_data = ft_split_data(msh, buf, ' ');
+	printf("___1\n");
 	if (msh->data->prompt_data == NULL)
+	{
+		printf("wtf\n\n");
 		return(return_error(msh, NULL,"syntax error multiligne."));
+	}
+	printf("___2\n");
 	ft_size_data(msh, buf);
+	printf("___3\n");
 	return (SUCCESS);
 }

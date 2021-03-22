@@ -6,13 +6,13 @@
 /*   By: tidminta <tidminta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 15:41:31 by tidminta          #+#    #+#             */
-/*   Updated: 2021/03/04 13:46:49 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/22 09:42:32 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libshell.h"
 
-int			ft_my_env(t_msh *msh, t_list *element)
+int			my_env(t_msh *msh, t_list *element)
 {
 	t_env_list 	*env;
 

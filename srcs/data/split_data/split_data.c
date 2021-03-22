@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 19:36:18 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/21 11:07:03 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/22 17:16:02 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,16 +64,21 @@ char **res)
 	split_data->error = 0;
 	while (str[split_data->pos] && (split_data->nb < split_data->nb_word))
 	{
+		printf("->res[%s]\n", res[split_data->nb]);
 		split_data->pos_index = 0;
 		while (str[split_data->pos] != '\0' && str[split_data->pos] == ' ')
 			split_data->pos++;
 		res[split_data->nb] = ft_substr(str, split_data->pos,
 		ft_get_len_word(split_data, str));
+		printf("->res[%s]\n", res[split_data->nb]);
 		split_data->nb++;
 		split_data->pos = split_data->pos_index;
-		if (res[split_data->nb] == NULL || split_data->error == 1)
+		if (res[split_data->nb] == NULL && split_data->error == 1)
 			return (NULL);
+		// if (split_data->error == 1)
 	}
+	printf("->res[%s]\n", res[0]);
+	printf("->res[%s]\n", res[1]);
 	return (res);
 }
 
@@ -115,22 +120,33 @@ char			**ft_split_data(t_msh *msh, char *s, char c)
 		return (NULL);
 	if (!(split_data = (t_split_data*)malloc(sizeof(t_split_data))))
 		return (NULL);
+	printf("hey\n");
 	split_data->error = 0;
 	split_data->nb_word = 0;
 	split_data->pos = 0;
+	printf("hey 2\n");
 	ft_count_word(msh ,s, c, split_data);
 	if (split_data->error == 1)
 		return (NULL);
+	printf("hey 3\n");
 	if (!(res = (char **)malloc(sizeof(char *) * (split_data->nb_word + 1))))
 		return (NULL);
+	printf("hey 4\n");
 	split_data->pos = 0;
+	printf("hey 5\n");
 	res = ft_word_to_tab(msh, s, split_data, res);
+	printf("hey 6\n");
 	if (res == NULL)
 	{
-		ft_free_tab(res, split_data->nb_word, split_data);
-		return(NULL);
+		printf("hey 7\n");
+		// ft_free_tab(res, split_data->nb_word, split_data);
+		return (NULL);
 	}
-	res[split_data->nb_word] = NULL;
+	printf("hey 8\n");
+	printf("hey 9\n");
 	free (split_data);
+	printf("res[0] = [%s]\n", res[0]);
+	printf("res[0] = [%s]\n", res[1]);
+	printf("hey 10\n");
 	return (res);
 }

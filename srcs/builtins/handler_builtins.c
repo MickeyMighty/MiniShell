@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 18:04:49 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/20 20:17:59 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/22 12:01:27 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,30 +23,37 @@ static int	ft_built_in_check(t_msh *msh, t_list *element, char **env)
 	// faire pour les ""
 	while (++i < len)
 		element->content[i] = ft_tolower(element->content[i]);
-	if (ft_strncmp(element->content, "echo", len) == 0)
-		return (ft_my_echo(msh, element));
-	else if (ft_strncmp(element->content, "cd", len) == 0)
-		return (ft_my_cd(msh, element));
-	else if (ft_strncmp(element->content, "pwd", len) == 0)
-		return (ft_my_pwd(msh, element));
-	else if (ft_strncmp(element->content, "export", len) == 0)
-		return (ft_my_export(msh, element));
+	// if (ft_strncmp(element->content, "echo", len) == 0)
+	// 	return (my_echo(msh, element));
+	// else if (ft_strncmp(element->content, "cd", len) == 0)
+	// 	return (my_cd(msh, element));
+	// else if (ft_strncmp(element->content, "pwd", len) == 0)
+		// return (my_pwd(msh, element));
+	if (ft_strncmp(element->content, "export", len) == 0)
+		return (my_export(msh, element));
 	else if (ft_strncmp(element->content, "env", len) == 0)
-		return (ft_my_env(msh, element));
-	else if (ft_strncmp(element->content, "unset", len) == 0)
-		return (ft_my_unset(msh, element));
+		return (my_env(msh, element));
+	// else if (ft_strncmp(element->content, "unset", len) == 0)
+		// return (my_unset(msh, element));
 	else if (ft_strncmp(element->content, "exit", len) == 0)
-		return (ft_my_exit(msh, element));
+		return (my_exit(msh, element));
 	else
-		return (ERROR);
+		return (ERROR_BUILTINS);
 }
 // // detect args & options
 // // exec cmd + args & options
 //
 int 		ft_handler_builtins(t_msh *msh, t_list *element, char **env)
 {
-	if (ft_built_in_check(msh, element, env) == SUCCESS)
+	int		ret;
+	ret = ft_built_in_check(msh, element, env);
+	if (ret == SUCCESS)
 		return (SUCCESS);
+	else if (ret == ERROR)
+	{
+		ft_putstr_fd("\n", 1);
+		return (ERROR);
+	}
 	else
 		return (ERROR);
 	//builtin executiuon by ptr_func_tab

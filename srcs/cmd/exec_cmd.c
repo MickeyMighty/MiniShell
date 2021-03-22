@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 22:57:42 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/22 00:34:49 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/22 10:32:32 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,21 @@ static t_list 		*check_exec(t_msh *msh, t_list *cmd, char **env)
 
 static	void 	child_process(t_msh *msh, t_list *cmd, char **env)
 {
+	int 	count;
+	int 	ret;
 	char 	*exec_path;
 	char 	*tmp;
 
-
-	exec_path = NULL;
-	tmp = ft_strjoin(msh->utils->path[count], "/");
-	exec_path = ft_strjoin(tmp, cmd->content);
-	free(tmp);
-	cmd->tab_args[0] = ft_strdup(exec_path);
-	ret = execve(exec_path, cmd->tab_args, env);
+	count = 0;
+	while (msh->utils->path[++count])
+	{
+		ret = 0;
+		tmp = ft_strjoin(msh->utils->path[count], "/");
+		exec_path = ft_strjoin(tmp, cmd->content);
+		free(tmp);
+		cmd->tab_args[0] = ft_strdup(exec_path);
+		ret = execve(exec_path, cmd->tab_args, env);
+	}
 	free(exec_path);
 	exit(ret);
 }
@@ -46,7 +51,7 @@ static	void 	parent_process(t_msh *msh, t_list *cmd, int pid)
 	int 	child_status;
 
 	child_status = 0;
-	signal(SIGINT, SIGQUIT);
+	signal(SIGINT, SIG_IGN);
 	wait(&child_status);
 	if (WIFSIGNALED(child_status))
 	{
@@ -55,9 +60,8 @@ static	void 	parent_process(t_msh *msh, t_list *cmd, int pid)
 	}
 	if (WIFEXITED(child_status))
 		global_return = child_status;
-	global_sign_info = WEXITSTATUS(chils_status);
-	(void)child_pid;
-	(void)info;
+	global_sign_info = WEXITSTATUS(child_status);
+	(void)pid;
 }
 
 int 	exec_cmd(t_msh *msh, t_list *cmd, char **env)
@@ -65,18 +69,17 @@ int 	exec_cmd(t_msh *msh, t_list *cmd, char **env)
 	int 	count;
 	int 	pid;
 
-	ret = 0;
 	cmd = (check_exec(msh, cmd, env));
 	if (cmd == NULL)
 		return (ERROR);
 	count = -1;
 	pid = fork();
 	if (pid < 0)
-		return (return_error(NULL, NULL));
+		return (return_error(msh, NULL, NULL));
 	else if (pid == 0)
 		child_process(msh, cmd, env);
 	else
-		parent_process(msh, cmd, pid)
+		parent_process(msh, cmd, pid);
 	return (SUCCESS);
 }
 

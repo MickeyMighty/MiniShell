@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 13:35:59 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/21 16:47:34 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/22 12:04:31 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,30 @@
 # define PATH_MAX 4096
 # define SUCCESS 0
 # define ERROR -1
+# define ERROR_BUILTINS -2
 # define STDIN 0
 # define STDOUT 1
 # define STDERR 2
+
+# define NOQTE 0
+# define YESQTE 1
+# define PIPE 1
+# define SEMICOLON 2
+# define CHEVRONL 3
+# define CHEVRONR 4
+# define CHEVROND 5
+# define AND 6
+# define OR 7
+# define VARIABLE 8
+# define CMD 9
+# define OPTION 10
+# define ARGS 11
+# define REDIR 12
+# define BACKSLASH 92
+# define SQUOTE 39
+# define DQUOTE 34
+# define DOLLAR 36
+# define SEPARATOR 35
 
 # include "./includes/struct.h"
 # include "./includes/error_free.h"
@@ -47,7 +68,7 @@ pid_t					global_pid;
 int						global_error;
 int						global_status;
 int						global_return;
-
+int						global_sign_info;
 
 /*
 ** main/handler_signal.c
@@ -96,7 +117,6 @@ void 			ft_count_word(t_msh *msh, char *s, char c, t_split_data *split_data);
 /*
 ** /.c
 */
-
 
 
 
