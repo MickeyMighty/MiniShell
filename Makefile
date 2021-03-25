@@ -4,13 +4,14 @@ CC		=	gcc
 
 RM		=	rm -f
 
-CFLAGS	=	-I.
+CFLAGS	=	-I. -fsanitize=address
 
 LIBFT	=	./lib/libft/libft.a
 
 SRCS	=	./srcs/main/minishell.c \
 			./srcs/main/handler_signal.c \
 			./srcs/builtins/handler_builtins.c \
+			./srcs/builtins/my_cd.c \
 			./srcs/builtins/my_env.c \
 			./srcs/builtins/my_pwd.c \
 			./srcs/builtins/my_export.c \
@@ -23,7 +24,7 @@ SRCS	=	./srcs/main/minishell.c \
 			./srcs/cmd/check/return_check.c \
 			./srcs/env/create_list_env.c \
 			./srcs/env/handler_env.c \
-			./srcs/env/handler_dollar_env.c \
+			./srcs/env/path_env.c \
 			./srcs/list/create_list.c \
 			./srcs/list/handler_list.c \
 			./srcs/list/set_token_list.c \
@@ -36,7 +37,6 @@ SRCS	=	./srcs/main/minishell.c \
 			./srcs/data/split_data/split_data_utils.c \
 			./lib/get_next_line/get_next_line.c \
 			./lib/get_next_line/get_next_line_utils.c
-
 
 OBJS	=	$(SRCS:.c=.o)
 

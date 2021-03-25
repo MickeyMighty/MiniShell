@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 04:42:10 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/22 17:46:15 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/25 14:09:31 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,38 @@ static int    create_tab_args(t_msh *msh)
 // quote " flag qte = 2
 // quote ' flag qte = 1
 
+static int 	check_token_list(t_msh *msh)
+{
+	t_list 	*element;
+	int			check_cmd;
+	int			size;
+
+	size = 1;
+	check_cmd = 0;
+	element = msh->lair_list->start;
+	if (!element || (element == NULL))
+		return (ERROR);
+	while (element)
+	{
+		if (element->token == CMD)
+			check_cmd = 1;
+		else if (element->token == SEPARATOR)
+		{
+			if (check_cmd == 0)
+			{
+				if (size > 1)
+					if (element->previous->token == SEPARATOR)
+						element = element->previous;
+				return (error_cmd(msh, element));
+			}
+			check_cmd = 0;
+		}
+		size++;
+		element = element->next;
+	}
+	return (SUCCESS);
+}
+
 int 	handler_list(t_msh *msh)
 {
 	int 	count;
@@ -150,15 +182,17 @@ int 	handler_list(t_msh *msh)
 	count = 0;
 	msh->lair_list = init_lair_list(msh->lair_list);
 	if (msh->lair_list == NULL)
-	{
-		global_error = ERROR;
 		return (ERROR);
-	}
-	ft_fill_empty_list(msh->lair_list, msh->data->prompt_data[count]);
+	if (msh->data->prompt_data[count] != NULL)
+		ft_fill_empty_list(msh->lair_list, msh->data->prompt_data[count]);
+	else
+		return (SUCCESS);
 	while (++count < msh->data->size_data)
 		ft_fill_end_list(msh->lair_list, msh->data->prompt_data[count]);
 	set_token_list(msh);
 	if (create_tab_args(msh) == ERROR)
+		return (ERROR);
+	if (check_token_list(msh) == ERROR)
 		return (ERROR);
 	print_list(msh->lair_list); // a supp
 	return (SUCCESS);

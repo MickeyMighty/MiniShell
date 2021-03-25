@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 13:17:45 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/22 14:46:30 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/24 11:28:37 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static void	process(int sign)
 {
-	printf("ok");
 	if (!kill(global_pid, sign))
 	{
 		if (sign == SIGQUIT)
@@ -40,7 +39,7 @@ static void	process(int sign)
 
 void 	handler_signal(int sign)
 {
-	printf("ok 1");
+	printf("-signal-\n");
 	if ((sign == SIGINT || sign == SIGQUIT) && global_pid != 0)
 		process(sign);
 	else if (sign == SIGINT || sign == SIGQUIT)
@@ -54,5 +53,4 @@ void 	handler_signal(int sign)
 		else if (sign == SIGQUIT)
 			ft_putstr_fd("\b\b  \b\b", 1);
 	}
-	printf("ok 2");
 }

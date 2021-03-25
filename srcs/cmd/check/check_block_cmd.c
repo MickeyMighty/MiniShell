@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 09:50:00 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/22 14:35:46 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/25 14:21:17 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,10 +107,21 @@ t_list			*check_block_cmd(t_msh *msh, t_list *element)
 		return (NULL);
 	msh->utils->no_space = 0;
 	element->content = return_all_content(msh, element->content);
+	if (element->content == NULL)
+	{
+		global_error_msg = ERROR;
+		return (NULL);
+	}
 	while (element->tab_args[pos] != NULL)
 	{
 		msh->utils->no_space = 0;
-		element->tab_args[pos] = return_all_content(msh, element->tab_args[pos]);
+		element->tab_args[pos] =
+		return_all_content(msh, element->tab_args[pos]);
+		if (element->tab_args[pos] == NULL)
+		{
+			global_error_msg = ERROR;
+			return (NULL);
+		}
 		pos++;
 	}
 	msh->utils->pos = 0;

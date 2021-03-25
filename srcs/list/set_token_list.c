@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 18:10:32 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/02 14:34:54 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/25 14:04:13 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,21 @@ int 					get_quote(char *str)
 
 static int				separator_check(t_msh *msh, char *s)
 {
-	int		i;
-	char	**tmp;
-
-	i = 0;
-	tmp = msh->utils->sep_tab;
-	while (tmp[i])
-	{
-		if (!ft_strncmp(s, tmp[i], ft_strlen(s))
-			&& ft_strlen(s) == ft_strlen(tmp[i]))
-			return (1); // a preciser return -1 ?
-		i++;
-	}
+	if (!ft_strncmp(s, "|", ft_strlen(s))
+		&& ft_strlen(s) == 1)
+		return (1);
+	else if (!ft_strncmp(s, ";", ft_strlen(s))
+		&& ft_strlen(s) == 1)
+		return (1);
+	else if (!ft_strncmp(s, "<", ft_strlen(s))
+		&& ft_strlen(s) == 1)
+		return (1);
+	else if (!ft_strncmp(s, ">", ft_strlen(s))
+		&& ft_strlen(s) == 1)
+		return (1);
+	else if (!ft_strncmp(s, ">>", ft_strlen(s))
+		&& ft_strlen(s) == 2)
+		return (1);
 	return (0);
 }
 
@@ -66,11 +69,16 @@ static int				option_check(t_msh *msh, char *s)
 static int		token_recognition(t_msh *msh, char *s, int indice)
 {
 	if (indice == 0)
-		return (CMD);
+	{
+		if (separator_check(msh, s) == 1)
+			return (SEPARATOR);
+		else
+			return (CMD);
+	}
 	else if (((indice == 1 && option_check(msh, s)) || (indice > 1 && option_check(msh, s)))
 			&& (msh->utils->check_arg == 0))
 		return (OPTION);
-	else if (indice != 0 && separator_check(msh, s))
+	else if (indice != 0 && separator_check(msh, s) == 1)
 		return (SEPARATOR);
 	else
 	{

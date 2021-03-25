@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 15:13:10 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/22 14:45:09 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/25 14:14:17 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,13 @@ static 	char 	*return_less_qte(t_msh *msh, t_env_list *element, int key)
 	msh->utils->len)));
 }
 
-char 	*return_element(t_msh *msh, t_env_list *element, char *tmp, int key)
+char 	*return_element(t_msh *msh, char *tmp, int key)
 {
+	t_env_list  *element;
 	int		start;
 
 	start = 0;
+	element = msh->env_lair->start;
 	msh->utils->len = 0;
 	while (element)
 	{
@@ -66,7 +68,6 @@ char 	*return_element(t_msh *msh, t_env_list *element, char *tmp, int key)
 
 static char 	*return_dollar(t_msh *msh, char *str, int key)
 {
-    t_env_list  *element;
 	char 		*tmp;
 	int 		len;
 
@@ -74,8 +75,6 @@ static char 	*return_dollar(t_msh *msh, char *str, int key)
 	if ((key == NOQTE && msh->utils->no_space == 0)
 	&& check_no_space(msh, str) == 1)
 		msh->utils->no_space = 0;
-	while (str[msh->utils->pos] != ' ')
-    element = msh->env_lair->start;
 	len = msh->utils->pos;
 	while (ft_isalnum(str[len]) != 0)
 		len++;
@@ -90,7 +89,7 @@ static char 	*return_dollar(t_msh *msh, char *str, int key)
 			msh->utils->no_space = 2;
 	}
 	tmp = ft_substr(str, msh->utils->pos, len);
-	if ((tmp = return_element(msh, element, tmp, key)) != NULL)
+	if ((tmp = return_element(msh, tmp, key)) != NULL)
 		return (tmp);
     return (ft_strdup("\0"));
 }
@@ -131,9 +130,9 @@ char		*return_all_content(t_msh *msh, char *str)
 	char 	*first_step;
 	char 	*second_step;
 
-	msh->utils->pos = 0;
+	msh->utils->pos = -1;
 	first_step = NULL;
-	while (str[msh->utils->pos++])
+	while (str[++msh->utils->pos])
 	{
 		second_step = NULL;
 		if (str[msh->utils->pos] == DQUOTE || str[msh->utils->pos] == SQUOTE)
@@ -141,16 +140,24 @@ char		*return_all_content(t_msh *msh, char *str)
 			msh->utils->quote = str[msh->utils->pos];
 			second_step = return_quote(msh, str);
 		}
-		else if (str[msh->utils->pos] == '$')
+		else if ((str[msh->utils->pos] == '$')
+		&& ((str[msh->utils->pos + 1] != ' ')
+		&& (str[msh->utils->pos + 1] != '\0')))
 			second_step = return_dollar(msh, str, NOQTE);
 		else
+		{
+			if (str[msh->utils->pos] == '\\')
+			{
+				if (str[msh->utils->pos + 1] == '\0')
+					return (NULL);
+				msh->utils->pos++;
+			}
 			second_step = ft_substr(str, msh->utils->pos, 1);
+		}
 		msh->utils->no_space = 1;
 		first_step = ft_strjoin(first_step, second_step);
 		if (second_step)
 			free(second_step);
-		// if (str[msh->utils->pos])
-		// 	msh->utils->pos++;
 	}
 	free(str);
 	return (first_step);

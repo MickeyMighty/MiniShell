@@ -6,11 +6,41 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 19:43:38 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/17 09:47:47 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/24 20:24:23 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/libshell.h"
+
+int 			check_word(t_split_data *split_data, char *s, char c)
+{
+	int		pos;
+
+	pos = 0;
+	while (s[pos] == c)
+		pos++;
+	if (s[pos] == '\0')
+	{
+		free(split_data);
+		return (1);
+	}
+	else
+		return (0);
+}
+
+t_split_data 	*init_split_data(t_split_data *split_data, char *s)
+{
+	if (!s || s[0] == '\0' || s == NULL)
+		return (NULL);
+	if (!(split_data = (t_split_data*)malloc(sizeof(t_split_data))))
+		return (NULL);
+	split_data->error = 0;
+	split_data->nb_word = 0;
+	split_data->nb = 0;
+	split_data->pos_index = 0;
+	split_data->pos = 0;
+	return (split_data);
+}
 
 int		ft_count_separator(char *s, int pos)
 {

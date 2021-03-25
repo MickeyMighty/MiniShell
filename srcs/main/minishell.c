@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 19:54:29 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/22 17:59:41 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/25 21:49:18 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,32 +44,28 @@
 
 static void 		end_loop(t_msh *msh, char *buf, int free)
 {
-	// if (buf)
-	// 	free(buf);
-	printf("end loop\n");
+	global_return = SUCCESS;
+	global_error = SUCCESS;
+	global_error_msg = SUCCESS;
 	free_all(msh, FALSE);
-	ft_putstr_fd("\n", 1);
-	printf("end loop\n");
 }
 
 static void 		main_handler(t_msh *msh, char *buf, char **env)
 {
 	global_return = SUCCESS;
+	printf("0\n");
 	if (global_return == SUCCESS)
-		handler_env(msh, env); // cas d'erreur a gerer;
+		global_return = handler_env(msh, env); // cas d'erreur a gerer;
+	printf("1\n");
 	if (global_return == SUCCESS)
-		handler_data(msh, buf);
+		global_return = handler_data(msh, buf);
+	printf("2\n");
 	if (global_return == SUCCESS)
-	{
-		if (handler_list(msh) == ERROR)
-		{
-			global_return = ERROR;
-			return_error(msh, NULL, "Error malloc.");
-		}
-	}
+		global_return = handler_list(msh);
+	printf("3\n");
 	if (global_return == SUCCESS)
-		handler_cmd(msh, env);
-	printf("fin handler\n");
+		global_return = handler_cmd(msh, env);
+	printf("4\n");
 }
 
 static void 		prompt(void)
@@ -84,25 +80,21 @@ static void     	shell_loop(t_msh *msh, char **env)
 	char	*buf;
 
 	// signal(SIGINT, SIG_IGN);
-	printf("2\n");
-	signal(SIGQUIT, handler_signal);
-	signal(SIGINT, handler_signal);
-	printf("3\n");
+	signal(SIGQUIT, &handler_signal);
+	signal(SIGINT, &handler_signal);
 	prompt();
     while (get_next_line(0, &buf) > 0)
     {
-		printf("4\n");
 		global_return = SUCCESS;
 		msh = init_msh(msh);
-		prompt();
 		signal(SIGINT, handler_signal);
 		main_handler(msh, buf, env);
 		end_loop(msh, buf, FALSE);
 		prompt();
-		printf("5\n");
     }
 	if (buf)
 		free(buf);
+	global_loop = 0;
 	// ft_exit()
 	exit(0);
 }
@@ -112,13 +104,10 @@ int     main(int argc, char **argv, char **env)
 	t_msh			*msh;
 
 	aff_welcome();
-	// if (!(msh = (t_msh*)malloc(sizeof(t_msh))))
-	// 	exit(EXIT_FAILURE);
-	global_pid = 0;
+	global_pid = 1;
 	(void)argc;
 	(void)argv;
 	msh = NULL;
-	printf("1\n");
     shell_loop(msh, env);
     return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 18:09:50 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/22 11:30:18 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/25 10:51:47 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,10 @@ typedef struct		s_utils
 	int 	len;
 	int 	pos_list;
 	int 	multi_pipe;
+	int 	pipe;
 	// char 	*lair_export;
 	// char 	*tmp_utils; // a free ? existe ?
 	char 	**path;
-	char	**sep_tab;
-	// char 	**tab_args;
 }					t_utils;
 
 typedef struct		s_split_data

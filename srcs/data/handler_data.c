@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 20:48:58 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/22 17:38:38 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/24 20:42:29 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,28 +27,22 @@
 //
 // }
 
-static void 	ft_size_data(t_msh *msh, char *buf)
-{
-
-	msh->data->size_data = 0;
-	ft_memset(buf, 0, ft_strlen(buf));
-	free(buf);
-	while (msh->data->prompt_data[msh->data->size_data] != NULL)
-		msh->data->size_data++;
-}
-
 int 	handler_data(t_msh *msh, char *buf) // mettre en void
 {
-	printf("C EST ICI \n");
+	global_error_msg = 0;
+
+	msh->data->size_data = 0;
 	msh->data->prompt_data = ft_split_data(msh, buf, ' ');
-	printf("___1\n");
 	if (msh->data->prompt_data == NULL)
 	{
-		printf("wtf\n\n");
-		return(return_error(msh, NULL,"syntax error multiligne."));
+		if (global_error_msg == 0)
+			return (ERROR);
+		else if (global_error_msg == 1)
+			return(return_error(msh, NULL,"syntax error multiligne."));
 	}
-	printf("___2\n");
-	ft_size_data(msh, buf);
-	printf("___3\n");
+	ft_memset(buf, 0, ft_strlen(buf));
+	free(buf);
+	msh->data->size_data = global_size_word;
+	// ft_size_data(msh, buf);
 	return (SUCCESS);
 }

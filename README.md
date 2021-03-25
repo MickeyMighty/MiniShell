@@ -64,6 +64,7 @@
 | *What is difference between dup and dup2 ?* | [click on me](https://stackoverflow.com/questions/4171126/what-do-the-dup-and-dup2-systems-really-do#:~:text=The%20difference%20between%20dup%20and,it%20if%20it's%20already%20taken.)|
 | *How to capture Control+D signal ?* | [click on me](https://stackoverflow.com/questions/1516122/how-to-capture-controld-signal)|
 | *How to get the current directory in a C program ?* | [click on me](https://stackoverflow.com/questions/298510/how-to-get-the-current-directory-in-a-c-program)|
+| *Can i have a link for Valgrind(leaks) ?* | [click on me](https://www.valgrind.org/docs/manual/mc-manual.html#mc-manual.uninitvals)|
 | *Some bonus source (in french)* | [click on me](http://paysdu42.fr/?page=minishell.c) and [click on me](https://segfault42.github.io/posts/minishell/)|
 
 

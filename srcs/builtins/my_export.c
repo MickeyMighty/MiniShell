@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 18:04:14 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/22 09:40:25 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/25 17:24:46 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 // 	// printf("end  env_lair -> %s\n", env_lair->end->content);
 // }
 
-static int  check_first_content(char *content, char *str)
+int  check_first_content(char *content, char *str)
 {
 	int		pos;
 
@@ -84,11 +84,10 @@ static void push_to_env(t_msh *msh, char *str)
 int			my_export(t_msh *msh, t_list *element)
 {
     int     pos;
-
     pos = 1;
+
 	if (!element)
 		return (ERROR);
-
     if (ft_strcmp(element->content, "export") == 0
     && element->tab_args[1] == NULL)
         my_env(msh, element);

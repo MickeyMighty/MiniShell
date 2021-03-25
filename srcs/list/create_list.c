@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/07 04:25:27 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/22 17:29:44 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/22 21:43:49 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,16 @@ int 	ft_fill_empty_list(t_lair_list *lair_list, char *content)
 {
 	t_list	*new_element;
 
-	printf("zépadi 0\n");
 	if (!(new_element = (t_list *)malloc(sizeof(t_list))))
 		return (-1);
-	printf("zépadi 1\n");
 	new_element->content = content;
-	printf("zépadi 2\n");
 	new_element->token = 0;
-	printf("zépadi 3\n");
 	new_element->tab_args = NULL;
-	printf("zépadi 4\n");
 	new_element->previous = lair_list->start;
-	printf("zépadi 5\n");
 	new_element->next = lair_list->end;
-	printf("zépadi 6\n");
 	lair_list->end = new_element;
-	printf("zépadi 7\n");
 	lair_list->start = new_element;
-	printf("zépadi 9\n");
 	lair_list->size++;
-	printf("zépadi 10\n");
 	return (0);
 }
 

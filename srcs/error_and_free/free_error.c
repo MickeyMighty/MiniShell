@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 11:56:22 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/22 16:45:41 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/25 21:49:26 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,6 @@ void		free_split(char **str)
 	}
 	free(str[index]);
 	free(str);
-}
-
-void 	free_data(t_msh *msh)
-{
-	if (msh->data)
-	{
-		if (msh->data->prompt_data)
-			free_split(msh->data->prompt_data);
-		free(msh->data);
-	}
 }
 
 void 	free_list(t_msh *msh)
@@ -59,5 +49,23 @@ void 	free_env_lair(t_msh *msh)
 	{
 		msh->env_lair = clear_env(msh->env_lair);
 		free(msh->env_lair);
+	}
+}
+
+void 	free_all(t_msh *msh, int free_key)
+{
+	if (msh)
+	{
+		if (msh->utils)
+		{
+			if (msh->utils->path)
+				free_split(msh->utils->path);
+			free(msh->utils);
+		}
+		if (msh->data)
+			free(msh->data);
+		free_list(msh);
+		if (free_key == 1)
+			free(msh);
 	}
 }
