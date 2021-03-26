@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 22:57:33 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/25 23:17:27 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/26 16:23:11 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,6 @@ int 		error_cmd(t_msh *msh, t_list *element)
 			"syntax error near unexpected token"));
 	}
 	return (ERROR);
-}
-
-int 			get_value_sep(char *str)
-{
-	if (ft_strcmp(str, "|") == 0)
-		return (PIPE);
-	else if (ft_strcmp(str, "<") == 0 || ft_strcmp(str, ">") == 0
-	|| ft_strcmp(str, ">>") == 0)
-		return (REDIR);
-	else if (ft_strcmp(str, ";") == 0)
-		return (SEMICOLON);
-	else
-		return (0);
 }
 
 static t_list 	*multi_pipe(t_msh *msh, t_list *element, char **env)
@@ -86,6 +73,20 @@ static t_list 	*multi_pipe(t_msh *msh, t_list *element, char **env)
 	return (element);
 }
 
+t_list 		*exec_cmd_handler(t_msh *msh, t_list *element, char **env)
+{
+	if ((element->next->next->token == SEPARATOR)
+	&& (get_value_sep(element->next->next->content) == PIPE))
+			element = multi_pipe(msh, element->next->next->next, env);
+	else if ((element->next->next->token == SEPARATOR)
+	&& (get_value_sep(element->next->next->content) == SEMICOLON))
+	{
+		exec_cmd(msh, element->previous, env);
+		element = element->next->next->next;
+	}
+	return (element);
+}
+
 int 	sort_cmd(t_msh *msh, t_list *element, char **env)
 {
 	t_list	*tmp;
@@ -95,26 +96,26 @@ int 	sort_cmd(t_msh *msh, t_list *element, char **env)
 		msh->utils->pipe = 0;
 		if (element->token == CMD)
 			element = check_block_cmd(msh, element);
-		if (global_error_msg == ERROR)
+		if (global_error_msg == ERROR_MULTI)
 			return (return_error(msh, NULL, "syntax error multiligne."));
 		if (element->next != NULL && element->next->token == SEPARATOR)
 		{
 			if (get_value_sep(element->next->content) == PIPE)
 				element = multi_pipe(msh, element, env);
 			else if (get_value_sep(element->next->content) == REDIR)
-				element = ft_reddirection(msh, element);
+				element = redirection(msh, element);
 			else if (get_value_sep(element->next->content) == SEMICOLON)
 			{
 				exec_cmd(msh, element, env);
 				ft_putstr_fd("\n", 1);
 				element = element->next;
 			}
-			if (global_error_msg == ERROR)
+			if (global_error_msg == ERROR_MULTI)
 				return (return_error(msh, NULL, "syntax error multiligne."));
 		}
 		else
 			exec_cmd(msh, element, env);
-		if (element != NULL)
+		if (element)
 			element = element->next;
 	}
 	return (1);
@@ -126,6 +127,7 @@ int 	handler_cmd(t_msh *msh, char **env)
 	t_list 	*tmp;
 	t_list 	*element;
 
+	global_error_msg = 0;
 	element = msh->lair_list->start;
 	printf("handler cmd start\n");
 	if (sort_cmd(msh, element, env) == ERROR)

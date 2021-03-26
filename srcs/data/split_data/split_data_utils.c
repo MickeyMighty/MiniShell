@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 19:43:38 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/24 20:24:23 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/26 10:03:24 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_split_data 	*init_split_data(t_split_data *split_data, char *s)
 int		ft_count_separator(char *s, int pos)
 {
 	if (s[pos + 1])
-		if ((s[pos] == '>' || s[pos + 1] == '>'))
+		if ((s[pos] == '>' && s[pos + 1] == '>'))
 			return (2);
 	if (s[pos] == ';' || s[pos] == '|' || s[pos] == '<' || s[pos] == '>')
 		return (1);

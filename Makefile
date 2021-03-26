@@ -20,6 +20,7 @@ SRCS	=	./srcs/main/minishell.c \
 			./srcs/cmd/handler_cmd.c \
 			./srcs/cmd/pipe_cmd.c \
 			./srcs/cmd/redir_cmd.c \
+			./srcs/cmd/redir_file_cmd.c \
 			./srcs/cmd/check/check_block_cmd.c \
 			./srcs/cmd/check/return_check.c \
 			./srcs/env/create_list_env.c \

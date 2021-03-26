@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 19:13:55 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/25 13:34:30 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/26 09:46:06 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int     redirection_left(t_msh *msh, t_list *element);
 int     redirection_right(t_msh *msh, t_list *element);
 int     redirection_double_right(t_msh *msh, t_list *element);
 int     create_file(t_msh *msh, t_list *element);
-void    redirection(t_msh *msh, t_list *element);
+t_list    *redirection(t_msh *msh, t_list *element);
 
 int 	check_end(char *str, int pos);
 int 	check_no_space(t_msh *msh, char *str);

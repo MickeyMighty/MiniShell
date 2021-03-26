@@ -5,61 +5,86 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/24 07:42:13 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/25 23:35:30 by loamar           ###   ########.fr       */
+/*   Created: 2021/03/26 10:16:20 by loamar            #+#    #+#             */
+/*   Updated: 2021/03/26 15:55:57 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libshell.h"
 
-int     redirection_left(t_msh *msh, t_list *element)
+static int          get_type_redir(char *content)
 {
-    int     ret;
-
-    ret = open(element, R_ONLY);
-    return (ret);
+    if (!content)
+        return (ERROR);
+    if (ft_strcmp(content, "<") == 0)
+        return (CHEVRONL);
+    else if (ft_strcmp(content, ">") == 0)
+        return (CHEVRONR);
+    else if (ft_strcmp(content, ">>") == 0)
+        return (CHEVROND);
+    else
+        return (ERROR);
 }
 
-int     redirection_right(t_msh *msh, t_list *element)
+int             return_redir_error(t_msh *msh, t_list *element, int fd, int i)
 {
-    int     ret;
+    char    *join;
 
-    ret = open(element, O_CREAT |  O_RDWR | O_TRUNC, 0644);
-    return (ret);
+    join = ft_strjoin(element->tab_args[i], ": ");
+    return_error(msh, join, strerror(errno));
+    ft_putstr_fd("\n", 2);
+    global_error = ERROR_REDIRECTION;
+    free(join);
+    return (fd);
 }
 
-int     redirection_double_right(t_msh *msh, t_list *element)
+static t_list     *exec_redirection(t_msh *msh, int fd, int redirection)
 {
-    int     ret;
+	int				child_status;
 
-    ret = open(element, O_CREAT |  O_RDWR | O_APPEND, 0644);
-    return (ret);
+	child_status = 0;
+	if (fork() == 0)
+	{
+		dup2(fd, redirection);
+		close(fd);
+        if (element->next->next)
+		      element = exec_cmd_handler(msh, element);
+        else
+        {
+            exec_cmd(msh, element->previous, env);
+            element = element->next;
+        }
+		exit(global_info_ret);
+	}
+	else
+	{
+		wait(&child_status);
+		global_info_ret = WEXITSTATUS(child_status);
+	}
+    return (element);
 }
 
-int     create_file(t_msh *msh, t_list *element)
+t_list				*redirections(t_msh *msh, t_list *element)
 {
-    int     ret;
+	int				fd;
+    int             type;
+	int				redirection;
 
-    if (element->next->token == CHEVRONL)
-        ret = redirection_left(msh, element);
-    else if (element->next->token == CHEVRONR)
-        ret = redirection_right(msh, element);
-    else if (element->next->token == CHEVROND)
-        ret = redirection_double_right(msh, element);
-    return (ret);
-}
-
-void    redirection(t_msh *msh, t_list *element)
-{
-    int     fd;
-    t_list  *tmp;
-
-    tmp = element;
-    if (element->token == CMD)
+	redirection = 1;
+    if (element->next && element->next->token == SEPARATOR)
+        type = get_type_redir(element->next->content)
+    if (type == ERROR)
+        return (NULL);
+    if (!element->next->next && element->next->next->token != CMD)
     {
-        element = element->next;
-        if (element->token == SEPARATOR && element->next->token == CMD)
-            element = element->next->next;
+        error_cmd(t_msh, element->next);
+        return (NULL);
     }
-    fd = create_file(msh, element);
+    if (element->next && type == CHEVRONL)
+		redirection = 0;
+    element = element->next;
+	fd = create_file(element->next, type);
+	if (fd == ERROR)
+		return (NULL);
+	exec_redirection(msh, element, fd, redirection);
 }

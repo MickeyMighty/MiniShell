@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 03:33:33 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/24 13:08:48 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/26 10:44:16 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,20 @@ void		free_tab_args(t_msh *msh, char **str)
 	free(str);
 }
 
+// static 	int 	check_gloabl_error(t_msh *msh, char *cmd, char *msh)
+// {
+// 		if (global_error == ERROR)
+// 			ft_putendl_fd("syntax error multiligne.")
+// }
+
 int 	return_error(t_msh *msh, char *cmd, char *msg)
 {
 	ft_putstr_fd("minishell: ", 2);
-	if (global_error == ERROR_CMD)
+	// if (check_global_error(msh, cmd, msg) != 0)
+	// 	return (ERROR);
+	if (global_error_msg == ERROR_MULTI)
+		ft_putendl_fd(msg, 2);
+	else if (global_error == ERROR_CMD)
 	{
 		if (msg)
 		{
@@ -54,7 +64,7 @@ int 	return_error(t_msh *msh, char *cmd, char *msg)
 			ft_putendl_fd("\'", 2);
 		}
 	}
-	else if (global_error != ERROR_CMD)
+	else if (global_error != ERROR)
 	{
 		if (cmd != NULL)
 		{

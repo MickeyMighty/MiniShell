@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 13:35:59 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/25 21:01:00 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/26 14:08:07 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,20 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <dirent.h>
+#include <fcntl.h>
 
-# define TRUE 0
-# define FALSE 1
-# define PATH_MAX 4096
 # define SUCCESS 0
 # define ERROR -1
 # define ERROR_BUILTINS -2
 # define ERROR_CMD -3
+# define ERROR_SEP -4
+# define ERROR_REDIRECTION -5
+# define ERROR_MULTI -6
+
+
+# define TRUE 0
+# define FALSE 1
+# define PATH_MAX 4096
 # define STDIN 0
 # define STDOUT 1
 # define STDERR 2
@@ -55,7 +61,6 @@
 
 # include "./includes/struct.h"
 # include "./includes/error_free.h"
-# include "./includes/data.h"
 # include "./includes/list.h"
 # include "../lib/libft/libft.h"
 # include "../lib/get_next_line/get_next_line.h"
@@ -108,6 +113,8 @@ void			set_token_list(t_msh *msh);
 
 char			*get_exec_path(t_msh *msh, char *content);
 int				get_path(t_msh *msh);
+
+int                 return_redir_error(t_msh *msh, t_list *element, int fd, int i);
 
 /*
 ** data/.c
