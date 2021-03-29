@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 11:23:10 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/27 14:32:09 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/29 17:40:24 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,9 @@ static int			set_directory(t_msh *msh, char *path, int home)
 	else
 		ft_putstr_fd(": Not a directory", 2);
 	ft_putchar_fd('\n', 2);
-	if (home)
-		free(path);
+	// if (path)
+	// if (path && (home != 0))
+	// 	free(path);
 	return (SUCCESS);
 }
 

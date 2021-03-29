@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 22:57:33 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/28 21:50:08 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/29 16:26:07 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ static	t_list	*sort_cmd(t_msh *msh, t_list *element, char **env)
 	else if (get_value_sep(element->next->content) == SEMICOLON)
 	{
 		exec_cmd(msh, element, env);
-		ft_putstr_fd("\n", 1);
 		element = element->next;
 	}
 	return (element);

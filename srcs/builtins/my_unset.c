@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 21:56:45 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/27 14:41:47 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/29 17:40:23 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static	int		pop_env(t_msh *msh, int pos)
 	i = 1;
 	if (msh->env_lair->size == 0)
 		return (-1);
+	if (msh->env_lair->size == 1)
+		msh->env_lair = clear_env(msh->env_lair);
 	now_element = msh->env_lair->start;
 	while (i++ < pos)
 		now_element = now_element->next;
@@ -47,13 +49,17 @@ static int		find_env(t_msh *msh, char *content, int index)
 	if (!content)
 		return (-1);
 	element = msh->env_lair->start;
-	if (!element)
+	if (!element || element == NULL)
 		return (-1);
 	while (element)
 	{
-		if (ft_strcmp(content, element->first_content) == 0)
-			return (index);
-		element = element->next;
+		if (element && element->first_content)
+		{
+			if (ft_strcmp(content, element->first_content) == 0)
+				return (index);
+		}
+		if (element)
+			element = element->next;
 		index++;
 	}
 	return (-1);
@@ -73,7 +79,7 @@ int				my_unset(t_msh *msh, t_list *element)
 		index = find_env(msh, element->tab_args[i], i);
 		if (index != -1)
 		{
-			if (element->tab_args[index])
+			if (element->tab_args[i])
 				pop_env(msh, index);
 		}
 		else

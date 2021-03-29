@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 13:17:45 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/24 11:28:37 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/29 11:35:49 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,12 @@ static void	process(int sign)
 		ft_putchar_fd('\n', 1);
 		global_status = 1;
 		global_error = ERROR;
+		prompt();
 	}
 }
 
 void 	handler_signal(int sign)
 {
-	printf("-signal-\n");
 	if ((sign == SIGINT || sign == SIGQUIT) && global_pid != 0)
 		process(sign);
 	else if (sign == SIGINT || sign == SIGQUIT)
@@ -49,8 +49,10 @@ void 	handler_signal(int sign)
 			ft_putchar_fd('\n', 1);
 			global_status = 1;
 			global_error = ERROR;
+			prompt();
 		}
 		else if (sign == SIGQUIT)
 			ft_putstr_fd("\b\b  \b\b", 1);
 	}
+	return ;
 }

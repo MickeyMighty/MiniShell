@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/12 06:06:53 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/27 14:32:43 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/29 15:33:40 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ int			my_echo(t_msh *msh, t_list *element)
 		while (element->tab_args[pos] != NULL)
 		{
 			ft_putstr_fd(element->tab_args[pos], 1);
-			if (element->tab_args[pos + 1] != NULL)
+			if (element->tab_args[pos + 1] != NULL
+			&& (ft_strcmp(element->tab_args[pos], "\0") != 0))
 				ft_putstr_fd(" ", 1);
 			pos++;
 		}

@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 15:13:10 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/28 21:56:02 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/29 16:18:31 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,13 @@ char			*return_dollar(t_msh *msh, char *str, int key)
 	char		*tmp;
 	int			len;
 
-	msh->utils->pos++;
+	if (str[msh->utils->pos + 1] == '?')
+		return (ft_itoa(global_status));
 	if ((key == NOQTE && msh->utils->no_space == 0)
 			&& check_no_space(msh, str) == 1)
 		msh->utils->no_space = 0;
 	len = msh->utils->pos;
+	len++;
 	while (ft_isalnum(str[len]) != 0)
 		len++;
 	if (len == msh->utils->pos)
@@ -88,6 +90,10 @@ char			*return_dollar(t_msh *msh, char *str, int key)
 			msh->utils->no_space = 2;
 	}
 	tmp = ft_substr(str, msh->utils->pos, len);
+	if (key == NOQTE)
+		msh->utils->pos = msh->utils->len;
+	else
+		msh->utils->pos = msh->utils->len - 1;
 	if ((tmp = return_element(msh, tmp, key)) != NULL)
 		return (tmp);
 	return (ft_strdup("\0"));
@@ -112,6 +118,7 @@ char			*return_quote(t_msh *msh, char *str)
 		if (str[msh->utils->pos])
 			msh->utils->pos++;
 	}
+
 	return (first_step);
 }
 

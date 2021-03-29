@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 19:54:29 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/29 01:15:18 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/29 16:27:58 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,18 @@ static void 		main_handler(t_msh *msh, char *buf, char **env)
 	global_return = SUCCESS;
 	if (global_return == SUCCESS && global_loop == LOOP)
 		global_return = handler_env(msh, env);
-	if (global_return == SUCCESS)
+	if (global_return == SUCCESS || global_return == EMPTY_ENV)
 		global_return = get_path(msh);
-	if (global_return == SUCCESS)
+	if (global_return == SUCCESS || global_return == EMPTY_ENV)
 		global_return = handler_data(msh, buf);
-	if (global_return == SUCCESS)
+	if (global_return == SUCCESS || global_return == EMPTY_ENV)
 		global_return = handler_list(msh);
-	if (global_return == SUCCESS)
+	if (global_return == SUCCESS || global_return == EMPTY_ENV)
 		global_return = handler_cmd(msh, env);
 	global_loop = ENDLOOP;
 }
 
-static void 		prompt(void)
+void 				prompt(void)
 {
 	ft_putstr_fd("\e[0;36m", 1);
 	ft_putstr_fd("minishell$ ", 1);
@@ -47,16 +47,16 @@ static void     	shell_loop(t_msh *msh, char **env)
 {
 	char	*buf;
 
+	global_pid = 1;
 	global_loop = LOOP;
-	// signal(SIGINT, SIG_IGN);
-	signal(SIGQUIT, &handler_signal);
-	signal(SIGINT, &handler_signal);
+	signal(SIGQUIT, handler_signal);
+	signal(SIGINT, handler_signal);
 	prompt();
     while (get_next_line(0, &buf) > 0)
     {
 		global_return = SUCCESS;
-		msh = init_msh(msh, global_loop);
 		signal(SIGINT, handler_signal);
+		msh = init_msh(msh, global_loop);
 		main_handler(msh, buf, env);
 		end_loop(msh, buf, ENDLOOP);
 		prompt();
@@ -72,7 +72,6 @@ int     main(int argc, char **argv, char **env)
 	t_msh			*msh;
 
 	aff_welcome();
-	global_pid = 1;
 	(void)argc;
 	(void)argv;
 	msh = NULL;

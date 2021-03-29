@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 13:35:59 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/29 00:32:23 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/29 16:22:23 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # define ERROR_SEP -4
 # define ERROR_REDIRECTION -5
 # define ERROR_MULTI -6
+# define EMPTY_ENV -7
 
 
 # define EXIT 0
@@ -123,6 +124,7 @@ int				get_path(t_msh *msh);
 
 int                 return_redir_error(t_msh *msh, t_list *element, int fd, int i);
 
+void 				prompt(void);
 /*
 ** data/.c
 */

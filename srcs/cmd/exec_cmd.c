@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 22:57:42 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/26 10:46:14 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/29 11:49:55 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,18 @@ static t_list 		*check_exec(t_msh *msh, t_list *cmd, char **env)
 // 	return (return_error(args[0], ": command not found\n", 0, 127));
 // }
 
+static void		status_child(void)
+{
+	if (WIFEXITED(global_pid))
+		global_status = WEXITSTATUS(global_pid);
+	if (WIFSIGNALED(global_pid))
+	{
+		global_status = WTERMSIG(global_pid);
+		if (global_status != 131)
+			global_status += 128;
+	}
+}
+
 static	void 	child_process(t_msh *msh, t_list *cmd, char **env, char *exec_path)
 {
 	int 	count;
@@ -71,14 +83,15 @@ static	void 	parent_process(t_msh *msh, t_list *cmd)
 	child_status = 0;
 	signal(SIGINT, SIG_IGN);
 	wait(&child_status);
-	if (WIFSIGNALED(child_status))
-	{
-		ft_putstr_fd("\n", 2);
-		global_sign_info = WTERMSIG(child_status);
-	}
-	if (WIFEXITED(child_status))
-		global_return = child_status;
-	global_sign_info = WEXITSTATUS(child_status);
+	status_child();
+		// if (WIFSIGNALED(child_status))
+		// {
+		// 	ft_putstr_fd("\n", 2);
+		// 	global_status = WTERMSIG(child_status);
+		// }
+		// if (WIFEXITED(child_status))
+		// 	global_return = child_status;
+		// global_status = WEXITSTATUS(child_status);
 }
 
 int 	exec_cmd(t_msh *msh, t_list *cmd, char **env)
@@ -106,46 +119,10 @@ int 	exec_cmd(t_msh *msh, t_list *cmd, char **env)
 		else
 			parent_process(msh, cmd);
 	}
+	global_pid = 0;
 	if (exec_path)
 		free(exec_path);
 	if (global_error == ERROR)
 		return (ERROR);
 	return (SUCCESS);
 }
-
-// int 	exec_cmd(t_msh *msh, t_list *cmd, char **env)
-// {
-// 	int 	count;
-// 	char 	*exec_path;
-// 	char 	*tmp;
-// 	int 	ret;
-//
-// 	ret = 0;
-// 	global_pid = 0;
-// 	cmd = (check_exec(msh, cmd, env));
-// 	if (cmd == NULL)
-// 		return (ERROR);
-// 	count = -1;
-// 	exec_path = NULL;
-// 	global_pid = fork();
-// 	if (global_pid < 0)
-// 		return_error(msh, cmd->content, NULL);
-// 	else if (global_pid == 0)
-// 	{
-// 		while (msh->utils->path[++count])
-// 		{
-// 			ret = 0;
-// 			tmp = ft_strjoin(msh->utils->path[count], "/");
-// 			exec_path = ft_strjoin(tmp, cmd->content);
-// 			free(tmp);
-// 			cmd->tab_args[0] = ft_strdup(exec_path);
-// 			printf("=====================\n");
-// 			execve(exec_path, cmd->tab_args, env);
-// 			printf("=====================\n");
-// 		}
-// 		free(exec_path);
-// 	}
-// 	else
-// 		wait(NULL);
-// 	return (SUCCESS);
-// }

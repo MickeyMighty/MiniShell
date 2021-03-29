@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 10:31:47 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/29 01:12:13 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/29 16:28:45 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char				*get_exec_path(t_msh *msh, char *content)
 
 	index = -1;
 	exec_path = NULL;
-	if (!content)
+	if (!content || msh->utils->path == NULL)
 		return (NULL);
 	while (msh->utils->path[++index] && exec_path == NULL)
 		exec_path = get_dir(msh->utils->path[index], content);
@@ -73,5 +73,6 @@ int					get_path(t_msh *msh)
 			element = element->next;
 	}
 	msh->utils->path = NULL;
-	return (return_error(msh, NULL, "Empty path."));
+	return (EMPTY_ENV);
+	// return (return_error(msh, NULL, "Empty path."));
 }

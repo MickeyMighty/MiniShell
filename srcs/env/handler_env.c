@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 17:30:11 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/29 01:15:31 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/29 17:21:56 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int			handler_env(t_msh *msh, char **env)
 	count = 0;
 	msh->env_lair = init_env_lair(msh->env_lair);
 	if (msh->env_lair == NULL)
-		return (ERROR);
+		return (EMPTY_ENV);
 	msh->env_list = NULL;
 	ft_fill_empty_env(msh->env_lair, sep_env(env[count], 0),
 	sep_env(env[count], 1));
