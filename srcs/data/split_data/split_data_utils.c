@@ -6,13 +6,13 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 19:43:38 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/26 10:03:24 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/29 01:26:10 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/libshell.h"
 
-int 			check_word(t_split_data *split_data, char *s, char c)
+int				check_word(t_split_data *split_data, char *s, char c)
 {
 	int		pos;
 
@@ -28,13 +28,14 @@ int 			check_word(t_split_data *split_data, char *s, char c)
 		return (0);
 }
 
-t_split_data 	*init_split_data(t_split_data *split_data, char *s)
+t_split_data	*init_split_data(t_split_data *split_data, char *s)
 {
 	if (!s || s[0] == '\0' || s == NULL)
 		return (NULL);
 	if (!(split_data = (t_split_data*)malloc(sizeof(t_split_data))))
 		return (NULL);
 	split_data->error = 0;
+	split_data->size = 0;
 	split_data->nb_word = 0;
 	split_data->nb = 0;
 	split_data->pos_index = 0;
@@ -42,7 +43,7 @@ t_split_data 	*init_split_data(t_split_data *split_data, char *s)
 	return (split_data);
 }
 
-int		ft_count_separator(char *s, int pos)
+int				ft_count_separator(char *s, int pos)
 {
 	if (s[pos + 1])
 		if ((s[pos] == '>' && s[pos + 1] == '>'))
@@ -52,7 +53,8 @@ int		ft_count_separator(char *s, int pos)
 	return (0);
 }
 
-static int  check_word_squote(t_split_data *split_data, char *str, int index)
+static	int		check_word_squote(t_split_data *split_data, char *str,
+int index)
 {
 	index++;
 	while (str[index] && str[index] != SQUOTE)
@@ -63,9 +65,9 @@ static int  check_word_squote(t_split_data *split_data, char *str, int index)
 	return (index);
 }
 
-int 	ft_check_word(t_msh *msh, t_split_data *split_data, char *str)
+int				ft_check_word(t_msh *msh, t_split_data *split_data, char *str)
 {
-	int 	index;
+	int		index;
 
 	index = split_data->pos;
 	if (str[index] == SQUOTE)

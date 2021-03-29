@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 11:56:22 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/25 21:49:26 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/29 01:17:27 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ void		free_split(char **str)
 	free(str);
 }
 
-void 	free_list(t_msh *msh)
+void		free_list(t_msh *msh, int key)
 {
 	if (msh->lair_list)
 		msh->lair_list = clear_list(msh->lair_list);
-	if (msh->env_lair)
+	if (msh->env_lair && (key == CTRLD || key == EXIT))
 		msh->env_lair = clear_env(msh->env_lair);
 }
 
@@ -43,7 +43,7 @@ char		**ft_free_tab(char **tab, int j, t_split_data *split_data)
 	return (NULL);
 }
 
-void 	free_env_lair(t_msh *msh)
+void		free_env_lair(t_msh *msh)
 {
 	if (msh->env_lair)
 	{
@@ -52,20 +52,23 @@ void 	free_env_lair(t_msh *msh)
 	}
 }
 
-void 	free_all(t_msh *msh, int free_key)
+void		free_all(t_msh *msh, int free_key)
 {
 	if (msh)
 	{
-		if (msh->utils)
+		if (free_key != CTRLD)
 		{
-			if (msh->utils->path)
-				free_split(msh->utils->path);
-			free(msh->utils);
+			if (msh->utils)
+			{
+				if (msh->utils->path)
+					free_split(msh->utils->path);
+				free(msh->utils);
+			}
+			if (msh->data)
+				free(msh->data);
+			free_list(msh, free_key);
 		}
-		if (msh->data)
-			free(msh->data);
-		free_list(msh);
-		if (free_key == 1)
+		if (free_key == EXIT || free_key == CTRLD)
 			free(msh);
 	}
 }

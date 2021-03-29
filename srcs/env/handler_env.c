@@ -6,44 +6,18 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 17:30:11 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/26 10:14:00 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/29 01:15:31 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libshell.h"
-
-// ////////////////////////////////////////////////////////////////
-// // FONCTIONS POUR CHECK CE QU IL Y A DANS LA LISTE CHAINEE
-// static void 	print_list(t_env_lair *env_lair)
-// {
-// 	int 	test; // pour le printf
-//
-// 	test = 1; // pour le printf
-// 	t_env_list *current;
-//
-// 	current = env_lair->start;
-// 	printf("| DEBUT | \n");
-// 	while (current)
-// 	{
-// 		printf("%d-> %s\n", test, current->first_content);
-// 		printf("%d-> %s\n", test, current->second_content);
-// 		printf("=========\n");
-// 		current = current->next;
-// 		test++; // pour le printf
-// 	}
-// 	printf("| FIN |\n");
-// 	printf("size env_lair -> %d\n", env_lair->size);
-// 	// printf("first env_lair -> %s\n", env_lair->start->content);
-// 	// printf("end  env_lair -> %s\n", env_lair->end->content);
-// }
-////////////////////////////////////////////////////////////////
 
 void		set_env(t_msh *msh, char *first_content, char *second_content)
 {
 	t_env_list	*element;
 
 	if (!first_content)
-		return;
+		return ;
 	element = msh->env_lair->start;
 	if (!element || element == NULL)
 		ft_fill_empty_env(msh->env_lair, first_content, second_content);
@@ -51,7 +25,7 @@ void		set_env(t_msh *msh, char *first_content, char *second_content)
 		ft_fill_end_env(msh->env_lair, first_content, second_content);
 }
 
-char 		*get_env(t_msh *msh, char *str)
+char		*get_env(t_msh *msh, char *str)
 {
 	t_env_list	*element;
 
@@ -74,7 +48,7 @@ char 		*get_env(t_msh *msh, char *str)
 
 char		*sep_env(char *str, int prt)
 {
-	int 	pos;
+	int		pos;
 
 	pos = 0;
 	if (!str)
@@ -97,9 +71,9 @@ char		*sep_env(char *str, int prt)
 	}
 }
 
-int 		handler_env(t_msh *msh, char **env)
+int			handler_env(t_msh *msh, char **env)
 {
-	int 	count;
+	int		count;
 
 	count = 0;
 	msh->env_lair = init_env_lair(msh->env_lair);
@@ -113,7 +87,5 @@ int 		handler_env(t_msh *msh, char **env)
 		ft_fill_end_env(msh->env_lair, sep_env(env[count], 0),
 		sep_env(env[count], 1));
 	}
-	if (get_path(msh) == ERROR)
-	 return (return_error(msh, NULL, "Empty path."));
 	return (SUCCESS);
 }

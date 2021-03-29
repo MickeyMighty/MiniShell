@@ -6,13 +6,13 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 11:23:10 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/25 21:51:12 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/27 14:32:09 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libshell.h"
 
-static char	*create_home(t_msh *msh, char *path)
+static char			*create_home(t_msh *msh, char *path)
 {
 	char		*tmp;
 	char		*tmp2;
@@ -32,7 +32,7 @@ static char	*create_home(t_msh *msh, char *path)
 	return (path);
 }
 
-static int	change_home_directory(t_msh *msh, char *path, int home)
+static int			change_home_directory(t_msh *msh, char *path, int home)
 {
 	char	*pwd;
 
@@ -103,7 +103,7 @@ static int			get_cd_path(t_msh *msh, t_list *element)
 	return (set_directory(msh, element->tab_args[1], 0));
 }
 
-int		 	my_cd(t_msh *msh, t_list *element)
+int					my_cd(t_msh *msh, t_list *element)
 {
 	char	*home;
 

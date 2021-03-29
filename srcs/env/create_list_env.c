@@ -6,13 +6,13 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 12:26:48 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/22 11:18:49 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/28 19:51:13 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libshell.h"
 
-int 	ft_fill_empty_env(t_env_lair *env_lair, char *first_content,
+int				ft_fill_empty_env(t_env_lair *env_lair, char *first_content,
 char *second_content)
 {
 	t_env_list	*new_block;
@@ -29,7 +29,7 @@ char *second_content)
 	return (0);
 }
 
-int 	ft_fill_end_env(t_env_lair *env_lair, char *first_content,
+int				ft_fill_end_env(t_env_lair *env_lair, char *first_content,
 char *second_content)
 {
 	t_env_list	*new_block;
@@ -46,7 +46,7 @@ char *second_content)
 	return (0);
 }
 
-static	int 	is_empty_env(t_env_lair *env_lair)
+static	int		is_empty_env(t_env_lair *env_lair)
 {
 	if (env_lair == NULL)
 		return (1);
@@ -60,9 +60,9 @@ t_env_lair		*clear_env(t_env_lair *env_lair)
 	return (NULL);
 }
 
-t_env_lair 		*pop_back_env(t_env_lair *env_lair)
+t_env_lair		*pop_back_env(t_env_lair *env_lair)
 {
-	t_env_list 		*temp;
+	t_env_list	*temp;
 
 	if (is_empty_env(env_lair))
 		return (NULL);
@@ -85,7 +85,6 @@ t_env_lair 		*pop_back_env(t_env_lair *env_lair)
 	if (temp->second_content)
 		free(temp->second_content);
 	free(temp);
-	temp = NULL;
 	env_lair->size--;
 	return (env_lair);
 }

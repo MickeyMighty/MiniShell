@@ -6,19 +6,19 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 15:13:10 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/26 10:42:29 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/28 21:56:02 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/libshell.h"
 
-static 	char 	*return_less_qte(t_msh *msh, t_env_list *element, int key)
+static	char	*return_less_qte(t_msh *msh, t_env_list *element, int key)
 {
 	int		pos;
 
 	pos = 1;
 	while (element->second_content[msh->utils->len] != '\"'
-	&& element->second_content[msh->utils->len] != '\0')
+			&& element->second_content[msh->utils->len] != '\0')
 		msh->utils->len++;
 	if (element->second_content[msh->utils->len] == '\0')
 		return (NULL);
@@ -28,23 +28,23 @@ static 	char 	*return_less_qte(t_msh *msh, t_env_list *element, int key)
 	{
 		if ((msh->utils->no_space == 1) || (msh->utils->no_space == 3))
 		{
-			while(element->second_content[pos] == ' ')
+			while (element->second_content[pos] == ' ')
 				pos++;
 		}
 		else if ((msh->utils->no_space = 2) || (msh->utils->no_space == 3))
 		{
-			while(element->second_content[msh->utils->len] == ' ')
+			while (element->second_content[msh->utils->len] == ' ')
 				msh->utils->len--;
 		}
 	}
 	return (check_content(msh, ft_substr(element->second_content, pos,
-	msh->utils->len)));
+					msh->utils->len)));
 }
 
-char 	*return_element(t_msh *msh, char *tmp, int key)
+char			*return_element(t_msh *msh, char *tmp, int key)
 {
-	t_env_list  *element;
-	int		start;
+	t_env_list	*element;
+	int			start;
 
 	start = 0;
 	element = msh->env_lair->start;
@@ -55,8 +55,7 @@ char 	*return_element(t_msh *msh, char *tmp, int key)
 		{
 			free(tmp);
 			if (element->second_content[0] == '\"')
-				return (check_content(msh,
-				return_less_qte(msh, element, key)));
+				return (check_content(msh, return_less_qte(msh, element, key)));
 			return (check_content(msh, element->second_content));
 		}
 		element = element->next;
@@ -66,14 +65,14 @@ char 	*return_element(t_msh *msh, char *tmp, int key)
 	return (NULL);
 }
 
-static char 	*return_dollar(t_msh *msh, char *str, int key)
+char			*return_dollar(t_msh *msh, char *str, int key)
 {
-	char 		*tmp;
-	int 		len;
+	char		*tmp;
+	int			len;
 
 	msh->utils->pos++;
 	if ((key == NOQTE && msh->utils->no_space == 0)
-	&& check_no_space(msh, str) == 1)
+			&& check_no_space(msh, str) == 1)
 		msh->utils->no_space = 0;
 	len = msh->utils->pos;
 	while (ft_isalnum(str[len]) != 0)
@@ -91,30 +90,21 @@ static char 	*return_dollar(t_msh *msh, char *str, int key)
 	tmp = ft_substr(str, msh->utils->pos, len);
 	if ((tmp = return_element(msh, tmp, key)) != NULL)
 		return (tmp);
-    return (ft_strdup("\0"));
+	return (ft_strdup("\0"));
 }
 
-static char 	*return_quote(t_msh *msh, char *str)
+char			*return_quote(t_msh *msh, char *str)
 {
-	char 	*first_step;
-	char 	*second_step;
+	char	*first_step;
+	char	*second_step;
 
 	msh->utils->pos++;
 	first_step = NULL;
 	while (str[msh->utils->pos] && str[msh->utils->pos] != msh->utils->quote)
 	{
-		second_step = NULL;
-		if (msh->utils->quote == DQUOTE && str[msh->utils->pos] == '\\'
-		&& (str[msh->utils->pos + 1] == '$'
-		|| str[msh->utils->pos + 1] == DQUOTE
-		|| str[msh->utils->pos + 1] == '\\'))
-			msh->utils->pos++;
-		else if (str[msh->utils->pos] == '$' && msh->utils->quote == DQUOTE
-		&& (str[msh->utils->pos + 1] != msh->utils->quote
-		|| str[msh->utils->pos + 1] != '\\'))
-			second_step = return_dollar(msh, str, YESQTE);
-		else if ((str[msh->utils->pos] != msh->utils->quote)
-		&& str[msh->utils->pos + 1])
+		second_step = fill_second_step_quote(msh, str, second_step);
+		if ((str[msh->utils->pos] != msh->utils->quote)
+		&& str[msh->utils->pos + 1] && second_step == NULL)
 			second_step = ft_substr(str, msh->utils->pos, 1);
 		first_step = ft_strjoin(first_step, second_step);
 		if (second_step)
@@ -125,26 +115,17 @@ static char 	*return_quote(t_msh *msh, char *str)
 	return (first_step);
 }
 
-char		*return_all_content(t_msh *msh, char *str)
+char			*return_all_content(t_msh *msh, char *str)
 {
-	char 	*first_step;
-	char 	*second_step;
+	char	*first_step;
+	char	*second_step;
 
 	msh->utils->pos = -1;
 	first_step = NULL;
 	while (str[++msh->utils->pos])
 	{
-		second_step = NULL;
-		if (str[msh->utils->pos] == DQUOTE || str[msh->utils->pos] == SQUOTE)
-		{
-			msh->utils->quote = str[msh->utils->pos];
-			second_step = return_quote(msh, str);
-		}
-		else if ((str[msh->utils->pos] == '$')
-		&& ((str[msh->utils->pos + 1] != ' ')
-		&& (str[msh->utils->pos + 1] != '\0')))
-			second_step = return_dollar(msh, str, NOQTE);
-		else
+		second_step = fill_second_step_content(msh, str, second_step);
+		if (second_step == NULL)
 		{
 			if (str[msh->utils->pos] == '\\')
 			{

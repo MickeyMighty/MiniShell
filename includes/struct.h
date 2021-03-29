@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 18:09:50 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/26 12:51:15 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/28 21:49:06 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,11 @@ typedef struct		s_utils
 	int 	check_arg; // ?
 	// int 	check_sep; // ?
 	int 	len;
+	int		backup_fd;
 	int 	pos_list;
 	int 	multi_pipe;
 	int 	pipe;
+	int				redirection;
 	int		i;
 	int		fd;
 	// char 	*lair_export;

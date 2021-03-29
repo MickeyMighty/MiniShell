@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 13:35:59 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/26 14:08:07 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/29 00:32:23 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,10 @@
 # define ERROR_MULTI -6
 
 
+# define EXIT 0
+# define CTRLD 1
+# define ENDLOOP 2
+# define LOOP 3
 # define TRUE 0
 # define FALSE 1
 # define PATH_MAX 4096
@@ -77,6 +81,7 @@ int						global_error;
 int						global_error_msg;
 int						global_status;
 int						global_return;
+int						global_loop;
 int						global_sign_info;
 int						global_size_word;
 
@@ -87,6 +92,8 @@ int						global_size_word;
 void 			handler_signal(int sign);
 
 void 			set_env(t_msh *msh, char *first_content, char *second_content);
+int 	data_check_qte(t_msh *msh, int count, int pos, int flag);
+
 /*
 ** init/init_shell.c
 */
@@ -96,7 +103,7 @@ void 			aff_welcome(void);
 
 int 			data_check(t_msh *msh);
 void 			free_all(t_msh *msh, int free);
-t_msh 			*init_msh(t_msh *msh);
+t_msh 			*init_msh(t_msh *msh, int key);
 t_env_lair		*init_env_lair(t_env_lair *env_lair);
 void 			free_data(t_msh *msh);
 void 			free_lair_list(t_msh *msh);
@@ -129,6 +136,9 @@ t_lair_list 	*init_data_lair_list(t_lair_list *lair_list);
 
 char		**ft_free_tab(char **tab, int j, t_split_data *split_data);
 
+int		ft_size_quote(t_split_data *split_data, char *str, int index);
+int		ft_get_len_word(t_split_data *split_data, char *str);
+char	**ft_word_to_tab(t_msh *msh, char *str, t_split_data *split_data, char **res);
 char			**ft_split_data(t_msh *msh, char *s, char c);
 int				ft_count_separator(char *s, int pos);
 int 	ft_check_word(t_msh *msh, t_split_data *split_data, char *str);
@@ -140,6 +150,7 @@ char 	*get_env(t_msh *msh, char *str);
 ** /.c
 */
 
+int					create_tab_args(t_msh *msh);
 
 
 int 			handler_env(t_msh *msh, char **env);

@@ -6,13 +6,13 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 09:50:00 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/26 10:42:34 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/27 18:24:20 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/libshell.h"
 
-int 	check_end(char *str, int pos)
+int			check_end(char *str, int pos)
 {
 	if (str[pos] != '\0' && (ft_isalnum(str[pos]) == 0))
 		return (1);
@@ -20,7 +20,7 @@ int 	check_end(char *str, int pos)
 		return (0);
 }
 
-int 	check_no_space(t_msh *msh, char *str)
+int			check_no_space(t_msh *msh, char *str)
 {
 	int index;
 
@@ -38,11 +38,11 @@ int 	check_no_space(t_msh *msh, char *str)
 	return (0);
 }
 
-char 	*check_content(t_msh *msh, char *str)
+char		*check_content(t_msh *msh, char *str)
 {
-	char 	*first_step;
-	char 	*second_step;
-	int 	pos;
+	char	*first_step;
+	char	*second_step;
+	int		pos;
 
 	pos = 0;
 	first_step = NULL;
@@ -64,10 +64,10 @@ char 	*check_content(t_msh *msh, char *str)
 	return (first_step);
 }
 
-int 	data_check(t_msh *msh)
+int			data_check(t_msh *msh)
 {
-	int 	count;
-	int 	pos;
+	int		count;
+	int		pos;
 
 	count = 0;
 	while (count < msh->data->size_data)
@@ -75,32 +75,24 @@ int 	data_check(t_msh *msh)
 		pos = 0;
 		if (msh->data->prompt_data[count][pos] == '\'')
 		{
-			pos++;
-			while (msh->data->prompt_data[count][pos] != '\'')
-			{
-				if (msh->data->prompt_data[count][pos] == '\0')
-					return (-1);
-				pos++;
-			}
+			pos = data_check_qte(msh, count, pos, 0);
+			if (pos == -1)
+				return (-1);
 		}
 		else if (msh->data->prompt_data[count][pos] == '\"')
 		{
-			pos++;
-			while (msh->data->prompt_data[count][pos] != '\"')
-			{
-				if (msh->data->prompt_data[count][pos] == '\0')
-					return (-1);
-				pos++;
-			}
+			pos = data_check_qte(msh, count, pos, 1);
+			if (pos == -1)
+				return (-1);
 		}
 		count++;
 	}
 	return (1);
 }
 
-t_list			*check_block_cmd(t_msh *msh, t_list *element)
+t_list		*check_block_cmd(t_msh *msh, t_list *element)
 {
-	int 	pos;
+	int		pos;
 
 	pos = 1;
 	if (!element->content)
@@ -116,7 +108,7 @@ t_list			*check_block_cmd(t_msh *msh, t_list *element)
 	{
 		msh->utils->no_space = 0;
 		element->tab_args[pos] =
-		return_all_content(msh, element->tab_args[pos]);
+			return_all_content(msh, element->tab_args[pos]);
 		if (element->tab_args[pos] == NULL)
 		{
 			global_error_msg = ERROR_MULTI;
@@ -124,6 +116,5 @@ t_list			*check_block_cmd(t_msh *msh, t_list *element)
 		}
 		pos++;
 	}
-	msh->utils->pos = 0;
 	return (element);
 }

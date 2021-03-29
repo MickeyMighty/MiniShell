@@ -6,21 +6,21 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/12 06:06:53 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/25 17:01:22 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/27 14:32:43 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libshell.h"
 
-int 	my_echo(t_msh *msh, t_list *element)
+int			my_echo(t_msh *msh, t_list *element)
 {
-	int 	pos;
-	int 	option_n;
+	int		pos;
+	int		option_n;
 
 	option_n = 0;
 	pos = 1;
 	if (element->tab_args[pos] == NULL)
-		return ;
+		return (ERROR);
 	else
 	{
 		if (ft_strcmp("-n", element->tab_args[pos]) == 0)
@@ -35,7 +35,7 @@ int 	my_echo(t_msh *msh, t_list *element)
 				ft_putstr_fd(" ", 1);
 			pos++;
 		}
-		if (option_n = 0)
+		if (option_n == 0)
 			ft_putstr_fd("\n", 1);
 	}
 	return (SUCCESS);

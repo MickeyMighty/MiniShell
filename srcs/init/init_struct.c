@@ -6,40 +6,38 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 07:27:43 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/22 23:10:04 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/29 01:16:10 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libshell.h"
 
-static t_msh	*init_struct(t_msh *msh)
+static t_msh	*init_struct(t_msh *msh, int key)
 {
-	if (!(msh = (t_msh*)malloc(sizeof(t_msh))))
-		return (NULL);
+	if (key == LOOP)
+	{
+		if (!(msh = (t_msh*)malloc(sizeof(t_msh))))
+			return (NULL);
+	}
 	if (!(msh->utils = (t_utils*)malloc(sizeof(t_utils))))
-		return (NULL);
+	return (NULL);
 	if (!(msh->data = (t_data *)malloc(sizeof(t_data))))
 		return (NULL);
 	return (msh);
 }
 
-t_msh 	*init_msh(t_msh *msh)
+t_msh			*init_msh(t_msh *msh, int key)
 {
-	msh = init_struct(msh);
+	msh = init_struct(msh, key);
 	if (msh == NULL)
 		return (NULL);
-	msh->env_lair = init_env_lair(msh->env_lair);
-	if (msh->env_lair == NULL)
-		return (NULL);
-	// msh->data->prompt_data = NULL;
 	msh->list = NULL;
-	// msh->data = NULL;
 	msh->lair_list = NULL;
 	msh->utils->path = NULL;
 	return (msh);
 }
 
-t_lair_list 	*init_lair_list(t_lair_list *lair_list)
+t_lair_list		*init_lair_list(t_lair_list *lair_list)
 {
 	if (!(lair_list = (t_lair_list*)malloc(sizeof(t_lair_list))))
 		return (NULL);
@@ -49,7 +47,7 @@ t_lair_list 	*init_lair_list(t_lair_list *lair_list)
 	return (lair_list);
 }
 
-t_env_lair	*init_env_lair(t_env_lair *env_lair)
+t_env_lair		*init_env_lair(t_env_lair *env_lair)
 {
 	if (!(env_lair = (t_env_lair*)malloc(sizeof(t_env_lair))))
 		return (NULL);
