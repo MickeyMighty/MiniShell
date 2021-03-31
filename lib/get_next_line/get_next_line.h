@@ -5,6 +5,7 @@
 # endif
 
 # include <sys/types.h>
+# include "../libft/libft.h"
 # include <sys/uio.h>
 # include <unistd.h>
 # include <stdlib.h>

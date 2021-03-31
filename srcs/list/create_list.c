@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/07 04:25:27 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/28 21:12:00 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/31 09:21:21 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ t_lair_list	*pop_back_list(t_lair_list *lair_list)
 		if (lair_list->start->content)
 			free(lair_list->start->content);
 		if (lair_list->start->tab_args)
-			free(lair_list->start->tab_args);
+			free_split(lair_list->start->tab_args);
 		free(lair_list);
 		lair_list = NULL;
 		return (NULL);
@@ -83,7 +83,8 @@ t_lair_list	*pop_back_list(t_lair_list *lair_list)
 	if (temp->content)
 		free(temp->content);
 	if (temp->tab_args)
-		free(temp->tab_args);
+		free_split(temp->tab_args);
+	// 	free(temp->tab_args);
 	free(temp);
 	lair_list->size--;
 	return (lair_list);

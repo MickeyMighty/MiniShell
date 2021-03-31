@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 22:57:33 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/29 16:26:07 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/30 22:23:59 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,23 @@
 int				error_cmd(t_msh *msh, t_list *element)
 {
 	if ((ft_strcmp(element->content, "|") == 0)
-			|| (ft_strcmp(element->content, "&") == 0)
-			|| (ft_strcmp(element->content, ";") == 0))
+	|| (ft_strcmp(element->content, "&") == 0)
+	|| (ft_strcmp(element->content, ";") == 0))
 	{
 		global_error = ERROR_CMD;
-		return (return_error(msh, element->content,
-					"syntax error near unexpected token"));
+		global_status = 2;
+		return (return_error(msh, element->content, NULL,
+		"syntax error near unexpected token"));
 	}
 	else if ((ft_strcmp(element->content, ">") == 0)
-			|| (ft_strcmp(element->content, ">>") == 0)
-			|| (ft_strcmp(element->content, "<") == 0)
-			|| (ft_strcmp(element->content, "!") == 0))
+	|| (ft_strcmp(element->content, ">>") == 0)
+	|| (ft_strcmp(element->content, "<") == 0)
+	|| (ft_strcmp(element->content, "!") == 0))
 	{
 		global_error = ERROR_CMD;
-		return (return_error(msh, "newline",
-					"syntax error near unexpected token"));
+		global_status = 2;
+		return (return_error(msh, "newline", NULL,
+		"syntax error near unexpected token"));
 	}
 	return (ERROR);
 }
@@ -86,7 +88,7 @@ static	t_list	*sort_cmd(t_msh *msh, t_list *element, char **env)
 		element = multi_pipe(msh, element, env);
 	else if (get_value_sep(element->next->content) == REDIR)
 	{
-		if (element->next->next->next
+		if (element->next->next && element->next->next->next
 		&& (get_value_sep(element->next->content) == PIPE))
 		{
 			msh->utils->pipe = 1;
@@ -118,12 +120,12 @@ int				handler_cmd(t_msh *msh, char **env)
 			element = check_block_cmd(msh, element);
 		msh->utils->pos = 0;
 		if (global_error_msg == ERROR_MULTI)
-			return (return_error(msh, NULL, "syntax error multiligne."));
+			return (return_error(msh, NULL, NULL, "syntax error multiligne."));
 		if (element->next != NULL && element->next->token == SEPARATOR)
 		{
 			element = sort_cmd(msh, element, env);
 			if (global_error_msg == ERROR_MULTI)
-				return (return_error(msh, NULL, "syntax error multiligne."));
+				return (return_error(msh, NULL, NULL, "syntax error multiligne."));
 		}
 		else
 			exec_cmd(msh, element, env);

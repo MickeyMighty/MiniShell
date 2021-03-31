@@ -21,7 +21,11 @@ char		*ft_line(char *line, char **hold)
 		tmp = *hold;
 		if (!(*hold = ft_substr_gnl(tmp, ft_next_line(tmp) + 1,
 		ft_strlen_gnl(tmp))))
+		{
+			if (hold)
+				free(hold);
 			return (NULL);
+		}
 		free(tmp);
 	}
 	else

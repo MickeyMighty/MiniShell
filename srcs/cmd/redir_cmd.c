@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 10:16:20 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/27 15:45:14 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/30 22:29:00 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int				return_redir_error(t_msh *msh, t_list *element, int fd, int i)
 	char	*join;
 
 	join = ft_strjoin(element->tab_args[i], ": ");
-	return_error(msh, join, strerror(errno));
+	return_error(msh, join, NULL, strerror(errno));
 	ft_putstr_fd("\n", 2);
 	global_error = ERROR_REDIRECTION;
 	free(join);
@@ -66,6 +66,11 @@ t_list			*redirections(t_msh *msh, t_list *element, char **env)
 	int				type;
 
 	msh->utils->redirection = 1;
+	if (!element->next->next)
+	{
+		error_cmd(msh, element->next);
+		return (NULL);
+	}
 	if (element->next && element->next->token == SEPARATOR)
 		type = get_type_redir(element->next->content);
 	if (type == ERROR)

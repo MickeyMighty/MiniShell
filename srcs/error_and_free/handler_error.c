@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 03:33:33 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/28 19:58:31 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/30 23:27:29 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,19 @@ void			free_tab_args(t_msh *msh, char **str)
 	free(str);
 }
 
+static	void	return_error_3(t_msh *msh, char *cmd, char *path, char *msg)
+{
+	if (cmd != NULL)
+	{
+		ft_putstr_fd(cmd, 2);
+		ft_putstr_fd(": ", 2);
+	}
+	if (path != NULL)
+		ft_putstr_fd(path, 2);
+	if (msg != NULL)
+		ft_putendl_fd(msg, 2);
+}
+
 static	void	return_error_2(t_msh *msh, char *cmd, char *msg)
 {
 	if (cmd != NULL)
@@ -48,10 +61,13 @@ static	void	return_error_2(t_msh *msh, char *cmd, char *msg)
 		ft_putendl_fd(msg, 2);
 }
 
-int				return_error(t_msh *msh, char *cmd, char *msg)
+int				return_error(t_msh *msh, char *cmd, char *path, char *msg)
 {
+	ft_putstr_fd("\033[0;31m", 2);
 	ft_putstr_fd("minishell: ", 2);
-	if (global_error_msg == ERROR_MULTI)
+	if (path != NULL)
+		return_error_3(msh, cmd, path, msg);
+	else if (global_error_msg == ERROR_MULTI)
 		ft_putendl_fd(msg, 2);
 	else if (global_error == ERROR_CMD)
 	{

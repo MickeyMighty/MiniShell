@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/12 06:06:53 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/29 15:33:40 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/30 16:31:44 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int			my_echo(t_msh *msh, t_list *element)
 	option_n = 0;
 	pos = 1;
 	if (element->tab_args[pos] == NULL)
-		return (ERROR);
+		return (SUCCESS);
 	else
 	{
 		if (ft_strcmp("-n", element->tab_args[pos]) == 0)

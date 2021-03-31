@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 18:10:32 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/28 21:35:21 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/31 09:21:56 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int	separator_check(t_msh *msh, char *s)
 static int	option_check(t_msh *msh, char *s)
 {
 	(void)msh;
-	if (!s[0])
+	if (!s || !s[0])
 		return (0);
 	if (s[0] == 45)
 		return (OPTION);
@@ -90,8 +90,10 @@ void		set_token_list(t_msh *msh)
 	lst = msh->lair_list->start;
 	i = 0;
 	args = 0;
+	msh->utils->check_arg = 0;
 	while (lst != NULL)
 	{
+		lst->token = 0;
 		lst->token = token_recognition(msh, lst->content, i);
 		i++;
 		i = (lst->token == SEPARATOR) ? 0 : i;

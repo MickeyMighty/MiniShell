@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 15:13:10 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/29 16:18:31 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/31 09:37:16 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,15 @@ char			*return_dollar(t_msh *msh, char *str, int key)
 	int			len;
 
 	if (str[msh->utils->pos + 1] == '?')
+	{
+		msh->utils->pos++;
 		return (ft_itoa(global_status));
+	}
+	if (str[msh->utils->pos + 1] == '$')
+	{
+		msh->utils->pos++;
+		return (ft_itoa(4714));
+	}
 	if ((key == NOQTE && msh->utils->no_space == 0)
 			&& check_no_space(msh, str) == 1)
 		msh->utils->no_space = 0;
@@ -118,7 +126,7 @@ char			*return_quote(t_msh *msh, char *str)
 		if (str[msh->utils->pos])
 			msh->utils->pos++;
 	}
-
+	printf("first_step = %s\n", first_step);
 	return (first_step);
 }
 
@@ -126,11 +134,13 @@ char			*return_all_content(t_msh *msh, char *str)
 {
 	char	*first_step;
 	char	*second_step;
+	char	*tmp;
 
 	msh->utils->pos = -1;
 	first_step = NULL;
 	while (str[++msh->utils->pos])
 	{
+		second_step = NULL;
 		second_step = fill_second_step_content(msh, str, second_step);
 		if (second_step == NULL)
 		{
@@ -143,7 +153,10 @@ char			*return_all_content(t_msh *msh, char *str)
 			second_step = ft_substr(str, msh->utils->pos, 1);
 		}
 		msh->utils->no_space = 1;
-		first_step = ft_strjoin(first_step, second_step);
+		tmp = first_step;
+		first_step = ft_strjoin(tmp, second_step);
+		if (tmp)
+			free(tmp);
 		if (second_step)
 			free(second_step);
 	}

@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 21:56:45 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/29 17:40:23 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/30 16:34:51 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,5 @@ int				my_unset(t_msh *msh, t_list *element)
 			global_status = 1;
 		}
 	}
-	return (1);
+	return (SUCCESS);
 }

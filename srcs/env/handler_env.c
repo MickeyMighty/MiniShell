@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 17:30:11 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/29 17:21:56 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/30 23:56:16 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void		set_env(t_msh *msh, char *first_content, char *second_content)
 {
 	t_env_list	*element;
 
-	if (!first_content)
+	if (!first_content || !second_content)
 		return ;
 	element = msh->env_lair->start;
 	if (!element || element == NULL)

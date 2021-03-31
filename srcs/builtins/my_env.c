@@ -6,7 +6,7 @@
 /*   By: tidminta <tidminta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 15:41:31 by tidminta          #+#    #+#             */
-/*   Updated: 2021/03/28 23:13:18 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/30 16:32:14 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int			my_env(t_msh *msh, t_list *element)
 	t_env_list		*env;
 
 	if (!msh->env_lair->start)
-		return (ERROR);
+		return (SUCCESS);
 	env = msh->env_lair->start;
 	while (env)
 	{

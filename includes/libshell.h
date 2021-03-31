@@ -6,13 +6,14 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 13:35:59 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/29 16:22:23 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/30 22:28:43 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBSHELL_H
 # define LIBSHELL_H
 
+#include <stdbool.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
@@ -29,6 +30,7 @@
 # define ERROR_CMD -3
 # define ERROR_SEP -4
 # define ERROR_REDIRECTION -5
+# define PERMISSION_DENIED 126
 # define ERROR_MULTI -6
 # define EMPTY_ENV -7
 

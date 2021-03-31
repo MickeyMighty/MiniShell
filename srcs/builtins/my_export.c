@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 18:04:14 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/29 01:07:54 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/30 16:32:34 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int				my_export(t_msh *msh, t_list *element)
 
 	pos = 1;
 	if (!element)
-		return (ERROR);
+		return (SUCCESS);
 	if (ft_strcmp(element->content, "export") == 0
 	&& element->tab_args[1] == NULL)
 		print_env(msh, element);

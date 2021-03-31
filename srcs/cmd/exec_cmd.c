@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 22:57:42 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/29 11:49:55 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/30 22:25:42 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,50 +16,52 @@ static t_list 		*check_exec(t_msh *msh, t_list *cmd, char **env)
 {
 	if (cmd->token != CMD)
 	{
-		return_error(msh, cmd->content, "syntax error near unexpected token");
+		return_error(msh, cmd->content, NULL, "syntax error near unexpected token");
 		return (NULL);
 	}
-	// cmd = handler_dollar_env(msh, cmd);
-	// if (ft_handler_builtins(msh, cmd, env) != ERROR)
-	// 	return (SUCCESS);
 	return (cmd);
 }
 
-// static int	check_flag(t_msh *msh, t_list *element, int pipe)
-// {
-// 	struct stat	f;
-// 	int			flag;
-//
-// 	if (lstat(element->content, &f) != -1)
-// 	{
-// 		flag = f.st_mode & S_IFMT;
-// 		if (flag == S_IFDIR && (args[0][ft_strlen(args[0]) - 1] == '/'
-// 				|| ft_strnequ(args[0], "./", 2)))
-// 			return (return_error(args[0], ": Is a directory\n", 0, 126));
-// 		else if ((ft_strnequ(args[0], "./", 2) || ft_strnequ(args[0], "/", 1))
-// 			&& (f.st_mode & S_IXUSR) && (f.st_mode & S_IRUSR))
-// 			return (run(args, ft_strdup(args[0]), pipe));
-// 		else if (flag != S_IXUSR && flag != S_IRUSR
-// 			&& flag != S_IFDIR && flag != S_IFLNK)
-// 			return (return_error(args[0], ": Permission denied\n", 0, 126));
-// 	}
-// 	else if (ft_strnequ(args[0], "./", 2) || args[0][0] == '/')
-// 	{
-// 		return (return_error(args[0], ": No such file or directory\n", 0, 127));
-// 	}
-// 	return (return_error(args[0], ": command not found\n", 0, 127));
-// }
-
-static void		status_child(void)
+static int	is_executable(t_msh *msh, struct stat	permstat, char *name)
 {
-	if (WIFEXITED(global_pid))
-		global_status = WEXITSTATUS(global_pid);
-	if (WIFSIGNALED(global_pid))
+	int		lock;
+
+	lock = TRUE;
+	if ((permstat.st_mode & S_IFMT) == S_IFREG)
 	{
-		global_status = WTERMSIG(global_pid);
-		if (global_status != 131)
-			global_status += 128;
+		if ((permstat.st_mode & S_IXUSR) == 0)
+		{
+			return_error(msh, name, NULL, "Permission denied");
+			global_status = PERMISSION_DENIED;
+			lock = FALSE;
+		}
 	}
+	else if ((permstat.st_mode & S_IFMT) == S_IFDIR)
+	{
+		return_error(msh, name, NULL, "Is a directory");
+		global_status = PERMISSION_DENIED;
+		lock = FALSE;
+	}
+	return (lock);
+}
+
+static int		check_permission(t_msh *msh, char *cmd)
+{
+	struct	stat	permstat;
+	int				lock;
+	int				ret;
+
+	ft_bzero(&permstat, sizeof(struct stat));
+	ret = stat(cmd, &permstat);
+	if (ret == ERROR)
+	{
+		global_status = 127;
+		return_error(msh, cmd, NULL, "command not found");
+		global_return = ERROR;
+		return (FALSE);
+	}
+	lock = is_executable(msh, permstat, cmd);
+	return (lock);
 }
 
 static	void 	child_process(t_msh *msh, t_list *cmd, char **env, char *exec_path)
@@ -83,36 +85,51 @@ static	void 	parent_process(t_msh *msh, t_list *cmd)
 	child_status = 0;
 	signal(SIGINT, SIG_IGN);
 	wait(&child_status);
-	status_child();
-		// if (WIFSIGNALED(child_status))
-		// {
-		// 	ft_putstr_fd("\n", 2);
-		// 	global_status = WTERMSIG(child_status);
-		// }
-		// if (WIFEXITED(child_status))
-		// 	global_return = child_status;
-		// global_status = WEXITSTATUS(child_status);
+	if (WIFSIGNALED(child_status))
+	{
+		ft_putstr_fd("\n", 2);
+		global_status = WTERMSIG(child_status);
+	}
+	if (WIFEXITED(child_status))
+		global_return = child_status;
+	global_status = WEXITSTATUS(child_status);
 }
 
 int 	exec_cmd(t_msh *msh, t_list *cmd, char **env)
 {
 	char 	*exec_path;
 	int 	count;
+	int 	lock;
+	int		status;
 
+	lock = true;
 	global_error = SUCCESS;
 	exec_path = NULL;
-	if (ft_handler_builtins(msh, cmd, env) == ERROR_BUILTINS)
+	status = ft_handler_builtins(msh, cmd, env);
+	if (status == SUCCESS)
+		global_status = status;
+	else if (status == ERROR_BUILTINS)
 	{
 		if (cmd == NULL)
 			return (ERROR);
 		exec_path = get_exec_path(msh, cmd->content);
 		count = -1;
+		if (!exec_path)
+			lock = check_permission(msh, cmd->content);
+		else
+			lock = check_permission(msh, exec_path);
+		if (lock == FALSE)
+		{
+			ft_strdel(&exec_path);
+			return (ERROR);
+		}
 		if (msh->utils->pipe == 0)
 			global_pid = fork();
 		if (global_pid < 0)
 		{
 			global_error = ERROR;
-			return (return_error(msh, "execve", "failed to create a new process."));
+			global_status = 127;
+			return (return_error(msh, "execve", NULL, "failed to create a new process."));
 		}
 		else if (global_pid == 0)
 			child_process(msh, cmd, env, exec_path);

@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 13:17:45 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/29 11:35:49 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/30 15:02:14 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	process(int sign)
 	else if (sign == SIGINT)
 	{
 		ft_putchar_fd('\n', 1);
-		global_status = 1;
+		global_status = 130;
 		global_error = ERROR;
 		prompt();
 	}
@@ -47,7 +47,7 @@ void 	handler_signal(int sign)
 		if (sign == SIGINT)
 		{
 			ft_putchar_fd('\n', 1);
-			global_status = 1;
+			global_status = 130;
 			global_error = ERROR;
 			prompt();
 		}

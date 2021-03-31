@@ -58,12 +58,7 @@ char	*ft_substr_gnl(char const *s, unsigned int start, size_t len)
 	if (!s)
 		return (NULL);
 	if (!len || (unsigned int)ft_strlen_gnl(s) < start)
-	{
-		if (!(str = (char*)malloc(sizeof(char))))
-			return (NULL);
-		str[0] = '\0';
-		return (str);
-	}
+		return (ft_strdup("\0"));
 	if (!(str = (char *)malloc(sizeof(char) * (len + 1))))
 		return (NULL);
 	i = 0;

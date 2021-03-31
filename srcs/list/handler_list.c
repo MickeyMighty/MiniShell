@@ -6,11 +6,44 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 04:42:10 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/28 21:56:50 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/31 10:04:04 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libshell.h"
+//
+// static	void		print_list(t_lair_list *lair_list)
+// {
+// 	int 	test; // pour le printf
+// 	int 	test2; // pour le printf
+//
+// 	test = 1; // pour le printf
+// 	test2 = 0; // pour le printf
+// 	t_list *current;
+//
+// 	current = lair_list->start;
+// 	printf("\n\n| DEBUT | \n");
+// 	while (current != NULL)
+// 	{
+// 		test2 = 1;
+// 		printf("-{%d}[%s]\n", test, current->content);
+// 		if (current->tab_args != NULL)
+// 		{
+// 			while (current->tab_args[test2] != NULL)
+// 			{
+// 				printf("(%d)[%s]\n", test2, current->tab_args[test2]);
+// 				test2++;
+// 			}
+// 		}
+// 		if (current != NULL)
+// 			current = current->next;
+// 		test++; // pour le printf
+// 	}
+// 	printf("size lair_list -> %d\n", lair_list->size);
+// 	printf("first lair_list -> %s\n", lair_list->start->content);
+// 	printf("end  lair_list -> %s\n", lair_list->end->content);
+// 	printf("| FIN |\n\n");
+// }
 
 static	int		check_cmd_list(t_msh *msh, t_list *element, int size)
 {
@@ -31,6 +64,8 @@ static	int		check_token_list(t_msh *msh)
 	element = msh->lair_list->start;
 	if (!element || (element == NULL))
 		return (ERROR);
+	if (element->token == SEPARATOR)
+		return (check_cmd_list(msh, element, size));
 	while (element)
 	{
 		if (element->token == CMD)
@@ -70,5 +105,6 @@ int				handler_list(t_msh *msh)
 		return (ERROR);
 	if (check_token_list(msh) == ERROR)
 		return (ERROR);
+	// print_list(msh->lair_list);
 	return (SUCCESS);
 }

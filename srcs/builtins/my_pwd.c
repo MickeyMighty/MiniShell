@@ -6,7 +6,7 @@
 /*   By: tidminta <tidminta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 16:01:14 by tidminta          #+#    #+#             */
-/*   Updated: 2021/03/25 17:06:10 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/30 16:33:15 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int			my_pwd(t_msh *msh)
 	char *pwd;
 
 	if (!(pwd = getcwd(NULL, PATH_MAX)))
-		return (ERROR);
+		return (SUCCESS);
 	ft_putendl_fd(pwd, 1);
 	free(pwd);
 	pwd = NULL;
