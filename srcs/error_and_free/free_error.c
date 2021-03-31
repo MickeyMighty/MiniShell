@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 11:56:22 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/31 09:24:44 by loamar           ###   ########.fr       */
+/*   Updated: 2021/03/31 10:09:22 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,7 @@ void		free_list(t_msh *msh, int key)
 	if (msh->lair_list)
 		msh->lair_list = clear_list(msh->lair_list);
 	if (msh->env_lair && (key == CTRLD || key == EXIT))
-	{
-		printf("it's free baby\n");
 		msh->env_lair = clear_env(msh->env_lair);
-	}
 }
 
 char		**ft_free_tab(char **tab, int j, t_split_data *split_data)
