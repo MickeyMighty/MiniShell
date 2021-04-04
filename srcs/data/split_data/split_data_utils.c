@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 19:43:38 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/29 01:26:10 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/04 10:19:02 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int index)
 	return (index);
 }
 
-int				ft_check_word(t_msh *msh, t_split_data *split_data, char *str)
+int				check_word_qte(t_msh *msh, t_split_data *split_data, char *str)
 {
 	int		index;
 
@@ -76,13 +76,30 @@ int				ft_check_word(t_msh *msh, t_split_data *split_data, char *str)
 	{
 		index++;
 		while (str[index] && str[index] != DQUOTE)
+		{
+			if (str[index] == '\\' && str[index + 1])
+				index++;
+			else if (str[index] == '\\' && str[index + 1] == DQUOTE)
+				index++;
+			else if (str[index] == '\\' && !str[index + 1])
+			{
+				split_data->error = 1;
+				return (ERROR);
+			}
 			index++;
-		if (str[index] == DQUOTE && str[index - 1] != '\\')
+		}
+		if (str[index] == DQUOTE)
 			return (index);
 		else
+		{
 			split_data->error = 1;
+			return (ERROR);
+		}
 	}
 	else if (index == ft_strlen(str) && str[index - 1] == '\\')
+	{
 		split_data->error = 1;
+		return (ERROR);
+	}
 	return (index);
 }

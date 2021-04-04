@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 22:57:42 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/30 22:25:42 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/04 10:21:40 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,30 +16,30 @@ static t_list 		*check_exec(t_msh *msh, t_list *cmd, char **env)
 {
 	if (cmd->token != CMD)
 	{
-		return_error(msh, cmd->content, NULL, "syntax error near unexpected token");
+		return_error(ERROR_CMD, cmd->content, NULL, "syntax error near unexpected token");
 		return (NULL);
 	}
 	return (cmd);
 }
 
-static int	is_executable(t_msh *msh, struct stat	permstat, char *name)
+static int	is_executable(t_msh *msh, struct stat	permstat, int flag, char *cmd)
 {
 	int		lock;
 
 	lock = TRUE;
+	flag = permstat.st_mode & S_IFMT;
+	global_status = 126;
 	if ((permstat.st_mode & S_IFMT) == S_IFREG)
 	{
 		if ((permstat.st_mode & S_IXUSR) == 0)
 		{
-			return_error(msh, name, NULL, "Permission denied");
-			global_status = PERMISSION_DENIED;
-			lock = FALSE;
+			return_error(ERROR_CMD, cmd, NULL, "Permission denied");
+			lock = false;
 		}
 	}
-	else if ((permstat.st_mode & S_IFMT) == S_IFDIR)
+	if (flag == S_IFDIR)
 	{
-		return_error(msh, name, NULL, "Is a directory");
-		global_status = PERMISSION_DENIED;
+		return_error(ERROR_CMD, cmd, NULL, "Is a directory");
 		lock = FALSE;
 	}
 	return (lock);
@@ -49,18 +49,21 @@ static int		check_permission(t_msh *msh, char *cmd)
 {
 	struct	stat	permstat;
 	int				lock;
-	int				ret;
+	int				flag;
 
 	ft_bzero(&permstat, sizeof(struct stat));
-	ret = stat(cmd, &permstat);
-	if (ret == ERROR)
+	flag = stat(cmd, &permstat);
+	if (flag == ERROR)
 	{
 		global_status = 127;
-		return_error(msh, cmd, NULL, "command not found");
 		global_return = ERROR;
+		if ((ft_strncmp(cmd, "./", 2) == 0) || cmd[0] == '/')
+			return_error(ERROR_CMD, cmd, NULL,": No such file or directory");
+		else
+			return_error(ERROR_CMD, cmd, NULL, "command not found");
 		return (FALSE);
 	}
-	lock = is_executable(msh, permstat, cmd);
+	lock = is_executable(msh, permstat, flag, cmd);
 	return (lock);
 }
 
@@ -125,13 +128,7 @@ int 	exec_cmd(t_msh *msh, t_list *cmd, char **env)
 		}
 		if (msh->utils->pipe == 0)
 			global_pid = fork();
-		if (global_pid < 0)
-		{
-			global_error = ERROR;
-			global_status = 127;
-			return (return_error(msh, "execve", NULL, "failed to create a new process."));
-		}
-		else if (global_pid == 0)
+		if (global_pid == 0)
 			child_process(msh, cmd, env, exec_path);
 		else
 			parent_process(msh, cmd);

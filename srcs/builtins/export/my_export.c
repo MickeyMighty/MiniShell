@@ -6,42 +6,34 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 18:04:14 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/30 16:32:34 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/04 12:43:43 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/libshell.h"
+#include "../../../includes/libshell.h"
 
-static	void	print_env(t_msh *msh, t_list *element)
+static char		*export_env(t_msh *msh, char *str, int prt)
 {
-	t_env_list		*env;
-	int				limit;
+	int		pos;
 
-	limit = 0;
-	if (!msh->env_lair->start)
-		return ;
-	while (limit <= 255)
+	pos = 0;
+	if (!str)
+		return (NULL);
+	if (prt == 0)
 	{
-		env = msh->env_lair->start;
-		while (env && env->first_content && env->first_content[0] != limit)
-			env = env->next;
-	 	while (env)
-		{
-			if (env->first_content && env->first_content[0] == limit)
-			{
-				ft_putstr_fd("declare -x ", 1);
-				ft_putstr_fd(env->first_content, 1);
-				if (env->second_content)
-				{
-					ft_putstr_fd("=", 1);
-					ft_putendl_fd(env->second_content, 1);
-				}
-				else
-					ft_putstr_fd("\n", 1);
-			}
-			env = env->next;
-		}
-		limit++;
+		while (str[pos] != '=' && str[pos] != '\0')
+			pos++;
+		return (check_export_env(msh, ft_substr(str, 0, pos)));
+	}
+	else
+	{
+		while (str[pos] != '=' && str[pos] != '\0')
+			pos++;
+		if (str[pos] == '\0')
+			return (NULL);
+		if (str[pos] == '=')
+			pos++;
+		return (check_export_env(msh, ft_substr(str, pos, (ft_strlen(str) - pos))));
 	}
 }
 
@@ -54,7 +46,8 @@ int				check_first_content(char *content, char *str)
 		return (ERROR);
 	while (str[pos] != '=' && str[pos] != '\0')
 		pos++;
-	if (str[pos] != '\0' && ft_strncmp(content, str, pos) == 0)
+	if ((str[pos] != '\0') && (ft_strncmp(str, content, pos) == 0)
+	&& (pos == ft_strlen(content)))
 		return (SUCCESS);
 	else
 		return (ERROR);
@@ -111,6 +104,8 @@ int				my_export(t_msh *msh, t_list *element)
 	{
 		while (element->tab_args[pos])
 		{
+			if (check_arg(msh, element->tab_args[pos]) == ERROR)
+				return (ERROR);
 			push_to_env(msh, element->tab_args[pos]);
 			pos++;
 		}

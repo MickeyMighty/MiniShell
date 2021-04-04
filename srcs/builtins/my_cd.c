@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 11:23:10 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/31 00:08:24 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/04 01:20:25 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,25 +55,27 @@ static int			change_home_directory(t_msh *msh, char *path, int home)
 	return (0);
 }
 
-static int			set_directory(t_msh *msh, t_list *element, char *path,
+static int			set_directory(t_msh *msh, t_list *element, char *tmp,
 int home)
 {
 	struct stat	st;
 
-	if (change_home_directory(msh, path, home))
+	if (change_home_directory(msh, tmp, home))
 		return (SUCCESS);
 	global_status = 1;
-	if (stat(path, &st) == -1)
+	if (stat(tmp, &st) == -1)
 	{
-		return_error(msh, element->content, path,
+		return_error(ERROR_ARGS, element->content, tmp,
 		": No such file or directory");
 		global_status = 127;
 	}
 	else if (!(st.st_mode & S_IXUSR))
-		return_error(msh, element->content, path, ": Permission denied");
+		return_error(ERROR_ARGS, element->content, tmp, ": Permission denied");
 	else
-		return_error(msh, element->content, path, ": Not a directory");
-	return (SUCCESS);
+		return_error(ERROR_ARGS, element->content, tmp, ": Not a directory");
+	if (home)
+		free(tmp);
+	return (ERROR);
 }
 
 static int			get_cd_path(t_msh *msh, t_list *element)
@@ -106,17 +108,16 @@ int					my_cd(t_msh *msh, t_list *element)
 	home = NULL;
 	if (element->tab_args[1] != NULL && element->tab_args[2] != NULL)
 	{
-		return_error(msh, element->content, NULL, "too many arguments");
-		global_error = ERROR;
+		return_error(ERROR_CMD, element->content, NULL, "too many arguments");
 		return (ERROR);
 	}
-	if (element->tab_args[1] == NULL
+	if (element->tab_args[1] == NULL || element->tab_args[1][0] == '\0'
 	|| (ft_strcmp(element->tab_args[1], "~") == 0)
 	|| (ft_strcmp(element->tab_args[1], "--") == 0))
 	{
 		if (!(home = get_env(msh, "HOME")))
 		{
-			return_error(msh, element->content, NULL, "HOME not set");
+			return_error(ERROR_CMD, element->content, NULL, "HOME not set");
 			return (ERROR);
 		}
 		return (set_directory(msh, element, home, 1));

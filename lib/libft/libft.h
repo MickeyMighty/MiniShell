@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 16:24:04 by loamar            #+#    #+#             */
-/*   Updated: 2020/12/11 03:01:33 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/01 00:01:49 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct		s_num
 	long			tmp;
 }					t_num;
 
+char			*ft_free_strjoin(char *s1, char *s2, int free1, int free2);
 int				ft_strcmp(char *s1, char *s2);
 void				ft_memdel(void **ap);
 int					ft_max(int a, int b);

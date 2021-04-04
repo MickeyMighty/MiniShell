@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 11:56:22 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/31 10:09:22 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/02 16:17:31 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ void		free_all(t_msh *msh, int free_key)
 			{
 				if (msh->utils->path)
 					free_split(msh->utils->path);
+				if (msh->utils->tab_specase)
+					free(msh->utils->tab_specase);
 				free(msh->utils);
 			}
 			if (msh->data)

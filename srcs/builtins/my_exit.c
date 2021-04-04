@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 09:12:18 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/30 19:17:17 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/04 00:58:15 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,7 @@ static	long long	ft_atoi_exit(const char *str, int i, int *pbm)
 
 static	void		exit_error_numeric(t_msh *msh, char *arg, t_list *element)
 {
-	ft_putstr_fd("minishell: exit: ", 2);
-	ft_putstr_fd(arg, 2);
-	ft_putstr_fd(": numeric argument required\n", 2);
+	return_error(ERROR_CMD, "exit", arg, ": numeric argument required");
 	global_status = 2;
 	free_all(msh, EXIT);
 	exit(global_status);
@@ -84,7 +82,7 @@ int		my_exit(t_msh *msh, t_list *element)
 			i++;
 		if (i > 2)
 		{
-			ft_putstr_fd("minishell: exit: too many arguments\n", 2);
+			return_error(ERROR_CMD, "exit", NULL, "too many arguments");
 			global_status = 1;
 		}
 		else

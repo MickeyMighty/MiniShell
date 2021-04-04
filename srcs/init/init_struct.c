@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 07:27:43 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/31 09:46:09 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/02 21:20:11 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ t_msh			*init_msh(t_msh *msh, int key)
 	msh = init_struct(msh, key);
 	if (msh == NULL)
 		return (NULL);
+	msh->utils->tab_specase = NULL;
+	msh->utils->size_tab = 0;
 	msh->list = NULL;
 	msh->lair_list = NULL;
 	msh->utils->path = NULL;

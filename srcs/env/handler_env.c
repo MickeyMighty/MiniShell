@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 17:30:11 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/30 23:56:16 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/03 02:28:58 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,29 @@
 void		set_env(t_msh *msh, char *first_content, char *second_content)
 {
 	t_env_list	*element;
+	char		*tmp;
 
 	if (!first_content || !second_content)
 		return ;
 	element = msh->env_lair->start;
+
 	if (!element || element == NULL)
 		ft_fill_empty_env(msh->env_lair, first_content, second_content);
 	else
+	{
+		while (element)
+		{
+			if (ft_strcmp(first_content, element->first_content) == 0)
+			{
+				if (element->second_content)
+					free(element->second_content);
+				element->second_content = ft_strdup(second_content);
+				return ;
+			}
+			element = element->next;
+		}
 		ft_fill_end_env(msh->env_lair, first_content, second_content);
+	}
 }
 
 char		*get_env(t_msh *msh, char *str)
@@ -39,7 +54,7 @@ char		*get_env(t_msh *msh, char *str)
 			if (!element->second_content)
 				return (NULL);
 			else
-				return (element->second_content);
+				return (ft_strdup(element->second_content));
 		}
 		element = element->next;
 	}

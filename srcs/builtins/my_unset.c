@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 21:56:45 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/30 16:34:51 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/04 01:33:30 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,8 @@ int				my_unset(t_msh *msh, t_list *element)
 		}
 		else
 		{
-			ft_putstr_fd("minishell: unset: `", 2);
-			ft_putstr_fd(element->tab_args[i], 2);
-			ft_putstr_fd("': not a valid identifier\n", 2);
+			return_error(ERROR_ARGS, "unset", element->tab_args[i],
+			": not a valid identifier");
 			global_status = 1;
 		}
 	}

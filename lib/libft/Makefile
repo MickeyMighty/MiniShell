@@ -6,7 +6,7 @@
 #    By: loamar <loamar@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/30 19:29:10 by loamar            #+#    #+#              #
-#    Updated: 2020/11/05 23:13:04 by lorenzoam        ###   ########.fr        #
+#    Updated: 2021/04/01 00:01:30 by loamar           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,6 +69,7 @@ SRC=ft_putnbr.c \
 	ft_min.c \
 	ft_max.c \
 	ft_memdel.c \
+	ft_free_strjoin.c \
 	ft_strcmp.c
 
 

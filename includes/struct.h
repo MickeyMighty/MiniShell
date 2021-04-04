@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 18:09:50 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/28 21:49:06 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/04 10:32:12 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,24 +27,29 @@ typedef struct 		s_msh
 typedef struct		s_utils
 {
 	int 	size_opt_arg;
-	int 	status;
+	int 	status; // ??
 	int 	check;
 	int 	pos;
+	int 	pos_args;
+	int 	args_pos;
 	char 	quote;
 	int 	no_space;
-	// int 	check_opt; // ?
 	int 	check_arg; // ?
-	// int 	check_sep; // ?
-	int 	len;
+	int 	key;
+	int 	loop;
+	int 	loop2;
+	int 	loop3;
 	int		backup_fd;
 	int 	pos_list;
 	int 	multi_pipe;
 	int 	pipe;
+	int 	export;
+	int 	doubleds;
 	int				redirection;
 	int		i;
 	int		fd;
-	// char 	*lair_export;
-	// char 	*tmp_utils; // a free ? existe ?
+	int		size_tab;
+	int		*tab_specase;
 	char 	**path;
 }					t_utils;
 

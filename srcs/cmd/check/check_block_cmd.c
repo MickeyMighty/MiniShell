@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 09:50:00 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/30 18:44:33 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/04 10:55:57 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int			check_end(char *str, int pos)
 {
-	if (str[pos] != '\0' && (ft_isalnum(str[pos]) == 0))
+	if (str[pos + 1] != '\0' && (ft_isalnum(str[pos + 1]) == 0))
 		return (1);
 	else
 		return (0);
@@ -38,29 +38,65 @@ int			check_no_space(t_msh *msh, char *str)
 	return (0);
 }
 
-char		*check_content(t_msh *msh, char *str)
+static	int		put_pos_check(t_msh *msh, char *str, int start, int flag)
+{
+	int	pos;
+
+	pos = start;
+	if (flag == 1)
+	{
+		while (str[pos] == ' ')
+		{
+			if ((msh->utils->no_space == 1 || msh->utils->no_space == 3)
+			&& str[pos + 1] != ' ')
+				return (pos);
+			pos++;
+		}
+		return (pos);
+	}
+	else if (flag == 2)
+	{
+		if (msh->utils->no_space == 2 || msh->utils->no_space == 3)
+			return (pos);
+		pos++;
+		return (pos);
+	}
+	else
+		return (pos);
+}
+
+char		*check_content(t_msh *msh, char *str, int key)
 {
 	char	*first_step;
 	char	*second_step;
 	int		pos;
 
 	pos = 0;
+	msh->utils->loop3 = 0;
 	first_step = NULL;
+	if (key == NOQTE)
+		pos = put_pos_check(msh, str, pos, 1);
 	while (str[pos] != '\0')
 	{
 		second_step = NULL;
+		if (key == NOQTE)
+		{
+			while (str[pos] == ' ' && str[pos + 1] == ' ')
+				pos++;
+			if (str[pos] == ' ' && str[pos + 1] == '\0')
+				pos = put_pos_check(msh, str, pos, 2);
+		}
 		if (str[pos] == '\\' && (pos + 1) <= ft_strlen(str))
 			pos++;
 		else
 		{
-			second_step = ft_substr(str, msh->utils->pos, 1);
-			first_step = ft_strjoin(first_step, second_step);
-			free(second_step);
+			second_step = ft_substr(str, pos, 1);
+			first_step = join_and_free_first_step(msh, first_step, second_step, 3);
+			msh->utils->loop3 = 1;
 		}
-		pos++;
+		if (str[pos])
+			pos++;
 	}
-	if (str)
-		free(str);
 	return (first_step);
 }
 
@@ -92,29 +128,32 @@ int			data_check(t_msh *msh)
 
 t_list		*check_block_cmd(t_msh *msh, t_list *element)
 {
-	int		pos;
-
-	pos = 1;
+	msh->utils->check = 0;
+	msh->utils->size_tab = 0;
+	msh->utils->pos_args = 1;
+	msh->utils->export = 0;
 	if (!element->content)
 		return (NULL);
 	msh->utils->no_space = 0;
+	if (ft_strcmp(element->content, "export") == 0)
+		msh->utils->export = 1;
 	element->content = return_all_content(msh, element->content);
 	if (element->content == NULL)
 	{
 		global_error_msg = ERROR_MULTI;
 		return (NULL);
 	}
-	while (element->tab_args[pos] != NULL)
+	while (element->tab_args[msh->utils->pos_args] != NULL)
 	{
 		msh->utils->no_space = 0;
-		element->tab_args[pos] =
-			return_all_content(msh, element->tab_args[pos]);
-		if (element->tab_args[pos] == NULL)
+		element->tab_args[msh->utils->pos_args] =
+		return_all_content(msh, element->tab_args[msh->utils->pos_args]);
+		if (element->tab_args[msh->utils->pos_args] == NULL)
 		{
 			global_error_msg = ERROR_MULTI;
 			return (NULL);
 		}
-		pos++;
+		msh->utils->pos_args++;
 	}
 	return (element);
 }

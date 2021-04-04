@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 19:36:18 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/31 08:50:47 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/03 00:30:23 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,13 @@ int				ft_get_len_word(t_split_data *split_data, char *str)
 		index = ft_count_separator(str, index);
 		return (index);
 	}
+	if (str[index] == '\\' && str[index + 1] == ' ')
+		index += 2;
 	while (str[index] != '\0' && str[index] != ' '
 			&& ft_count_separator(str, index) == 0)
 	{
+		if (str[index] == '\\' && str[index + 1] == ' ')
+			index += 2;
 		if (str[index] == '\\' && (index + 1) == ft_strlen(str))
 			split_data->error = 1;
 		if (str[index] == SQUOTE || str[index] == DQUOTE)
@@ -66,6 +70,8 @@ t_split_data *split_data, char **res)
 	while (str[split_data->pos] && (split_data->nb < split_data->nb_word))
 	{
 		split_data->pos_index = 0;
+		if (str[split_data->pos] == '\\' && str[split_data->pos + 1] == ' ')
+			split_data->pos += 2;
 		while (str[split_data->pos] != '\0' && str[split_data->pos] == ' ')
 			split_data->pos++;
 		res[split_data->nb] = ft_substr(str, split_data->pos,
@@ -82,12 +88,15 @@ static	int		get_pos_after_word(t_msh *msh, char *s, char c,
 t_split_data *split_data)
 {
 	split_data->nb_word++;
+	if (s[split_data->pos] == '\\' && s[split_data->pos + 1] == c)
+		split_data->pos += 2;
 	while (s[split_data->pos] != '\0' && s[split_data->pos] != c
 	&& (ft_count_separator(s, split_data->pos) == 0))
 	{
-		if ((split_data->pos = ft_check_word(msh, split_data, s)) ==
-		ERROR)
+		if ((split_data->pos = check_word_qte(msh, split_data, s)) == ERROR)
 			return (-1);
+		else if (s[split_data->pos] == '\\' && s[split_data->pos + 1] == c)
+			split_data->pos += 2;
 		if (s[split_data->pos])
 			split_data->pos++;
 	}
@@ -115,5 +124,5 @@ t_split_data *split_data)
 		else if (s[split_data->pos] != '\0')
 			split_data->pos++;
 	}
-	global_size_word = split_data->nb_word;
+	msh->data->size_data = split_data->nb_word;
 }

@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 13:35:59 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/30 22:28:43 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/04 03:04:30 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,20 @@
 # include <dirent.h>
 #include <fcntl.h>
 
-# define SUCCESS 0
-# define ERROR -1
+# define EMPTY_ENV -6
+# define ERROR_MULTI -5
+# define ERROR_MALLOC -4
+# define ERROR_SEP -3
 # define ERROR_BUILTINS -2
-# define ERROR_CMD -3
-# define ERROR_SEP -4
-# define ERROR_REDIRECTION -5
-# define PERMISSION_DENIED 126
-# define ERROR_MULTI -6
-# define EMPTY_ENV -7
+# define ERROR -1
+# define SUCCESS 0
+# define ERROR_QTE 1
+# define ERROR_ARGS 2
+# define ERROR_CMD 3
+# define ERROR_TOKEN 4
+# define ERROR_MSG 5
+# define ERROR_ERRNO 6
+// # define ERROR_REDIRECTION -5
 
 
 # define EXIT 0
@@ -78,13 +83,13 @@
 ** Variable Global
 */
 
+ // a enlever
 pid_t					global_pid;
 int						global_loop;
 int						global_error;
 int						global_error_msg;
 int						global_status;
 int						global_return;
-int						global_loop;
 int						global_sign_info;
 int						global_size_word;
 
@@ -117,6 +122,7 @@ t_lair_list 	*pop_back_list(t_lair_list *lair_list);
 void			set_token_list(t_msh *msh);
 
 
+char	*join_and_free_first_step(t_msh *msh, char *first, char *second, int loop);
 /*
 ** env/path.c
 */
@@ -145,7 +151,7 @@ int		ft_get_len_word(t_split_data *split_data, char *str);
 char	**ft_word_to_tab(t_msh *msh, char *str, t_split_data *split_data, char **res);
 char			**ft_split_data(t_msh *msh, char *s, char c);
 int				ft_count_separator(char *s, int pos);
-int 	ft_check_word(t_msh *msh, t_split_data *split_data, char *str);
+int 	check_word_qte(t_msh *msh, t_split_data *split_data, char *str);
 void 			ft_count_word(t_msh *msh, char *s, char c, t_split_data *split_data);
 
 char 	*get_env(t_msh *msh, char *str);
