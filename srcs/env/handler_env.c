@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 17:30:11 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/03 02:28:58 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/07 13:21:24 by lorenzoamar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,10 @@
 void		set_env(t_msh *msh, char *first_content, char *second_content)
 {
 	t_env_list	*element;
-	char		*tmp;
 
 	if (!first_content || !second_content)
 		return ;
 	element = msh->env_lair->start;
-
 	if (!element || element == NULL)
 		ft_fill_empty_env(msh->env_lair, first_content, second_content);
 	else
@@ -61,7 +59,7 @@ char		*get_env(t_msh *msh, char *str)
 	return (NULL);
 }
 
-char		*sep_env(char *str, int prt)
+char		*sep_env(t_msh *msh, char *str, int prt, int type)
 {
 	int		pos;
 
@@ -82,7 +80,10 @@ char		*sep_env(char *str, int prt)
 			return (NULL);
 		if (str[pos] == '=')
 			pos++;
-		return (ft_substr(str, pos, (ft_strlen(str) - pos)));
+		if (type == ENV)
+			return (ft_substr(str, pos, (ft_strlen(str) - pos)));
+		else
+			return (export_secondcontent(msh, str, pos));
 	}
 }
 
@@ -95,12 +96,12 @@ int			handler_env(t_msh *msh, char **env)
 	if (msh->env_lair == NULL)
 		return (EMPTY_ENV);
 	msh->env_list = NULL;
-	ft_fill_empty_env(msh->env_lair, sep_env(env[count], 0),
-	sep_env(env[count], 1));
+	ft_fill_empty_env(msh->env_lair, sep_env(msh, env[count], 0, ENV),
+	sep_env(msh, env[count], 1, ENV));
 	while (env[++count] != NULL)
 	{
-		ft_fill_end_env(msh->env_lair, sep_env(env[count], 0),
-		sep_env(env[count], 1));
+		ft_fill_end_env(msh->env_lair, sep_env(msh, env[count], 0, ENV),
+		sep_env(msh, env[count], 1, ENV));
 	}
 	return (SUCCESS);
 }

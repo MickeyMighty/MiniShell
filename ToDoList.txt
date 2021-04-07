@@ -52,10 +52,11 @@ export test=$test"coucou"
 export A=a B=b C=c D=d E=e F=f G=g H=h I=i J=j K=k L=l M=m N=n O=o P=p Q=q R=r // ERREUR C=> COLORFGBG ????
 // erreru strcmp ???
 
-export A=\B\O\N\ \ \ \ \ \ \ JOURJESUIS
+// new
+cat /dev/random | head -c 100 | wc -c
+echo testing multi ; echo "test 1 ; | and 2" ; cat test.sh | grep echo
 
 
-
-
-pas gerer 
+pas gerer
 export A='fi le' ; echo bonjour > $A
+error ';;'

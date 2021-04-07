@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 00:50:24 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/04 01:55:59 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/07 12:02:16 by lorenzoamar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ static	void	return_error_token(char *cmd, char *msg)
 	}
 	if (cmd)
 	{
-		ft_putstr_fd("\'", 2);
+		ft_putstr_fd("`", 2);
 		ft_putstr_fd(cmd, 2);
 		ft_putendl_fd("\'", 2);
 	}
 }
 
-static	void 	return_error_args(char *cmd, char *arg, char *msg, int type)
+static	void	return_error_args(char *cmd, char *arg, char *msg, int type)
 {
 	if (cmd != NULL)
 	{
@@ -48,7 +48,7 @@ static	void 	return_error_args(char *cmd, char *arg, char *msg, int type)
 	if (arg != NULL)
 	{
 		if (type == ERROR_QTE)
-			ft_putstr_fd("\'", 2);
+			ft_putstr_fd("`", 2);
 		ft_putstr_fd(arg, 2);
 		if (type == ERROR_QTE)
 			ft_putstr_fd("\'", 2);
@@ -56,7 +56,6 @@ static	void 	return_error_args(char *cmd, char *arg, char *msg, int type)
 	if (msg != NULL)
 		ft_putendl_fd(msg, 2);
 }
-// remplace global_error par error_msg
 
 int				return_error(int type, char *cmd, char *arg, char *msg)
 {
@@ -74,6 +73,6 @@ int				return_error(int type, char *cmd, char *arg, char *msg)
 		ft_putendl_fd(msg, 2);
 	else
 		ft_putendl_fd(strerror(errno), 2);
-	global_error = ERROR;
+	g_error = ERROR;
 	return (ERROR);
 }

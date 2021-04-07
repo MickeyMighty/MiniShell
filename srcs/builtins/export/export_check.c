@@ -6,31 +6,60 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 22:39:18 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/04 12:49:23 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/07 12:45:30 by lorenzoamar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/libshell.h"
 
-void		print_second_env(char *str)
+static	char	*fill_first_step(t_msh *msh, char *str, char *first_step,
+int pos)
 {
-	int		pos;
+	int		dollar_case;
+	char	*second_step;
 
-	pos = 0;
-	while (str[pos])
+	dollar_case = 0;
+	second_step = NULL;
+	if (str[pos] == '\\' && str[pos + 1] != '\\')
+		second_step = ft_strdup("\\\\");
+	else if (str[pos] == '$' && ft_isalpha(str[pos + 1]) == 0)
 	{
-		ft_putchar_fd(str[pos], 1);
-		if (str[pos] == '\\' && str[pos + 1] == '\\')
-			pos++;
-		pos++;
+		dollar_case = 1;
+		second_step = ft_strdup("\\");
 	}
+	else
+		second_step = ft_substr(str, pos, 1);
+	first_step = join_and_free_first_step(msh, first_step, second_step, 2);
+	if (dollar_case == 1)
+	{
+		second_step = ft_substr(str, pos, 1);
+		first_step =
+		join_and_free_first_step(msh, first_step, second_step, 2);
+	}
+	return (first_step);
 }
 
-char	*check_export_env(t_msh *msh, char *str)
+char			*export_secondcontent(t_msh *msh, char *str, int start)
+{
+	char	*first_step;
+	int		pos;
+
+	first_step = NULL;
+	msh->utils->loop2 = 0;
+	pos = start;
+	while (str[pos])
+	{
+		first_step = fill_first_step(msh, str, first_step, pos);
+		if (str[pos])
+			pos++;
+	}
+	return (first_step);
+}
+
+char			*check_export_env(t_msh *msh, char *str)
 {
 	char	*first_step;
 	char	*second_step;
-	char	*tmp;
 	int		pos;
 
 	pos = 0;
@@ -53,95 +82,55 @@ char	*check_export_env(t_msh *msh, char *str)
 	return (first_step);
 }
 
-void	print_env(t_msh *msh, t_list *element)
+static	int		return_error_export(t_msh *msh, char *str, int pos)
 {
-	t_env_list		*env;
-	int				limit;
-
-	limit = 0;
-	if (!msh->env_lair->start)
-		return ;
-	while (limit <= 255)
+	if (str[pos] == '_' && pos == 0)
+		return (ERROR);
+	if ((ft_isdigit(str[pos]) == 1 && msh->utils->check == 0))
 	{
-		env = msh->env_lair->start;
-		while (env && env->first_content && env->first_content[0] != limit)
-			env = env->next;
-	 	while (env)
-		{
-			if (env->first_content && env->first_content[0] == limit)
-			{
-				ft_putstr_fd("declare -x ", 1);
-				ft_putstr_fd(env->first_content, 1);
-				if (env->second_content)
-				{
-					ft_putstr_fd("=", 1);
-					ft_putstr_fd("\"", 1);
-					print_second_env(env->second_content);
-					// ft_putstr_fd(env->second_content, 1);
-					ft_putendl_fd("\"", 1);
-				}
-				else
-					ft_putstr_fd("\n", 1);
-			}
-			env = env->next;
-		}
-		limit++;
+		return (return_error(ERROR_QTE, "export", str,
+		": not a valid identifier"));
 	}
+	if (msh->utils->check == 0 && (ft_isalpha(str[pos]) != 1)
+	&& ((ft_isdigit(str[pos]) == 1) || (str[pos] != '_')))
+	{
+		return (return_error(ERROR_QTE, "export", str,
+		": not a valid identifier"));
+	}
+	if (ft_isalpha(str[pos]) == 1)
+		msh->utils->check = 1;
+	else if (msh->utils->check == 0)
+	{
+		return (return_error(ERROR_QTE, "export", str,
+		": not a valid identifier"));
+	}
+	return (SUCCESS);
 }
 
-int		check_arg(t_msh *msh, char *str)
+int				check_arg(t_msh *msh, char *str)
 {
 	int		pos;
-	int		check;
 
 	pos = 0;
-	check = 0;
+	msh->utils->check = 0;
+	if (str[pos] == '=')
+	{
+		return (return_error(ERROR_QTE, "export", str,
+		": not a valid identifier"));
+	}
+	if (str[pos] == '\0')
+	{
+		return (return_error(ERROR_QTE, "export", str,
+		": not a valid identifier"));
+	}
 	while (str[pos])
 	{
-		printf("str[%c]\n", str[pos]);
 		if (str[pos] == '=')
 			return (SUCCESS);
-		if (str[pos] == '_' && pos == 0)
+		if (return_error_export(msh, str, pos) == ERROR)
 			return (ERROR);
-		if ((ft_isalnum(str[pos]) == 1 && check == 0))
-		{
-			return (return_error(ERROR_QTE, "export", str,
-			": not a valid identifier"));
-		}
-		if (check = 0 && ((ft_isalpha(str[pos]) != 1)
-		|| (ft_isalnum(str[pos]) != 1) || (str[pos] != '_')))
-		{
-			return (return_error(ERROR_QTE, "export", str,
-			": not a valid identifier"));
-		}
-		if (ft_isalpha(str[pos]) == 1)
-			check = 1;
 		if (str[pos])
 			pos++;
 	}
 	return (SUCCESS);
 }
-// printf("str[%c]\n", str[pos]);
-// if (str[pos] == '=')
-// return (SUCCESS);
-// if (str[pos] == '_' && pos == 0)
-// return (ERROR);
-// if ((ft_isalnum(str[pos]) == 1 && check == 0) || ((str[pos] != '\\')
-// && (str[pos] != '/') && (str[pos] != ' ')))
-// {
-// 	printf("ici 1\n");
-// 	return (return_error(ERROR_QTE, "export", str,
-// 	": not a valid identifier"));
-// }
-// if ((ft_isalpha(str[pos]) == 0) && (ft_isalnum(str[pos]) == 0)
-// && (str[pos] != '_') && (str[pos] != '\\') && (str[pos] != '/')
-// && (str[pos] != ' '))
-// {
-// 	printf("ici 2\n");
-// 	return (return_error(ERROR_QTE, "export", str,
-// 	": not a valid identifier"));
-// }
-// if (ft_isalpha(str[pos]) == 1)
-// check = 1;
-// if (str[pos])
-// pos++;

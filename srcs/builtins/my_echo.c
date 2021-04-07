@@ -6,13 +6,13 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/12 06:06:53 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/02 21:54:58 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/06 17:21:35 by lorenzoamar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libshell.h"
 
-static	int	check_option(char *str)
+static	int		check_option(char *str)
 {
 	int		pos;
 
@@ -34,34 +34,37 @@ static	int	check_option(char *str)
 	return (0);
 }
 
-int			my_echo(t_msh *msh, t_list *element)
+static	void	print_echo(t_msh *msh, t_list *element)
 {
-	int		pos;
-	int		option_n;
+	ft_putstr_fd(element->tab_args[msh->utils->pos_echo], 1);
+	if (element->tab_args[msh->utils->pos_echo + 1] != NULL
+	&& (check_specase(msh, msh->utils->pos_echo) == 0))
+		ft_putstr_fd(" ", 1);
+}
 
-	option_n = 0;
-	pos = 1;
-	if (element->tab_args[pos] == NULL)
+int				my_echo(t_msh *msh, t_list *element)
+{
+	msh->utils->option_n = 0;
+	msh->utils->pos_echo = 1;
+	if (element->tab_args[msh->utils->pos_echo] == NULL)
 	{
 		ft_putstr_fd("\n", 1);
 		return (SUCCESS);
 	}
 	else
 	{
-		while (element->tab_args[pos] && check_option(element->tab_args[pos]) == 1)
+		while (element->tab_args[msh->utils->pos_echo] &&
+		check_option(element->tab_args[msh->utils->pos_echo]) == 1)
 		{
-			option_n = 1;
-			pos++;
+			msh->utils->option_n = 1;
+			msh->utils->pos_echo++;
 		}
-		while (element->tab_args[pos])
+		while (element->tab_args[msh->utils->pos_echo])
 		{
-			ft_putstr_fd(element->tab_args[pos], 1);
-			if (element->tab_args[pos + 1] != NULL
-			&& (check_specase(msh, pos) == 0))
-				ft_putstr_fd(" ", 1);
-			pos++;
+			print_echo(msh, element);
+			msh->utils->pos_echo++;
 		}
-		if (option_n == 0)
+		if (msh->utils->option_n == 0)
 			ft_putstr_fd("\n", 1);
 	}
 	return (SUCCESS);

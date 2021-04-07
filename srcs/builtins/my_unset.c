@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 21:56:45 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/04 01:33:30 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/07 12:09:19 by lorenzoamar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,14 @@ static	int		pop_env(t_msh *msh, int pos)
 {
 	t_env_list	*delete_element;
 	t_env_list	*now_element;
-	int			i;
 
-	i = 1;
+	msh->utils->pos = 1;
 	if (msh->env_lair->size == 0)
 		return (-1);
 	if (msh->env_lair->size == 1)
 		msh->env_lair = clear_env(msh->env_lair);
 	now_element = msh->env_lair->start;
-	while (i++ < pos)
+	while (msh->utils->pos++ < pos)
 		now_element = now_element->next;
 	delete_element = now_element;
 	if (now_element->next != NULL)
@@ -51,6 +50,7 @@ static int		find_env(t_msh *msh, char *content, int index)
 	element = msh->env_lair->start;
 	if (!element || element == NULL)
 		return (-1);
+	index = 1;
 	while (element)
 	{
 		if (element && element->first_content)
@@ -67,27 +67,28 @@ static int		find_env(t_msh *msh, char *content, int index)
 
 int				my_unset(t_msh *msh, t_list *element)
 {
-	size_t	i;
+	size_t	pos;
 	ssize_t	index;
 
-	global_status = 0;
+	g_status = 0;
 	if (!element->tab_args[1])
 		return (SUCCESS);
-	i = 0;
-	while (element->tab_args[++i])
+	pos = 1;
+	while (element->tab_args[pos])
 	{
-		index = find_env(msh, element->tab_args[i], i);
+		index = find_env(msh, element->tab_args[pos], pos);
 		if (index != -1)
 		{
-			if (element->tab_args[i])
+			if (element->tab_args[pos])
 				pop_env(msh, index);
 		}
 		else
 		{
-			return_error(ERROR_ARGS, "unset", element->tab_args[i],
+			return_error(ERROR_QTE, "unset", element->tab_args[pos],
 			": not a valid identifier");
-			global_status = 1;
+			g_status = 1;
 		}
+		pos++;
 	}
 	return (SUCCESS);
 }

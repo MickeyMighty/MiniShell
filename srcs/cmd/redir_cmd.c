@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 10:16:20 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/04 01:51:41 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/07 13:04:07 by lorenzoamar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ static int		get_type_redir(char *content)
 		return (ERROR);
 }
 
-int				return_redir_error(t_msh *msh, t_list *element, int fd, int i)
+int				return_redir_error(t_list *element, int fd, int i)
 {
 	char	*join;
 
 	join = ft_strjoin(element->tab_args[i], ": ");
 	return_error(ERROR_ERRNO, join, NULL, strerror(errno));
 	ft_putstr_fd("\n", 2);
-	global_error = ERROR;
+	g_error = ERROR;
 	free(join);
 	return (fd);
 }
@@ -50,12 +50,12 @@ char **env)
 		close(fd);
 		exec_cmd(msh, element->previous, env);
 		element = element->next;
-		exit(global_sign_info);
+		exit(g_sign_info);
 	}
 	else
 	{
 		wait(&child_status);
-		global_sign_info = WEXITSTATUS(child_status);
+		g_sign_info = WEXITSTATUS(child_status);
 	}
 	return (element);
 }
@@ -65,10 +65,11 @@ t_list			*redirections(t_msh *msh, t_list *element, char **env)
 	int				fd;
 	int				type;
 
+	type = 0;
 	msh->utils->redirection = 1;
 	if (!element->next->next)
 	{
-		error_cmd(msh, element->next);
+		error_cmd(element->next);
 		return (NULL);
 	}
 	if (element->next && element->next->token == SEPARATOR)
@@ -77,13 +78,13 @@ t_list			*redirections(t_msh *msh, t_list *element, char **env)
 		return (NULL);
 	if (!element->next->next && element->next->next->token != CMD)
 	{
-		error_cmd(msh, element->next);
+		error_cmd(element->next);
 		return (NULL);
 	}
 	if (element->next && type == CHEVRONL)
 		msh->utils->redirection = 0;
 	element = element->next;
-	fd = create_file(msh, element->next, type);
+	fd = create_file(element->next, type);
 	if (fd == ERROR)
 		return (NULL);
 	return (exec_redirection(msh, element, fd, env));

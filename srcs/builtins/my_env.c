@@ -6,13 +6,13 @@
 /*   By: tidminta <tidminta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 15:41:31 by tidminta          #+#    #+#             */
-/*   Updated: 2021/04/04 02:43:26 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/07 12:11:58 by lorenzoamar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libshell.h"
 
-int			my_env(t_msh *msh, t_list *element)
+int			my_env(t_msh *msh)
 {
 	t_env_list		*env;
 
@@ -25,7 +25,7 @@ int			my_env(t_msh *msh, t_list *element)
 		{
 			ft_putstr_fd(env->first_content, 1);
 			ft_putstr_fd("=", 1);
-			print_second_env(env->second_content);
+			ft_putendl_fd(env->second_content, 1);
 		}
 		env = env->next;
 	}

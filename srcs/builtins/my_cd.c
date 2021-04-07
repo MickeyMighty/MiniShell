@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/18 11:23:10 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/04 01:20:25 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/07 12:11:43 by lorenzoamar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static char			*create_home(t_msh *msh, char *path)
 	return (path);
 }
 
-static int			change_home_directory(t_msh *msh, char *path, int home)
+static int			change_home_directory(t_msh *msh, char *path)
 {
 	char	*pwd;
 
@@ -60,14 +60,14 @@ int home)
 {
 	struct stat	st;
 
-	if (change_home_directory(msh, tmp, home))
+	if (change_home_directory(msh, tmp))
 		return (SUCCESS);
-	global_status = 1;
+	g_status = 1;
 	if (stat(tmp, &st) == -1)
 	{
 		return_error(ERROR_ARGS, element->content, tmp,
 		": No such file or directory");
-		global_status = 127;
+		g_status = 127;
 	}
 	else if (!(st.st_mode & S_IXUSR))
 		return_error(ERROR_ARGS, element->content, tmp, ": Permission denied");
@@ -104,7 +104,7 @@ int					my_cd(t_msh *msh, t_list *element)
 {
 	char	*home;
 
-	global_status = 0;
+	g_status = 0;
 	home = NULL;
 	if (element->tab_args[1] != NULL && element->tab_args[2] != NULL)
 	{

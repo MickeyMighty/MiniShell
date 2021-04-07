@@ -4,7 +4,7 @@ CC		=	gcc
 
 RM		=	rm -f
 
-CFLAGS	=	-g -I. -fsanitize=address
+CFLAGS	=	-g -I. -Wall -Wextra -Werror
 
 LIBFT	=	./lib/libft/libft.a
 
@@ -16,10 +16,12 @@ SRCS	=	./srcs/main/minishell.c \
 			./srcs/builtins/my_pwd.c \
 			./srcs/builtins/export/my_export.c \
 			./srcs/builtins/export/export_check.c \
+			./srcs/builtins/export/print_export.c \
 			./srcs/builtins/my_exit.c \
 			./srcs/builtins/my_echo.c \
 			./srcs/builtins/my_unset.c \
 			./srcs/cmd/exec_cmd.c \
+			./srcs/cmd/handler_exec_cmd.c   \
 			./srcs/cmd/handler_cmd.c \
 			./srcs/cmd/pipe_cmd.c \
 			./srcs/cmd/redir_cmd.c \
@@ -27,6 +29,7 @@ SRCS	=	./srcs/main/minishell.c \
 			./srcs/cmd/check/check_block_cmd.c \
 			./srcs/cmd/check/return_check.c \
 			./srcs/cmd/check/fill_second_step.c \
+			./srcs/cmd/check/check_quoteanddollar.c \
 			./srcs/cmd/check/special_case_cmd.c \
 			./srcs/env/create_list_env.c \
 			./srcs/env/handler_env.c \
@@ -43,6 +46,7 @@ SRCS	=	./srcs/main/minishell.c \
 			./srcs/data/handler_data.c \
 			./srcs/data/split_data/split_data.c \
 			./srcs/data/split_data/split_data_utils.c \
+			./srcs/data/split_data/get_len_split_data.c \
 			./lib/get_next_line/get_next_line.c \
 			./lib/get_next_line/get_next_line_utils.c
 

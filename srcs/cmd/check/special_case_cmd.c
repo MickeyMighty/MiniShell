@@ -6,11 +6,28 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 15:25:23 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/02 21:24:53 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/07 13:19:57 by lorenzoamar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/libshell.h"
+
+int				check_end(char *str, int pos)
+{
+	if (str[pos + 1] != '\0' && (ft_isalnum(str[pos + 1]) == 0))
+		return (1);
+	else
+		return (0);
+}
+
+int				return_pos(t_msh *msh, char *str, int pos)
+{
+	while (str[pos] == ' ' && str[pos + 1] == ' ')
+		pos++;
+	if (str[pos] == ' ' && str[pos + 1] == '\0')
+		pos = put_pos_check(msh, str, pos, 2);
+	return (pos);
+}
 
 static int		*realloc_int_tab(int *tab, int size)
 {
@@ -37,10 +54,8 @@ static int		*realloc_int_tab(int *tab, int size)
 	return (fresh);
 }
 
-int 	*add_empty_dollar(t_msh *msh, t_list *element, int add)
+int				*add_empty_dollar(t_msh *msh, int add)
 {
-	int 	*tmp;
-
 	if (msh->utils->size_tab == 0)
 	{
 		msh->utils->tab_specase = realloc_int_tab(msh->utils->tab_specase, 1);
@@ -61,7 +76,7 @@ int 	*add_empty_dollar(t_msh *msh, t_list *element, int add)
 	return (msh->utils->tab_specase);
 }
 
-int 	check_specase(t_msh *msh, int pos)
+int				check_specase(t_msh *msh, int pos)
 {
 	int		limite;
 

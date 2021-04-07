@@ -6,11 +6,20 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 07:27:43 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/02 21:20:11 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/07 13:42:31 by lorenzoamar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libshell.h"
+
+t_utils			*init_utils(t_utils *utils)
+{
+	utils->check = 0;
+	utils->size_tab = 0;
+	utils->pos_args = 1;
+	utils->export_check = 0;
+	return (utils);
+}
 
 static t_msh	*init_struct(t_msh *msh, int key)
 {
@@ -20,7 +29,7 @@ static t_msh	*init_struct(t_msh *msh, int key)
 			return (NULL);
 	}
 	if (!(msh->utils = (t_utils*)malloc(sizeof(t_utils))))
-	return (NULL);
+		return (NULL);
 	if (!(msh->data = (t_data *)malloc(sizeof(t_data))))
 		return (NULL);
 	return (msh);

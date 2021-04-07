@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 18:10:32 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/31 09:21:56 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/07 13:23:38 by lorenzoamar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int			get_quote(char *str)
 		return (0);
 }
 
-static int	separator_check(t_msh *msh, char *s)
+static int	separator_check(char *s)
 {
 	if (!ft_strncmp(s, "|", ft_strlen(s))
 		&& ft_strlen(s) == 1)
@@ -62,7 +62,7 @@ static int	token_recognition(t_msh *msh, char *s, int indice)
 {
 	if (indice == 0)
 	{
-		if (separator_check(msh, s) == 1)
+		if (separator_check(s) == 1)
 			return (SEPARATOR);
 		else
 			return (CMD);
@@ -71,7 +71,7 @@ static int	token_recognition(t_msh *msh, char *s, int indice)
 	|| (indice > 1 && option_check(msh, s)))
 			&& (msh->utils->check_arg == 0))
 		return (OPTION);
-	else if (indice != 0 && separator_check(msh, s) == 1)
+	else if (indice != 0 && separator_check(s) == 1)
 		return (SEPARATOR);
 	else
 	{

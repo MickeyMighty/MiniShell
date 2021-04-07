@@ -6,21 +6,13 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 09:50:00 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/04 10:55:57 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/07 13:42:13 by lorenzoamar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/libshell.h"
 
-int			check_end(char *str, int pos)
-{
-	if (str[pos + 1] != '\0' && (ft_isalnum(str[pos + 1]) == 0))
-		return (1);
-	else
-		return (0);
-}
-
-int			check_no_space(t_msh *msh, char *str)
+int				check_no_space(t_msh *msh, char *str)
 {
 	int index;
 
@@ -38,7 +30,7 @@ int			check_no_space(t_msh *msh, char *str)
 	return (0);
 }
 
-static	int		put_pos_check(t_msh *msh, char *str, int start, int flag)
+int		put_pos_check(t_msh *msh, char *str, int start, int flag)
 {
 	int	pos;
 
@@ -65,7 +57,7 @@ static	int		put_pos_check(t_msh *msh, char *str, int start, int flag)
 		return (pos);
 }
 
-char		*check_content(t_msh *msh, char *str, int key)
+char			*check_content(t_msh *msh, char *str, int key)
 {
 	char	*first_step;
 	char	*second_step;
@@ -80,27 +72,19 @@ char		*check_content(t_msh *msh, char *str, int key)
 	{
 		second_step = NULL;
 		if (key == NOQTE)
-		{
-			while (str[pos] == ' ' && str[pos + 1] == ' ')
-				pos++;
-			if (str[pos] == ' ' && str[pos + 1] == '\0')
-				pos = put_pos_check(msh, str, pos, 2);
-		}
-		if (str[pos] == '\\' && (pos + 1) <= ft_strlen(str))
+			pos = return_pos(msh, str, pos);
+		if (str[pos] == '\\' && str[pos + 1] == '\\')
 			pos++;
-		else
-		{
-			second_step = ft_substr(str, pos, 1);
-			first_step = join_and_free_first_step(msh, first_step, second_step, 3);
-			msh->utils->loop3 = 1;
-		}
+		second_step = ft_substr(str, pos, 1);
+		first_step = join_and_free_first_step(msh, first_step, second_step, 3);
+		msh->utils->loop3 = 1;
 		if (str[pos])
 			pos++;
 	}
 	return (first_step);
 }
 
-int			data_check(t_msh *msh)
+int				data_check(t_msh *msh)
 {
 	int		count;
 	int		pos;
@@ -126,21 +110,18 @@ int			data_check(t_msh *msh)
 	return (1);
 }
 
-t_list		*check_block_cmd(t_msh *msh, t_list *element)
+t_list			*check_block_cmd(t_msh *msh, t_list *element)
 {
-	msh->utils->check = 0;
-	msh->utils->size_tab = 0;
-	msh->utils->pos_args = 1;
-	msh->utils->export = 0;
+	msh->utils = init_utils(msh->utils);
 	if (!element->content)
 		return (NULL);
 	msh->utils->no_space = 0;
 	if (ft_strcmp(element->content, "export") == 0)
-		msh->utils->export = 1;
+		msh->utils->export_check = 1;
 	element->content = return_all_content(msh, element->content);
 	if (element->content == NULL)
 	{
-		global_error_msg = ERROR_MULTI;
+		g_error_msg = ERROR_MULTI;
 		return (NULL);
 	}
 	while (element->tab_args[msh->utils->pos_args] != NULL)
@@ -150,7 +131,7 @@ t_list		*check_block_cmd(t_msh *msh, t_list *element)
 		return_all_content(msh, element->tab_args[msh->utils->pos_args]);
 		if (element->tab_args[msh->utils->pos_args] == NULL)
 		{
-			global_error_msg = ERROR_MULTI;
+			g_error_msg = ERROR_MULTI;
 			return (NULL);
 		}
 		msh->utils->pos_args++;

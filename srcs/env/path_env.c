@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/23 10:31:47 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/31 09:46:07 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/07 13:38:14 by lorenzoamar      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,4 @@ int					get_path(t_msh *msh)
 	}
 	msh->utils->path = NULL;
 	return (EMPTY_ENV);
-	// return (return_error(msh, NULL, "Empty path."));
 }
