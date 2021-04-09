@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 20:48:58 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/09 22:10:15 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/09 22:27:06 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ char			**ft_split_data(t_msh *msh, char *s, char c)
 	char			**res;
 	t_split_data	*split_data;
 
-	split_data = NULL;
 	if (!s || s[0] == '\0' || s == NULL)
 		return (split_error(split_data, SUCCESS, 0));
 	split_data = init_split_data(split_data);
