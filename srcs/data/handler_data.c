@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 20:48:58 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/09 22:07:38 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/09 22:10:15 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ char			**ft_split_data(t_msh *msh, char *s, char c)
 		return (split_error(split_data, SUCCESS, 0));
 	split_data = init_split_data(split_data);
 	if (split_data == NULL)
-		return (split_error(split_data, SUCCESS, 0));
+		return (split_error(split_data, SUCCESS, 1));
 	if (check_word(split_data, s, c) == 0)
 		ft_count_word(msh, s, c, split_data);
 	else
