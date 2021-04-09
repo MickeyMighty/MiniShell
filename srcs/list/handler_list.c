@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 04:42:10 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/09 22:07:35 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/10 00:21:05 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int				handler_list(t_msh *msh)
 	else
 		return (SUCCESS);
 	count++;
-	while (count < msh->data->size_data)
+	while (count <= msh->data->size_data)
 	{
 		ft_fill_end_list(msh->lair_list, msh->data->prompt_data[count]);
 		count++;
