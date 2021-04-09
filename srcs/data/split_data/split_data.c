@@ -6,13 +6,13 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 19:36:18 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/09 21:51:48 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/09 23:52:22 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/libshell.h"
 
-int				ft_size_quote(t_split_data *split_data, char *str, int index)
+int				ft_size_quote(char *str, int index)
 {
 	char	quote;
 
