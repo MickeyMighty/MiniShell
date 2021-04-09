@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 21:56:45 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/07 12:09:19 by lorenzoamar      ###   ########.fr       */
+/*   Updated: 2021/04/08 15:50:29 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static	int		pop_env(t_msh *msh, int pos)
 	if (msh->env_lair->size == 0)
 		return (-1);
 	if (msh->env_lair->size == 1)
-		msh->env_lair = clear_env(msh->env_lair);
+		return (clear_env(msh->env_lair));
 	now_element = msh->env_lair->start;
 	while (msh->utils->pos++ < pos)
 		now_element = now_element->next;

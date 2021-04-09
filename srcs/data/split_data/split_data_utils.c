@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 19:43:38 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/07 13:31:57 by lorenzoamar      ###   ########.fr       */
+/*   Updated: 2021/04/08 23:46:41 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,8 @@ int				check_word(t_split_data *split_data, char *s, char c)
 		return (0);
 }
 
-t_split_data	*init_split_data(t_split_data *split_data, char *s)
+t_split_data	*init_split_data(t_split_data *split_data)
 {
-	if (!s || s[0] == '\0' || s == NULL)
-		return (NULL);
 	if (!(split_data = (t_split_data*)malloc(sizeof(t_split_data))))
 		return (NULL);
 	split_data->error = 0;

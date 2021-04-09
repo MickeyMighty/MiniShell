@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 19:54:29 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/07 12:01:18 by lorenzoamar      ###   ########.fr       */
+/*   Updated: 2021/04/09 13:54:09 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,15 @@ void				prompt(void)
 	ft_putstr_fd("\e[0;37m", 2);
 }
 
-static void			shell_loop(t_msh *msh, char **env)
+static void			shell_loop(char **env)
 {
+	t_msh	*msh;
 	char	*buf;
 
 	g_pid = 1;
 	g_loop = LOOP;
+	msh = NULL;
+	buf = NULL;
 	signal(SIGQUIT, handler_signal);
 	signal(SIGINT, handler_signal);
 	prompt();
@@ -57,26 +60,24 @@ static void			shell_loop(t_msh *msh, char **env)
 		g_return = SUCCESS;
 		g_error = SUCCESS;
 		signal(SIGINT, handler_signal);
-		msh = init_msh(msh, g_loop);
+		msh = init_msh(msh);
 		main_handler(msh, buf, env);
 		end_loop(msh, ENDLOOP);
 		prompt();
 	}
 	if (buf)
 		free(buf);
+	ft_putstr_fd("exit", 2);
 	free_all(msh, CTRLD);
-	ft_putstr_fd("exit", 3);
 	exit(0);
 }
 
 int					main(int argc, char **argv, char **env)
 {
-	t_msh			*msh;
 
 	aff_welcome();
 	(void)argc;
 	(void)argv;
-	msh = NULL;
-	shell_loop(msh, env);
+	shell_loop(env);
 	return (0);
 }

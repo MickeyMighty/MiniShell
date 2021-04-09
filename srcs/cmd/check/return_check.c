@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 15:13:10 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/07 13:20:17 by lorenzoamar      ###   ########.fr       */
+/*   Updated: 2021/04/08 09:38:53 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ char			*return_element(t_msh *msh, char *tmp, int key)
 	int			start;
 
 	start = 0;
+	element = NULL;
 	element = msh->env_lair->start;
 	while (element)
 	{
@@ -83,6 +84,7 @@ char				*return_quote(t_msh *msh, char *str)
 
 	msh->utils->pos++;
 	first_step = NULL;
+	second_step = NULL;
 	msh->utils->loop2 = 0;
 	while (str[msh->utils->pos])
 	{
@@ -92,7 +94,6 @@ char				*return_quote(t_msh *msh, char *str)
 		while (str[msh->utils->pos] && str[msh->utils->pos] !=
 		msh->utils->quote)
 		{
-			second_step = NULL;
 			second_step = fill_step_qte(msh, str, second_step);
 			first_step = join_and_free_first_step(msh, first_step, second_step,
 			2);
@@ -108,13 +109,14 @@ char				*return_all_content(t_msh *msh, char *str)
 	char	*first_step;
 	char	*second_step;
 
-	msh->utils->pos = 0;
 	first_step = NULL;
+	msh->utils->pos = 0;
 	msh->utils->loop = 0;
 	while (str[msh->utils->pos])
 	{
+		second_step = NULL;
 		second_step = fill_second_step_content(msh, str, second_step);
-		if (second_step == NULL)
+		if (second_step == NULL && str[msh->utils->pos])
 		{
 			if (check_backslash(msh, str) == -1)
 				return (NULL);

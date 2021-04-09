@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 23:57:55 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/05 12:08:58 by lorenzoamar      ###   ########.fr       */
+/*   Updated: 2021/04/09 13:39:07 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,14 @@ static int 		check(char *s1, char *s2)
 
 static char		*return_error(char *s1, char *s2, int free1, int free2)
 {
-	if (!s1 && !s2)
+
+	char	*tmp;
+
+	if ((!s1 && !s2) || (s1 == NULL && s2 == NULL))
 		return (ft_strdup("\0"));
-	if (!s1 && free2 == 0)
-		return (ft_strdup(s2));
-	if (!s2 && free1 == 0)
-		return (ft_strdup(s1));
-	if (!s1 && free2 == 1)
+	if (!s1 || s1 == NULL)
 		return (s2);
-	if (!s2 && free1 == 1)
+	if (!s2 || s2 == NULL)
 		return (s1);
 	return (NULL);
 }
@@ -45,6 +44,7 @@ char			*ft_free_strjoin(char *s1, char *s2, int free1, int free2)
 	char	*dest;
 	int		i;
 
+	dest = NULL;
 	if (check(s1, s2) == -1)
 		return (return_error(s1, s2, free1, free2));
 	lens1 = ft_strlen(s1);

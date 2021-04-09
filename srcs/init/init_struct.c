@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 07:27:43 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/07 13:42:31 by lorenzoamar      ###   ########.fr       */
+/*   Updated: 2021/04/09 10:27:44 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ t_utils			*init_utils(t_utils *utils)
 	return (utils);
 }
 
-static t_msh	*init_struct(t_msh *msh, int key)
+static t_msh	*init_struct(t_msh *msh)
 {
-	if (key == LOOP)
+	if (g_loop == LOOP)
 	{
 		if (!(msh = (t_msh*)malloc(sizeof(t_msh))))
 			return (NULL);
@@ -35,13 +35,16 @@ static t_msh	*init_struct(t_msh *msh, int key)
 	return (msh);
 }
 
-t_msh			*init_msh(t_msh *msh, int key)
+t_msh			*init_msh(t_msh *msh)
 {
-	msh = init_struct(msh, key);
+	msh = init_struct(msh);
 	if (msh == NULL)
 		return (NULL);
 	msh->utils->tab_specase = NULL;
 	msh->utils->size_tab = 0;
+	msh->utils->loop = 0;
+	msh->utils->loop2 = 0;
+	msh->utils->loop3 = 0;
 	msh->list = NULL;
 	msh->lair_list = NULL;
 	msh->utils->path = NULL;

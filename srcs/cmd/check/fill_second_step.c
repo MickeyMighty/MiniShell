@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 16:55:15 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/07 13:11:45 by lorenzoamar      ###   ########.fr       */
+/*   Updated: 2021/04/09 13:38:54 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ char	*join_and_free_first_step(t_msh *msh, char *first, char *second,
 			msh->utils->loop2 = 1;
 		else if (loop == 3)
 			msh->utils->loop3 = 1;
-		msh->utils->loop = 1;
 	}
 	return (first);
 }

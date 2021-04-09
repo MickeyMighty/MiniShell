@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/07 04:25:27 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/06 19:39:49 by lorenzoam        ###   ########.fr       */
+/*   Updated: 2021/04/09 10:15:27 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,43 +48,53 @@ int			ft_fill_end_list(t_lair_list *lair_list, char *content)
 
 static	int	is_empty_list(t_lair_list *lair_list)
 {
-	if (lair_list == NULL)
-		return (1);
-	return (-1);
+	if (lair_list->size == 0)
+	{
+		free(lair_list);
+		return (SUCCESS);
+	}
+	return (ERROR);
 }
 
-t_lair_list	*clear_list(t_lair_list *lair_list)
+int		clear_list(t_lair_list *lair_list)
 {
-	while (!is_empty_list(lair_list))
-		lair_list = pop_back_list(lair_list);
-	return (NULL);
+	int		loop;
+
+	loop = 0;
+	while (loop == 0)
+	{
+		if (pop_back_list(lair_list) == ERROR)
+			loop = 1;
+	}
+	return (SUCCESS);
 }
 
-t_lair_list	*pop_back_list(t_lair_list *lair_list)
+int 	pop_back_list(t_lair_list *lair_list)
 {
 	t_list		*temp;
 
-	if (is_empty_list(lair_list))
-		return (NULL);
-	if (lair_list->start == lair_list->end)
+	if (is_empty_list(lair_list) == SUCCESS)
+		return (ERROR);
+	if (lair_list->size == 1)
 	{
-		if (lair_list->start->content)
-			free(lair_list->start->content);
-		if (lair_list->start->tab_args)
-			free_split(lair_list->start->tab_args);
-		free(lair_list);
-		lair_list = NULL;
-		return (NULL);
+		temp = lair_list->start;
+		lair_list->start = lair_list->start->next;
+		if (lair_list->start == NULL)
+			lair_list->end = NULL;
+		else
+			lair_list->start->previous = NULL;
 	}
-	temp = lair_list->end;
-	lair_list->end->next = NULL;
-	temp->next = NULL;
-	temp->previous = NULL;
+	else
+	{
+		temp = lair_list->end;
+		lair_list->end->previous->next = NULL;
+		lair_list->end = lair_list->end->previous;
+	}
 	if (temp->content)
 		free(temp->content);
 	if (temp->tab_args)
 		free_split(temp->tab_args);
 	free(temp);
 	lair_list->size--;
-	return (lair_list);
+	return (SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 20:48:58 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/07 13:29:47 by lorenzoamar      ###   ########.fr       */
+/*   Updated: 2021/04/09 13:50:59 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,9 @@ char			**ft_split_data(t_msh *msh, char *s, char c)
 	t_split_data	*split_data;
 
 	split_data = NULL;
-	split_data = init_split_data(split_data, s);
+	if (!s || s[0] == '\0' || s == NULL)
+		return (split_error(split_data, SUCCESS, 0));
+	split_data = init_split_data(split_data);
 	if (split_data == NULL)
 		return (split_error(split_data, SUCCESS, 0));
 	if (check_word(split_data, s, c) == 0)
@@ -64,14 +66,14 @@ char			**ft_split_data(t_msh *msh, char *s, char c)
 		return (split_error(split_data, ERROR_MULTI, 1));
 	if (split_data->error == 2)
 		return (split_error(split_data, ERROR_DBLSEMICOLON, 1));
-	if (!(res = (char **)malloc(sizeof(char *) * (split_data->nb_word + 1))))
+	if (!(res = (char **)malloc(sizeof(char *) * (split_data->nb_word))))// + 1
 		return (split_error(split_data, ERROR_MALLOC, 1));
 	split_data->pos = 0;
 	res = ft_word_to_tab(s, split_data, res);
 	if (res == NULL)
 	{
 		free(res);
-		return (split_error(split_data, ERROR_MULTI, 2));
+		return (split_error(split_data, ERROR_MULTI, 1));
 	}
 	free(split_data);
 	return (res);

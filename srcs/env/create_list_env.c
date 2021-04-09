@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 12:26:48 by loamar            #+#    #+#             */
-/*   Updated: 2021/03/31 10:44:04 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/09 00:01:54 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,43 +48,53 @@ char *second_content)
 
 static	int		is_empty_env(t_env_lair *env_lair)
 {
-	if (env_lair == NULL)
-		return (1);
-	return (-1);
+	if (env_lair->size == 0)
+	{
+		free(env_lair);
+		return (SUCCESS);
+	}
+	return (ERROR);
 }
 
-t_env_lair		*clear_env(t_env_lair *env_lair)
+int		clear_env(t_env_lair *env_lair)
 {
-	while (!is_empty_env(env_lair))
-		env_lair = pop_back_env(env_lair);
-	return (NULL);
+	int		loop;
+
+	loop = 0;
+	while (loop == 0)
+	{
+		if (pop_back_env(env_lair) == ERROR)
+			loop = 1;
+	}
+	return (SUCCESS);
 }
 
-t_env_lair		*pop_back_env(t_env_lair *env_lair)
+int		pop_back_env(t_env_lair *env_lair)
 {
 	t_env_list	*temp;
 
-	if (is_empty_env(env_lair))
-		return (NULL);
-	if (env_lair->start == env_lair->end)
+	if (is_empty_env(env_lair) == SUCCESS)
+		return (ERROR);
+	if (env_lair->size == 1)
 	{
-		if (env_lair->start->first_content)
-			free(env_lair->start->first_content);
-		if (env_lair->start->second_content)
-			free(env_lair->start->second_content);
-		free(env_lair);
-		env_lair = NULL;
-		return (NULL);
+		temp = env_lair->start;
+		env_lair->start = env_lair->start->next;
+		if (env_lair->start == NULL)
+			env_lair->end = NULL;
+		else
+			env_lair->start->previous = NULL;
 	}
-	temp = env_lair->end;
-	env_lair->end->next = NULL;
-	temp->next = NULL;
-	temp->previous = NULL;
-	if (temp->first_content)
+	else
+	{
+		temp = env_lair->end;
+		env_lair->end->previous->next = NULL;
+		env_lair->end = env_lair->end->previous;
+	}
+	if (temp->first_content != NULL)
 		free(temp->first_content);
-	if (temp->second_content)
+	if (temp->second_content != NULL)
 		free(temp->second_content);
 	free(temp);
 	env_lair->size--;
-	return (env_lair);
+	return (SUCCESS);
 }

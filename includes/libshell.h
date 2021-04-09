@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 13:35:59 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/07 13:40:12 by lorenzoam        ###   ########.fr       */
+/*   Updated: 2021/04/09 10:28:05 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,8 @@ void			prompt(void);
 
 int				ft_fill_empty_list(t_lair_list *lair_list, char *content);
 int				ft_fill_end_list(t_lair_list *lair_list, char *content);
-t_lair_list		*clear_list(t_lair_list *lair_list);
-t_lair_list		*pop_back_list(t_lair_list *lair_list);
+int				clear_list(t_lair_list *lair_list);
+int				pop_back_list(t_lair_list *lair_list);
 
 /*
 ** list/create_tab_args.c
@@ -138,7 +138,7 @@ void			aff_welcome(void);
 */
 
 t_utils			*init_utils(t_utils *utils);
-t_msh			*init_msh(t_msh *msh, int key);
+t_msh			*init_msh(t_msh *msh);
 t_lair_list		*init_lair_list(t_lair_list *lair_list);
 t_env_lair		*init_env_lair(t_env_lair *env_lair);
 
@@ -173,8 +173,8 @@ int				ft_fill_empty_env(t_env_lair *env_lair, char *first_content,
 				char *second_content);
 int				ft_fill_end_env(t_env_lair *env_lair, char *first_content,
 				char *second_content);
-t_env_lair		*clear_env(t_env_lair *env_lair);
-t_env_lair		*pop_back_env(t_env_lair *env_lair);
+int				clear_env(t_env_lair *env_lair);
+int				pop_back_env(t_env_lair *env_lair);
 
 /*
 ** env/handler_env.c
@@ -203,7 +203,7 @@ int				ft_get_len_word(t_split_data *split_data, char *str);
 */
 
 int				check_word(t_split_data *split_data, char *s, char c);
-t_split_data	*init_split_data(t_split_data *split_data, char *s);
+t_split_data	*init_split_data(t_split_data *split_data);
 int				ft_count_separator(t_split_data *split_data, char *s, int pos);
 int				check_word_qte(t_split_data *split_data, char *str);
 

@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 09:50:00 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/07 13:42:13 by lorenzoamar      ###   ########.fr       */
+/*   Updated: 2021/04/08 09:39:01 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ char			*check_content(t_msh *msh, char *str, int key)
 			pos++;
 		second_step = ft_substr(str, pos, 1);
 		first_step = join_and_free_first_step(msh, first_step, second_step, 3);
-		msh->utils->loop3 = 1;
 		if (str[pos])
 			pos++;
 	}

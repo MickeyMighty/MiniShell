@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 19:36:18 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/07 13:31:22 by lorenzoamar      ###   ########.fr       */
+/*   Updated: 2021/04/09 13:07:38 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,16 @@ int				ft_size_quote(t_split_data *split_data, char *str, int index)
 char			**ft_word_to_tab(char *str,
 t_split_data *split_data, char **res)
 {
+	int		i;
+	int		loop;
+
+	i = 0;
+	loop = 0;
 	split_data->nb = 0;
 	split_data->error = 0;
 	while (str[split_data->pos] && (split_data->nb < split_data->nb_word))
 	{
+		loop++;
 		split_data->pos_index = 0;
 		while (str[split_data->pos] != '\0' && str[split_data->pos] == ' ')
 			split_data->pos++;
@@ -45,7 +51,14 @@ t_split_data *split_data, char **res)
 		split_data->nb++;
 		split_data->pos = split_data->pos_index;
 		if (res[split_data->nb - 1] == NULL && split_data->error == 1)
+		{
+			while (i < split_data->nb_word && i <= loop)
+			{
+				free(res[i]);
+				i++;
+			}
 			return (NULL);
+		}
 	}
 	return (res);
 }
