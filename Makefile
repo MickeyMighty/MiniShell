@@ -47,8 +47,7 @@ SRCS	=	./srcs/main/minishell.c \
 			./srcs/data/split_data/split_data.c \
 			./srcs/data/split_data/split_data_utils.c \
 			./srcs/data/split_data/get_len_split_data.c \
-			./lib/get_next_line/get_next_line.c \
-			./lib/get_next_line/get_next_line_utils.c
+			./lib/get_next_line/get_next_line.c
 
 OBJS	=	$(SRCS:.c=.o)
 
