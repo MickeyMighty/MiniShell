@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 20:48:58 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/10 00:12:46 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/10 00:14:01 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,7 @@ int				get_split_pos(char *str, t_split_data *split_data, int index)
 static	char	**split_error(t_split_data *split_data, int error, int free_s)
 {
 	if (free_s == 1)
-	{
-		printf("free\n");
 		free(split_data);
-	}
-	split_data = NULL;
 	if (error == ERROR_DBLSEMICOLON)
 		g_error_msg = ERROR_DBLSEMICOLON;
 	else if (error == ERROR_MALLOC)
@@ -78,6 +74,7 @@ char			**ft_split_data(t_msh *msh, char *s, char c)
 		free(res);
 		return (split_error(split_data, ERROR_MULTI, 1));
 	}
+	free(split_data);
 	return (res);
 }
 
