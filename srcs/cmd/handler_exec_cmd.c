@@ -6,7 +6,7 @@
 /*   By: lorenzoa <lorenzoa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 17:23:29 by lorenzoa          #+#    #+#             */
-/*   Updated: 2021/04/07 13:36:36 by lorenzoamar      ###   ########.fr       */
+/*   Updated: 2021/04/09 14:06:31 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,8 @@ int			check_permission(char *cmd)
 
 void		child_process(t_list *cmd, char **env, char *exec_path)
 {
-	int		count;
 	int		ret;
 
-	count = 0;
 	if (!exec_path)
 		exec_path = ft_strdup(cmd->content);
 	cmd->tab_args[0] = ft_strdup(exec_path);
