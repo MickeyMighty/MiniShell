@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 18:10:32 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/07 13:23:38 by lorenzoamar      ###   ########.fr       */
+/*   Updated: 2021/04/09 14:09:24 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,9 @@ void		set_token_list(t_msh *msh)
 {
 	t_list	*lst;
 	int		i;
-	int		args;
 
 	lst = msh->lair_list->start;
 	i = 0;
-	args = 0;
 	msh->utils->check_arg = 0;
 	while (lst != NULL)
 	{
