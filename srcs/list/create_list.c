@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/07 04:25:27 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/09 10:15:27 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/09 14:22:58 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int 	pop_back_list(t_lair_list *lair_list)
 		return (ERROR);
 	if (lair_list->size == 1)
 	{
+		printf("free_start\n");
 		temp = lair_list->start;
 		lair_list->start = lair_list->start->next;
 		if (lair_list->start == NULL)
