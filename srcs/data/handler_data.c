@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 20:48:58 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/09 14:14:37 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/09 14:18:56 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char			**ft_split_data(t_msh *msh, char *s, char c)
 		return (split_error(split_data, ERROR_MULTI, 1));
 	if (split_data->error == 2)
 		return (split_error(split_data, ERROR_DBLSEMICOLON, 1));
-	if (!(res = (char **)malloc(sizeof(char *) * (split_data->nb_word + 1))))// + 1
+	if (!(res = (char **)malloc(sizeof(char *) * (split_data->nb_word))))
 		return (split_error(split_data, ERROR_MALLOC, 1));
 	split_data->pos = 0;
 	res = ft_word_to_tab(s, split_data, res);
@@ -96,6 +96,8 @@ int				handler_data(t_msh *msh, char *buf)
 {
 	msh->data->size_data = 0;
 	msh->data->prompt_data = ft_split_data(msh, buf, ' ');
+	free(msh->data->prompt_data[0]);
+	exit(0);
 	if (msh->data->prompt_data == NULL)
 	{
 		if (g_error_msg == ERROR)
