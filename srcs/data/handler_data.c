@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 20:48:58 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/09 22:27:06 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/09 22:28:10 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int free_s)
 {
 	if (free_s == 1)
 		free(split_data);
+	if (free_s == 0)
+		(void)split_data;
 	if (error == ERROR_DBLSEMICOLON)
 		g_error_msg = ERROR_DBLSEMICOLON;
 	else if (error == ERROR_MALLOC)
