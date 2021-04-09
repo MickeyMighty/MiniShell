@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 13:35:59 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/09 23:52:55 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/09 23:54:21 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-#include <sys/wait.h>
 # include <stdio.h>
 # include <errno.h>
 # include <signal.h>
@@ -212,7 +211,7 @@ int				check_word_qte(t_split_data *split_data, char *str);
 ** data/split_data/split_data.c
 */
 
-int				ft_size_quote(char *str, int index);
+int				ft_size_quote(t_split_data *split_data, char *str, int index);
 char			**ft_word_to_tab(char *str,
 				t_split_data *split_data, char **res);
 void			ft_count_word(t_msh *msh, char *s, char c,

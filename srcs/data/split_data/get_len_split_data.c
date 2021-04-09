@@ -6,7 +6,7 @@
 /*   By: lorenzoa <lorenzoa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 19:32:35 by lorenzoa          #+#    #+#             */
-/*   Updated: 2021/04/09 23:52:41 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/09 23:54:10 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static	int		get_pos_word(char *str, t_split_data *split_data, int index)
 	else if (str[index] == '\\' && str[index + 1] == '\0')
 		split_data->error = 1;
 	else if (str[index] == SQUOTE || str[index] == DQUOTE)
-		index = ft_size_quote(str, index);
+		index = ft_size_quote(split_data, str, index);
 	if (str[index])
 		index++;
 	return (index);
