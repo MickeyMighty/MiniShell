@@ -6,13 +6,13 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 19:43:38 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/09 23:51:39 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/09 23:56:22 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/libshell.h"
 
-int				check_word(t_split_data *split_data, char *s, char c)
+int				check_word(char *s, char c)
 {
 	int		pos;
 

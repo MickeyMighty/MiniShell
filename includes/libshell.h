@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 13:35:59 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/09 23:55:40 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/09 23:56:32 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,7 +203,7 @@ int				ft_get_len_word(t_split_data *split_data, char *str);
 ** data/split_data/split_data_utils.c
 */
 
-int				check_word(t_split_data *split_data, char *s, char c);
+int				check_word(char *s, char c);
 t_split_data	*init_split_data(t_split_data *split_data);
 int				ft_count_separator(t_split_data *split_data, char *s, int pos);
 int				check_word_qte(t_split_data *split_data, char *str);
