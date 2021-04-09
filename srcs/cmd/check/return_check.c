@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 15:13:10 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/08 09:38:53 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/09 14:08:31 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 char			*return_element(t_msh *msh, char *tmp, int key)
 {
 	t_env_list	*element;
-	int			start;
 
-	start = 0;
 	element = NULL;
 	element = msh->env_lair->start;
 	while (element)
