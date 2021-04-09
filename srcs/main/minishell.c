@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 19:54:29 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/09 22:34:48 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/09 22:36:31 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ static void			main_handler(t_msh *msh, char *buf, char **env)
 		g_return = get_path(msh);
 	if (g_return == SUCCESS || g_return == EMPTY_ENV)
 		g_return = handler_data(msh, buf);
-	// if (g_return == SUCCESS || g_return == EMPTY_ENV)
-	// 	g_return = handler_list(msh);
-	// if (g_return == SUCCESS || g_return == EMPTY_ENV)
-	// 	g_return = handler_cmd(msh, env);
+	if (g_return == SUCCESS || g_return == EMPTY_ENV)
+		g_return = handler_list(msh);
+	if (g_return == SUCCESS || g_return == EMPTY_ENV)
+		g_return = handler_cmd(msh, env);
 	g_loop = ENDLOOP;
 }
 
