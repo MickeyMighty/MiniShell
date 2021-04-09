@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 19:54:29 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/10 00:32:17 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/10 00:33:04 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ static void			shell_loop(char **env)
 		end_loop(msh, ENDLOOP);
 		prompt();
 	}
+	free(buf);
 	ft_putstr_fd("exit", 2);
 	free_all(msh, CTRLD);
 	exit(0);
