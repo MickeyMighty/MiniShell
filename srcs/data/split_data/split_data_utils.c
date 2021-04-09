@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 19:43:38 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/08 23:46:41 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/09 23:51:39 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@ int				check_word(t_split_data *split_data, char *s, char c)
 	while (s[pos] == c)
 		pos++;
 	if (s[pos] == '\0')
-	{
-		free(split_data);
 		return (1);
-	}
 	else
 		return (0);
 }
