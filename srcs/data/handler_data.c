@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 20:48:58 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/09 22:33:45 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/09 23:59:06 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char			**ft_split_data(t_msh *msh, char *s, char c)
 	split_data = init_split_data(split_data);
 	if (split_data == NULL)
 		return (split_error(split_data, SUCCESS, 1));
-	if (check_word(split_data, s, c) == 0)
+	if (check_word(s, c) == 0)
 		ft_count_word(msh, s, c, split_data);
 	else
 		return (split_error(split_data, SUCCESS, 1));
@@ -115,6 +115,6 @@ int				handler_data(t_msh *msh, char *buf)
 		return (return_error(ERROR_MSG, NULL, NULL,
 		"syntax error multiligne."));
 	}
-	
+
 	return (SUCCESS);
 }
