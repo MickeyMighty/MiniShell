@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 20:48:58 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/09 22:28:40 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/09 22:33:45 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,5 +115,6 @@ int				handler_data(t_msh *msh, char *buf)
 		return (return_error(ERROR_MSG, NULL, NULL,
 		"syntax error multiligne."));
 	}
+	
 	return (SUCCESS);
 }
