@@ -6,7 +6,7 @@
 /*   By: lorenzoa <lorenzoa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 17:23:29 by lorenzoa          #+#    #+#             */
-/*   Updated: 2021/04/10 11:10:35 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/10 11:14:03 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,6 @@ void		parent_process(void)
 	}
 	if (WIFEXITED(child_status))
 		g_return = child_status;
-	if (g_status == 0)
+	if (g_status != 130 && g_status != 131)
 		g_status = WEXITSTATUS(child_status);
 }
