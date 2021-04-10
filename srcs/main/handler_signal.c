@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 13:17:45 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/07 12:01:45 by lorenzoamar      ###   ########.fr       */
+/*   Updated: 2021/04/10 11:09:48 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static	void	process(int sign)
 	else if (sign == SIGINT)
 	{
 		ft_putchar_fd('\n', 1);
-		g_status = 130;
+		g_status = 127;
 		g_error = ERROR;
 		prompt();
 	}

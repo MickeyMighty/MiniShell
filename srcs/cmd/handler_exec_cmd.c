@@ -6,7 +6,7 @@
 /*   By: lorenzoa <lorenzoa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 17:23:29 by lorenzoa          #+#    #+#             */
-/*   Updated: 2021/04/09 14:06:31 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/10 11:10:35 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,14 +75,15 @@ void		parent_process(void)
 	int		child_status;
 
 	child_status = 0;
-	signal(SIGINT, SIG_IGN);
 	wait(&child_status);
-	if (WIFSIGNALED(child_status))
+	signal(SIGINT, SIG_IGN);
+	if (WIFSIGNALED(child_status) && (g_status != 130 && g_status != 131))
 	{
 		ft_putstr_fd("\n", 2);
 		g_status = WTERMSIG(child_status);
 	}
 	if (WIFEXITED(child_status))
 		g_return = child_status;
-	g_status = WEXITSTATUS(child_status);
+	if (g_status == 0)
+		g_status = WEXITSTATUS(child_status);
 }
