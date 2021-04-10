@@ -4,7 +4,7 @@ CC		=	gcc
 
 RM		=	rm -f
 
-CFLAGS	=	-I. -Wall -Wextra -Werror -g
+CFLAGS	=	-g -I. -Wall -Wextra -Werror
 
 LIBFT	=	./lib/libft/libft.a
 
