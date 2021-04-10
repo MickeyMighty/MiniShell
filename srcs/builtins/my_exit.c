@@ -6,13 +6,13 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 09:12:18 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/07 12:50:40 by lorenzoamar      ###   ########.fr       */
+/*   Updated: 2021/04/10 11:45:11 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libshell.h"
 
-static	long long	ft_atoi_exit(const char *str, int i, int *pbm)
+static	long long	atoi_exit(const char *str, int i, int *pbm)
 {
 	int			j;
 	long		neg;
@@ -45,8 +45,7 @@ static	void		exit_error_numeric(t_msh *msh, char *arg)
 {
 	return_error(ERROR_CMD, "exit", arg, ": numeric argument required");
 	g_status = 2;
-	free_all(msh, EXIT);
-	exit(g_status);
+	exit_cmd(msh);
 }
 
 static	void		exit_arg(t_msh *msh, char *str)
@@ -71,7 +70,7 @@ static	void		exit_arg(t_msh *msh, char *str)
 static	void		exit_numeric(t_msh *msh, t_list *element, int pbm,
 int code2)
 {
-	code2 = ft_atoi_exit(element->tab_args[1], 0, &pbm);
+	code2 = atoi_exit(element->tab_args[1], 0, &pbm);
 	if (pbm == 1)
 		exit_error_numeric(msh, element->tab_args[1]);
 	g_status = code2 % 256;
@@ -79,31 +78,26 @@ int code2)
 
 int					my_exit(t_msh *msh, t_list *element)
 {
-	int			i;
+	size_t		i;
 	int			pbm;
 	long long	code2;
 
-	i = 1;
 	pbm = 0;
 	code2 = 0;
-	if (element->tab_args[1] != NULL)
+	i = 1;
+	g_status = 0;
+	if (element->tab_args[1] == NULL)
+		exit_cmd(msh);
+	exit_arg(msh, element->tab_args[1]);
+	while (element->tab_args[i])
+		i++;
+	if (i > 2)
 	{
-		exit_arg(msh, element->tab_args[1]);
-		while (element->tab_args[i])
-			i++;
-		if (i > 2)
-		{
-			return_error(ERROR_CMD, "exit", NULL, "too many arguments");
-			g_status = 1;
-		}
-		else
-			exit_numeric(msh, element, pbm, code2);
+		return_error(ERROR_CMD, "exit", NULL, "too many arguments");
+		g_status = 1;
 	}
 	else
-	{
-		g_status = 0;
-		free_all(msh, EXIT);
-		exit(g_status);
-	}
+		exit_numeric(msh, element, pbm, code2);
+	exit_cmd(msh);
 	return (SUCCESS);
 }

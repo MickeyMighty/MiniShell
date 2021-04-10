@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 19:54:29 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/10 11:12:51 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/10 11:38:53 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,10 @@ static void			main_handler(t_msh *msh, char *buf, char **env)
 	g_loop = ENDLOOP;
 }
 
-void				prompt(void)
+int					exit_cmd(t_msh *msh)
 {
-	ft_putstr_fd("\e[0;36m", 2);
-	ft_putstr_fd("minishell$ ", 2);
-	ft_putstr_fd("\e[0;37m", 2);
+	free_all(msh, EXIT);
+	exit(g_status);
 }
 
 static void			shell_loop(char **env)

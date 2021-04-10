@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 13:35:59 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/09 23:56:32 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/10 11:38:54 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,10 +96,10 @@ int						g_size_word;
 void			handler_signal(int sign);
 
 /*
-** main/minishell.c
+** main/main.c
 */
 
-void			prompt(void);
+int				exit_cmd(t_msh *msh);
 
 /*
 ** list/create_list.c
@@ -132,6 +132,7 @@ void			set_token_list(t_msh *msh);
 ** init/init_shell.c
 */
 
+void			prompt(void);
 void			aff_welcome(void);
 
 /*
