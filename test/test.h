@@ -12,7 +12,7 @@
 # include <sys/stat.h>
 # include <dirent.h>
 # include <fcntl.h>
-# include "../lib/libft/libft.h"
+# include "libft.h"
 
 # define EMPTY_ENV -7
 # define ERROR_DBLSEMICOLON -6
