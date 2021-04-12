@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 15:13:10 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/12 22:29:21 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/12 22:54:15 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,9 @@ char				*return_quote(t_msh *msh, char *str)
 		msh->utils->quote)
 		{
 			second_step = fill_step_qte(msh, str, second_step);
-			first_step = join_and_free_first_step(msh, first_step, second_step,
-			2);
+			first_step = ft_free_strjoin(first_step, second_step, 1, 1);
+			// first_step = join_and_free_first_step(msh, first_step, second_step,
+			// 2);
 			if (str[msh->utils->pos])
 				msh->utils->pos++;
 		}
@@ -113,7 +114,6 @@ char				*return_all_content(t_msh *msh, char *str)
 	while (str[msh->utils->pos])
 	{
 		second_step = NULL;
-		// first_step = ft_free_strjoin(first_step, second_step, 1, 1);
 		second_step = fill_second_step_content(msh, str, second_step);
 		if (second_step == NULL && str[msh->utils->pos])
 		{
