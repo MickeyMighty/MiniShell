@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 20:48:58 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/11 22:59:28 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/12 12:07:08 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,13 +108,11 @@ int				handler_data(t_msh *msh, char *buf)
 			return (return_error(ERROR_MSG, NULL, NULL,
 				"syntax error multiligne."));
 	}
+	free(msh->data->prompt_data[msh->data->size_data]);
 	ft_memset(buf, 0, ft_strlen(buf));
 	free(buf);
 	if (data_check(msh) == -1)
-	{
 		return (return_error(ERROR_MSG, NULL, NULL,
 		"syntax error multiligne."));
-	}
-
 	return (SUCCESS);
 }

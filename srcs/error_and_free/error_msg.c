@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 00:50:24 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/07 12:02:16 by lorenzoamar      ###   ########.fr       */
+/*   Updated: 2021/04/12 11:51:08 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ static	void	return_error_args(char *cmd, char *arg, char *msg, int type)
 
 int				return_error(int type, char *cmd, char *arg, char *msg)
 {
-	ft_putstr_fd("\033[0;31m", 2);
 	ft_putstr_fd("minishell: ", 2);
 	if (type == ERROR_ARGS || type == ERROR_QTE)
 		return_error_args(cmd, arg, msg, type);
