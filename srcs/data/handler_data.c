@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 20:48:58 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/12 12:12:14 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/12 12:13:55 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ char			**ft_split_data(t_msh *msh, char *s, char c)
 		return (split_error(split_data, ERROR_MULTI, 1));
 	if (split_data->error == 2)
 		return (split_error(split_data, ERROR_DBLSEMICOLON, 1));
-	if (!(res = (char **)malloc(sizeof(char *) * (split_data->nb_word + 1))))
+	if (!(res = (char **)malloc(sizeof(char *) * (split_data->nb_word))))
 		return (split_error(split_data, ERROR_MALLOC, 1));
 	split_data->pos = 0;
 	res = ft_word_to_tab(s, split_data, res);
@@ -108,7 +108,6 @@ int				handler_data(t_msh *msh, char *buf)
 			return (return_error(ERROR_MSG, NULL, NULL,
 				"syntax error multiligne."));
 	}
-	free(msh->data->prompt_data[msh->data->size_data]);
 	ft_memset(buf, 0, ft_strlen(buf));
 	free(buf);
 	if (data_check(msh) == -1)

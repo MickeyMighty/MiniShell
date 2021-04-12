@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 19:36:18 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/12 12:12:31 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/12 12:13:24 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ t_split_data *split_data, char **res)
 			return (NULL);
 		}
 	}
-	res[split_data->nb_word] = NULL;
 	return (res);
 }
 
