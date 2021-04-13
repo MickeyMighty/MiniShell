@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 22:39:18 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/07 12:45:30 by lorenzoamar      ###   ########.fr       */
+/*   Updated: 2021/04/13 15:32:29 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,11 @@ int pos)
 	}
 	else
 		second_step = ft_substr(str, pos, 1);
-	first_step = join_and_free_first_step(msh, first_step, second_step, 2);
+	first_step = ft_free_strjoin(first_step, second_step, 1, 1);
 	if (dollar_case == 1)
 	{
 		second_step = ft_substr(str, pos, 1);
-		first_step =
-		join_and_free_first_step(msh, first_step, second_step, 2);
+		first_step = ft_free_strjoin(first_step, second_step, 1, 1);
 	}
 	return (first_step);
 }

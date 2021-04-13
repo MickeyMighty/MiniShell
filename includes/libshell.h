@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 13:35:59 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/13 14:23:26 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/13 15:31:28 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -251,8 +251,6 @@ int				check_backslash(t_msh *msh, char *str);
 
 char			*get_tmp_value(t_msh *msh, char *str, int len);
 char			*fill_step_qte(t_msh *msh, char *str, char *second_step);
-char			*join_and_free_first_step(t_msh *msh, char *first, char *second,
-				int loop);
 char			*fill_second_step_quote(t_msh *msh, char *str,
 				char *second_step);
 char			*fill_second_step_content(t_msh *msh, char *str,

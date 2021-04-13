@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/27 16:55:15 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/09 13:38:54 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/13 15:31:17 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,34 +52,6 @@ char	*fill_step_qte(t_msh *msh, char *str, char *second_step)
 					&& (str[msh->utils->pos - 1] == '\\'))))
 		second_step = ft_substr(str, msh->utils->pos, 1);
 	return (second_step);
-}
-
-char	*join_and_free_first_step(t_msh *msh, char *first, char *second,
-		int loop)
-{
-	if ((msh->utils->loop == 1 && loop == 1)
-			|| (msh->utils->loop2 == 1 && loop == 2)
-			|| (msh->utils->loop3 == 1 && loop == 3))
-	{
-		first = ft_free_strjoin(first, second, 1, 1);
-		if (loop == 1)
-			msh->utils->loop = 0;
-		else if (loop == 2)
-			msh->utils->loop2 = 0;
-		else if (loop == 3)
-			msh->utils->loop3 = 0;
-	}
-	else
-	{
-		first = ft_free_strjoin(first, second, 0, 1);
-		if (loop == 1)
-			msh->utils->loop = 1;
-		else if (loop == 2)
-			msh->utils->loop2 = 1;
-		else if (loop == 3)
-			msh->utils->loop3 = 1;
-	}
-	return (first);
 }
 
 char	*fill_second_step_quote(t_msh *msh, char *str, char *second_step)
