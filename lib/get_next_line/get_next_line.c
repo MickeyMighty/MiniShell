@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 00:37:54 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/13 15:04:51 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/13 15:05:15 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ static int		ft_read(int fd, char *buf, char **str, char **line)
 		return (ft_free(str, -1));
 	if (bytes)
 		return (1);
-	// if (ft_strcmp(*line, "\0" == 0))
-	// 	free(*line);
+	if (ft_strcmp(*line, "\0" == 0))
+		free(*line);
 	while ((bytes = read(fd, buf, BUFFER_SIZE)) >= 0)
 	{
 		buf[bytes] = '\0';
