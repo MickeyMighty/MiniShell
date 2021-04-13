@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 13:35:59 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/10 11:38:54 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/13 14:19:47 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,16 +154,16 @@ int				return_error(int type, char *cmd, char *arg, char *msg);
 ** error_and_free/free_error.c
 */
 
+void 			free_tab_args(char **str);
 void			free_split(char **str);
 void			free_list(t_msh *msh, int key);
 char			**ft_free_tab(char **tab, int j, t_split_data *split_data);
-void			free_env_lair(t_msh *msh);
-void			free_all(t_msh *msh, int free_key);
 
 /*
-** handler_error/error_msg.c
+** handler_error/handler_error.c
 */
 
+void			free_all(t_msh *msh, int free_key);
 int				error_data(t_data *data, int token);
 void			free_tab_args(t_msh *msh, char **str);
 

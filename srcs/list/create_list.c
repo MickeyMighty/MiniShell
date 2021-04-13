@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/07 04:25:27 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/09 14:30:39 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/13 14:20:02 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int 	pop_back_list(t_lair_list *lair_list)
 	if (temp->content)
 		free(temp->content);
 	if (temp->tab_args)
-		free_split(temp->tab_args);
+		free_tab_args(temp->tab_args);
 	free(temp);
 	lair_list->size--;
 	return (SUCCESS);

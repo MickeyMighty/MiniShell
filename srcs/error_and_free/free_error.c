@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 11:56:22 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/09 10:14:53 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/13 14:17:55 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,20 @@ char		**ft_free_tab(char **tab, int j, t_split_data *split_data)
 	free(tab);
 	free(split_data);
 	return (NULL);
+}
+
+void 	free_tab_args(char **str)
+{
+	int		index;
+
+	index = 0;
+	free(str[index]);
+	index++;
+	while (str[index])
+	{
+		free(str[index]);
+		index++;
+	}
+	free(str[index]);
+	free(str);
 }
