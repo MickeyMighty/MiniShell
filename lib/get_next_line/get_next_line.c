@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 00:37:54 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/13 15:05:15 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/13 15:05:36 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int		ft_check(char **str, char **line)
 		{
 			if (i == 0)
 			{
-				if (!(*line = ft_strdup("\0")))
+				if (!(*line = ft_strdup("")))
 					return (-1);
 			}
 			else if (!(*line = ft_substr(*str, 0, i)))
@@ -53,7 +53,7 @@ static int		ft_read(int fd, char *buf, char **str, char **line)
 		return (ft_free(str, -1));
 	if (bytes)
 		return (1);
-	if (ft_strcmp(*line, "\0" == 0))
+	if (ft_strcmp(*line, "\0") == 0)
 		free(*line);
 	while ((bytes = read(fd, buf, BUFFER_SIZE)) >= 0)
 	{
