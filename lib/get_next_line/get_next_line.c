@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 00:37:54 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/10 00:37:56 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/13 14:46:13 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,10 @@ static int		ft_check(char **str, char **line)
 			if (i == 0)
 			{
 				if (!(*line = ft_strdup("")))
+				{
+					free(*line);
 					return (-1);
+				}
 			}
 			else if (!(*line = ft_substr(*str, 0, i)))
 				return (-1);
