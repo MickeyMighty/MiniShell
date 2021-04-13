@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 13:35:59 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/13 14:21:36 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/13 14:23:26 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,7 +165,6 @@ char			**ft_free_tab(char **tab, int j, t_split_data *split_data);
 
 void			free_all(t_msh *msh, int free_key);
 int				error_data(t_data *data, int token);
-// void			free_tab_args(t_msh *msh, char **str);
 
 /*
 ** env/create_list_env.c
