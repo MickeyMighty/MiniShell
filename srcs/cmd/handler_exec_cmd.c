@@ -6,7 +6,7 @@
 /*   By: lorenzoa <lorenzoa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 17:23:29 by lorenzoa          #+#    #+#             */
-/*   Updated: 2021/04/14 16:30:34 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/14 16:32:37 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int			check_permission(char *cmd)
 	return (lock);
 }
 
-void		child_process(t_list *cmd, char **env, char *exec_path)
+void		child_process(t_msh *msh, t_list *cmd, char **env, char *exec_path)
 {
 	int		ret;
 

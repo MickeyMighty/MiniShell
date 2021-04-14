@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 22:57:42 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/07 13:39:02 by lorenzoamar      ###   ########.fr       */
+/*   Updated: 2021/04/14 16:33:14 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char **env)
 	if (msh->utils->pipe == 0)
 		g_pid = fork();
 	if (g_pid == 0)
-		child_process(cmd, env, exec_path);
+		child_process(msh, cmd, env, exec_path);
 	else
 		parent_process();
 	if (exec_path)
