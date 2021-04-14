@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 15:13:10 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/14 13:15:49 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/14 14:23:37 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,6 @@ char				*return_all_content(t_msh *msh, char *str)
 		if (str[msh->utils->pos])
 			msh->utils->pos++;
 	}
-	printf("first_step = [%s]\n", first_step);
 	free(str);
 	return (first_step);
 }

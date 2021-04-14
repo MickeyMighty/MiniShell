@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 23:20:47 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/14 13:06:16 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/14 14:21:37 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,19 +96,14 @@ int				create_tab_args(t_msh *msh)
 	{
 		while (cmd != NULL)
 		{
-			if (cmd->token == CMD)
-			{
-				ret = ft_put_args(msh, cmd);
-				if (ret == ERROR)
-				return (ERROR);
-				tmp = cmd;
-				cmd = cmd->next;
-				if (cmd == NULL)
-				break ;
-				cmd = get_args_to_pop(msh, cmd, tmp);
-			}
-			else
-				cmd = cmd->next;
+			ret = ft_put_args(msh, cmd);
+			if (ret == ERROR)
+			return (ERROR);
+			tmp = cmd;
+			cmd = cmd->next;
+			if (cmd == NULL)
+			break ;
+			cmd = get_args_to_pop(msh, cmd, tmp);
 		}
 	}
 	return (SUCCESS);

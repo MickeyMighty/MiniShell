@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 09:50:00 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/14 12:28:04 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/14 14:23:32 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,6 @@ t_list			*check_block_cmd(t_msh *msh, t_list *element)
 	msh->utils->pos_args = 1;
 	while (element->tab_args[msh->utils->pos_args] != NULL)
 	{
-		printf("2 token : [%d]\n", element->token);
 		msh->utils->no_space = 0;
 		element->tab_args[msh->utils->pos_args] =
 		return_all_content(msh, element->tab_args[msh->utils->pos_args]);
