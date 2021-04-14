@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 09:50:00 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/13 16:13:24 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/14 11:56:42 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ t_list			*check_block_cmd(t_msh *msh, t_list *element)
 	msh->utils->no_space = 0;
 	if (ft_strcmp(element->content, "export") == 0)
 		msh->utils->export_check = 1;
+	printf("1 token : [%d]\n", element->token);
 	element->content = return_all_content(msh, element->content);
 	if (element->content == NULL)
 	{
@@ -126,6 +127,7 @@ t_list			*check_block_cmd(t_msh *msh, t_list *element)
 	msh->utils->pos_args = 1;
 	while (element->tab_args[msh->utils->pos_args] != NULL)
 	{
+		printf("2 token : [%d]\n", element->token);
 		msh->utils->no_space = 0;
 		element->tab_args[msh->utils->pos_args] =
 		return_all_content(msh, element->tab_args[msh->utils->pos_args]);
