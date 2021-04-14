@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 07:42:36 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/14 16:27:42 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/14 22:59:24 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ t_list			*multi_pipe(t_msh *msh, t_list *element, char **env)
 		}
 	}
 	close(msh->utils->backup_fd);
-	free_all(msh, EXIT);
 	return (element);
 }
 
@@ -100,14 +99,9 @@ int				ft_pipe(t_msh *msh, t_list *element, char **env, int backup_fd)
 		free_all(msh, EXIT);
 		exit(g_status);
 	}
-	else
-	{
-		wait(&g_pid);
-		status_child();
-		close(pipefd[1]);
-		backup_fd = pipefd[0];
-		free_all(msh, EXIT);
-	}
-	free_all(msh, EXIT);
+	wait(&g_pid);
+	status_child();
+	close(pipefd[1]);
+	backup_fd = pipefd[0];
 	return (backup_fd);
 }
