@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 07:42:36 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/07 12:04:24 by lorenzoamar      ###   ########.fr       */
+/*   Updated: 2021/04/14 12:27:26 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ static	t_list	*return_multi_pipe(t_msh *msh, t_list *element, char **env)
 		msh->utils->backup_fd =
 		ft_pipe(msh, element, env, msh->utils->backup_fd);
 		element = element->next->next;
+		if (element->token == CMD)
+			element = check_block_cmd(msh, element);
 		msh->utils->backup_fd = ft_pipe(msh, element, env,
 		msh->utils->backup_fd);
 	}

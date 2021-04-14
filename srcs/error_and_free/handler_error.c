@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 03:33:33 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/13 14:21:34 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/14 12:06:44 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,19 +43,3 @@ int				error_data(t_data *data, int token)
 	ft_putstr("\n");
 	return (1);
 }
-
-// void			free_tab_args(t_msh *msh, char **str)
-// {
-// 	int		index;
-// 	int		limite;
-//
-// 	limite = msh->utils->size_opt_arg + 1;
-// 	index = 0;
-// 	while (index <= limite)
-// 	{
-// 		free(str[index]);
-// 		index++;
-// 	}
-// 	free(str[index]);
-// 	free(str);
-// }
