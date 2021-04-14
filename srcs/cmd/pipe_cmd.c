@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 07:42:36 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/14 14:39:27 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/14 14:40:56 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,98 +60,99 @@ t_list			*multi_pipe(t_msh *msh, t_list *element, char **env)
 	return (element);
 }
 
-static void		status_child(void)
-{
-	if (WIFEXITED(g_pid))
-		g_status = WEXITSTATUS(g_pid);
-	if (WIFSIGNALED(g_pid))
-	{
-		g_status = WTERMSIG(g_pid);
-		if (g_status != 131)
-			g_status += 128;
-	}
-}
-
-static void	child(t_list *element, int fd[2], int *fdd)
-{
-	close(fd[0]);
-	close(0);
-	dup(*fdd);
-	close(*fdd);
-	if (element->next->next)
-	{
-		if ((get_value_sep(element->next->content) == PIPE))
-		{
-			close(1);
-			dup(fd[1]);
-			close(fd[1]);
-		}
-	}
-}
-
-// int			_pipe(t_pip *pipcell, t_copy *cmdargs, int fdd)
-int				ft_pipe(t_msh *msh, t_list *element, char **env, int backup_fd)
-{
-	int		fd[2];
-
-	fd[0] = -1;
-	fd[1] = -1;
-	if (pipe(fd))
-		return (-1);
-	g_pid = fork();
-	if (g_pid < 0)
-	{
-		close(fd[0]);
-		close(fd[1]);
-		close(fdd);
-		return (-1);
-	}
-	else if (!g_pid)
-	{
-		child(element, fd, &fdd);
-		exec_cmd(msh, element, env);
-		ft_exit(cmdargs, 0);
-	}
-	wait(&g_pid);
-	status_child();
-	close(fdd);
-	close(fd[1]);
-	return (fd[0]);
-}
-//
-// static	int		bad_fork(int *pipefd, int backup_fd)
+// static void		status_child(void)
 // {
-// 	close(pipefd[0]);
-// 	close(pipefd[1]);
-// 	close(backup_fd);
-// 	return (-1);
+// 	if (WIFEXITED(g_pid))
+// 		g_status = WEXITSTATUS(g_pid);
+// 	if (WIFSIGNALED(g_pid))
+// 	{
+// 		g_status = WTERMSIG(g_pid);
+// 		if (g_status != 131)
+// 			g_status += 128;
+// 	}
+// }
+
+// static void	child(t_list *element, int fd[2], int *fdd)
+// {
+// 	close(fd[0]);
+// 	close(0);
+// 	dup(*fdd);
+// 	close(*fdd);
+// 	if (element->next->next)
+// 	{
+// 		if ((get_value_sep(element->next->content) == PIPE))
+// 		{
+// 			close(1);
+// 			dup(fd[1]);
+// 			close(fd[1]);
+// 		}
+// 	}
 // }
 //
+// // int			_pipe(t_pip *pipcell, t_copy *cmdargs, int fdd)
 // int				ft_pipe(t_msh *msh, t_list *element, char **env, int backup_fd)
 // {
-// 	int		pipefd[2];
+// 	int		fd[2];
 //
-// 	pipefd[0] = -1;
-// 	pipefd[1] = -1;
-// 	if (pipe(pipefd) == -1)
+// 	fd[0] = -1;
+// 	fd[1] = -1;
+// 	if (pipe(fd))
 // 		return (-1);
 // 	g_pid = fork();
 // 	if (g_pid < 0)
-// 		return (bad_fork(pipefd, backup_fd));
-// 	if (g_pid == 0)
 // 	{
-// 		dup2(backup_fd, 0);
-// 		if (element->next != NULL && element->next->next != NULL)
-// 			dup2(pipefd[1], 1);
-// 		close(pipefd[0]);
+// 		close(fd[0]);
+// 		close(fd[1]);
+// 		close(fdd);
+// 		return (-1);
+// 	}
+// 	else if (!g_pid)
+// 	{
+// 		child(element, fd, &fdd);
 // 		exec_cmd(msh, element, env);
-// 		exit(1);
+// 		free_all(cmdargs, 0);
 // 	}
-// 	else
-// 	{
-// 		wait(&g_pid);
-// 		close(pipefd[1]);
-// 		backup_fd = pipefd[0];
-// 	}
-// 	return (backup_fd);
+// 	wait(&g_pid);
+// 	status_child();
+// 	close(fdd);
+// 	close(fd[1]);
+// 	return (fd[0]);
 // }
+
+static	int		bad_fork(int *pipefd, int backup_fd)
+{
+	close(pipefd[0]);
+	close(pipefd[1]);
+	close(backup_fd);
+	return (-1);
+}
+
+int				ft_pipe(t_msh *msh, t_list *element, char **env, int backup_fd)
+{
+	int		pipefd[2];
+
+	pipefd[0] = -1;
+	pipefd[1] = -1;
+	if (pipe(pipefd) == -1)
+		return (-1);
+	g_pid = fork();
+	if (g_pid < 0)
+		return (bad_fork(pipefd, backup_fd));
+	if (g_pid == 0)
+	{
+		dup2(backup_fd, 0);
+		if (element->next != NULL && element->next->next != NULL)
+			dup2(pipefd[1], 1);
+		close(pipefd[0]);
+		exec_cmd(msh, element, env);
+		free_all(msh, EXIT);
+		exit(1);
+	}
+	else
+	{
+		wait(&g_pid);
+		close(pipefd[1]);
+		backup_fd = pipefd[0];
+	}
+	return (backup_fd);
+}
