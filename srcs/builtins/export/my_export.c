@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 18:04:14 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/09 10:25:52 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/13 17:06:25 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ int				check_first_content(char *content, char *str)
 		return (ERROR);
 	while (str[pos] != '=' && str[pos] != '\0')
 		pos++;
-	if ((str[pos] != '\0') && (ft_strncmp(str, content, pos) == 0)
+	if ((str[pos] == '\0') && (ft_strncmp(str, content, pos) == 0)
+	&& (pos == ft_strlen(content)))
+		return (ERROR_EXPORT);
+	else if ((str[pos] != '\0') && (ft_strncmp(str, content, pos) == 0)
 	&& (pos == ft_strlen(content)))
 		return (SUCCESS);
 	else
@@ -32,8 +35,8 @@ int		add_back(t_msh *msh, t_env_list *element, char *str)
 {
 	if (!element->next)
 	{
-		ft_fill_end_env(msh->env_lair, sep_env(msh, str, 0, EXPORT),
-		sep_env(msh, str, 1, EXPORT));
+		ft_fill_end_env(msh->env_lair, sep_env(str, 0, EXPORT),
+		sep_env(str, 1, EXPORT));
 		return (1);
 	}
 	return (0);

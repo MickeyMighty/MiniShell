@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 17:30:11 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/07 13:21:24 by lorenzoamar      ###   ########.fr       */
+/*   Updated: 2021/04/13 16:30:25 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ char		*get_env(t_msh *msh, char *str)
 	return (NULL);
 }
 
-char		*sep_env(t_msh *msh, char *str, int prt, int type)
+char		*sep_env(char *str, int prt, int type)
 {
 	int		pos;
 
@@ -83,7 +83,7 @@ char		*sep_env(t_msh *msh, char *str, int prt, int type)
 		if (type == ENV)
 			return (ft_substr(str, pos, (ft_strlen(str) - pos)));
 		else
-			return (export_secondcontent(msh, str, pos));
+			return (export_secondcontent(str, pos));
 	}
 }
 
@@ -96,12 +96,12 @@ int			handler_env(t_msh *msh, char **env)
 	if (msh->env_lair == NULL)
 		return (EMPTY_ENV);
 	msh->env_list = NULL;
-	ft_fill_empty_env(msh->env_lair, sep_env(msh, env[count], 0, ENV),
-	sep_env(msh, env[count], 1, ENV));
+	ft_fill_empty_env(msh->env_lair, sep_env(env[count], 0, ENV),
+	sep_env(env[count], 1, ENV));
 	while (env[++count] != NULL)
 	{
-		ft_fill_end_env(msh->env_lair, sep_env(msh, env[count], 0, ENV),
-		sep_env(msh, env[count], 1, ENV));
+		ft_fill_end_env(msh->env_lair, sep_env(env[count], 0, ENV),
+		sep_env(env[count], 1, ENV));
 	}
 	return (SUCCESS);
 }

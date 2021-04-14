@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 15:13:10 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/13 16:05:21 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/13 16:11:44 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,8 +119,7 @@ char				*return_all_content(t_msh *msh, char *str)
 			second_step = ft_substr(str, msh->utils->pos, 1);
 		}
 		msh->utils->no_space = 1;
-		first_step = ft_free_strjoin(first_step, second_step, 1, 1);
-		// first_step = join_and_free_first_step(msh, first_step, second_step, 1);
+		first_step = ft_free_strjoin(first_step, second_step);
 		if (str[msh->utils->pos])
 			msh->utils->pos++;
 	}

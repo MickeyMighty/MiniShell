@@ -6,13 +6,13 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/03 22:39:18 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/13 15:32:29 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/13 16:22:03 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/libshell.h"
 
-static	char	*fill_first_step(t_msh *msh, char *str, char *first_step,
+static	char	*fill_first_step(char *str, char *first_step,
 int pos)
 {
 	int		dollar_case;
@@ -29,55 +29,28 @@ int pos)
 	}
 	else
 		second_step = ft_substr(str, pos, 1);
-	first_step = ft_free_strjoin(first_step, second_step, 1, 1);
+	first_step = ft_free_strjoin(first_step, second_step);
 	if (dollar_case == 1)
 	{
 		second_step = ft_substr(str, pos, 1);
-		first_step = ft_free_strjoin(first_step, second_step, 1, 1);
+		first_step = ft_free_strjoin(first_step, second_step);
 	}
 	return (first_step);
 }
 
-char			*export_secondcontent(t_msh *msh, char *str, int start)
+char			*export_secondcontent(char *str, int start)
 {
 	char	*first_step;
 	int		pos;
 
 	first_step = NULL;
-	msh->utils->loop2 = 0;
 	pos = start;
 	while (str[pos])
 	{
-		first_step = fill_first_step(msh, str, first_step, pos);
+		first_step = fill_first_step(str, first_step, pos);
 		if (str[pos])
 			pos++;
 	}
-	return (first_step);
-}
-
-char			*check_export_env(t_msh *msh, char *str)
-{
-	char	*first_step;
-	char	*second_step;
-	int		pos;
-
-	pos = 0;
-	msh->utils->loop = 0;
-	msh->utils->loop2 = 0;
-	msh->utils->loop3 = 0;
-	first_step = NULL;
-	while (str[pos])
-	{
-		second_step = NULL;
-		if (str[pos] == '\\' && str[pos] == '\\')
-			pos++;
-		second_step = ft_substr(str, pos, 1);
-		first_step = join_and_free_first_step(msh, first_step, second_step, 1);
-		msh->utils->loop = 1;
-		if (str[pos])
-			pos++;
-	}
-	free(str);
 	return (first_step);
 }
 

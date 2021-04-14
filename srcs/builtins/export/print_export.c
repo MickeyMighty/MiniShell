@@ -6,7 +6,7 @@
 /*   By: lorenzoa <lorenzoa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 16:37:21 by lorenzoa          #+#    #+#             */
-/*   Updated: 2021/04/09 10:28:35 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/13 17:06:20 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,29 @@
 void			push_to_env(t_msh *msh, char *str)
 {
 	t_env_list		*element;
+	int				check;
 
+	check = 0;
 	element = msh->env_lair->start;
 	if (!element)
 	{
-		ft_fill_empty_env(msh->env_lair, sep_env(msh, str, 0, EXPORT),
-				sep_env(msh, str, 1, EXPORT));
+		ft_fill_empty_env(msh->env_lair, sep_env(str, 0, EXPORT),
+				sep_env(str, 1, EXPORT));
 		return ;
 	}
 	while (element)
 	{
-		if (check_first_content(element->first_content, str) == SUCCESS)
+		check = check_first_content(element->first_content, str);
+		if (check == SUCCESS)
 		{
 			if (element->second_content)
 				free(element->second_content);
-			element->second_content = ft_strdup(sep_env(msh, str, 1, EXPORT));
+			element->second_content = ft_strdup(sep_env(str, 1, EXPORT));
 			return ;
 		}
-		else if (add_back(msh, element, str) == 1)
+		else if ((check == ERROR) && add_back(msh, element, str) == 1)
+			return ;
+		else if (check == ERROR_EXPORT)
 			return ;
 		else if (element->next)
 			element = element->next;

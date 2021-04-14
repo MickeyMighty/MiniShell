@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 13:35:59 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/13 15:31:28 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/13 16:57:19 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 # define ERROR_TOKEN 4
 # define ERROR_MSG 5
 # define ERROR_ERRNO 6
+# define ERROR_EXPORT 7
 
 # define EXIT 0
 # define EXPORT 0
@@ -183,7 +184,7 @@ int				pop_back_env(t_env_lair *env_lair);
 
 void			set_env(t_msh *msh, char *first_content, char *second_content);
 char			*get_env(t_msh *msh, char *str);
-char			*sep_env(t_msh *msh, char *str, int prt, int type);
+char			*sep_env(char *str, int prt, int type);
 int				handler_env(t_msh *msh, char **env);
 
 /*
@@ -320,7 +321,7 @@ int				create_file(t_list *element, int type);
 ** builtins/export/export_check.c
 */
 
-char			*export_secondcontent(t_msh *msh, char *str, int start);
+char			*export_secondcontent(char *str, int start);
 char			*check_export_env(t_msh *msh, char *str);
 int				check_arg(t_msh *msh, char *str);
 

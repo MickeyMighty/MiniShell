@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 23:57:55 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/12 22:54:39 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/13 16:13:51 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int 		check(char *s1, char *s2)
 	return (0);
 }
 
-static char		*return_error(char *s1, char *s2, int free1, int free2)
+static char		*return_error(char *s1, char *s2)
 {
 
 	char	*tmp;
@@ -37,7 +37,7 @@ static char		*return_error(char *s1, char *s2, int free1, int free2)
 	return (NULL);
 }
 
-char			*ft_free_strjoin(char *s1, char *s2, int free1, int free2)
+char			*ft_free_strjoin(char *s1, char *s2)
 {
 	size_t	lens1;
 	size_t	lens2;
@@ -46,7 +46,7 @@ char			*ft_free_strjoin(char *s1, char *s2, int free1, int free2)
 
 	dest = NULL;
 	if (check(s1, s2) == -1)
-		return (return_error(s1, s2, free1, free2));
+		return (return_error(s1, s2));
 	lens1 = ft_strlen(s1);
 	lens2 = ft_strlen(s2);
 	if (!(dest = (char *)malloc(sizeof(char) * (lens1 + lens2 + 1))))
@@ -63,10 +63,8 @@ char			*ft_free_strjoin(char *s1, char *s2, int free1, int free2)
 		dest[i + lens1] = s2[i];
 		i++;
 	}
-	if (free1 == 1)
-		free(s1);
-	if (free2 == 1)
-		free(s2);
+	free(s1);
+	free(s2);
 	dest[i + lens1] = '\0';
 	return (dest);
 }
