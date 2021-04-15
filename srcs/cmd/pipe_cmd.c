@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 07:42:36 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/15 13:11:54 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/15 13:12:55 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ t_list			*multi_pipe(t_msh *msh, t_list *element, char **env)
 		{
 			return (element);
 		}
-		free_all(msh, EXIT);
+		// free_all(msh, EXIT);
 	}
 	close(msh->utils->backup_fd);
 	return (element);
