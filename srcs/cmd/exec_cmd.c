@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 22:57:42 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/15 13:35:10 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/15 13:35:25 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int					exec_cmd(t_msh *msh, t_list *cmd, char **env, int pipe)
 	if (status == SUCCESS)
 	{
 		g_status = status;
-		if (pipe = 1)
+		if (pipe == 1)
 			exit(status);
 	}
 	else if (status == ERROR_BUILTINS)
