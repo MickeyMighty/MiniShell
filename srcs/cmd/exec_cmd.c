@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 22:57:42 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/15 11:00:03 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/15 11:27:25 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,13 @@ int pipe)
 	if (pipe == 0)
 		g_pid = fork();
 	if (g_pid == 0)
-		child_process(msh, cmd, env, exec_path);
+	{
+		status = ft_handler_builtins(msh, cmd);
+		if (status == SUCCESS)
+			g_status = status;
+		else if (status == ERROR_BUILTINS)
+			child_process(msh, cmd, env, exec_path);
+	}
 	else
 		parent_process();
 	if (exec_path)
@@ -52,9 +58,8 @@ int					exec_cmd(t_msh *msh, t_list *cmd, char **env, int pipe)
 	status = ft_handler_builtins(msh, cmd);
 	if (status == SUCCESS)
 		g_status = status;
-	else if (status == ERROR_BUILTINS)
-		if (check_permission_exec(msh, cmd, env, pipe) == ERROR)
-			return (ERROR);
+	check_permission_exec(msh, cmd, env, pipe) == ERROR)
+		return (ERROR);
 	g_pid = 0;
 	if (g_error == ERROR)
 		return (ERROR);
