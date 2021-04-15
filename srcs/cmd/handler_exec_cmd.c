@@ -6,7 +6,7 @@
 /*   By: lorenzoa <lorenzoa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 17:23:29 by lorenzoa          #+#    #+#             */
-/*   Updated: 2021/04/15 13:30:28 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/15 13:30:42 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void		child_process(t_msh *msh, t_list *cmd, char **env, char *exec_path)
 	cmd->tab_args[0] = ft_strdup(exec_path);
 	ret = execve(exec_path, cmd->tab_args, env);
 	if (msh->utils->pipe == 1)
-		msh->utils->pipe == 0;
+		msh->utils->pipe = 0;
 	//  	free_all(msh, EXIT);
 	free(exec_path);
 	exit(ret);
