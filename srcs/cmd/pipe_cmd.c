@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 07:42:36 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/14 23:00:25 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/15 10:59:24 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,26 +37,24 @@ static	t_list	*return_multi_pipe(t_msh *msh, t_list *element, char **env)
 t_list			*multi_pipe(t_msh *msh, t_list *element, char **env)
 {
 	msh->utils->backup_fd = 0;
-	msh->utils->backup_fd = dup2(msh->utils->backup_fd, 0);
+	msh->utils->backup_fd = dup(0);
 	while (element)
 	{
 		element = return_multi_pipe(msh, element, env);
+		close(msh->utils->backup_fd);
 		if (g_error_msg == ERROR)
 			return (NULL);
 		if (element->next
 		&& (get_value_sep(element->next->content) != PIPE))
 		{
 			element = element->next;
-			close(msh->utils->backup_fd);
 			return (element);
 		}
 		else if (!element->next)
 		{
-			close(msh->utils->backup_fd);
 			return (element);
 		}
 	}
-	close(msh->utils->backup_fd);
 	return (element);
 }
 
@@ -84,6 +82,8 @@ int				ft_pipe(t_msh *msh, t_list *element, char **env, int backup_fd)
 {
 	int		pipefd[2];
 
+	pipefd[0] = -1;
+	pipefd[1] = -1;
 	if (pipe(pipefd) == -1)
 		return (-1);
 	g_pid = fork();
@@ -91,11 +91,18 @@ int				ft_pipe(t_msh *msh, t_list *element, char **env, int backup_fd)
 		return (bad_fork(pipefd, backup_fd));
 	if (g_pid == 0)
 	{
-		dup2(backup_fd, 0);
-		if (element->next != NULL && element->next->next != NULL)
-			dup2(pipefd[1], 1);
 		close(pipefd[0]);
-		exec_cmd(msh, element, env);
+		close(0);
+		dup(backup_fd);
+		close(backup_fd);
+		if (element->next != NULL && element->next->next != NULL
+		&& (get_value_sep(element->next->content) == PIPE))
+		{
+			close(1);
+			dup(pipefd[1]);
+			close(pipefd[1]);
+		}
+		exec_cmd(msh, element, env, 1);
 		free_all(msh, EXIT);
 		exit(g_status);
 	}
@@ -103,6 +110,5 @@ int				ft_pipe(t_msh *msh, t_list *element, char **env, int backup_fd)
 	status_child();
 	close(backup_fd);
 	close(pipefd[1]);
-	// backup_fd = pipefd[0];
-	return (backup_fd);
+	return (pipefd[0]);
 }

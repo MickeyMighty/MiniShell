@@ -6,17 +6,19 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 22:57:42 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/14 16:33:14 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/15 11:00:03 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libshell.h"
 
-static	int			check_permission_exec(t_msh *msh, t_list *cmd, int lock,
-char **env)
+static	int			check_permission_exec(t_msh *msh, t_list *cmd, char **env,
+int pipe)
 {
 	char	*exec_path;
+	int		lock;
 
+	lock = TRUE;
 	exec_path = NULL;
 	if (cmd == NULL)
 		return (ERROR);
@@ -30,7 +32,7 @@ char **env)
 		ft_strdel(&exec_path);
 		return (ERROR);
 	}
-	if (msh->utils->pipe == 0)
+	if (pipe == 0)
 		g_pid = fork();
 	if (g_pid == 0)
 		child_process(msh, cmd, env, exec_path);
@@ -38,21 +40,20 @@ char **env)
 		parent_process();
 	if (exec_path)
 		free(exec_path);
+	msh->utils->pipe = 0;
 	return (SUCCESS);
 }
 
-int					exec_cmd(t_msh *msh, t_list *cmd, char **env)
+int					exec_cmd(t_msh *msh, t_list *cmd, char **env, int pipe)
 {
-	int		lock;
 	int		status;
 
-	lock = TRUE;
 	g_error = SUCCESS;
 	status = ft_handler_builtins(msh, cmd);
 	if (status == SUCCESS)
 		g_status = status;
 	else if (status == ERROR_BUILTINS)
-		if (check_permission_exec(msh, cmd, lock, env) == ERROR)
+		if (check_permission_exec(msh, cmd, env, pipe) == ERROR)
 			return (ERROR);
 	g_pid = 0;
 	if (g_error == ERROR)
