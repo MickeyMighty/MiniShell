@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 19:43:38 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/09 23:58:41 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/15 13:53:28 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,13 @@ int				ft_count_separator(t_split_data *split_data, char *s, int pos)
 			return (2);
 	if (s[pos] == ';' || s[pos] == '|' || s[pos] == '<' || s[pos] == '>')
 	{
-		if (split_data->double_semicolon == 0)
-			split_data->double_semicolon = 1;
-		else if (split_data->double_semicolon == 1)
-			split_data->double_semicolon = 2;
+		if (s[pos] == ';')
+		{
+			if (split_data->double_semicolon == 0)
+				split_data->double_semicolon = 1;
+			else if (split_data->double_semicolon == 1)
+				split_data->double_semicolon = 2;
+		}
 		return (1);
 	}
 	return (0);
