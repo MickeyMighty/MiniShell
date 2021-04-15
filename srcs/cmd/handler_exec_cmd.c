@@ -6,7 +6,7 @@
 /*   By: lorenzoa <lorenzoa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 17:23:29 by lorenzoa          #+#    #+#             */
-/*   Updated: 2021/04/15 13:33:16 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/15 13:42:55 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int			check_permission(char *cmd)
 	return (lock);
 }
 
-void		child_process(t_list *cmd, char **env, char *exec_path)
+void		child_process(t_msh *msh, t_list *cmd, char **env, char *exec_path)
 {
 	int		ret;
 
@@ -66,9 +66,9 @@ void		child_process(t_list *cmd, char **env, char *exec_path)
 		exec_path = ft_strdup(cmd->content);
 	cmd->tab_args[0] = ft_strdup(exec_path);
 	ret = execve(exec_path, cmd->tab_args, env);
-	// if (msh->utils->pipe == 1)
-	//  	free_all(msh, EXIT);
 	free(exec_path);
+	if (msh->utils->pipe == 1)
+		free_all(msh, EXIT);
 	exit(ret);
 }
 
