@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 22:57:42 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/15 12:49:33 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/15 12:51:19 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,23 +45,23 @@ static	int			check_permission_exec(t_msh *msh, t_list *cmd, char **env)
 
 int					exec_cmd(t_msh *msh, t_list *cmd, char **env, int pipe)
 {
-	// int		status;
+	int		status;
 
 	g_error = SUCCESS;
 	msh->utils->pipe = pipe;
-	// status = ft_handler_builtins(msh, cmd);
-	// if (status == SUCCESS)
-	// 	g_status = status;
-	// {
+	status = ft_handler_builtins(msh, cmd);
+	if (status == SUCCESS)
+	{
+		g_status = status;
 		// if (pipe == 1)
 		// {
 		// 	free_all(msh, EXIT);
 		// 	exit(g_status);
 		// }
-	// }
-	// else if (status == ERROR_BUILTINS)
-	if (check_permission_exec(msh, cmd, env) == ERROR)
-		return (ERROR);
+	}
+	else if (status == ERROR_BUILTINS)
+		if (check_permission_exec(msh, cmd, env) == ERROR)
+			return (ERROR);
 	if (pipe == 0)
 		g_pid = 0;
 	if (g_error == ERROR)
