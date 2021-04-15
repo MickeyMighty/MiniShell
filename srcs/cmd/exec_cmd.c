@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 22:57:42 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/15 13:42:38 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/15 13:49:20 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,7 @@ int					exec_cmd(t_msh *msh, t_list *cmd, char **env, int pipe)
 	msh->utils->pipe = pipe;
 	status = ft_handler_builtins(msh, cmd);
 	if (status == SUCCESS)
-	{
 		g_status = status;
-		if (pipe == 1)
-		{
-			free_all(msh, EXIT);
-			exit(g_status);
-		}
-	}
 	else if (status == ERROR_BUILTINS)
 		if (check_permission_exec(msh, cmd, env) == ERROR)
 			return (ERROR);
