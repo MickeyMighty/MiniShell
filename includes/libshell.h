@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 13:35:59 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/15 00:36:23 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/15 13:33:35 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -293,7 +293,7 @@ int				handler_cmd(t_msh *msh, char **env);
 */
 
 int				check_permission(char *cmd);
-void			child_process(t_msh *msh, t_list *cmd, char **env,
+void			child_process(t_list *cmd, char **env,
 				char *exec_path);
 void			parent_process(void);
 
