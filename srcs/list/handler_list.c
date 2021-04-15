@@ -6,11 +6,42 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 04:42:10 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/12 12:16:41 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/16 00:36:44 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libshell.h"
+
+static	int		check_pipe_multi(t_msh *msh)
+{
+	t_list		*element;
+
+	element = msh->lair_list->start;
+	if (!element || (element == NULL))
+		return (ERROR);
+	while (element)
+	{
+		if (element->token == CMD && element->next)
+		{
+			element = element->next;
+			if (element->next && element->token == SEPARATOR
+			&& element->next->token == SEPARATOR
+			&& get_value_sep(element->content) == PIPE
+			&& get_value_sep(element->next->content) == PIPE
+			&& (element->next->next == NULL || !element->next->next))
+				return (return_error(ERROR_MULTI, NULL, NULL,
+				"syntax error multiligne"));
+			if ((!element->next || element->next == NULL)
+			&& element->token == SEPARATOR
+			&& get_value_sep(element->content) == PIPE)
+				return (return_error(ERROR_MULTI, NULL, NULL,
+				"syntax error multiligne"));
+		}
+		else
+			element = element->next;
+	}
+	return (SUCCESS);
+}
 
 static	int		check_cmd_list(t_list *element, int size)
 {
@@ -71,6 +102,8 @@ int				handler_list(t_msh *msh)
 	set_token_list(msh);
 	msh->utils->pos_list = 1;
 	if (create_tab_args(msh) == ERROR)
+		return (ERROR);
+	if (check_pipe_multi(msh) == ERROR)
 		return (ERROR);
 	if (check_token_list(msh) == ERROR)
 		return (ERROR);

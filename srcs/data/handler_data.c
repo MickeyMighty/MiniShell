@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 20:48:58 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/12 12:13:55 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/15 13:54:41 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,10 +103,10 @@ int				handler_data(t_msh *msh, char *buf)
 			return (return_error(ERROR_TOKEN, ";;", NULL,
 			"syntax error near unexpected token"));
 		else if (g_error_msg == ERROR_MALLOC)
-			return (return_error(ERROR_MSG, NULL, NULL, "error from malloc."));
+			return (return_error(ERROR_MSG, NULL, NULL, "error from malloc"));
 		else if (g_error_msg == ERROR_MULTI)
 			return (return_error(ERROR_MSG, NULL, NULL,
-				"syntax error multiligne."));
+				"syntax error multiligne"));
 	}
 	ft_memset(buf, 0, ft_strlen(buf));
 	free(buf);
