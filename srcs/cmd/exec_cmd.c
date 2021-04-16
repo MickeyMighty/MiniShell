@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 22:57:42 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/16 03:29:44 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/16 03:30:07 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ static	int			check_permission_exec(t_msh *msh, t_list *cmd, char **env)
 int					exec_cmd(t_msh *msh, t_list *cmd, char **env, int pipe)
 {
 	int		status;
-	// char	*exec_path;
+	char	*exec_path;
 
-	// exec_path = NULL;
+	exec_path = NULL;
 	g_error = SUCCESS;
 	msh->utils->pipe = pipe;
 	status = ft_handler_builtins(msh, cmd);
