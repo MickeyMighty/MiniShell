@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 22:57:42 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/16 02:20:35 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/16 02:21:03 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int					exec_cmd(t_msh *msh, t_list *cmd, char **env, int pipe)
 		if (!exec_path)
 			exec_path = ft_strdup(cmd->content);
 		free(exec_path);
-		free_all(msh);
+		free_all(msh, EXIT);
 		g_status = status;
 		exit(status);
 	}
