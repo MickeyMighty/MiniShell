@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 07:42:36 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/16 17:00:12 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/16 17:15:38 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int				ft_pipe(t_msh *msh, t_list *element, char **env, int backup_fd)
 	{
 		pipe_child(element, pipefd, backup_fd);
 		exec_cmd(msh, element, env, 1);
-		free_all(msh, EXIT);
+		// free_all(msh, EXIT);
 		exit(g_status);
 	}
 	wait(&g_pid);
