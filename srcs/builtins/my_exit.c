@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 09:12:18 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/10 11:45:11 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/16 19:18:45 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,10 @@ int					my_exit(t_msh *msh, t_list *element)
 	i = 1;
 	g_status = 0;
 	if (element->tab_args[1] == NULL)
+	{
+		printf("oui\n");
 		exit_cmd(msh);
+	}
 	exit_arg(msh, element->tab_args[1]);
 	while (element->tab_args[i])
 		i++;
