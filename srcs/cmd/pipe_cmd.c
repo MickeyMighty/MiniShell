@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 07:42:36 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/16 11:43:48 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/16 11:46:15 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,20 @@ static	t_list	*return_multi_pipe(t_msh *msh, t_list *element, char **env)
 
 t_list			*multi_pipe(t_msh *msh, t_list *element, char **env)
 {
+	int		loop;
+
+	loop = 0;
 	msh->utils->backup_fd = 0;
 	msh->utils->backup_fd = dup(0);
 	while (element)
 	{
+		if (loop == 1)
+		{
+			free_all(msh, EXIT);
+			loop = 0;
+		}
+		if (loop == 0)
+			loop = 1;
 		element = return_multi_pipe(msh, element, env);
 		if (g_error_msg == ERROR)
 			return (NULL);
@@ -94,7 +104,7 @@ int				ft_pipe(t_msh *msh, t_list *element, char **env, int backup_fd)
 	{
 		pipe_child(element, pipefd, backup_fd);
 		exec_cmd(msh, element, env, 1);
-		// free_all(msh, EXIT);
+		free_all(msh, EXIT);
 		exit(g_status);
 	}
 	wait(&g_pid);
