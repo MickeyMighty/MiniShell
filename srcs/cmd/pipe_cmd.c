@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 07:42:36 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/15 13:49:03 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/16 02:02:41 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,23 +50,25 @@ t_list			*multi_pipe(t_msh *msh, t_list *element, char **env)
 			return (element);
 		}
 		else if (!element->next)
-		{
 			return (element);
-		}
 	}
 	close(msh->utils->backup_fd);
 	return (element);
 }
 
-static void		status_child(void)
+static	void 	pipe_child(t_list *element, int pipefd[2], int backup_fd)
 {
-	if (WIFEXITED(g_pid))
-		g_status = WEXITSTATUS(g_pid);
-	if (WIFSIGNALED(g_pid))
+	close(pipefd[0]);
+	close(0);
+	dup(backup_fd);
+	close(backup_fd);
+	if (element->next != NULL && element->next->next != NULL
+	&& (get_value_sep(element->next->content) == PIPE))
 	{
-		g_status = WTERMSIG(g_pid);
-		if (g_status != 131)
-			g_status += 128;
+		printf("3-3\n");
+		close(1);
+		dup(pipefd[1]);
+		close(pipefd[1]);
 	}
 }
 
@@ -84,28 +86,25 @@ int				ft_pipe(t_msh *msh, t_list *element, char **env, int backup_fd)
 
 	pipefd[0] = -1;
 	pipefd[1] = -1;
+	printf("1\n");
 	if (pipe(pipefd) == -1)
 		return (-1);
 	g_pid = fork();
+	printf("2\n");
 	if (g_pid < 0)
 		return (bad_fork(pipefd, backup_fd));
 	if (g_pid == 0)
 	{
-		close(pipefd[0]);
-		close(0);
-		dup(backup_fd);
-		close(backup_fd);
-		if (element->next != NULL && element->next->next != NULL
-		&& (get_value_sep(element->next->content) == PIPE))
-		{
-			close(1);
-			dup(pipefd[1]);
-			close(pipefd[1]);
-		}
+		printf("3\n");
+		pipe_child(element, pipefd, backup_fd);
+		printf("4\n");
 		exec_cmd(msh, element, env, 1);
+		printf("5\n");
 		free_all(msh, EXIT);
+		printf("6\n");
 		exit(g_status);
 	}
+	printf("7\n");
 	wait(&g_pid);
 	status_child();
 	close(backup_fd);

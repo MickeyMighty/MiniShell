@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 13:35:59 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/15 13:39:53 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/16 01:58:00 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -279,6 +279,7 @@ int				check_specase(t_msh *msh, int pos);
 ** cmd/exec_cmd.c
 */
 
+void			status_child(void);
 int				exec_cmd(t_msh *msh, t_list *cmd, char **env, int pipe);
 
 /*
