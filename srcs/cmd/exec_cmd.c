@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 22:57:42 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/16 11:13:13 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/16 11:13:36 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ int					exec_cmd(t_msh *msh, t_list *cmd, char **env, int pipe)
 		// 	exec_path = ft_strdup(cmd->content);
 		// cmd->tab_args[0] = ft_strdup(exec_path);
 		// free(exec_path);
-		if (msh->utils->pipe == 0)
-			free_all(msh, EXIT);
+		// if (msh->utils->pipe == 1)
+		// 	free_all(msh, EXIT);
 	}
 	else if (status == ERROR_BUILTINS)
 		if (check_permission_exec(msh, cmd, env) == ERROR)
