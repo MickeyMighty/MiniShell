@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 07:42:36 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/16 02:02:41 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/16 02:04:36 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ static	void 	pipe_child(t_list *element, int pipefd[2], int backup_fd)
 	if (element->next != NULL && element->next->next != NULL
 	&& (get_value_sep(element->next->content) == PIPE))
 	{
-		printf("3-3\n");
 		close(1);
 		dup(pipefd[1]);
 		close(pipefd[1]);
@@ -86,25 +85,18 @@ int				ft_pipe(t_msh *msh, t_list *element, char **env, int backup_fd)
 
 	pipefd[0] = -1;
 	pipefd[1] = -1;
-	printf("1\n");
 	if (pipe(pipefd) == -1)
 		return (-1);
 	g_pid = fork();
-	printf("2\n");
 	if (g_pid < 0)
 		return (bad_fork(pipefd, backup_fd));
 	if (g_pid == 0)
 	{
-		printf("3\n");
 		pipe_child(element, pipefd, backup_fd);
-		printf("4\n");
 		exec_cmd(msh, element, env, 1);
-		printf("5\n");
 		free_all(msh, EXIT);
-		printf("6\n");
 		exit(g_status);
 	}
-	printf("7\n");
 	wait(&g_pid);
 	status_child();
 	close(backup_fd);

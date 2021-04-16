@@ -6,13 +6,13 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 22:57:42 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/16 01:57:39 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/16 02:19:22 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libshell.h"
 
-void		status_child(void)
+void			status_child(void)
 {
 	if (WIFEXITED(g_pid))
 		g_status = WEXITSTATUS(g_pid);
@@ -58,12 +58,20 @@ static	int			check_permission_exec(t_msh *msh, t_list *cmd, char **env)
 int					exec_cmd(t_msh *msh, t_list *cmd, char **env, int pipe)
 {
 	int		status;
+	char	*exec_path;
 
+	exec_path = NULL;
 	g_error = SUCCESS;
 	msh->utils->pipe = pipe;
 	status = ft_handler_builtins(msh, cmd);
 	if (status == SUCCESS)
+	{
+		exec_path = get_exec_path(msh, cmd->content);
+		if (!exec_path)
+			exec_path = ft_strdup(cmd->content);
+		free(exec_path);
 		g_status = status;
+	}
 	else if (status == ERROR_BUILTINS)
 		if (check_permission_exec(msh, cmd, env) == ERROR)
 			return (ERROR);
