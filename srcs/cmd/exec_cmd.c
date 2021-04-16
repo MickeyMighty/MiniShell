@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 22:57:42 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/16 03:15:01 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/16 03:16:16 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int					exec_cmd(t_msh *msh, t_list *cmd, char **env, int pipe)
 	if (status == SUCCESS)
 	{
 		g_status = status;
-		if (check_permission_exec(msh, cmd, env) == ERROR)
+		if (pipe == 1 && check_permission_exec(msh, cmd, env) == ERROR)
 			return (ERROR);
 		// exec_path = get_exec_path(msh, cmd->content);
 		// if (exec_path == NULL)
