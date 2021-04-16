@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 23:57:55 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/16 13:36:25 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/16 13:55:57 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ static	char	*return_dest(char *s1, char *s2, char *dest, int lens1)
 		dest[i + lens1] = s2[i];
 		i++;
 	}
+	dest[i + lens1] = '\0';
 	return (dest);
 }
 
@@ -60,7 +61,6 @@ char			*ft_free_strjoin(char *s1, char *s2)
 	size_t	lens1;
 	size_t	lens2;
 	char	*dest;
-	int		i;
 
 	dest = NULL;
 	if (check(s1, s2) == -1)
@@ -72,6 +72,5 @@ char			*ft_free_strjoin(char *s1, char *s2)
 	dest = return_dest(s1, s2, dest, lens1);
 	free(s1);
 	free(s2);
-	dest[i + lens1] = '\0';
 	return (dest);
 }
