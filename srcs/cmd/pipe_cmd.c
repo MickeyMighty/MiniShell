@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 07:42:36 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/16 11:29:52 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/16 11:39:55 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,17 +87,24 @@ int				ft_pipe(t_msh *msh, t_list *element, char **env, int backup_fd)
 	pipefd[1] = -1;
 	if (pipe(pipefd) == -1)
 		return (-1);
+	printf("0\n");
 	g_pid = fork();
+	printf("0,5\n");
 	if (g_pid < 0)
 		return (bad_fork(pipefd, backup_fd));
+	printf("1\n");
 	if (g_pid == 0)
 	{
+		printf("2\n");
 		pipe_child(element, pipefd, backup_fd);
 		exec_cmd(msh, element, env, 1);
-		free_all(msh, EXIT);
+		printf("free\n");
+		// free_all(msh, EXIT);
 		exit(g_status);
 	}
+	printf("3\n");
 	wait(&g_pid);
+	printf("4\n");
 	status_child();
 	close(backup_fd);
 	close(pipefd[1]);
