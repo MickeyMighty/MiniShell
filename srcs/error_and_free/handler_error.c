@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 03:33:33 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/16 19:24:03 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/16 19:25:22 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void			free_all(t_msh *msh, int free_key)
 				free(msh->utils->tab_specase);
 			free(msh->utils);
 		}
-		if (msh->data && (free_key == ENDLOOP || free_key == ENDLOOP))
+		if (msh->data && (free_key == ENDLOOP || free_key == EXIT))
 			free(msh->data);
 		free_list(msh, free_key);
 		if (free_key == EXIT || free_key == CTRLD)
