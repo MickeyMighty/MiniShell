@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/07 04:25:27 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/16 13:48:27 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/16 13:48:48 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,14 @@ static	int		is_empty_list(t_lair_list *lair_list)
 	return (ERROR);
 }
 
-static	void	free_popback_list(t_list *temp)
-{
-	if (temp->content)
-		free(temp->content);
-	if (temp->tab_args)
-		free_tab_args(temp->tab_args);
-	free(temp);
-}
+// static	void	free_popback_list(t_list *temp)
+// {
+// 	if (temp->content)
+// 		free(temp->content);
+// 	if (temp->tab_args)
+// 		free_tab_args(temp->tab_args);
+// 	free(temp);
+// }
 
 int				pop_back_list(t_lair_list *lair_list)
 {
