@@ -6,11 +6,48 @@
 /*   By: lorenzoa <lorenzoa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 19:32:35 by lorenzoa          #+#    #+#             */
-/*   Updated: 2021/04/09 23:56:09 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/16 13:08:14 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/libshell.h"
+
+int				ft_size_quote(t_split_data *split_data, char *str, int index)
+{
+	char	quote;
+
+	quote = str[index];
+	index++;
+	while (str[index])
+	{
+		if (str[index] == quote && quote == SQUOTE)
+			return (index);
+		if (str[index] == quote && str[index - 1] != '\\' && quote == DQUOTE)
+			return (index);
+		index++;
+	}
+	split_data->error = 1;
+	return (index);
+}
+
+int				get_split_pos(char *str, t_split_data *split_data, int index)
+{
+	index++;
+	while (str[index] && str[index] != DQUOTE)
+	{
+		if (str[index] == '\\' && str[index + 1])
+			index++;
+		else if (str[index] == '\\' && str[index + 1] == DQUOTE)
+			index++;
+		else if (str[index] == '\\' && !str[index + 1])
+		{
+			split_data->error = 1;
+			return (-1);
+		}
+		index++;
+	}
+	return (index);
+}
 
 static	int		get_pos_word(char *str, t_split_data *split_data, int index)
 {

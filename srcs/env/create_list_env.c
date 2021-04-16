@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/05 12:26:48 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/14 14:45:49 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/16 12:48:13 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,20 +56,16 @@ static	int		is_empty_env(t_env_lair *env_lair)
 	return (ERROR);
 }
 
-int		clear_env(t_env_lair *env_lair)
+static	void	free_popback_env(t_env_list *temp)
 {
-	int		loop;
-
-	loop = 0;
-	while (loop == 0)
-	{
-		if (pop_back_env(env_lair) == ERROR)
-			loop = 1;
-	}
-	return (SUCCESS);
+	if (temp->first_content)
+		free(temp->first_content);
+	if (temp->second_content)
+		free(temp->second_content);
+	free(temp);
 }
 
-int		pop_back_env(t_env_lair *env_lair)
+int				pop_back_env(t_env_lair *env_lair)
 {
 	t_env_list	*temp;
 
@@ -90,11 +86,7 @@ int		pop_back_env(t_env_lair *env_lair)
 		env_lair->end->previous->next = NULL;
 		env_lair->end = env_lair->end->previous;
 	}
-	if (temp->first_content)
-		free(temp->first_content);
-	if (temp->second_content)
-		free(temp->second_content);
-	free(temp);
+	free_popback_env(temp);
 	env_lair->size--;
 	return (SUCCESS);
 }

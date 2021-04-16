@@ -6,28 +6,22 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 19:36:18 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/12 12:13:24 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/16 13:28:04 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/libshell.h"
 
-int				ft_size_quote(t_split_data *split_data, char *str, int index)
+static	void	to_tab(char *str,
+t_split_data *split_data, char **res)
 {
-	char	quote;
-
-	quote = str[index];
-	index++;
-	while (str[index])
-	{
-		if (str[index] == quote && quote == SQUOTE)
-			return (index);
-		if (str[index] == quote && str[index - 1] != '\\' && quote == DQUOTE)
-			return (index);
-		index++;
-	}
-	split_data->error = 1;
-	return (index);
+	split_data->pos_index = 0;
+	while (str[split_data->pos] != '\0' && str[split_data->pos] == ' ')
+		split_data->pos++;
+	res[split_data->nb] = ft_substr(str, split_data->pos,
+	ft_get_len_word(split_data, str));
+	split_data->nb++;
+	split_data->pos = split_data->pos_index;
 }
 
 char			**ft_word_to_tab(char *str,
@@ -43,13 +37,7 @@ t_split_data *split_data, char **res)
 	while (str[split_data->pos] && (split_data->nb < split_data->nb_word))
 	{
 		loop++;
-		split_data->pos_index = 0;
-		while (str[split_data->pos] != '\0' && str[split_data->pos] == ' ')
-			split_data->pos++;
-		res[split_data->nb] = ft_substr(str, split_data->pos,
-		ft_get_len_word(split_data, str));
-		split_data->nb++;
-		split_data->pos = split_data->pos_index;
+		to_tab(str, split_data, res);
 		if (res[split_data->nb - 1] == NULL && split_data->error == 1)
 		{
 			while (i < split_data->nb_word && i < loop)

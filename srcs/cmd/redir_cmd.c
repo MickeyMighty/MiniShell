@@ -60,6 +60,16 @@ char **env)
 	return (element);
 }
 
+static	int		check_next(t_list *element)
+{
+	if (!element->next->next)
+	{
+		error_cmd(element->next);
+		return (-1);
+	}
+	return (0);
+}
+
 t_list			*redirections(t_msh *msh, t_list *element, char **env)
 {
 	int				fd;
@@ -67,11 +77,8 @@ t_list			*redirections(t_msh *msh, t_list *element, char **env)
 
 	type = 0;
 	msh->utils->redirection = 1;
-	if (!element->next->next)
-	{
-		error_cmd(element->next);
+	if (check_next(element) == -1)
 		return (NULL);
-	}
 	if (element->next && element->next->token == SEPARATOR)
 		type = get_type_redir(element->next->content);
 	if (type == ERROR)

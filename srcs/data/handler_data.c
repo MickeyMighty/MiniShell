@@ -6,30 +6,11 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 20:48:58 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/15 13:54:41 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/16 13:25:00 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libshell.h"
-
-int				get_split_pos(char *str, t_split_data *split_data, int index)
-{
-	index++;
-	while (str[index] && str[index] != DQUOTE)
-	{
-		if (str[index] == '\\' && str[index + 1])
-			index++;
-		else if (str[index] == '\\' && str[index + 1] == DQUOTE)
-			index++;
-		else if (str[index] == '\\' && !str[index + 1])
-		{
-			split_data->error = 1;
-			return (-1);
-		}
-		index++;
-	}
-	return (index);
-}
 
 static	char	**split_error(t_split_data *split_data, int error, int free_s)
 {
@@ -46,6 +27,29 @@ static	char	**split_error(t_split_data *split_data, int error, int free_s)
 	return (NULL);
 }
 
+static	int		check_and_count_word(t_msh *msh, char *s, char c,
+t_split_data *split_data)
+{
+	if (check_word(s, c) == 0)
+		ft_count_word(msh, s, c, split_data);
+	else
+	{
+		split_error(split_data, SUCCESS, 1);
+		return (ERROR);
+	}
+	if (split_data->error == 1)
+	{
+		split_error(split_data, ERROR_MULTI, 1);
+		return (ERROR);
+	}
+	if (split_data->error == 2)
+	{
+		split_error(split_data, ERROR_DBLSEMICOLON, 1);
+		return (ERROR);
+	}
+	return (SUCCESS);
+}
+
 char			**ft_split_data(t_msh *msh, char *s, char c)
 {
 	char			**res;
@@ -57,14 +61,8 @@ char			**ft_split_data(t_msh *msh, char *s, char c)
 	split_data = init_split_data(split_data);
 	if (split_data == NULL)
 		return (split_error(split_data, SUCCESS, 1));
-	if (check_word(s, c) == 0)
-		ft_count_word(msh, s, c, split_data);
-	else
-		return (split_error(split_data, SUCCESS, 1));
-	if (split_data->error == 1)
-		return (split_error(split_data, ERROR_MULTI, 1));
-	if (split_data->error == 2)
-		return (split_error(split_data, ERROR_DBLSEMICOLON, 1));
+	if (check_and_count_word(msh, s, c, split_data) == ERROR)
+		return (NULL);
 	if (!(res = (char **)malloc(sizeof(char *) * (split_data->nb_word))))
 		return (split_error(split_data, ERROR_MALLOC, 1));
 	split_data->pos = 0;
@@ -111,7 +109,9 @@ int				handler_data(t_msh *msh, char *buf)
 	ft_memset(buf, 0, ft_strlen(buf));
 	free(buf);
 	if (data_check(msh) == -1)
+	{
 		return (return_error(ERROR_MSG, NULL, NULL,
 		"syntax error multiligne."));
+	}
 	return (SUCCESS);
 }

@@ -6,11 +6,24 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 23:20:47 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/14 14:21:37 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/16 12:49:26 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libshell.h"
+
+int				clear_list(t_lair_list *lair_list)
+{
+	int		loop;
+
+	loop = 0;
+	while (loop == 0)
+	{
+		if (pop_back_list(lair_list) == ERROR)
+			loop = 1;
+	}
+	return (SUCCESS);
+}
 
 static	int		pop_list(t_msh *msh, int pos)
 {
@@ -91,6 +104,7 @@ int				create_tab_args(t_msh *msh)
 	t_list		*tmp;
 	int			ret;
 
+	msh->utils->pos_list = 1;
 	cmd = msh->lair_list->start;
 	if (cmd->token == CMD)
 	{
@@ -98,11 +112,11 @@ int				create_tab_args(t_msh *msh)
 		{
 			ret = ft_put_args(msh, cmd);
 			if (ret == ERROR)
-			return (ERROR);
+				return (ERROR);
 			tmp = cmd;
 			cmd = cmd->next;
 			if (cmd == NULL)
-			break ;
+				break ;
 			cmd = get_args_to_pop(msh, cmd, tmp);
 		}
 	}

@@ -6,11 +6,22 @@
 /*   By: lorenzoa <lorenzoa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 16:37:21 by lorenzoa          #+#    #+#             */
-/*   Updated: 2021/04/13 17:06:20 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/16 12:31:23 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/libshell.h"
+
+static	int		check_start(t_msh *msh, t_env_list *element, char *str)
+{
+	if (!element)
+	{
+		ft_fill_empty_env(msh->env_lair, sep_env(str, 0, EXPORT),
+				sep_env(str, 1, EXPORT));
+		return (-1);
+	}
+	return (0);
+}
 
 void			push_to_env(t_msh *msh, char *str)
 {
@@ -19,12 +30,8 @@ void			push_to_env(t_msh *msh, char *str)
 
 	check = 0;
 	element = msh->env_lair->start;
-	if (!element)
-	{
-		ft_fill_empty_env(msh->env_lair, sep_env(str, 0, EXPORT),
-				sep_env(str, 1, EXPORT));
+	if (check_start(msh, element, str) == -1)
 		return ;
-	}
 	while (element)
 	{
 		check = check_first_content(element->first_content, str);

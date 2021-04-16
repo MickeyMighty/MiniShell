@@ -44,7 +44,7 @@ char		**ft_free_tab(char **tab, int j, t_split_data *split_data)
 	return (NULL);
 }
 
-void 	free_tab_args(char **str)
+void		free_tab_args(char **str)
 {
 	int		index;
 

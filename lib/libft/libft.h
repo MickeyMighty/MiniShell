@@ -29,8 +29,8 @@ typedef struct		s_num
 	long			tmp;
 }					t_num;
 
-char			*ft_free_strjoin(char *s1, char *s2);
-int				ft_strcmp(char *s1, char *s2);
+char				*ft_free_strjoin(char *s1, char *s2);
+int					ft_strcmp(char *s1, char *s2);
 void				ft_memdel(void **ap);
 int					ft_max(int a, int b);
 int					ft_min(int a, int b);
@@ -91,9 +91,9 @@ void				ft_lstadd_back(t_list_libft **alst, t_list_libft *new);
 void				ft_lstdelone(t_list_libft *lst, void (*del)(void *));
 void				ft_lstclear(t_list_libft **lst, void (*del)(void *));
 void				ft_lstiter(t_list_libft *lst, void (*f)(void *));
-t_list_libft				*ft_lstnew(void *content);
-t_list_libft				*ft_lstlast(t_list_libft *lst);
-t_list_libft				*ft_lstmap(t_list_libft *lst, void *(*f)(void *),
+t_list_libft		*ft_lstnew(void *content);
+t_list_libft		*ft_lstlast(t_list_libft *lst);
+t_list_libft		*ft_lstmap(t_list_libft *lst, void *(*f)(void *),
 					void (*d)(void *));
 char				*ft_ltohex(long num);
 #endif

@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 13:35:59 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/16 03:44:43 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/16 13:08:26 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
-#include <sys/wait.h>
+# include <sys/wait.h>
 # include <errno.h>
 # include <signal.h>
 # include <sys/types.h>
@@ -108,13 +108,13 @@ int				exit_cmd(t_msh *msh);
 
 int				ft_fill_empty_list(t_lair_list *lair_list, char *content);
 int				ft_fill_end_list(t_lair_list *lair_list, char *content);
-int				clear_list(t_lair_list *lair_list);
 int				pop_back_list(t_lair_list *lair_list);
 
 /*
 ** list/create_tab_args.c
 */
 
+int				clear_list(t_lair_list *lair_list);
 int				create_tab_args(t_msh *msh);
 
 /*
@@ -155,7 +155,7 @@ int				return_error(int type, char *cmd, char *arg, char *msg);
 ** error_and_free/free_error.c
 */
 
-void 			free_tab_args(char **str);
+void			free_tab_args(char **str);
 void			free_split(char **str);
 void			free_list(t_msh *msh, int key);
 char			**ft_free_tab(char **tab, int j, t_split_data *split_data);
@@ -175,13 +175,13 @@ int				ft_fill_empty_env(t_env_lair *env_lair, char *first_content,
 				char *second_content);
 int				ft_fill_end_env(t_env_lair *env_lair, char *first_content,
 				char *second_content);
-int				clear_env(t_env_lair *env_lair);
 int				pop_back_env(t_env_lair *env_lair);
 
 /*
 ** env/handler_env.c
 */
 
+int				clear_env(t_env_lair *env_lair);
 void			set_env(t_msh *msh, char *first_content, char *second_content);
 char			*get_env(t_msh *msh, char *str);
 char			*sep_env(char *str, int prt, int type);
@@ -198,6 +198,8 @@ int				get_path(t_msh *msh);
 ** data/split_data/get_len_split_data.c
 */
 
+int				ft_size_quote(t_split_data *split_data, char *str, int index);
+int				get_split_pos(char *str, t_split_data *split_data, int index);
 int				ft_get_len_word(t_split_data *split_data, char *str);
 
 /*
@@ -213,7 +215,6 @@ int				check_word_qte(t_split_data *split_data, char *str);
 ** data/split_data/split_data.c
 */
 
-int				ft_size_quote(t_split_data *split_data, char *str, int index);
 char			**ft_word_to_tab(char *str,
 				t_split_data *split_data, char **res);
 void			ft_count_word(t_msh *msh, char *s, char c,
@@ -223,7 +224,6 @@ void			ft_count_word(t_msh *msh, char *s, char c,
 ** data/handler_data.c
 */
 
-int				get_split_pos(char *str, t_split_data *split_data, int index);
 char			**ft_split_data(t_msh *msh, char *s, char c);
 int				get_value_sep(char *str);
 int				handler_data(t_msh *msh, char *buf);

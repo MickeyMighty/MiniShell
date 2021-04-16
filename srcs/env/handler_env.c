@@ -6,11 +6,24 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/14 17:30:11 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/13 16:30:25 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/16 12:37:25 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libshell.h"
+
+int			clear_env(t_env_lair *env_lair)
+{
+	int		loop;
+
+	loop = 0;
+	while (loop == 0)
+	{
+		if (pop_back_env(env_lair) == ERROR)
+			loop = 1;
+	}
+	return (SUCCESS);
+}
 
 void		set_env(t_msh *msh, char *first_content, char *second_content)
 {

@@ -31,7 +31,7 @@ int				check_first_content(char *content, char *str)
 		return (ERROR);
 }
 
-int		add_back(t_msh *msh, t_env_list *element, char *str)
+int				add_back(t_msh *msh, t_env_list *element, char *str)
 {
 	if (!element->next)
 	{

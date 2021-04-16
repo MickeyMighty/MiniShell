@@ -6,16 +6,39 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 04:42:10 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/16 00:36:44 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/16 13:24:34 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libshell.h"
 
+static	int		error_pipe_multi(t_list *element)
+{
+	if (element->next && element->token == SEPARATOR
+	&& element->next->token == SEPARATOR
+	&& get_value_sep(element->content) == PIPE
+	&& get_value_sep(element->next->content) == PIPE
+	&& (element->next->next == NULL || !element->next->next))
+	{
+		return (return_error(ERROR_MULTI, NULL, NULL,
+		"syntax error multiligne"));
+	}
+	if ((!element->next || (element->next == NULL))
+	&& (element->token == SEPARATOR)
+	&& (get_value_sep(element->content) == PIPE))
+	{
+		return (return_error(ERROR_MULTI, NULL, NULL,
+		"syntax error multiligne"));
+	}
+	return (SUCCESS);
+}
+
 static	int		check_pipe_multi(t_msh *msh)
 {
 	t_list		*element;
+	int			ret;
 
+	ret = 0;
 	element = msh->lair_list->start;
 	if (!element || (element == NULL))
 		return (ERROR);
@@ -24,18 +47,9 @@ static	int		check_pipe_multi(t_msh *msh)
 		if (element->token == CMD && element->next)
 		{
 			element = element->next;
-			if (element->next && element->token == SEPARATOR
-			&& element->next->token == SEPARATOR
-			&& get_value_sep(element->content) == PIPE
-			&& get_value_sep(element->next->content) == PIPE
-			&& (element->next->next == NULL || !element->next->next))
-				return (return_error(ERROR_MULTI, NULL, NULL,
-				"syntax error multiligne"));
-			if ((!element->next || element->next == NULL)
-			&& element->token == SEPARATOR
-			&& get_value_sep(element->content) == PIPE)
-				return (return_error(ERROR_MULTI, NULL, NULL,
-				"syntax error multiligne"));
+			ret = error_pipe_multi(element);
+			if (ret == ERROR)
+				return (ret);
 		}
 		else
 			element = element->next;
@@ -100,7 +114,6 @@ int				handler_list(t_msh *msh)
 	}
 	free(msh->data->prompt_data);
 	set_token_list(msh);
-	msh->utils->pos_list = 1;
 	if (create_tab_args(msh) == ERROR)
 		return (ERROR);
 	if (check_pipe_multi(msh) == ERROR)

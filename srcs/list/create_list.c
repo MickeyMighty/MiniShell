@@ -6,13 +6,13 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/07 04:25:27 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/14 14:22:21 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/16 13:23:47 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libshell.h"
 
-int			ft_fill_empty_list(t_lair_list *lair_list, char *content)
+int				ft_fill_empty_list(t_lair_list *lair_list, char *content)
 {
 	t_list	*new_element;
 
@@ -29,7 +29,7 @@ int			ft_fill_empty_list(t_lair_list *lair_list, char *content)
 	return (0);
 }
 
-int			ft_fill_end_list(t_lair_list *lair_list, char *content)
+int				ft_fill_end_list(t_lair_list *lair_list, char *content)
 {
 	t_list	*new_element;
 
@@ -46,7 +46,7 @@ int			ft_fill_end_list(t_lair_list *lair_list, char *content)
 	return (0);
 }
 
-static	int	is_empty_list(t_lair_list *lair_list)
+static	int		is_empty_list(t_lair_list *lair_list)
 {
 	if (lair_list->size == 0)
 	{
@@ -56,20 +56,16 @@ static	int	is_empty_list(t_lair_list *lair_list)
 	return (ERROR);
 }
 
-int		clear_list(t_lair_list *lair_list)
+static	void	free_popback_list(t_list *temp)
 {
-	int		loop;
-
-	loop = 0;
-	while (loop == 0)
-	{
-		if (pop_back_list(lair_list) == ERROR)
-			loop = 1;
-	}
-	return (SUCCESS);
+	if (temp->content)
+		free(temp->content);
+	if (temp->tab_args)
+		free_tab_args(temp->tab_args);
+	free(temp);
 }
 
-int 	pop_back_list(t_lair_list *lair_list)
+int				pop_back_list(t_lair_list *lair_list)
 {
 	t_list		*temp;
 
@@ -90,11 +86,7 @@ int 	pop_back_list(t_lair_list *lair_list)
 		lair_list->end->previous->next = NULL;
 		lair_list->end = lair_list->end->previous;
 	}
-	if (temp->content)
-		free(temp->content);
-	if (temp->tab_args)
-		free_tab_args(temp->tab_args);
-	free(temp);
+	free_popback_list(temp);
 	lair_list->size--;
 	return (SUCCESS);
 }

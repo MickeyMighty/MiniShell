@@ -30,7 +30,7 @@ int				check_no_space(t_msh *msh, char *str)
 	return (0);
 }
 
-int		put_pos_check(t_msh *msh, char *str, int start, int flag)
+int				put_pos_check(t_msh *msh, char *str, int start, int flag)
 {
 	int	pos;
 
@@ -114,7 +114,6 @@ t_list			*check_block_cmd(t_msh *msh, t_list *element)
 	msh->utils = init_utils(msh->utils);
 	if (!element->content)
 		return (NULL);
-	msh->utils->no_space = 0;
 	if (ft_strcmp(element->content, "export") == 0)
 		msh->utils->export_check = 1;
 	element->content = return_all_content(msh, element->content);
