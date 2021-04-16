@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 22:57:42 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/16 03:17:40 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/16 03:22:50 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ void			status_child(void)
 	}
 }
 
-static	int			check_permission_exec(t_msh *msh, t_list *cmd, char **env)
+static	int			check_permission_exec(t_msh *msh, t_list *cmd, char **env,
+int check)
 {
 	char	*exec_path;
 	int		lock;
@@ -46,7 +47,12 @@ static	int			check_permission_exec(t_msh *msh, t_list *cmd, char **env)
 	if (msh->utils->pipe == 0)
 		g_pid = fork();
 	if (g_pid == 0)
-		child_process(msh, cmd, env, exec_path);
+	{
+		if (check == 0)
+			child_process(msh, cmd, env, exec_path);
+		if (check == 1)
+			child_builtins(msh, cmd, exec_path);
+	}
 	else
 		parent_process();
 	if (exec_path)
@@ -68,7 +74,7 @@ int					exec_cmd(t_msh *msh, t_list *cmd, char **env, int pipe)
 	{
 		g_status = status;
 		if (pipe == 1)
-			if (check_permission_exec(msh, cmd, env) == ERROR)
+			if (check_permission_exec(msh, cmd, env, 1) == ERROR)
 				return (ERROR);
 		// exec_path = get_exec_path(msh, cmd->content);
 		// if (exec_path == NULL)
@@ -76,7 +82,7 @@ int					exec_cmd(t_msh *msh, t_list *cmd, char **env, int pipe)
 		// free(exec_path);
 	}
 	else if (status == ERROR_BUILTINS)
-		if (check_permission_exec(msh, cmd, env) == ERROR)
+		if (check_permission_exec(msh, cmd, env, 0) == ERROR)
 			return (ERROR);
 	if (pipe == 0)
 		g_pid = 0;

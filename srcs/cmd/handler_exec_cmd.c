@@ -6,7 +6,7 @@
 /*   By: lorenzoa <lorenzoa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 17:23:29 by lorenzoa          #+#    #+#             */
-/*   Updated: 2021/04/15 13:42:55 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/16 03:21:46 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,17 @@ void		child_process(t_msh *msh, t_list *cmd, char **env, char *exec_path)
 	if (msh->utils->pipe == 1)
 		free_all(msh, EXIT);
 	exit(ret);
+}
+
+void		child_builtins(t_msh *msh, t_list *cmd, char *exec_path)
+{
+	if (!exec_path)
+		exec_path = ft_strdup(cmd->content);
+	cmd->tab_args[0] = ft_strdup(exec_path);
+	free(exec_path);
+	if (msh->utils->pipe == 1)
+		free_all(msh, EXIT);
+	exit(g_status);
 }
 
 void		parent_process(void)
