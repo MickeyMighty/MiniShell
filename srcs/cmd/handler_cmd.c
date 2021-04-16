@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 22:57:33 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/15 10:48:25 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/16 11:31:51 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ int				handler_cmd(t_msh *msh, char **env)
 {
 	t_list	*element;
 
+	g_loop = ENDLOOP;
 	g_error_msg = 0;
 	element = msh->lair_list->start;
 	while (element != NULL)
