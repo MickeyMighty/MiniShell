@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 11:56:22 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/13 14:17:55 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/16 19:26:39 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ void		free_split(char **str)
 
 void		free_list(t_msh *msh, int key)
 {
-	if (key == ENDLOOP && msh->lair_list && msh->lair_list->size > 0)
+	if ((key == ENDLOOP || key == EXIT)
+	&& msh->lair_list && msh->lair_list->size > 0)
 		clear_list(msh->lair_list);
 	if (msh->env_lair && msh->env_lair->size > 0
 	&& (key == CTRLD || key == EXIT))
