@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 18:04:14 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/13 17:06:25 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/16 11:11:05 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,7 @@ int				my_export(t_msh *msh, t_list *element)
 		if (handler_check_export(msh, element, pos, error) == ERROR)
 			return (ERROR);
 	}
+	if (msh->utils->pipe == 1)
+		free_all(msh, EXIT);
 	return (SUCCESS);
 }

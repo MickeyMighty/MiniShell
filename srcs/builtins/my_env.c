@@ -6,7 +6,7 @@
 /*   By: tidminta <tidminta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 15:41:31 by tidminta          #+#    #+#             */
-/*   Updated: 2021/04/07 12:11:58 by lorenzoamar      ###   ########.fr       */
+/*   Updated: 2021/04/16 11:10:35 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,7 @@ int			my_env(t_msh *msh)
 		}
 		env = env->next;
 	}
+	if (msh->utils->pipe == 1)
+		free_all(msh, EXIT);
 	return (SUCCESS);
 }

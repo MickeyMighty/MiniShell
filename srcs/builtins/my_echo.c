@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/12 06:06:53 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/06 17:21:35 by lorenzoamar      ###   ########.fr       */
+/*   Updated: 2021/04/16 11:10:28 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,7 @@ int				my_echo(t_msh *msh, t_list *element)
 		if (msh->utils->option_n == 0)
 			ft_putstr_fd("\n", 1);
 	}
+	if (msh->utils->pipe == 1)
+		free_all(msh, EXIT);
 	return (SUCCESS);
 }
