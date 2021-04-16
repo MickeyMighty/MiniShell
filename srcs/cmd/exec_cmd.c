@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 22:57:42 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/16 03:22:50 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/16 03:29:44 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ void			status_child(void)
 	}
 }
 
-static	int			check_permission_exec(t_msh *msh, t_list *cmd, char **env,
-int check)
+static	int			check_permission_exec(t_msh *msh, t_list *cmd, char **env)
 {
 	char	*exec_path;
 	int		lock;
@@ -47,12 +46,7 @@ int check)
 	if (msh->utils->pipe == 0)
 		g_pid = fork();
 	if (g_pid == 0)
-	{
-		if (check == 0)
-			child_process(msh, cmd, env, exec_path);
-		if (check == 1)
-			child_builtins(msh, cmd, exec_path);
-	}
+		child_process(msh, cmd, env, exec_path);
 	else
 		parent_process();
 	if (exec_path)
@@ -72,14 +66,14 @@ int					exec_cmd(t_msh *msh, t_list *cmd, char **env, int pipe)
 	status = ft_handler_builtins(msh, cmd);
 	if (status == SUCCESS)
 	{
-		g_status = status;
-		if (pipe == 1)
-			if (check_permission_exec(msh, cmd, env, 1) == ERROR)
-				return (ERROR);
-		// exec_path = get_exec_path(msh, cmd->content);
-		// if (exec_path == NULL)
-		// 	exec_path = ft_strdup(cmd->content);
-		// free(exec_path);
+		g_status = status
+		exec_path = get_exec_path(msh, cmd->content);
+		if (exec_path == NULL)
+			exec_path = ft_strdup(cmd->content);
+		if (!exec_path)
+			exec_path = ft_strdup(cmd->content);
+		cmd->tab_args[0] = ft_strdup(exec_path);
+		free(exec_path);
 	}
 	else if (status == ERROR_BUILTINS)
 		if (check_permission_exec(msh, cmd, env, 0) == ERROR)
