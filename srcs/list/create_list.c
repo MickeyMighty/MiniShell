@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/07 04:25:27 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/19 12:12:06 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/19 12:12:48 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ static	t_list		*free_empty(t_msh *msh, t_list *element)
 	check = return_all_content(msh, element->content, 1);
 	if (ft_strcmp(check, "\0") == 0)
 	{
-		printf("wut\n");
 		free(check);
 		pop_choose_list(msh->lair_list, msh->utils->i);
 		if (msh->lair_list->size == 0)
