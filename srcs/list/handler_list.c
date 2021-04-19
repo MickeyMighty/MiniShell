@@ -33,7 +33,7 @@ static	int		error_pipe_multi(t_list *element)
 	return (SUCCESS);
 }
 
-int		check_pipe_multi(t_msh *msh)
+int				check_pipe_multi(t_msh *msh)
 {
 	t_list		*element;
 	int			ret;
