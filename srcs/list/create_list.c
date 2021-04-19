@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/07 04:25:27 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/19 12:41:04 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/19 12:43:45 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static	t_list		*free_empty(t_msh *msh, t_list *element)
 	t_list	*index;
 	int		limite;
 
-	limite = 0;
+	limite = 1;
 	check = NULL;
 	check = return_all_content(msh, element->content, 1);
 	if (ft_strcmp(check, "\0") == 0)
