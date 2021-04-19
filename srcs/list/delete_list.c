@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 13:38:22 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/19 12:17:38 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/19 12:21:39 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ int				pop_choose_list(t_lair_list *lair_list, int pos)
 	}
 	else
 		temp = pop_pos_list(lair_list, temp, pos);
+	printf("temp->content = [%s]\n", temp->content);
 	free_popback_list(temp);
 	lair_list->size--;
 	return (SUCCESS);
