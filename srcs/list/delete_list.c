@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 13:38:22 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/19 12:16:44 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/19 12:17:38 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ static	t_list 	*pop_pos_list(t_lair_list *lair_list, t_list *temp, int pos)
 {
 		int			target;
 		t_list		*courant;
-		t_list		*temp;
 
 		courant = NULL;
 		courant = lair_list->start;
