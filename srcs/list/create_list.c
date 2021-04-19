@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/07 04:25:27 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/19 07:07:14 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/19 07:13:16 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ void			check_empty(t_msh *msh)
 	t_list	*element;
 
 	msh->utils->i = 1;
+	msh->utils->no_space = 0;
 	element = msh->lair_list->start;
 	while (element)
 	{
