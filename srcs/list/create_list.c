@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/07 04:25:27 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/19 07:13:16 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/19 12:09:37 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,8 @@ void			check_empty(t_msh *msh)
 				msh->utils->i++;
 				element = element->next;
 			}
-			else
-				element = free_empty(msh, element);
+			// else
+			// 	element = free_empty(msh, element);
 		}
 		else
 		{
