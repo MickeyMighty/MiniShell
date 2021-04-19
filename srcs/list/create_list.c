@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/07 04:25:27 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/16 13:49:59 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/19 07:07:14 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,47 +46,73 @@ int				ft_fill_end_list(t_lair_list *lair_list, char *content)
 	return (0);
 }
 
-static	int		is_empty_list(t_lair_list *lair_list)
+int				clear_list(t_lair_list *lair_list)
 {
-	if (lair_list->size == 0)
+	int		loop;
+
+	loop = 0;
+	while (loop == 0)
 	{
-		free(lair_list);
-		return (SUCCESS);
+		if (pop_back_list(lair_list) == ERROR)
+			loop = 1;
 	}
-	return (ERROR);
+	return (SUCCESS);
 }
 
-static	void	free_popback_list(t_list *temp)
+static	t_list		*free_empty(t_msh *msh, t_list *element)
 {
-	if (temp->content)
-		free(temp->content);
-	if (temp->tab_args)
-		free_tab_args(temp->tab_args);
-	free(temp);
-}
+	char	*check;
 
-int				pop_back_list(t_lair_list *lair_list)
-{
-	t_list		*temp;
-
-	if (is_empty_list(lair_list) == SUCCESS)
-		return (ERROR);
-	if (lair_list->size == 1)
+	check = NULL;
+	check = return_all_content(msh, element->content, 1);
+	if (ft_strcmp(check, "\0") == 0)
 	{
-		temp = lair_list->start;
-		lair_list->start = lair_list->start->next;
-		if (lair_list->start == NULL)
-			lair_list->end = NULL;
-		else
-			lair_list->start->previous = NULL;
+		free(check);
+		pop_choose_list(msh->lair_list, msh->utils->i);
+		if (msh->lair_list->size == 0)
+			return (0);
+		if (element->next)
+			element = element->next;
+		set_token_list(msh);
+		return (element);
 	}
 	else
 	{
-		temp = lair_list->end;
-		lair_list->end->previous->next = NULL;
-		lair_list->end = lair_list->end->previous;
+		if (element->next)
+			element = element->next;
+		msh->utils->i++;
+		free(check);
+		return (element);
 	}
-	free_popback_list(temp);
-	lair_list->size--;
-	return (SUCCESS);
+}
+
+void			check_empty(t_msh *msh)
+{
+	t_list	*element;
+
+	msh->utils->i = 1;
+	element = msh->lair_list->start;
+	while (element)
+	{
+		if ((element->token == CMD || element->token == ARGS
+		|| element->token == OPTION) && element->content[0] == '$')
+		{
+			if ((element->next
+			&& (get_value_sep(element->next->content) == PIPE))
+			|| ((msh->utils->i > 1)
+			&& (get_value_sep(element->previous->content) == PIPE)
+			&& (!element->next || element->next->token == SEPARATOR)))
+			{
+				msh->utils->i++;
+				element = element->next;
+			}
+			else
+				element = free_empty(msh, element);
+		}
+		else
+		{
+			element = element->next;
+			msh->utils->i++;
+		}
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 09:50:00 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/14 14:23:32 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/17 13:22:29 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ char			*check_content(t_msh *msh, char *str, int key)
 	int		pos;
 
 	pos = 0;
-	msh->utils->loop3 = 0;
 	first_step = NULL;
 	if (key == NOQTE)
 		pos = put_pos_check(msh, str, pos, 1);
@@ -116,7 +115,7 @@ t_list			*check_block_cmd(t_msh *msh, t_list *element)
 		return (NULL);
 	if (ft_strcmp(element->content, "export") == 0)
 		msh->utils->export_check = 1;
-	element->content = return_all_content(msh, element->content);
+	element->content = return_all_content(msh, element->content, 0);
 	if (element->content == NULL)
 	{
 		g_error_msg = ERROR_MULTI;
@@ -127,7 +126,7 @@ t_list			*check_block_cmd(t_msh *msh, t_list *element)
 	{
 		msh->utils->no_space = 0;
 		element->tab_args[msh->utils->pos_args] =
-		return_all_content(msh, element->tab_args[msh->utils->pos_args]);
+		return_all_content(msh, element->tab_args[msh->utils->pos_args], 0);
 		if (element->tab_args[msh->utils->pos_args] == NULL)
 		{
 			g_error_msg = ERROR_MULTI;

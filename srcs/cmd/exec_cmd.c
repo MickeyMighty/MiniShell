@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 22:57:42 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/16 19:01:23 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/17 13:01:23 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,16 +59,19 @@ int				exec_cmd(t_msh *msh, t_list *cmd, char **env, int pipe)
 	int		lock;
 	int		status;
 
+	if (ft_strcmp(cmd->content, "\0") == 0)
+	{
+		if (cmd->next && cmd->next->token != SEPARATOR)
+			cmd = cmd->next;
+		else
+			return (SUCCESS);
+	}
 	lock = TRUE;
 	g_error = SUCCESS;
 	msh->utils->pipe = pipe;
 	status = ft_handler_builtins(msh, cmd);
 	if (status == SUCCESS)
-	{
-		// if (pipe == 1)
-		// 	free_all(msh, EXIT);
 		g_status = status;
-	}
 	else if (status == ERROR_BUILTINS)
 		if (check_permission_exec(msh, cmd, env, lock) == ERROR)
 			return (ERROR);

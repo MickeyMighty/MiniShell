@@ -6,24 +6,11 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 23:20:47 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/16 12:49:26 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/18 18:21:38 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libshell.h"
-
-int				clear_list(t_lair_list *lair_list)
-{
-	int		loop;
-
-	loop = 0;
-	while (loop == 0)
-	{
-		if (pop_back_list(lair_list) == ERROR)
-			loop = 1;
-	}
-	return (SUCCESS);
-}
 
 static	int		pop_list(t_msh *msh, int pos)
 {

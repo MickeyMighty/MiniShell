@@ -36,6 +36,7 @@ SRCS	=	./srcs/main/minishell.c \
 			./srcs/env/path_env.c \
 			./srcs/list/create_list.c \
 			./srcs/list/handler_list.c \
+			./srcs/list/delete_list.c \
 			./srcs/list/set_token_list.c \
 			./srcs/list/create_tab_args.c \
 			./srcs/init/init_struct.c \

@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 13:35:59 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/16 19:23:24 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/19 00:24:12 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@
 # define DQUOTE 34
 # define DOLLAR 36
 # define SEPARATOR 35
+# define CMD_EMTPY 7
 
 # include "./includes/struct.h"
 # include "../lib/libft/libft.h"
@@ -87,8 +88,6 @@ int						g_error;
 int						g_error_msg;
 int						g_status;
 int						g_return;
-int						g_sign_info;
-int						g_size_word;
 
 /*
 ** main/handler_signal.c
@@ -106,16 +105,23 @@ int				exit_cmd(t_msh *msh);
 ** list/create_list.c
 */
 
+int				clear_list(t_lair_list *lair_list);
+void			check_empty(t_msh *msh);
 int				ft_fill_empty_list(t_lair_list *lair_list, char *content);
 int				ft_fill_end_list(t_lair_list *lair_list, char *content);
-int				pop_back_list(t_lair_list *lair_list);
 
 /*
 ** list/create_tab_args.c
 */
 
-int				clear_list(t_lair_list *lair_list);
 int				create_tab_args(t_msh *msh);
+
+/*
+** list/delete_list.c
+*/
+
+int				pop_back_list(t_lair_list *lair_list);
+int				pop_choose_list(t_lair_list *lair_list, int pos);
 
 /*
 ** list/handler_list.c
@@ -264,7 +270,7 @@ char			*fill_second_step_content(t_msh *msh, char *str,
 char			*return_element(t_msh *msh, char *tmp, int key);
 char			*return_dollar(t_msh *msh, char *str, int key);
 char			*return_quote(t_msh *msh, char *str);
-char			*return_all_content(t_msh *msh, char *str);
+char			*return_all_content(t_msh *msh, char *str, int check);
 
 /*
 ** cmd/check/special_case_cmd.c

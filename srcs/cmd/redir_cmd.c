@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 10:16:20 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/15 00:36:53 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/17 11:04:58 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,12 @@ char **env)
 		close(fd);
 		exec_cmd(msh, element->previous, env, 0);
 		element = element->next;
-		exit(g_sign_info);
+		exit(g_status);
 	}
 	else
 	{
 		wait(&child_status);
-		g_sign_info = WEXITSTATUS(child_status);
+		g_status = WEXITSTATUS(child_status);
 	}
 	return (element);
 }
