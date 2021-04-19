@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 04:42:10 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/19 15:40:09 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/19 15:45:51 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static	int		error_pipe_multi(t_list *element)
 	return (SUCCESS);
 }
 
-static	int		check_pipe_multi(t_msh *msh)
+int		check_pipe_multi(t_msh *msh)
 {
 	t_list		*element;
 	int			ret;

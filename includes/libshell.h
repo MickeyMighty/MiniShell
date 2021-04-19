@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 13:35:59 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/19 15:40:20 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/19 15:46:17 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,7 @@ int				pop_choose_list(t_lair_list *lair_list, int pos);
 ** list/handler_list.c
 */
 
+int				check_pipe_multi(t_msh *msh);
 int				handler_list(t_msh *msh);
 
 /*
