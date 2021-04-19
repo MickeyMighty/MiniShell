@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/07 04:25:27 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/19 12:12:48 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/19 12:41:04 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,10 @@ int				clear_list(t_lair_list *lair_list)
 static	t_list		*free_empty(t_msh *msh, t_list *element)
 {
 	char	*check;
+	t_list	*index;
+	int		limite;
 
+	limite = 0;
 	check = NULL;
 	check = return_all_content(msh, element->content, 1);
 	if (ft_strcmp(check, "\0") == 0)
@@ -71,10 +74,14 @@ static	t_list		*free_empty(t_msh *msh, t_list *element)
 		pop_choose_list(msh->lair_list, msh->utils->i);
 		if (msh->lair_list->size == 0)
 			return (0);
-		if (element->next)
-			element = element->next;
+		index = msh->lair_list->start;
+		while (limite < msh->utils->i)
+		{
+			index = index->next;
+			limite++;
+		}
 		set_token_list(msh);
-		return (element);
+		return (index);
 	}
 	else
 	{
