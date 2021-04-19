@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/17 13:38:22 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/19 11:54:54 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/19 12:16:44 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,12 @@ int				pop_back_list(t_lair_list *lair_list)
 	return (SUCCESS);
 }
 
-static	t_list 	*pop_pos_list(t_lair_list *lair_list, int pos)
+static	t_list 	*pop_pos_list(t_lair_list *lair_list, t_list *temp, int pos)
 {
 		int			target;
 		t_list		*courant;
-		t_list		*tmp;
+		t_list		*temp;
 
-		tmp = NULL;
 		courant = NULL;
 		courant = lair_list->start;
 		target = 1;
@@ -72,10 +71,10 @@ static	t_list 	*pop_pos_list(t_lair_list *lair_list, int pos)
 			courant = courant->next;
 			target++;
 		}
-		tmp = courant;
+		temp = courant;
 		courant->previous->next = courant->next;
 		courant->next->previous = courant->previous;
-		return (tmp);
+		return (temp);
 }
 
 int				pop_choose_list(t_lair_list *lair_list, int pos)
@@ -101,7 +100,7 @@ int				pop_choose_list(t_lair_list *lair_list, int pos)
 		lair_list->end = lair_list->end->previous;
 	}
 	else
-		temp = pop_pos_list(lair_list, pos);
+		temp = pop_pos_list(lair_list, temp, pos);
 	free_popback_list(temp);
 	lair_list->size--;
 	return (SUCCESS);
