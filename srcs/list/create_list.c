@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/07 04:25:27 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/19 12:09:37 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/19 12:09:55 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,32 +59,32 @@ int				clear_list(t_lair_list *lair_list)
 	return (SUCCESS);
 }
 
-static	t_list		*free_empty(t_msh *msh, t_list *element)
-{
-	char	*check;
-
-	check = NULL;
-	check = return_all_content(msh, element->content, 1);
-	if (ft_strcmp(check, "\0") == 0)
-	{
-		free(check);
-		pop_choose_list(msh->lair_list, msh->utils->i);
-		if (msh->lair_list->size == 0)
-			return (0);
-		if (element->next)
-			element = element->next;
-		set_token_list(msh);
-		return (element);
-	}
-	else
-	{
-		if (element->next)
-			element = element->next;
-		msh->utils->i++;
-		free(check);
-		return (element);
-	}
-}
+// static	t_list		*free_empty(t_msh *msh, t_list *element)
+// {
+// 	char	*check;
+//
+// 	check = NULL;
+// 	check = return_all_content(msh, element->content, 1);
+// 	if (ft_strcmp(check, "\0") == 0)
+// 	{
+// 		free(check);
+// 		pop_choose_list(msh->lair_list, msh->utils->i);
+// 		if (msh->lair_list->size == 0)
+// 			return (0);
+// 		if (element->next)
+// 			element = element->next;
+// 		set_token_list(msh);
+// 		return (element);
+// 	}
+// 	else
+// 	{
+// 		if (element->next)
+// 			element = element->next;
+// 		msh->utils->i++;
+// 		free(check);
+// 		return (element);
+// 	}
+// }
 
 void			check_empty(t_msh *msh)
 {
