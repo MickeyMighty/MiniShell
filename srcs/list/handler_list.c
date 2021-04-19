@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 04:42:10 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/19 11:59:05 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/19 15:40:09 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,16 +113,7 @@ int				handler_list(t_msh *msh)
 		count++;
 	}
 	free(msh->data->prompt_data);
-	set_token_list(msh);
-	check_empty(msh);
-	if (msh->lair_list->size != 0)
-	{
-		if (create_tab_args(msh) == ERROR)
-			return (ERROR);
-		if (check_pipe_multi(msh) == ERROR)
-			return (ERROR);
-		if (check_token_list(msh) == ERROR)
-			return (ERROR);
-	}
+	if (check_handler_list(msh) == ERROR)
+		return (ERROR);
 	return (SUCCESS);
 }

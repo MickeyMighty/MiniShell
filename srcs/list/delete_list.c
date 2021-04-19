@@ -57,23 +57,24 @@ int				pop_back_list(t_lair_list *lair_list)
 	return (SUCCESS);
 }
 
-static	t_list 	*pop_pos_list(t_lair_list *lair_list, t_list *temp, int pos)
+static	t_list	*pop_pos_list(t_lair_list *lair_list, t_list *temp,
+int pos)
 {
-		int			target;
-		t_list		*courant;
+	int			target;
+	t_list		*courant;
 
-		courant = NULL;
-		courant = lair_list->start;
-		target = 1;
-		while (target < pos)
-		{
-			courant = courant->next;
-			target++;
-		}
-		temp = courant;
-		courant->previous->next = courant->next;
-		courant->next->previous = courant->previous;
-		return (temp);
+	courant = NULL;
+	courant = lair_list->start;
+	target = 1;
+	while (target < pos)
+	{
+		courant = courant->next;
+		target++;
+	}
+	temp = courant;
+	courant->previous->next = courant->next;
+	courant->next->previous = courant->previous;
+	return (temp);
 }
 
 int				pop_choose_list(t_lair_list *lair_list, int pos)

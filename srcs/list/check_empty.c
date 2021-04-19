@@ -12,7 +12,7 @@
 
 #include "../../includes/libshell.h"
 
-static	t_list 		*return_no_empty(t_msh *msh, t_list *element, char *check)
+static	t_list	*return_no_empty(t_msh *msh, t_list *element, char *check)
 {
 	if (element->next)
 		element = element->next;
@@ -21,7 +21,7 @@ static	t_list 		*return_no_empty(t_msh *msh, t_list *element, char *check)
 	return (element);
 }
 
-static	t_list		*free_empty(t_msh *msh, t_list *element)
+static	t_list	*free_empty(t_msh *msh, t_list *element)
 {
 	char	*check;
 	t_list	*index;

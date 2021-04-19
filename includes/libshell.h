@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 13:35:59 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/19 13:04:16 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/19 15:40:20 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,7 @@ int				ft_fill_end_list(t_lair_list *lair_list, char *content);
 ** list/create_tab_args.c
 */
 
+int				check_handler_list(t_msh *msh);
 int				create_tab_args(t_msh *msh);
 
 /*
