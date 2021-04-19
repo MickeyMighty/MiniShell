@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 13:35:59 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/19 00:24:12 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/19 13:04:16 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,11 +102,16 @@ void			handler_signal(int sign);
 int				exit_cmd(t_msh *msh);
 
 /*
+** list/check_empty.c
+*/
+
+void			check_empty(t_msh *msh);
+
+/*
 ** list/create_list.c
 */
 
 int				clear_list(t_lair_list *lair_list);
-void			check_empty(t_msh *msh);
 int				ft_fill_empty_list(t_lair_list *lair_list, char *content);
 int				ft_fill_end_list(t_lair_list *lair_list, char *content);
 

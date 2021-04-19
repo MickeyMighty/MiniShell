@@ -34,6 +34,7 @@ SRCS	=	./srcs/main/minishell.c \
 			./srcs/env/create_list_env.c \
 			./srcs/env/handler_env.c \
 			./srcs/env/path_env.c \
+			./srcs/list/check_empty.c \
 			./srcs/list/create_list.c \
 			./srcs/list/handler_list.c \
 			./srcs/list/delete_list.c \
