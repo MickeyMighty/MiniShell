@@ -22,6 +22,8 @@ char				*return_element(t_msh *msh, char *tmp, int key)
 	{
 		if (ft_strcmp(tmp, element->first_content) == 0)
 		{
+			if (tmp)
+				free(tmp);
 			if (element->second_content == NULL || !element->second_content)
 				return (ft_strdup("\0"));
 			return (check_content(msh, element->second_content, key));

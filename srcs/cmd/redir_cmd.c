@@ -32,7 +32,6 @@ int				return_redir_error(t_list *element, int fd, int i)
 
 	join = ft_strjoin(element->tab_args[i], ": ");
 	return_error(ERROR_ERRNO, join, NULL, strerror(errno));
-	ft_putstr_fd("\n", 2);
 	g_error = ERROR;
 	free(join);
 	return (fd);
@@ -50,6 +49,7 @@ char **env)
 		close(fd);
 		exec_cmd(msh, element->previous, env, 0);
 		element = element->next;
+		free_all(msh, EXIT);
 		exit(g_status);
 	}
 	else

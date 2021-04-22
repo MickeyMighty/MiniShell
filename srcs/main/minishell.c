@@ -18,6 +18,7 @@ static void			end_loop(t_msh *msh, int free)
 	g_error = SUCCESS;
 	g_error_msg = SUCCESS;
 	free_all(msh, free);
+	signal(SIGINT, handler_signal);
 }
 
 static void			main_handler(t_msh *msh, char *buf, char **env)
@@ -47,7 +48,7 @@ static void			shell_loop(char **env)
 	t_msh	*msh;
 	char	*buf;
 
-	g_pid = 1;
+	g_pid = 0;
 	g_loop = LOOP;
 	msh = NULL;
 	buf = NULL;

@@ -20,7 +20,7 @@ static	void	return_error_cmd(char *cmd, char *msg)
 		ft_putstr_fd(": ", 2);
 	}
 	if (msg != NULL)
-		ft_putendl_fd(msg, 2);
+		ft_putstr_fd(msg, 2);
 }
 
 static	void	return_error_token(char *cmd, char *msg)
@@ -34,7 +34,7 @@ static	void	return_error_token(char *cmd, char *msg)
 	{
 		ft_putstr_fd("`", 2);
 		ft_putstr_fd(cmd, 2);
-		ft_putendl_fd("\'", 2);
+		ft_putstr_fd("\'", 2);
 	}
 }
 
@@ -54,7 +54,7 @@ static	void	return_error_args(char *cmd, char *arg, char *msg, int type)
 			ft_putstr_fd("\'", 2);
 	}
 	if (msg != NULL)
-		ft_putendl_fd(msg, 2);
+		ft_putstr_fd(msg, 2);
 }
 
 int				return_error(int type, char *cmd, char *arg, char *msg)
@@ -63,15 +63,16 @@ int				return_error(int type, char *cmd, char *arg, char *msg)
 	if (type == ERROR_ARGS || type == ERROR_QTE)
 		return_error_args(cmd, arg, msg, type);
 	else if (type == ERROR_MULTI)
-		ft_putendl_fd(msg, 2);
+		ft_putstr_fd(msg, 2);
 	else if (type == ERROR_TOKEN)
 		return_error_token(cmd, msg);
 	else if (type == ERROR_CMD)
 		return_error_cmd(cmd, msg);
 	else if (type == ERROR_MSG)
-		ft_putendl_fd(msg, 2);
+		ft_putstr_fd(msg, 2);
 	else
-		ft_putendl_fd(strerror(errno), 2);
+		ft_putstr_fd(strerror(errno), 2);
+	ft_putstr_fd("\n", 2);
 	g_error = ERROR;
 	return (ERROR);
 }

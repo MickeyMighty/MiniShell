@@ -14,7 +14,7 @@
 
 static	t_list	*return_no_empty(t_msh *msh, t_list *element, char *check)
 {
-	if (element->next)
+	if (element)
 		element = element->next;
 	msh->utils->i++;
 	free(check);
