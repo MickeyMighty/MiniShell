@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 22:57:42 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/17 13:01:23 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/22 23:17:02 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,19 @@
 
 void			status_child(void)
 {
-	if (WIFEXITED(g_pid))
-		g_status = WEXITSTATUS(g_pid);
-	if (WIFSIGNALED(g_pid))
+	pid_t	pid;
+
+	pid = 0;
+	pid = g_pid(GET, 0);
+	if (WIFEXITED(pid))
+		g_status = WEXITSTATUS(pid);
+	if (WIFSIGNALED(pid))
 	{
-		g_status = WTERMSIG(g_pid);
+		g_status = WTERMSIG(pid);
 		if (g_status != 131)
 			g_status += 128;
 	}
+	g_pid(SET, pid);
 }
 
 static	int		check_permission_exec(t_msh *msh, t_list *cmd, char **env,
@@ -43,8 +48,8 @@ int lock)
 		return (ERROR);
 	}
 	if (msh->utils->pipe == 0)
-		g_pid = fork();
-	if (g_pid == 0)
+		g_pid(SET, fork());
+	if (g_pid(GET, 0) == 0)
 		child_process(msh, cmd, env, exec_path);
 	else
 		parent_process();
@@ -67,7 +72,7 @@ int				exec_cmd(t_msh *msh, t_list *cmd, char **env, int pipe)
 			return (SUCCESS);
 	}
 	lock = TRUE;
-	g_error = SUCCESS;
+	g_error(SET, SUCCESS);
 	msh->utils->pipe = pipe;
 	status = ft_handler_builtins(msh, cmd);
 	if (status == SUCCESS)
@@ -76,8 +81,8 @@ int				exec_cmd(t_msh *msh, t_list *cmd, char **env, int pipe)
 		if (check_permission_exec(msh, cmd, env, lock) == ERROR)
 			return (ERROR);
 	if (pipe == 0)
-		g_pid = 0;
-	if (g_error == ERROR)
+		g_pid(SET, 0);
+	if (g_error(GET, 0) == ERROR)
 		return (ERROR);
 	return (SUCCESS);
 }

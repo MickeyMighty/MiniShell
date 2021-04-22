@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 13:35:59 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/19 15:47:52 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/22 23:01:24 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@
 # include <sys/stat.h>
 # include <dirent.h>
 # include <fcntl.h>
+
+# define SET 1
+# define GET 0
 
 # define EMPTY_ENV -7
 # define ERROR_DBLSEMICOLON -6
@@ -82,12 +85,12 @@
 ** Variable Global
 */
 
-pid_t					g_pid;
-int						g_loop;
-int						g_error;
-int						g_error_msg;
+// pid_t					g_pid;
+// int						g_loop;
+// int						g_error;
+// int						g_error_msg;
 int						g_status;
-int						g_return;
+// int						g_return;
 
 /*
 ** main/handler_signal.c
@@ -100,6 +103,16 @@ void			handler_signal(int sign);
 */
 
 int				exit_cmd(t_msh *msh);
+
+/*
+** main/my_global.c
+*/
+
+int				g_pid(int mode, int value);
+int				g_loop(int mode, int value);
+int				g_error(int mode, int value);
+int				g_error_msg(int mode, int value);
+int				g_return(int mode, int value);
 
 /*
 ** list/check_empty.c

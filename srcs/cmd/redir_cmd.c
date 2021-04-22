@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 10:16:20 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/17 11:04:58 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/22 22:58:11 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int				return_redir_error(t_list *element, int fd, int i)
 
 	join = ft_strjoin(element->tab_args[i], ": ");
 	return_error(ERROR_ERRNO, join, NULL, strerror(errno));
-	g_error = ERROR;
+	g_error(SET, ERROR);
 	free(join);
 	return (fd);
 }

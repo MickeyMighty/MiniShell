@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 15:13:10 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/17 13:20:47 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/22 22:49:50 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static	char		*return_tmp_dollar(t_msh *msh, char *str, int len)
 	{
 		msh->utils->tab_specase = add_empty_dollar(msh, msh->utils->pos_args);
 		if (msh->utils->tab_specase == NULL)
-			g_error = ERROR;
+			g_error(SET, ERROR);
 	}
 	return (ft_strdup("\0"));
 }

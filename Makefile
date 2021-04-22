@@ -10,6 +10,7 @@ LIBFT	=	./lib/libft/libft.a
 
 SRCS	=	./srcs/main/minishell.c \
 			./srcs/main/handler_signal.c \
+			./srcs/main/my_global.c \
 			./srcs/builtins/handler_builtins.c \
 			./srcs/builtins/my_cd.c \
 			./srcs/builtins/my_env.c \

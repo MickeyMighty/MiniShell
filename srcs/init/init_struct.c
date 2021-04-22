@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 07:27:43 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/09 10:27:44 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/22 22:44:33 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_utils			*init_utils(t_utils *utils)
 
 static t_msh	*init_struct(t_msh *msh)
 {
-	if (g_loop == LOOP)
+	if (g_loop(GET, 0) == LOOP)
 	{
 		if (!(msh = (t_msh*)malloc(sizeof(t_msh))))
 			return (NULL);

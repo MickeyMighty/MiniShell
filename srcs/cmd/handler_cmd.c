@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 22:57:33 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/16 12:10:20 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/22 22:53:04 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int				error_cmd(t_list *element)
 	|| (ft_strcmp(element->content, "&") == 0)
 	|| (ft_strcmp(element->content, ";") == 0))
 	{
-		g_error = ERROR;
+		g_error(SET, ERROR);
 		g_status = 2;
 		return (return_error(ERROR_TOKEN, element->content, NULL,
 		"syntax error near unexpected token"));
@@ -28,7 +28,7 @@ int				error_cmd(t_list *element)
 	|| (ft_strcmp(element->content, "<") == 0)
 	|| (ft_strcmp(element->content, "!") == 0))
 	{
-		g_error = ERROR;
+		g_error(SET, ERROR);
 		g_status = 2;
 		return (return_error(ERROR_TOKEN, "newline", NULL,
 		"syntax error near unexpected token"));
@@ -62,7 +62,7 @@ static	t_list	*sort_cmd(t_msh *msh, t_list *element, char **env)
 
 static	int		check_return_error(void)
 {
-	if (g_error_msg == ERROR_MULTI)
+	if (g_error_msg(GET, 0) == ERROR_MULTI)
 	{
 		return (return_error(ERROR_MSG, NULL, NULL,
 		"syntax error multiligne."));
@@ -74,7 +74,7 @@ int				handler_cmd(t_msh *msh, char **env)
 {
 	t_list	*element;
 
-	g_error_msg = 0;
+	g_error_msg(SET, 0);
 	element = msh->lair_list->start;
 	while (element != NULL)
 	{

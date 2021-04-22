@@ -6,7 +6,7 @@
 /*   By: lorenzoa <lorenzoa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/06 17:23:29 by lorenzoa          #+#    #+#             */
-/*   Updated: 2021/04/16 03:54:10 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/22 23:17:17 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int			check_permission(char *cmd)
 	if (flag == ERROR)
 	{
 		g_status = 127;
-		g_return = ERROR;
+		g_return(SET, ERROR);
 		if ((ft_strncmp(cmd, "./", 2) == 0) || cmd[0] == '/')
 			return_error(ERROR_CMD, cmd, NULL, ": No such file or directory");
 		else
@@ -79,13 +79,14 @@ void		parent_process(void)
 	child_status = 0;
 	wait(&child_status);
 	signal(SIGINT, SIG_IGN);
-	if (WIFSIGNALED(child_status) && (g_status != 130 && g_status != 131))
+	if (WIFSIGNALED(child_status) && (g_status != 130
+	&& g_status != 131))
 	{
 		ft_putstr_fd("\n", 2);
 		g_status = WTERMSIG(child_status);
 	}
 	if (WIFEXITED(child_status))
-		g_return = child_status;
+		g_return(SET, child_status);
 	if (g_status != 130 && g_status != 131)
 		g_status = WEXITSTATUS(child_status);
 }

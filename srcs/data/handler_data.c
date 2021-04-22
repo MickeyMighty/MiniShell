@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 20:48:58 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/16 13:25:00 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/22 22:48:03 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ static	char	**split_error(t_split_data *split_data, int error, int free_s)
 	if (free_s == 1)
 		free(split_data);
 	if (error == ERROR_DBLSEMICOLON)
-		g_error_msg = ERROR_DBLSEMICOLON;
+		g_error_msg(SET, ERROR_DBLSEMICOLON);
 	else if (error == ERROR_MALLOC)
-		g_error_msg = ERROR_MALLOC;
+		g_error_msg(SET, ERROR_MALLOC);
 	else if (error == SUCCESS)
-		g_error_msg = ERROR;
+		g_error_msg(SET, ERROR);
 	else if (error == ERROR_MULTI)
-		g_error_msg = ERROR_MULTI;
+		g_error_msg(SET, ERROR_MULTI);
 	return (NULL);
 }
 
@@ -95,14 +95,14 @@ int				handler_data(t_msh *msh, char *buf)
 	msh->data->prompt_data = ft_split_data(msh, buf, ' ');
 	if (msh->data->prompt_data == NULL)
 	{
-		if (g_error_msg == ERROR)
+		if (g_error_msg(GET, 0) == ERROR)
 			return (ERROR);
-		else if (g_error_msg == ERROR_DBLSEMICOLON)
+		else if (g_error_msg(GET, 0) == ERROR_DBLSEMICOLON)
 			return (return_error(ERROR_TOKEN, ";;", NULL,
 			"syntax error near unexpected token"));
-		else if (g_error_msg == ERROR_MALLOC)
+		else if (g_error_msg(GET, 0) == ERROR_MALLOC)
 			return (return_error(ERROR_MSG, NULL, NULL, "error from malloc"));
-		else if (g_error_msg == ERROR_MULTI)
+		else if (g_error_msg(GET, 0) == ERROR_MULTI)
 			return (return_error(ERROR_MSG, NULL, NULL,
 				"syntax error multiligne"));
 	}

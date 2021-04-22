@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 00:50:24 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/12 11:51:08 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/22 22:45:51 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,6 @@ int				return_error(int type, char *cmd, char *arg, char *msg)
 	else
 		ft_putstr_fd(strerror(errno), 2);
 	ft_putstr_fd("\n", 2);
-	g_error = ERROR;
+	g_error(SET, ERROR);
 	return (ERROR);
 }

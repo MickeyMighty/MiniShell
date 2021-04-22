@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 07:42:36 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/17 11:05:18 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/22 23:21:20 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static	t_list	*return_multi_pipe(t_msh *msh, t_list *element, char **env)
 	{
 		if (!element->next->next)
 		{
-			g_error_msg = ERROR;
+			g_error_msg(SET, ERROR);
 			return (NULL);
 		}
 		msh->utils->backup_fd = ft_pipe(msh, element, env,
@@ -41,7 +41,7 @@ t_list			*multi_pipe(t_msh *msh, t_list *element, char **env)
 	while (element)
 	{
 		element = return_multi_pipe(msh, element, env);
-		if (g_error_msg == ERROR)
+		if (g_error_msg(GET, 0) == ERROR)
 			return (NULL);
 		if (element->next
 		&& (get_value_sep(element->next->content) != PIPE))
@@ -82,22 +82,26 @@ static	int		bad_fork(int *pipefd, int backup_fd)
 int				ft_pipe(t_msh *msh, t_list *element, char **env, int backup_fd)
 {
 	int		pipefd[2];
+	pid_t	pid;
 
+	pid = 0;
 	pipefd[0] = -1;
 	pipefd[1] = -1;
 	if (pipe(pipefd) == -1)
 		return (-1);
-	g_pid = fork();
-	if (g_pid < 0)
+	g_pid(SET, fork());
+	if (g_pid(GET, 0) < 0)
 		return (bad_fork(pipefd, backup_fd));
-	if (g_pid == 0)
+	if (g_pid(GET, 0) == 0)
 	{
 		pipe_child(element, pipefd, backup_fd);
 		exec_cmd(msh, element, env, 1);
 		free_all(msh, EXIT);
 		exit(g_status);
 	}
-	wait(&g_pid);
+	pid = g_pid(GET, 0);
+	wait(&pid);
+	g_pid(SET, pid);
 	status_child();
 	close(backup_fd);
 	close(pipefd[1]);
