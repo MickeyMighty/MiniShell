@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 19:54:29 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/27 19:01:00 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/27 19:08:06 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,11 @@ static void			shell_loop(char **env)
 {
 	t_msh	*msh;
 	char	*buf;
-	int		loop;
-	int		ret;
+	// int		loop;
+	// int		ret;
 
-	loop = 1;
-	ret = 0;
+	// loop = 1;
+	// ret = 0;
 	g_pid(SET, 0);
 	g_loop(SET, LOOP);
 	msh = NULL;
