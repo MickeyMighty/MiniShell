@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 02:39:00 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/27 19:09:03 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/27 19:45:41 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ static	int	init_term(char *line)
 int		handler_termcap(t_msh *msh, char *line)
 {
 	int		ret;
-	struct	termios	term;
+	// struct	termios	term;
 
-	tcgetattr(0, &term);
+	// tcgetattr(0, &term);
 	// ret = init_term(NULL, STDOUT_FILENO, NULL);
 	ret = init_term(line);
 	return (ret);
