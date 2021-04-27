@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 02:39:00 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/27 19:01:09 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/27 19:09:03 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,10 @@ int		handler_termcap(t_msh *msh, char *line)
 	int		ret;
 	struct	termios	term;
 
-	tcgeattr(0, &term);
+	tcgetattr(0, &term);
 	// ret = init_term(NULL, STDOUT_FILENO, NULL);
 	ret = init_term(line);
+	return (ret);
 	if (g_loop(GET, 0) == LOOP)
 	{
 		msh->term_lair = init_term_lair(msh->term_lair);
