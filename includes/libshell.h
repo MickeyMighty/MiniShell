@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 13:35:59 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/27 19:01:17 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/27 19:15:33 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,8 @@
 # include <sys/stat.h>
 # include <dirent.h>
 # include <fcntl.h>
-# include <curses.h>
-# include <term.h>
-# include <termios.h>
+# include <termcap.h>
+
 
 /*
 ** for my_global
