@@ -11,6 +11,10 @@ LIBFT	=	./lib/libft/libft.a
 SRCS	=	./srcs/main/minishell.c \
 			./srcs/main/handler_signal.c \
 			./srcs/main/my_global.c \
+			./srcs/main/my_global_two.c \
+			./srcs/termcap/create_list_termcap.c \
+			./srcs/termcap/delete_list_termcap.c \
+			./srcs/termcap/handler_termcap.c \
 			./srcs/builtins/handler_builtins.c \
 			./srcs/builtins/my_cd.c \
 			./srcs/builtins/my_env.c \

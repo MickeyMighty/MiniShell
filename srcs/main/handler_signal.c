@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 13:17:45 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/22 22:59:47 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/26 20:43:09 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,4 @@ void			handler_signal(int sign)
 		else if (sign == SIGQUIT)
 			ft_putstr_fd("\b\b  \b\b", 1);
 	}
-	return ;
 }

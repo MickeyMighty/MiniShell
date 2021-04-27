@@ -6,17 +6,26 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 00:37:54 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/16 13:29:27 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/27 13:26:48 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include "../../includes/libshell.h"
 
-static int		ft_free(char **str, int ret)
+static	int		ft_free(char **str, int ret)
 {
 	free(*str);
 	*str = NULL;
+	g_error(SET, SUCCESS);
 	return (ret);
+}
+
+static	int		ft_clean(char **str)
+{
+	if (g_bytes(GET, 0) == 0 && g_error(GET, 0) == ERROR)
+		return (ft_free(str, 1));
+	return (1);
 }
 
 static int		ft_check(char **str, char **line)
@@ -53,8 +62,9 @@ static int		ft_read(int fd, char *buf, char **str, char **line)
 		return (ft_free(str, -1));
 	if (bytes)
 		return (1);
-	while ((bytes = read(fd, buf, BUFFER_SIZE)) >= 0)
+	while ((bytes = read(fd, buf, BUFFER_SIZE)) >= 0 && ft_clean(str) == 1)
 	{
+		g_bytes(SET, bytes);
 		buf[bytes] = '\0';
 		if (buf[0] == '\0' && ft_strlen(*str))
 			continue;

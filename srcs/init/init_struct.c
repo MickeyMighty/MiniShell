@@ -6,20 +6,11 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 07:27:43 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/22 22:44:33 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/27 11:19:29 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libshell.h"
-
-t_utils			*init_utils(t_utils *utils)
-{
-	utils->check = 0;
-	utils->size_tab = 0;
-	utils->pos_args = 1;
-	utils->export_check = 0;
-	return (utils);
-}
 
 static t_msh	*init_struct(t_msh *msh)
 {
@@ -49,6 +40,16 @@ t_msh			*init_msh(t_msh *msh)
 	msh->lair_list = NULL;
 	msh->utils->path = NULL;
 	return (msh);
+}
+
+t_term_lair		*init_term_lair(t_term_lair *term_lair)
+{
+	if (!(term_lair = (t_term_lair*)malloc(sizeof(t_term_lair))))
+		return (NULL);
+	term_lair->start = NULL;
+	term_lair->end = NULL;
+	term_lair->size = 0;
+	return (term_lair);
 }
 
 t_lair_list		*init_lair_list(t_lair_list *lair_list)

@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 13:35:59 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/22 23:01:24 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/27 19:01:17 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,20 @@
 # include <sys/stat.h>
 # include <dirent.h>
 # include <fcntl.h>
+# include <curses.h>
+# include <term.h>
+# include <termios.h>
+
+/*
+** for my_global
+*/
 
 # define SET 1
 # define GET 0
+
+/*
+** for msg error
+*/
 
 # define EMPTY_ENV -7
 # define ERROR_DBLSEMICOLON -6
@@ -43,18 +54,26 @@
 # define ERROR_ERRNO 6
 # define ERROR_EXPORT 7
 
+/*
+** for return error
+*/
+
 # define EXIT 0
 # define EXPORT 0
 # define CTRLD 1
 # define ENV 1
 # define ENDLOOP 2
 # define LOOP 3
-# define TRUE 0
-# define FALSE 1
+// # define TRUE 0
+// # define FALSE 1
 # define PATH_MAX 4096
 # define STDIN 0
 # define STDOUT 1
 # define STDERR 2
+
+/*
+** for token and check
+*/
 
 # define NOQTE 0
 # define YESQTE 1
@@ -85,12 +104,45 @@
 ** Variable Global
 */
 
-// pid_t					g_pid;
-// int						g_loop;
-// int						g_error;
-// int						g_error_msg;
 int						g_status;
-// int						g_return;
+
+/*
+** init/init_shell.c
+*/
+
+void			prompt(void);
+void			aff_welcome(void);
+t_utils			*init_utils(t_utils *utils);
+
+/*
+** init/init_struct.c
+*/
+
+t_msh			*init_msh(t_msh *msh);
+t_term_lair		*init_term_lair(t_term_lair *term_lair);
+t_lair_list		*init_lair_list(t_lair_list *lair_list);
+t_env_lair		*init_env_lair(t_env_lair *env_lair);
+
+
+/*
+** termcap/create_list_termcap.c
+*/
+
+int				ft_fill_empty_term(t_term_lair *term_lair, char *content);
+int				ft_fill_start_term(t_term_lair *term_lair, char *content);
+int				clear_term(t_term_lair *term_lair);
+
+/*
+** termcap/delete_list_termcap.c
+*/
+
+int				pop_back_term(t_term_lair *term_lair);
+
+/*
+** termcap/handler_termcap.c
+*/
+
+int				handler_termcap(t_msh *msh, char *line);
 
 /*
 ** main/handler_signal.c
@@ -113,6 +165,11 @@ int				g_loop(int mode, int value);
 int				g_error(int mode, int value);
 int				g_error_msg(int mode, int value);
 int				g_return(int mode, int value);
+/*
+** main/my_global_two.c
+*/
+
+int				g_bytes(int mode, int value);
 
 /*
 ** list/check_empty.c
@@ -157,22 +214,6 @@ int				handler_list(t_msh *msh);
 void			set_token_list(t_msh *msh);
 
 /*
-** init/init_shell.c
-*/
-
-void			prompt(void);
-void			aff_welcome(void);
-
-/*
-** init/init_struct.c
-*/
-
-t_utils			*init_utils(t_utils *utils);
-t_msh			*init_msh(t_msh *msh);
-t_lair_list		*init_lair_list(t_lair_list *lair_list);
-t_env_lair		*init_env_lair(t_env_lair *env_lair);
-
-/*
 ** error_and_free/error_msg.c
 */
 
@@ -185,7 +226,7 @@ int				return_error(int type, char *cmd, char *arg, char *msg);
 void			free_tab_args(char **str);
 void			free_split(char **str);
 void			free_list(t_msh *msh, int key);
-char			**ft_free_tab(char **tab, int j, t_split_data *split_data);
+char			**ft_free_tab(char **tabs, int j, t_split_data *split_data);
 
 /*
 ** handler_error/handler_error.c
@@ -409,5 +450,6 @@ int				my_pwd(void);
 */
 
 int				my_unset(t_msh *msh, t_list *element);
+
 
 #endif

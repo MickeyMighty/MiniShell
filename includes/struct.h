@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 18:09:50 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/07 13:43:17 by lorenzoam        ###   ########.fr       */
+/*   Updated: 2021/04/27 11:19:01 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ typedef struct				s_msh
 {
 	struct s_utils		*utils;
 	struct s_data		*data;
+	struct s_term_list	*term_list;
+	struct s_term_lair	*term_lair;
 	struct s_list		*list;
 	struct s_lair_list	*lair_list;
 	struct s_env_list	*env_list;
@@ -71,6 +73,20 @@ typedef struct				s_data
 	int					size_data;
 	int					check;
 }							t_data;
+
+typedef struct				s_term_list
+{
+	char					*content;
+	struct s_term_list		*next;
+	struct s_term_list		*previous;
+}							t_term_list;
+
+typedef struct				s_term_lair
+{
+	t_term_list				*start;
+	t_term_list				*end;
+	int					size;
+}							t_term_lair;
 
 typedef struct				s_list
 {

@@ -14,38 +14,38 @@
 
 int		g_pid(int mode, int value)
 {
-    static pid_t	pid;
+	static pid_t	pid;
 
-    if (mode == 1)
-       pid = value;
-    return (pid);
+	if (mode == 1)
+		pid = value;
+	return (pid);
 }
 
 int		g_loop(int mode, int value)
 {
-    static int	loop;
+	static int	loop;
 
-    if (mode == 1)
-       loop = value;
-    return (loop);
+	if (mode == 1)
+		loop = value;
+	return (loop);
 }
 
 int		g_error(int mode, int value)
 {
-    static int	error;
+	static int	error;
 
-    if (mode == 1)
-       error = value;
-    return (error);
+	if (mode == 1)
+		error = value;
+	return (error);
 }
 
 int		g_error_msg(int mode, int value)
 {
-    static int	error_msg;
+	static int	error_msg;
 
-    if (mode == 1)
-       error_msg = value;
-    return (error_msg);
+	if (mode == 1)
+		error_msg = value;
+	return (error_msg);
 }
 
 int		g_return(int mode, int value)

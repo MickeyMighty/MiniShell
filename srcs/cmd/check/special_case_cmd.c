@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/02 15:25:23 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/07 13:19:57 by lorenzoamar      ###   ########.fr       */
+/*   Updated: 2021/04/27 17:15:16 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ int				return_pos(t_msh *msh, char *str, int pos)
 	return (pos);
 }
 
-static int		*realloc_int_tab(int *tab, int size)
+static int		*realloc_int_tab(int *tabs, int size)
 {
 	int	*fresh;
 	int pos;
 
 	pos = 0;
-	if (size == 1 && tab == NULL)
+	if (size == 1 && tabs == NULL)
 	{
 		if (!(fresh = (int *)malloc(sizeof(int) * (1))))
 			return (NULL);
@@ -46,10 +46,10 @@ static int		*realloc_int_tab(int *tab, int size)
 			return (NULL);
 		while (pos < (size - 1))
 		{
-			fresh[pos] = tab[pos];
+			fresh[pos] = tabs[pos];
 			pos++;
 		}
-		free(tab);
+		free(tabs);
 	}
 	return (fresh);
 }
