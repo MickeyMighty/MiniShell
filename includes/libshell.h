@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 13:35:59 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/27 19:15:33 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/27 19:46:18 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@
 # define ENV 1
 # define ENDLOOP 2
 # define LOOP 3
-// # define TRUE 0
-// # define FALSE 1
+# define TRUE 0
+# define FALSE 1
 # define PATH_MAX 4096
 # define STDIN 0
 # define STDOUT 1
