@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 13:35:59 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/27 19:46:18 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/28 13:24:44 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@
 # include <sys/stat.h>
 # include <dirent.h>
 # include <fcntl.h>
-# include <termcap.h>
-
+# include <curses.h>
 
 /*
 ** for my_global
@@ -63,8 +62,8 @@
 # define ENV 1
 # define ENDLOOP 2
 # define LOOP 3
-# define TRUE 0
-# define FALSE 1
+// # define TRUE 0
+// # define FALSE 1
 # define PATH_MAX 4096
 # define STDIN 0
 # define STDOUT 1
@@ -95,7 +94,8 @@
 # define SEPARATOR 35
 # define CMD_EMTPY 7
 
-# include "./includes/struct.h"
+# include "termcap.h"
+# include "struct.h"
 # include "../lib/libft/libft.h"
 # include "../lib/get_next_line/get_next_line.h"
 

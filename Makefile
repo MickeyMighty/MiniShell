@@ -4,7 +4,9 @@ CC		=	gcc
 
 RM		=	rm -f
 
-CFLAGS	=	-g -I. -Wall -Wextra -Werror -ltermcap
+CFLAGS	=	-g -Wall -Wextra -Werror
+
+LFLAGS	=	-I. -lncurses
 
 LIBFT	=	./lib/libft/libft.a
 
@@ -62,7 +64,7 @@ all:		$(NAME)
 
 $(NAME):	$(OBJS)
 			make -C lib/libft
-			${CC} ${CFLAGS} -o ${NAME} ${OBJS} ${LIBFT}
+			${CC} ${CFLAGS} ${LFLAGS} -o ${NAME} ${OBJS} ${LIBFT}
 
 clean:
 			$(RM) $(OBJS)
