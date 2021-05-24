@@ -6,7 +6,7 @@
 #    By: loamar <loamar@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/30 19:29:10 by loamar            #+#    #+#              #
-#    Updated: 2021/04/01 00:01:30 by loamar           ###   ########.fr        #
+#    Updated: 2021/05/01 12:52:06 by loamar           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ SRC=ft_putnbr.c \
 	ft_strdup.c \
 	ft_strjoin.c \
 	ft_strlcat.c \
+	ft_strncat.c \
 	ft_strlcpy.c \
 	ft_strlen.c \
 	ft_strmapi.c \

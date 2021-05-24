@@ -1,56 +1,56 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   delete_list_termcap.c                              :+:      :+:    :+:   */
+/*   delete_list_history.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 02:34:50 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/27 11:22:49 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/29 14:50:22 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/libshell.h"
+#include "../../../includes/libshell.h"
 
-static	int		is_empty_term(t_term_lair *term_lair)
+static	int		is_empty_history(t_history_lair *history_lair)
 {
-	if (term_lair->size == 0)
+	if (history_lair->size == 0)
 	{
-		free(term_lair);
+		free(history_lair);
 		return (SUCCESS);
 	}
 	return (ERROR);
 }
 
-static	void	free_popback_term(t_term_list *temp)
+static	void	free_popback_history(t_history_list *temp)
 {
 	if (temp->content)
 		free(temp->content);
 	free(temp);
 }
 
-int				pop_back_term(t_term_lair *term_lair)
+int				pop_back_history(t_history_lair *history_lair)
 {
-	t_term_list		*temp;
+	t_history_list		*temp;
 
-	if (is_empty_term(term_lair) == SUCCESS)
+	if (is_empty_history(history_lair) == SUCCESS)
 		return (ERROR);
-	if (term_lair->size == 1)
+	if (history_lair->size == 1)
 	{
-		temp = term_lair->start;
-		term_lair->start = term_lair->start->next;
-		if (term_lair->start == NULL)
-			term_lair->end = NULL;
+		temp = history_lair->start;
+		history_lair->start = history_lair->start->next;
+		if (history_lair->start == NULL)
+			history_lair->end = NULL;
 		else
-			term_lair->start->previous = NULL;
+			history_lair->start->previous = NULL;
 	}
 	else
 	{
-		temp = term_lair->end;
-		term_lair->end->previous->next = NULL;
-		term_lair->end = term_lair->end->previous;
+		temp = history_lair->end;
+		history_lair->end->previous->next = NULL;
+		history_lair->end = history_lair->end->previous;
 	}
-	free_popback_term(temp);
-	term_lair->size--;
+	free_popback_history(temp);
+	history_lair->size--;
 	return (SUCCESS);
 }

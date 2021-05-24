@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 13:35:59 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/28 13:24:44 by loamar           ###   ########.fr       */
+/*   Updated: 2021/05/01 12:49:28 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,10 @@
 # include "../lib/libft/libft.h"
 # include "../lib/get_next_line/get_next_line.h"
 
+
+char		*g_cm(int mode, char *value);
+void		delete_char(t_msh *msh);
+
 /*
 ** Variable Global
 */
@@ -118,7 +122,7 @@ t_utils			*init_utils(t_utils *utils);
 */
 
 t_msh			*init_msh(t_msh *msh);
-t_term_lair		*init_term_lair(t_term_lair *term_lair);
+t_history_lair	*init_history_lair(t_history_lair *term_lair);
 t_lair_list		*init_lair_list(t_lair_list *lair_list);
 t_env_lair		*init_env_lair(t_env_lair *env_lair);
 
@@ -127,21 +131,30 @@ t_env_lair		*init_env_lair(t_env_lair *env_lair);
 ** termcap/create_list_termcap.c
 */
 
-int				ft_fill_empty_term(t_term_lair *term_lair, char *content);
-int				ft_fill_start_term(t_term_lair *term_lair, char *content);
-int				clear_term(t_term_lair *term_lair);
+int				ft_fill_empty_history(t_history_lair *history_lair, char *content);
+int				ft_fill_start_history(t_history_lair *history_lair, char *content);
+int				clear_history(t_history_lair *history_lair);
 
 /*
 ** termcap/delete_list_termcap.c
 */
 
-int				pop_back_term(t_term_lair *term_lair);
+int				pop_back_history(t_history_lair *history_lair);
 
 /*
 ** termcap/handler_termcap.c
 */
 
-int				handler_termcap(t_msh *msh, char *line);
+int		handler_history(t_msh *msh, char *line);
+void	get_cursor_pos(t_msh *msh, int *col, int *rows);
+void	init_term(t_msh *msh);
+
+/*
+** main/minishell.c
+*/
+
+void			end_loop(t_msh *msh, int free);
+void			main_handler(t_msh *msh, char *buf, char **env);
 
 /*
 ** main/handler_signal.c
@@ -150,10 +163,11 @@ int				handler_termcap(t_msh *msh, char *line);
 void			handler_signal(int sign);
 
 /*
-** main/main.c
+** main/shell_loop.c
 */
 
-int				exit_cmd(t_msh *msh);
+void 	shell_loop(t_msh *msh, char **env);
+void 	shell_loop_termcap(t_msh *msh, char **env);
 
 /*
 ** main/my_global.c
@@ -226,6 +240,7 @@ void			free_tab_args(char **str);
 void			free_split(char **str);
 void			free_list(t_msh *msh, int key);
 char			**ft_free_tab(char **tabs, int j, t_split_data *split_data);
+int				exit_cmd(t_msh *msh);
 
 /*
 ** handler_error/handler_error.c

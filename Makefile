@@ -4,7 +4,7 @@ CC		=	gcc
 
 RM		=	rm -f
 
-CFLAGS	=	-g -Wall -Wextra -Werror
+CFLAGS	=	-g
 
 LFLAGS	=	-I. -lncurses
 
@@ -14,9 +14,11 @@ SRCS	=	./srcs/main/minishell.c \
 			./srcs/main/handler_signal.c \
 			./srcs/main/my_global.c \
 			./srcs/main/my_global_two.c \
-			./srcs/termcap/create_list_termcap.c \
-			./srcs/termcap/delete_list_termcap.c \
-			./srcs/termcap/handler_termcap.c \
+			./srcs/main/shell_loop.c \
+			./srcs/termcap/delete_char.c \
+			./srcs/termcap/history/create_list_history.c \
+			./srcs/termcap/history/delete_list_history.c \
+			./srcs/termcap/history/handler_history.c \
 			./srcs/builtins/handler_builtins.c \
 			./srcs/builtins/my_cd.c \
 			./srcs/builtins/my_env.c \

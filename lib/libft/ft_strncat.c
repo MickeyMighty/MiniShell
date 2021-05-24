@@ -1,20 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   ft_strncat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/29 16:11:10 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/30 00:32:06 by loamar           ###   ########.fr       */
+/*   Created: 2021/05/01 12:51:36 by loamar            #+#    #+#             */
+/*   Updated: 2021/05/01 12:51:39 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isprint(int c)
+char	*ft_strncat(char *s1, const char *s2, size_t n)
 {
-	if (c >= 32 && c <= 126)
-		return (1);
-	return (0);
+	int		i;
+
+	i = ft_strlen(s1);
+	while (*s2 && n)
+	{
+		s1[i] = *s2;
+		i++;
+		s2++;
+		n--;
+	}
+	s1[i] = '\0';
+	return (s1);
 }

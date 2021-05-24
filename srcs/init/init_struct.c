@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 07:27:43 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/27 11:19:29 by loamar           ###   ########.fr       */
+/*   Updated: 2021/04/29 15:10:21 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static t_msh	*init_struct(t_msh *msh)
 	if (g_loop(GET, 0) == LOOP)
 	{
 		if (!(msh = (t_msh*)malloc(sizeof(t_msh))))
+			return (NULL);
+		if (!(msh->termcap = (t_termcap*)malloc(sizeof(t_termcap))))
 			return (NULL);
 	}
 	if (!(msh->utils = (t_utils*)malloc(sizeof(t_utils))))
@@ -31,6 +33,12 @@ t_msh			*init_msh(t_msh *msh)
 	msh = init_struct(msh);
 	if (msh == NULL)
 		return (NULL);
+	msh->termcap->start_col = 0;
+	msh->termcap->start_row = 0;
+	msh->termcap->end_col = 0;
+	msh->termcap->end_row = 0;
+	msh->termcap->col = 0;
+	msh->termcap->row = 0;
 	msh->utils->tab_specase = NULL;
 	msh->utils->size_tab = 0;
 	msh->utils->loop = 0;
@@ -42,14 +50,14 @@ t_msh			*init_msh(t_msh *msh)
 	return (msh);
 }
 
-t_term_lair		*init_term_lair(t_term_lair *term_lair)
+t_history_lair		*init_history_lair(t_history_lair *history_lair)
 {
-	if (!(term_lair = (t_term_lair*)malloc(sizeof(t_term_lair))))
+	if (!(history_lair = (t_history_lair*)malloc(sizeof(t_history_lair))))
 		return (NULL);
-	term_lair->start = NULL;
-	term_lair->end = NULL;
-	term_lair->size = 0;
-	return (term_lair);
+	history_lair->start = NULL;
+	history_lair->end = NULL;
+	history_lair->size = 0;
+	return (history_lair);
 }
 
 t_lair_list		*init_lair_list(t_lair_list *lair_list)

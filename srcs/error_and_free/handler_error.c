@@ -6,7 +6,7 @@
 /*   By: loamar <loamar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/11 03:33:33 by loamar            #+#    #+#             */
-/*   Updated: 2021/04/22 22:46:21 by loamar           ###   ########.fr       */
+/*   Updated: 2021/05/05 17:56:54 by loamar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@ void			free_all(t_msh *msh, int free_key)
 {
 	if (msh && (g_loop(GET, 0) != LOOP))
 	{
+		// if (msh->termcap)
+		// {
+			// if (msh->termcap->line)
+			// 	free(msh->termcap->line);
+		// }
 		if (msh->utils && (free_key == ENDLOOP || free_key == EXIT))
 		{
 			if (msh->utils->path)
